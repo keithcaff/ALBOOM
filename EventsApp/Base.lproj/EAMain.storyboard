@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Main View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="EAMainViewController" customModule="EventsApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="La5-3d-cdT">
+                                <rect key="frame" x="240" y="492" width="120" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="7uM-qO-Rij"/>
+                                    <constraint firstAttribute="width" constant="120" id="vVj-qq-Njq"/>
+                                </constraints>
+                                <state key="normal" title="Login"/>
+                                <connections>
+                                    <action selector="loginClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lpq-U9-IHv"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Wut-ui-Pwa" userLabel="output">
+                                <rect key="frame" x="123" y="28" width="355" height="404"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="404" id="ES2-MP-QX0"/>
+                                    <constraint firstAttribute="width" constant="355" id="KPZ-GN-aQr"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Wut-ui-Pwa" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Aam-Nf-h0T"/>
+                            <constraint firstItem="La5-3d-cdT" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="dz4-4b-gdt"/>
+                            <constraint firstItem="Wut-ui-Pwa" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="fLk-yK-1da"/>
+                            <constraint firstItem="La5-3d-cdT" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="jhv-Mk-V7Q"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="La5-3d-cdT" secondAttribute="bottom" constant="68" id="oAj-LA-mk2"/>
+                            <constraint firstItem="Wut-ui-Pwa" firstAttribute="bottom" secondItem="La5-3d-cdT" secondAttribute="bottom" constant="-100" id="uFK-2F-RfP"/>
+                            <constraint firstItem="Wut-ui-Pwa" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" constant="28" id="xEb-4I-FIn"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Aam-Nf-h0T"/>
+                                <exclude reference="jhv-Mk-V7Q"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="loginButton" destination="La5-3d-cdT" id="S3h-nF-Z0p"/>
+                        <outlet property="output" destination="Wut-ui-Pwa" id="ana-oO-RAI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="388" y="389"/>
+        </scene>
+    </scenes>
+</document>
