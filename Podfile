@@ -1,9 +1,9 @@
 # Uncomment this line to define a global platform for your project
 # platform :ios, '9.0'
-pod 'Google/SignIn'
 
 pod 'GoogleAPIClient/Drive'
-
+pod 'Google/AppInvite'
+pod 'Google/SignIn'
 pod 'GTMOAuth2'
 
 target 'EventsApp' do

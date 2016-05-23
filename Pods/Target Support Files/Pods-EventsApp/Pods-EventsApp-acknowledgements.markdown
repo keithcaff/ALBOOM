@@ -1,6 +1,14 @@
 # Acknowledgements
 This application makes use of the following third party libraries:
 
+## AppInvites
+
+Copyright 2015 Google Inc.
+
+## GPPCore
+
+Copyright 2015 Google Inc. All Rights Reserved.
+
 ## GTMOAuth2
 
 
@@ -636,6 +644,14 @@ Copyright 2015 Google Inc.
 Copyright 2015 Google Inc.
 
 ## GoogleNetworkingUtilities
+
+Copyright 2015 Google Inc.
+
+## GoogleParsingUtilities
+
+Copyright 2015 Google Inc.
+
+## GooglePlusUtilities
 
 Copyright 2015 Google Inc.
 

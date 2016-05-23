@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>API_KEY</key>
+	<string>AIzaSyD2CZ5YbUJWN4qGkUUB8gA_nqq7IFC_Jb8</string>
+	<key>BUNDLE_ID</key>
+	<string>com.keithcaffrey.eventapp</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
@@ -18,10 +22,53 @@
 	<string>1.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>BUNDLE_ID</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.keithcaffrey.eventapp</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>REVERSED_CLIENT_ID</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.846609866933-a2av32btvqv5rpknqb3khruc7f6hm89r</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>CLIENT_ID</key>
+	<string>846609866933-a2av32btvqv5rpknqb3khruc7f6hm89r.apps.googleusercontent.com</string>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:846609866933:ios:b101a27f61e70d10</string>
+	<key>IS_ADS_ENABLED</key>
+	<false/>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false/>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true/>
+	<key>IS_GCM_ENABLED</key>
+	<false/>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true/>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>PROJECT_ID</key>
+	<string>eventapp-1c7b4</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.846609866933-a2av32btvqv5rpknqb3khruc7f6hm89r</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
