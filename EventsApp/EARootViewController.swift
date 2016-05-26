@@ -12,7 +12,7 @@ import GoogleAPIClient
 class EARootViewController: UIViewController,GIDSignInDelegate {
     
     var loginViewController:EALoginViewController?
-    var homeViewController:EAHomeViewController?
+    var eaRootSWRevealViewController :SWRevealViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +33,11 @@ class EARootViewController: UIViewController,GIDSignInDelegate {
     }
     
     override func viewDidAppear(animated: Bool) {
-        GIDSignIn.sharedInstance().signInSilently()
+        super.viewDidAppear(animated)
+        
+        if(GIDSignIn.sharedInstance().currentUser == nil) {
+            GIDSignIn.sharedInstance().signInSilently()
+        }
     }
     
     func showLogin(animated:Bool) {
@@ -43,30 +47,31 @@ class EARootViewController: UIViewController,GIDSignInDelegate {
     }
     
     
-    func showHomeViewController(animated:Bool) {
+    func showRootSWRevealViewController(animated:Bool) {
         let storyboard = UIStoryboard(name: "EAMain", bundle: nil)
-        homeViewController = (storyboard.instantiateViewControllerWithIdentifier("HomeViewController") as! EAHomeViewController)
-        self.presentViewController(homeViewController!, animated: true, completion: nil)
+        eaRootSWRevealViewController = (storyboard.instantiateViewControllerWithIdentifier("RootSWRevealViewController") as! SWRevealViewController)
+        self.presentViewController(eaRootSWRevealViewController!, animated: true, completion: nil)
     }
 
     // MARK: GIDSignInDelegate methods
     func signIn(signIn: GIDSignIn!, didSignInForUser user: GIDGoogleUser!, withError error: NSError!) {
         if(error != nil) {
             print("Looks like we got a sign in error \(error)")
-            //present the login view controller
-            showLogin(true)
+            //present the login view controller if not already presented
+            if(self.loginViewController == nil) {
+                 showLogin(true)
+            }
         }
         else {
             print("Wow our user signed in \(user)")
             if (self.loginViewController != nil) {
                 weak var weakSelf:EARootViewController? = self;
                 self.dismissViewControllerAnimated(true, completion:{
-                self.showHomeViewController(true)
-                    weakSelf?.showHomeViewController(true);
+                    weakSelf?.showRootSWRevealViewController(true);
                 })
             }
             else {
-                showHomeViewController(true);
+                showRootSWRevealViewController(true);
             }
             
         }

@@ -9,13 +9,15 @@
 /* Begin PBXBuildFile section */
 		4419E4691CF1DC8100FFCE0D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4419E4681CF1DC8100FFCE0D /* GoogleService-Info.plist */; };
 		4419E46B1CF1E2CC00FFCE0D /* EALoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4419E46A1CF1E2CC00FFCE0D /* EALoginViewController.swift */; };
-		4419E46D1CF26C8000FFCE0D /* EAHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4419E46C1CF26C8000FFCE0D /* EAHomeViewController.swift */; };
+		4419E46D1CF26C8000FFCE0D /* EAHomeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4419E46C1CF26C8000FFCE0D /* EAHomeTabBarController.swift */; };
 		44323FAD1CE9EF730049F7FC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44323FAC1CE9EF730049F7FC /* AppDelegate.swift */; };
 		44323FB21CE9EF730049F7FC /* EAMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44323FB01CE9EF730049F7FC /* EAMain.storyboard */; };
 		44323FB41CE9EF730049F7FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 44323FB31CE9EF730049F7FC /* Assets.xcassets */; };
 		44323FB71CE9EF730049F7FC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44323FB51CE9EF730049F7FC /* LaunchScreen.storyboard */; };
 		445208191CEFCAA400CC231B /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 445208181CEFCAA400CC231B /* SWRevealViewController.m */; };
 		44BAB9171CF362D100B1D18D /* EARootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44BAB9161CF362D100B1D18D /* EARootViewController.swift */; };
+		53F47AB91CF75817005F0DE9 /* MenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F47AB81CF75817005F0DE9 /* MenuTableViewController.swift */; };
+		53F47ABB1CF76486005F0DE9 /* EAHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F47ABA1CF76486005F0DE9 /* EAHomeViewController.swift */; };
 		D9717FB16FBE9EC3119AA508 /* Pods_EventsApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 122C79AF285017512BB37DB4 /* Pods_EventsApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -23,7 +25,7 @@
 		122C79AF285017512BB37DB4 /* Pods_EventsApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EventsApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4419E4681CF1DC8100FFCE0D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4419E46A1CF1E2CC00FFCE0D /* EALoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EALoginViewController.swift; sourceTree = "<group>"; };
-		4419E46C1CF26C8000FFCE0D /* EAHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EAHomeViewController.swift; sourceTree = "<group>"; };
+		4419E46C1CF26C8000FFCE0D /* EAHomeTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EAHomeTabBarController.swift; sourceTree = "<group>"; };
 		44323FA91CE9EF730049F7FC /* EventsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EventsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		44323FAC1CE9EF730049F7FC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		44323FB11CE9EF730049F7FC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/EAMain.storyboard; sourceTree = "<group>"; };
@@ -35,6 +37,8 @@
 		4452081A1CEFCAB100CC231B /* EventsApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EventsApp-Bridging-Header.h"; sourceTree = "<group>"; };
 		44BAB9161CF362D100B1D18D /* EARootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EARootViewController.swift; sourceTree = "<group>"; };
 		50CB0735F08D28AAA653068E /* Pods-EventsApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EventsApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EventsApp/Pods-EventsApp.debug.xcconfig"; sourceTree = "<group>"; };
+		53F47AB81CF75817005F0DE9 /* MenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewController.swift; sourceTree = "<group>"; };
+		53F47ABA1CF76486005F0DE9 /* EAHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EAHomeViewController.swift; path = ../EAHomeViewController.swift; sourceTree = "<group>"; };
 		75CBB103CAD3158E12E5E0B9 /* Pods-EventsApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EventsApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-EventsApp/Pods-EventsApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -71,12 +75,14 @@
 		44323FAB1CE9EF730049F7FC /* EventsApp */ = {
 			isa = PBXGroup;
 			children = (
+				53F47ABA1CF76486005F0DE9 /* EAHomeViewController.swift */,
 				44323FAC1CE9EF730049F7FC /* AppDelegate.swift */,
 				4419E4681CF1DC8100FFCE0D /* GoogleService-Info.plist */,
 				4419E46A1CF1E2CC00FFCE0D /* EALoginViewController.swift */,
 				44323FB01CE9EF730049F7FC /* EAMain.storyboard */,
+				53F47AB81CF75817005F0DE9 /* MenuTableViewController.swift */,
 				44BAB9161CF362D100B1D18D /* EARootViewController.swift */,
-				4419E46C1CF26C8000FFCE0D /* EAHomeViewController.swift */,
+				4419E46C1CF26C8000FFCE0D /* EAHomeTabBarController.swift */,
 				44323FB31CE9EF730049F7FC /* Assets.xcassets */,
 				44323FB51CE9EF730049F7FC /* LaunchScreen.storyboard */,
 				4452081B1CEFCADB00CC231B /* SupportingFiles */,
@@ -236,9 +242,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				4419E46B1CF1E2CC00FFCE0D /* EALoginViewController.swift in Sources */,
-				4419E46D1CF26C8000FFCE0D /* EAHomeViewController.swift in Sources */,
+				4419E46D1CF26C8000FFCE0D /* EAHomeTabBarController.swift in Sources */,
+				53F47AB91CF75817005F0DE9 /* MenuTableViewController.swift in Sources */,
 				44BAB9171CF362D100B1D18D /* EARootViewController.swift in Sources */,
 				44323FAD1CE9EF730049F7FC /* AppDelegate.swift in Sources */,
+				53F47ABB1CF76486005F0DE9 /* EAHomeViewController.swift in Sources */,
 				445208191CEFCAA400CC231B /* SWRevealViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

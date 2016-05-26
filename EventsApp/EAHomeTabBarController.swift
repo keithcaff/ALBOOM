@@ -9,7 +9,7 @@
 import UIKit
 import GoogleAPIClient
 
-class EAHomeViewController: UITabBarController {
+class EAHomeTabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
