@@ -111,7 +111,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "54"
             endingLineNumber = "54"
-            landmarkName = "signIn(_:didSignInForUser:withError:)"
+            landmarkName = "showRootSWRevealViewController(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
