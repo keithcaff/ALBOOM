@@ -1,24 +1,18 @@
 //
-//  EAHomeViewController.swift
+//  EACreateEventViewController.swift
 //  EventsApp
 //
-//  Created by Keith Caffrey on 26/05/2016.
+//  Created by Keith Caffrey on 27/05/2016.
 //  Copyright © 2016 KC. All rights reserved.
 //
 
 import UIKit
 
-class EAHomeViewController: UIViewController {
+class EACreateEventViewController: UIViewController {
 
-    @IBOutlet var menuButton: UIBarButtonItem!
     override func viewDidLoad() {
         super.viewDidLoad()
-        menuButton.target = revealViewController()
-        menuButton.action = #selector(SWRevealViewController.revealToggle(_:))
-        
-        revealViewController().rightViewRevealWidth = 150
-        //revealViewController().rearViewRevealWidth = 100
-        view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+
         // Do any additional setup after loading the view.
     }
 
