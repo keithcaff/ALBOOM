@@ -21,6 +21,19 @@ class EACreateEventViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    
+
+    @IBAction func cancelButtonClicked(sender: AnyObject) {
+        
+        //self.navigationController?.popToRootViewControllerAnimated(true);
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        print("get ready to create event here")
+        segue.destinationViewController as! EAMenuTableViewController
+    }
+    
+
 
     /*
     // MARK: - Navigation

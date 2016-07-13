@@ -15,6 +15,9 @@ PODS:
   - Google/SignIn (2.0.4):
     - Google/Core
     - GoogleSignIn (~> 3.0)
+  - GoogleAPIClient (1.0.3):
+    - GoogleAPIClient/Core (= 1.0.3)
+    - GTMSessionFetcher (~> 1.1)
   - GoogleAPIClient/Core (1.0.3):
     - GTMSessionFetcher (~> 1.1)
   - GoogleAPIClient/Drive (1.0.3):
@@ -61,6 +64,7 @@ PODS:
 DEPENDENCIES:
   - Google/AppInvite
   - Google/SignIn
+  - GoogleAPIClient
   - GoogleAPIClient/Drive
   - GTMOAuth2
 
@@ -81,6 +85,6 @@ SPEC CHECKSUMS:
   GTMOAuth2: bdb12f3e0d2110bfe585f6151230b883beb4d042
   GTMSessionFetcher: 86678550b1b2862b0df62e693a177c916debd7d2
 
-PODFILE CHECKSUM: dd6383b5fce3a739ce236f41a52c4561c22f9bf2
+PODFILE CHECKSUM: 7a5ce7979c9c033b85e0f0a1fa9ae55267c67deb
 
 COCOAPODS: 1.0.0
