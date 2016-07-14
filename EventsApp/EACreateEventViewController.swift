@@ -10,18 +10,28 @@ import UIKit
 
 class EACreateEventViewController: UIViewController {
 
+    @IBOutlet weak var eventNameTextField: UITextField!
+    @IBOutlet weak var createEventButton: UIButton!
+    
+    var event:Event?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         print("get ready to create event here")
-        //segue.destinationViewController as! EAMenuTableViewController
+        if segue.identifier == "createEventUnWind" {
+            event = Event(eventName: eventNameTextField.text!)
+        }
     }
+    
+    
+    
 }

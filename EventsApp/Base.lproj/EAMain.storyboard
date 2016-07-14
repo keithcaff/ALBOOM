@@ -229,21 +229,41 @@
                                     </mask>
                                 </variation>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KlW-f6-jkS">
+                                <rect key="frame" x="16" y="163" width="46" height="30"/>
+                                <state key="normal" title="Create"/>
+                                <connections>
+                                    <segue destination="8w7-xV-239" kind="unwind" identifier="createEventUnWind" unwindAction="unWindToMenu:" id="mef-s0-1pG"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="xhz-dp-WTX" firstAttribute="top" secondItem="lF6-v9-X4j" secondAttribute="bottom" constant="43" id="4aX-Mk-6gq"/>
+                            <constraint firstItem="KlW-f6-jkS" firstAttribute="leading" secondItem="Vh5-xv-kPQ" secondAttribute="leading" constant="16" id="Gwq-BA-rFh"/>
+                            <constraint firstItem="KlW-f6-jkS" firstAttribute="leading" secondItem="Vh5-xv-kPQ" secondAttribute="leading" constant="16" id="M5e-uN-U4h"/>
+                            <constraint firstItem="xhz-dp-WTX" firstAttribute="leading" secondItem="Vh5-xv-kPQ" secondAttribute="leading" constant="16" id="MWJ-nG-vBo"/>
                             <constraint firstItem="xhz-dp-WTX" firstAttribute="centerX" secondItem="Vh5-xv-kPQ" secondAttribute="centerX" id="ban-g1-3GM"/>
+                            <constraint firstItem="KlW-f6-jkS" firstAttribute="top" secondItem="beQ-ER-H8M" secondAttribute="bottom" constant="16" id="mYE-Qn-nCJ"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Gwq-BA-rFh"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="Qjf-4h-gPG">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="EjR-Rq-h9c">
                             <connections>
-                                <segue destination="8w7-xV-239" kind="unwind" unwindAction="unWindToMenu:" id="TTh-47-Q3o"/>
+                                <segue destination="8w7-xV-239" kind="unwind" identifier="cancelCreateEventUnwind" unwindAction="unWindToMenu:" id="ouH-yQ-fmJ"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="createEventButton" destination="KlW-f6-jkS" id="B2Y-oK-BsZ"/>
+                        <outlet property="eventNameTextField" destination="JwF-rw-rmn" id="7NP-Ll-lqy"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VBF-TW-nCO" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="8w7-xV-239" userLabel="Exit" sceneMemberID="exit"/>
