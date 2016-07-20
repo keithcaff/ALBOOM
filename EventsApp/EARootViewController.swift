@@ -21,7 +21,8 @@ class EARootViewController: UIViewController,GIDSignInDelegate {
         if (configureError != nil) {
             print("We have an error! \(configureError)")
         }
-        GIDSignIn.sharedInstance().scopes.append(kGTLAuthScopeDriveAppdata)
+        GIDSignIn.sharedInstance().scopes.append(kGTLAuthScopeDrive)
+        
         GIDSignIn.sharedInstance().delegate = self
         
         // Do any additional setup after loading the view.
