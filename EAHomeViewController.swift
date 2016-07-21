@@ -45,6 +45,7 @@ class EAHomeViewController: UIViewController {
     
     func newEventCreated(notifiaction : NSNotification) {
         print("new event folder created")
+        revealViewController().revealToggleAnimated(true)
         if let folder = notifiaction.object as? GTLDriveFile  {
             currentEventFolder = folder
             self.navigationController?.navigationBar.topItem?.title = folder.name

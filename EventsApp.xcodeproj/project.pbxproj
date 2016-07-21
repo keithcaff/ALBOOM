@@ -19,6 +19,7 @@
 		44BAB9191CF8E69500B1D18D /* EACreateEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44BAB9181CF8E69500B1D18D /* EACreateEventViewController.swift */; };
 		53160D911D3801DE0095906E /* EAEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53160D901D3801DE0095906E /* EAEvent.swift */; };
 		538D48181D41372700957BF0 /* EAGlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538D48171D41372700957BF0 /* EAGlobalConstants.swift */; };
+		538D481A1D4155BF00957BF0 /* EAGoogleAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538D48191D4155BF00957BF0 /* EAGoogleAPIManager.swift */; };
 		53F47AB91CF75817005F0DE9 /* EAMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F47AB81CF75817005F0DE9 /* EAMenuTableViewController.swift */; };
 		53F47ABB1CF76486005F0DE9 /* EAHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F47ABA1CF76486005F0DE9 /* EAHomeViewController.swift */; };
 		D9717FB16FBE9EC3119AA508 /* Pods_EventsApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 122C79AF285017512BB37DB4 /* Pods_EventsApp.framework */; };
@@ -43,6 +44,7 @@
 		50CB0735F08D28AAA653068E /* Pods-EventsApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EventsApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EventsApp/Pods-EventsApp.debug.xcconfig"; sourceTree = "<group>"; };
 		53160D901D3801DE0095906E /* EAEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EAEvent.swift; sourceTree = "<group>"; };
 		538D48171D41372700957BF0 /* EAGlobalConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EAGlobalConstants.swift; sourceTree = "<group>"; };
+		538D48191D4155BF00957BF0 /* EAGoogleAPIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EAGoogleAPIManager.swift; sourceTree = "<group>"; };
 		53F47AB81CF75817005F0DE9 /* EAMenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EAMenuTableViewController.swift; sourceTree = "<group>"; };
 		53F47ABA1CF76486005F0DE9 /* EAHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EAHomeViewController.swift; path = ../EAHomeViewController.swift; sourceTree = "<group>"; };
 		75CBB103CAD3158E12E5E0B9 /* Pods-EventsApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EventsApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-EventsApp/Pods-EventsApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -96,6 +98,7 @@
 				4452081B1CEFCADB00CC231B /* SupportingFiles */,
 				44323FB81CE9EF730049F7FC /* Info.plist */,
 				53160D901D3801DE0095906E /* EAEvent.swift */,
+				538D48191D4155BF00957BF0 /* EAGoogleAPIManager.swift */,
 			);
 			path = EventsApp;
 			sourceTree = "<group>";
@@ -257,6 +260,7 @@
 				53F47AB91CF75817005F0DE9 /* EAMenuTableViewController.swift in Sources */,
 				44BAB9171CF362D100B1D18D /* EARootViewController.swift in Sources */,
 				44323FAD1CE9EF730049F7FC /* AppDelegate.swift in Sources */,
+				538D481A1D4155BF00957BF0 /* EAGoogleAPIManager.swift in Sources */,
 				44BAB9191CF8E69500B1D18D /* EACreateEventViewController.swift in Sources */,
 				53F47ABB1CF76486005F0DE9 /* EAHomeViewController.swift in Sources */,
 				445208191CEFCAA400CC231B /* SWRevealViewController.m in Sources */,
