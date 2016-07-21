@@ -7,19 +7,35 @@
 //
 
 import UIKit
+import GoogleAPIClient
+import GTMOAuth2
 
 class EAHomeViewController: UIViewController {
+    
+    var currentEventFolder:GTLDriveFile?
 
     @IBOutlet var menuButton: UIBarButtonItem!
     override func viewDidLoad() {
         super.viewDidLoad()
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(newEventCreated), name: NOTIFICATION_EVENT_FOLDER_CREATED, object: nil)
+        
+        let defaults = NSUserDefaults.standardUserDefaults()
+        if let currentEventName = defaults.stringForKey(DEFAULT_CURRENT_EVENT_NAME) {
+            self.navigationController?.navigationBar.topItem?.title = currentEventName
+        }
+
         menuButton.target = revealViewController()
         menuButton.action = #selector(SWRevealViewController.revealToggle(_:))
         
         revealViewController().rightViewRevealWidth = 150
-        //revealViewController().rearViewRevealWidth = 100
         view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         // Do any additional setup after loading the view.
+        
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        print("currentEventFolder: \(currentEventFolder?.name)")
     }
 
     override func didReceiveMemoryWarning() {
@@ -27,15 +43,18 @@ class EAHomeViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func newEventCreated(notifiaction : NSNotification) {
+        print("new event folder created")
+        if let folder = notifiaction.object as? GTLDriveFile  {
+            currentEventFolder = folder
+            self.navigationController?.navigationBar.topItem?.title = folder.name
+            let defaults = NSUserDefaults.standardUserDefaults()
+            defaults.setObject(folder.name, forKey: DEFAULT_CURRENT_EVENT_NAME)
+        }
     }
-    */
-
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
 }

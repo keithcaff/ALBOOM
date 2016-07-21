@@ -9,7 +9,7 @@
 import Foundation
 
 
-class Event {
+class EAEvent {
     var name:String?
     
     init(eventName:String) {

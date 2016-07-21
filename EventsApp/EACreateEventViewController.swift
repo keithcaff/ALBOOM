@@ -13,7 +13,7 @@ class EACreateEventViewController: UIViewController {
     @IBOutlet weak var eventNameTextField: UITextField!
     @IBOutlet weak var createEventButton: UIButton!
     
-    var event:Event?
+    var event:EAEvent?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +28,7 @@ class EACreateEventViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         print("get ready to create event here")
         if segue.identifier == "createEventUnWind" {
-            event = Event(eventName: eventNameTextField.text!)
+            event = EAEvent(eventName: eventNameTextField.text!)
         }
     }
     

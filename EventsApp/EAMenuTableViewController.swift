@@ -44,23 +44,33 @@ class EAMenuTableViewController: UITableViewController {
     }
     
     
-    func createEventFolder(event:Event) {
+    func createEventFolder(event:EAEvent) {
         setAuthorizerForService(GIDSignIn.sharedInstance(), user: GIDSignIn.sharedInstance().currentUser)
         service.setExactUserAgent(GIDSignIn.sharedInstance().currentUser.userID)
         print("Creating event folder %event")
         let folder:GTLDriveFile =  GTLDriveFile() ;
-        folder.name = event.name!
+        folder.name = EVENT_FOLDER_PREFIX+event.name!
         folder.mimeType = "application/vnd.google-apps.folder";
         let query:GTLQueryDrive = GTLQueryDrive.queryForFilesCreateWithObject(folder,uploadParameters:nil)
+        
+        weak var weakSelf:EAMenuTableViewController! = self
         service.executeQuery(query, completionHandler:  { (ticket, createdFolder , error) -> Void in
             if let error = error {
                 print("failed with error: \(error)")
             }
             else {
                 print("success crated folder: \(createdFolder)")
+                weakSelf.hideMenu()
+                //post some notification that an event was created with event name
+                NSNotificationCenter.defaultCenter().postNotificationName(NOTIFICATION_EVENT_FOLDER_CREATED, object: createdFolder)
             }
-        
         })
+        
+      
+    }
+    
+    func hideMenu() {
+        revealViewController().revealToggleAnimated(true)
     }
     
 
