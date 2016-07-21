@@ -52,5 +52,27 @@ class EAGoogleAPIManager {
             }
         })
     }
+    
+    
+    //id of dit talk folder 0By-3eIhKXJNzRmVDckY4WlcwVDQ
+    func getRootEventAppFolder() {
+        let service:GTLService = gtlServiceDrive
+//        GTLQueryDrive *queryFilesList = [GTLQueryDrive queryForChildrenListWithFolderId:@"root"];
+//        queryFilesList.q = @"mimeType='application/vnd.google-apps.folder'";
 
+        let query:GTLQueryDrive = GTLQueryDrive.queryForFilesList()
+        query.q = "mimeType='application/vnd.google-apps.folder' and 'root' in parents and trashed=false";
+        //weak var weakSelf:EAGoogleAPIManager! = self
+        setAuthorizerForService(GIDSignIn.sharedInstance(), user: GIDSignIn.sharedInstance().currentUser,service:service)
+        service.executeQuery(query) { (ticket: GTLServiceTicket!, object: AnyObject!, error: NSError!) -> Void in
+            if(error != nil){
+                print("Error :\(error.localizedDescription)")
+                return
+            }
+            print("object:  \(object)")
+        }
+    }
+    
+    
+   
 }
