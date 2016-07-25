@@ -8,6 +8,7 @@
 
 import Foundation
 import GoogleAPIClient
+import UIKit
 
 public class EAViewEventsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -20,13 +21,13 @@ public class EAViewEventsViewController: UIViewController, UITableViewDelegate, 
         super.viewDidLoad()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(eventFoldersRetrieved), name: NOTIFICATION_EVENT_FOLDERS_RETRIEVED, object: nil)
         self.tableView.dataSource = self
-        let nibName = UINib(nibName: "EAViewEventTableViewCell", bundle:nil)
-        self.tableView.registerNib(nibName, forCellReuseIdentifier: viewEventCellIdentifier)
-        //(EAViewEventTableViewCell.class,forCellReuseIdentifier:viewEventCellIdentifier);
+        self.tableView.delegate = self
+        let nib = UINib(nibName: "EAViewEventTableViewCell", bundle:nil)
+        self.tableView.registerNib(nib, forCellReuseIdentifier: viewEventCellIdentifier)
     }
     
     public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        var count:Int = 1
+        var count:Int = 0
         if let data = data {
             count = data.count
         }
@@ -40,11 +41,12 @@ public class EAViewEventsViewController: UIViewController, UITableViewDelegate, 
     }
     
     public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell:EAViewEventTableViewCell? = tableView.dequeueReusableCellWithIdentifier(viewEventCellIdentifier, forIndexPath: indexPath) as? EAViewEventTableViewCell
-        
+        var cell:EAViewEventTableViewCell?
         if self.data == nil {
-            return UITableViewCell()
+            return EAViewEventTableViewCell()
         }
+        cell = tableView.dequeueReusableCellWithIdentifier(viewEventCellIdentifier, forIndexPath: indexPath) as? EAViewEventTableViewCell
+        
         let event:EAEvent = (self.data!.objectAtIndex(indexPath.row) as! EAEvent)
         cell!.name.text = event.name!
         return cell!
