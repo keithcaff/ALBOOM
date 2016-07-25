@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ivP-DS-p8N">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Events-->
+        <scene sceneID="qIf-JY-coD">
+            <objects>
+                <viewController id="tgM-zi-Kkm" customClass="EAViewEventsViewController" customModule="EventsApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="POX-lr-Bp3"/>
+                        <viewControllerLayoutGuide type="bottom" id="7rb-UM-Owf"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Tpr-Uh-4Ou">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="c4u-pI-ZYm">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottomMargin" secondItem="c4u-pI-ZYm" secondAttribute="bottom" id="Bwk-am-odT"/>
+                            <constraint firstItem="c4u-pI-ZYm" firstAttribute="leading" secondItem="Tpr-Uh-4Ou" secondAttribute="leading" id="qq0-3Q-mG1"/>
+                            <constraint firstAttribute="trailing" secondItem="c4u-pI-ZYm" secondAttribute="trailing" id="wA2-kk-Pa8"/>
+                            <constraint firstItem="c4u-pI-ZYm" firstAttribute="top" secondItem="Tpr-Uh-4Ou" secondAttribute="topMargin" constant="64" id="xKf-15-kM6"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Events" id="jke-hs-N8y">
+                        <barButtonItem key="rightBarButtonItem" title="Done" id="XdY-N9-AEb">
+                            <connections>
+                                <segue destination="zfi-Gk-gQY" kind="unwind" identifier="exitViewEventsUnwind" unwindAction="unWindToMenu:" id="XPQ-Lk-SGr"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="tableView" destination="c4u-pI-ZYm" id="q1c-KX-2Ab"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UWQ-wW-Ruz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="zfi-Gk-gQY" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="535.5" y="-1406.5"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="HAy-2m-bk8">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ivP-DS-p8N" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="v23-W1-Lku">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="tgM-zi-Kkm" kind="relationship" relationship="rootViewController" id="s1X-al-HO1"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4p1-nD-ffx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-36" y="-1406"/>
+        </scene>
+    </scenes>
+</document>

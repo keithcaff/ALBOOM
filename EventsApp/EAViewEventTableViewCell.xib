@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="aFQ-f2-HCb" customClass="EAViewEventTableViewCell" customModule="EventsApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="349" height="44"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="aFQ-f2-HCb" id="pvX-Z3-lLx">
+                <rect key="frame" x="0.0" y="0.0" width="349" height="43"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bw1-4w-eRL">
+                        <rect key="frame" x="8" y="11" width="108" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="108" id="SlJ-mc-lyz"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UW5-N6-eyo">
+                        <rect key="frame" x="296" y="7" width="45" height="30"/>
+                        <state key="normal" title="Delete">
+                            <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="UW5-N6-eyo" firstAttribute="centerY" secondItem="pvX-Z3-lLx" secondAttribute="centerY" id="1uX-LI-HBa"/>
+                    <constraint firstItem="UW5-N6-eyo" firstAttribute="top" secondItem="pvX-Z3-lLx" secondAttribute="top" constant="7" id="36J-nv-Zv0"/>
+                    <constraint firstItem="bw1-4w-eRL" firstAttribute="top" secondItem="pvX-Z3-lLx" secondAttribute="top" constant="11" id="7g9-ie-OHP"/>
+                    <constraint firstAttribute="trailing" secondItem="UW5-N6-eyo" secondAttribute="trailing" constant="8" id="Mh7-LJ-Xw1"/>
+                    <constraint firstItem="bw1-4w-eRL" firstAttribute="leading" secondItem="pvX-Z3-lLx" secondAttribute="leading" constant="8" id="XaL-h1-Ddl"/>
+                    <constraint firstItem="bw1-4w-eRL" firstAttribute="centerY" secondItem="pvX-Z3-lLx" secondAttribute="centerY" id="ggA-xx-Lws"/>
+                    <constraint firstAttribute="bottom" secondItem="bw1-4w-eRL" secondAttribute="bottom" constant="11" id="xwK-ic-ojX"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="eventName" destination="bw1-4w-eRL" id="1a2-zR-AHB"/>
+                <outlet property="name" destination="bw1-4w-eRL" id="k6G-Yn-JQB"/>
+            </connections>
+            <point key="canvasLocation" x="195.5" y="86"/>
+        </tableViewCell>
+    </objects>
+</document>

@@ -43,6 +43,7 @@ class EAGoogleAPIManager {
         service.executeQuery(query, completionHandler:  { (ticket, createdFolder , error) -> Void in
             if let error = error {
                 print("failed with error: \(error)")
+                //TODO:if 401 error - showlogin screen...
             }
             else {
                 print("success crated folder: \(createdFolder)")
@@ -71,6 +72,63 @@ class EAGoogleAPIManager {
             }
             print("object:  \(object)")
         }
+    }
+    
+    
+//    GTLServiceDrive *drive = ...;
+//    NSString *parentId = @"root";
+//    
+//    GTLQueryDrive *query = [GTLQueryDrive queryForFilesList];
+//    query.q = [NSString stringWithFormat:@"'%@' in parents", parentId];
+//    [drive executeQuery:query completionHandler:^(GTLServiceTicket *ticket,
+//    GTLDriveFileList *fileList,
+//    NSError *error) {
+//    if (error == nil) {
+//    NSLog(@"Have results");
+//    // Iterate over fileList.files array
+//    } else {
+//    NSLog(@"An error occurred: %@", error);
+//    }
+//    }];
+    
+    // Construct a query to get names and IDs of 10 files using the Google Drive API
+    func fetchFiles() {
+        let service:GTLService = gtlServiceDrive
+        setAuthorizerForService(GIDSignIn.sharedInstance(), user: GIDSignIn.sharedInstance().currentUser,service:service)
+        print("Getting files...")
+        let query = GTLQueryDrive.queryForFilesList()
+        query.pageSize = 10
+        query.q = "'0By-3eIhKXJNzRmVDckY4WlcwVDQ' in parents"
+        query.fields = "nextPageToken, files(id, name)"
+        service.executeQuery(query) { (ticket: GTLServiceTicket!, object: AnyObject!, error: NSError!) -> Void in
+            if(error != nil){
+                print("Error: \(error)")
+                return
+            }
+            print("object:  \(object)")
+        }
+    }
+    
+    
+    func getAllEventFolders() {
+        let service:GTLService = gtlServiceDrive
+        setAuthorizerForService(GIDSignIn.sharedInstance(), user: GIDSignIn.sharedInstance().currentUser,service:service)
+        print("Getting files...")
+        let query = GTLQueryDrive.queryForFilesList()
+        query.pageSize = 20//and name contains '\(EVENT_FOLDER_PREFIX)'
+        query.q = "mimeType='application/vnd.google-apps.folder' and 'root' in parents and name contains '\(EVENT_FOLDER_PREFIX)' and trashed = false"
+        query.fields = "nextPageToken, files(id, name)"
+        service.executeQuery(query) { (ticket: GTLServiceTicket!, folders: AnyObject!, error: NSError!) -> Void in
+            if(error != nil){
+                print("Error: \(error)")
+                return
+            }
+            print("successfully retrieved folders:  \(folders)")
+            dispatch_async(dispatch_get_main_queue()) {
+                NSNotificationCenter.defaultCenter().postNotificationName(NOTIFICATION_EVENT_FOLDERS_RETRIEVED, object: folders)
+            }
+        }
+
     }
     
     

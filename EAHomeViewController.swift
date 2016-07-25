@@ -36,7 +36,7 @@ class EAHomeViewController: UIViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         print("currentEventFolder: \(currentEventFolder?.name)")
-        EAGoogleAPIManager.sharedInstance.getRootEventAppFolder()
+        EAGoogleAPIManager.sharedInstance.fetchFiles()
         
     }
 

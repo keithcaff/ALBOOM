@@ -17,6 +17,10 @@
 		445208191CEFCAA400CC231B /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 445208181CEFCAA400CC231B /* SWRevealViewController.m */; };
 		44BAB9171CF362D100B1D18D /* EARootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44BAB9161CF362D100B1D18D /* EARootViewController.swift */; };
 		44BAB9191CF8E69500B1D18D /* EACreateEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44BAB9181CF8E69500B1D18D /* EACreateEventViewController.swift */; };
+		44CC1C301D45311D007AFB89 /* EAViewEvents.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44CC1C2E1D45311D007AFB89 /* EAViewEvents.storyboard */; };
+		44CC1C321D4533D0007AFB89 /* EAViewEventTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44CC1C311D4533D0007AFB89 /* EAViewEventTableViewCell.xib */; };
+		44CC1C341D45340F007AFB89 /* EAViewEventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CC1C331D45340F007AFB89 /* EAViewEventTableViewCell.swift */; };
+		44CC1C361D454925007AFB89 /* EAViewEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CC1C351D454925007AFB89 /* EAViewEventsViewController.swift */; };
 		53160D911D3801DE0095906E /* EAEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53160D901D3801DE0095906E /* EAEvent.swift */; };
 		538D48181D41372700957BF0 /* EAGlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538D48171D41372700957BF0 /* EAGlobalConstants.swift */; };
 		538D481A1D4155BF00957BF0 /* EAGoogleAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538D48191D4155BF00957BF0 /* EAGoogleAPIManager.swift */; };
@@ -41,6 +45,10 @@
 		4452081A1CEFCAB100CC231B /* EventsApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EventsApp-Bridging-Header.h"; sourceTree = "<group>"; };
 		44BAB9161CF362D100B1D18D /* EARootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EARootViewController.swift; sourceTree = "<group>"; };
 		44BAB9181CF8E69500B1D18D /* EACreateEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EACreateEventViewController.swift; sourceTree = "<group>"; };
+		44CC1C2F1D45311D007AFB89 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/EAViewEvents.storyboard; sourceTree = "<group>"; };
+		44CC1C311D4533D0007AFB89 /* EAViewEventTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EAViewEventTableViewCell.xib; sourceTree = "<group>"; };
+		44CC1C331D45340F007AFB89 /* EAViewEventTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EAViewEventTableViewCell.swift; sourceTree = "<group>"; };
+		44CC1C351D454925007AFB89 /* EAViewEventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EAViewEventsViewController.swift; sourceTree = "<group>"; };
 		50CB0735F08D28AAA653068E /* Pods-EventsApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EventsApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EventsApp/Pods-EventsApp.debug.xcconfig"; sourceTree = "<group>"; };
 		53160D901D3801DE0095906E /* EAEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EAEvent.swift; sourceTree = "<group>"; };
 		538D48171D41372700957BF0 /* EAGlobalConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EAGlobalConstants.swift; sourceTree = "<group>"; };
@@ -89,6 +97,10 @@
 				4419E4681CF1DC8100FFCE0D /* GoogleService-Info.plist */,
 				4419E46A1CF1E2CC00FFCE0D /* EALoginViewController.swift */,
 				44323FB01CE9EF730049F7FC /* EAMain.storyboard */,
+				44CC1C2E1D45311D007AFB89 /* EAViewEvents.storyboard */,
+				44CC1C351D454925007AFB89 /* EAViewEventsViewController.swift */,
+				44CC1C311D4533D0007AFB89 /* EAViewEventTableViewCell.xib */,
+				44CC1C331D45340F007AFB89 /* EAViewEventTableViewCell.swift */,
 				44BAB9181CF8E69500B1D18D /* EACreateEventViewController.swift */,
 				53F47AB81CF75817005F0DE9 /* EAMenuTableViewController.swift */,
 				44BAB9161CF362D100B1D18D /* EARootViewController.swift */,
@@ -193,7 +205,9 @@
 			files = (
 				44323FB71CE9EF730049F7FC /* LaunchScreen.storyboard in Resources */,
 				4419E4691CF1DC8100FFCE0D /* GoogleService-Info.plist in Resources */,
+				44CC1C321D4533D0007AFB89 /* EAViewEventTableViewCell.xib in Resources */,
 				44323FB41CE9EF730049F7FC /* Assets.xcassets in Resources */,
+				44CC1C301D45311D007AFB89 /* EAViewEvents.storyboard in Resources */,
 				44323FB21CE9EF730049F7FC /* EAMain.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -256,12 +270,14 @@
 				4419E46B1CF1E2CC00FFCE0D /* EALoginViewController.swift in Sources */,
 				53160D911D3801DE0095906E /* EAEvent.swift in Sources */,
 				538D48181D41372700957BF0 /* EAGlobalConstants.swift in Sources */,
+				44CC1C341D45340F007AFB89 /* EAViewEventTableViewCell.swift in Sources */,
 				4419E46D1CF26C8000FFCE0D /* EAHomeTabBarController.swift in Sources */,
 				53F47AB91CF75817005F0DE9 /* EAMenuTableViewController.swift in Sources */,
 				44BAB9171CF362D100B1D18D /* EARootViewController.swift in Sources */,
 				44323FAD1CE9EF730049F7FC /* AppDelegate.swift in Sources */,
 				538D481A1D4155BF00957BF0 /* EAGoogleAPIManager.swift in Sources */,
 				44BAB9191CF8E69500B1D18D /* EACreateEventViewController.swift in Sources */,
+				44CC1C361D454925007AFB89 /* EAViewEventsViewController.swift in Sources */,
 				53F47ABB1CF76486005F0DE9 /* EAHomeViewController.swift in Sources */,
 				445208191CEFCAA400CC231B /* SWRevealViewController.m in Sources */,
 			);
@@ -284,6 +300,14 @@
 				44323FB61CE9EF730049F7FC /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		44CC1C2E1D45311D007AFB89 /* EAViewEvents.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				44CC1C2F1D45311D007AFB89 /* Base */,
+			);
+			name = EAViewEvents.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
