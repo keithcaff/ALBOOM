@@ -11,8 +11,10 @@ import Foundation
 
 class EAEvent {
     var name:String?
+    var id:String?
     
-    init(eventName:String) {
+    init(id:String?,eventName:String) {
+        self.id = id
         self.name = eventName;
     }
 }

@@ -26,18 +26,57 @@ public class EAViewEventsViewController: UIViewController, UITableViewDelegate, 
         self.tableView.registerNib(nib, forCellReuseIdentifier: viewEventCellIdentifier)
     }
     
+    public override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        EAGoogleAPIManager.sharedInstance.getAllEventFolders()
+    }
+
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
+    // MARK:notifaction responses
+    func eventFoldersRetrieved(notifiaction : NSNotification) {
+        data = NSMutableArray();
+        if let object = notifiaction.object {
+            let foldersList:GTLDriveFileList = (object as! GTLDriveFileList)
+            for folder:AnyObject in foldersList.files {
+                let name:String? = (folder as! GTLDriveFile).name
+                let id:String? = (folder as! GTLDriveFile).identifier
+                let event:EAEvent = EAEvent.init(id:id!, eventName: name!);
+                data?.addObject(event)
+            }
+        }
+        self.tableView.reloadData()
+    }
+
+    // MARK:Tableview delegates
+    
+    
+    public func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+        weak var weakSelf:EAViewEventsViewController! = self
+        let delete = UITableViewRowAction(style: .Destructive, title: "Delete") { (action, indexPath) in
+            if let data = weakSelf.data {
+                let event:EAEvent = data.objectAtIndex(indexPath.row) as! EAEvent
+                print("KCTEST: id \(event.id)")
+            }
+        }
+        
+        let share = UITableViewRowAction(style: .Normal, title: "Switch Event") { (action, indexPath) in
+            // share item at indexPath
+        }
+        
+        share.backgroundColor = UIColor.greenColor()
+        
+        return [delete, share]
+    }
+    
     public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var count:Int = 0
         if let data = data {
             count = data.count
         }
         return count;
-    }
-    
-    
-    
-    public func numberOfRowsInSection(section: Int) -> Int {
-       return 1
     }
     
     public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -49,33 +88,13 @@ public class EAViewEventsViewController: UIViewController, UITableViewDelegate, 
         
         let event:EAEvent = (self.data!.objectAtIndex(indexPath.row) as! EAEvent)
         cell!.name.text = event.name!
+        cell?.selectionStyle = .None
         return cell!
     }
     
-    
-    public override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        EAGoogleAPIManager.sharedInstance.getAllEventFolders()
+    public func numberOfRowsInSection(section: Int) -> Int {
+        return 1
     }
-    
-    func eventFoldersRetrieved(notifiaction : NSNotification) {
-        data = NSMutableArray();
-        if let object = notifiaction.object {
-            let foldersList:GTLDriveFileList = (object as! GTLDriveFileList)
-            for folder:AnyObject in foldersList.files {
-                let name:String? = (folder as! GTLDriveFile).name
-                let event:EAEvent = EAEvent.init(eventName: name!);
-                data?.addObject(event)
-            }
-        }
-        self.tableView.reloadData()
-    }
-    
-    
-    deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
-    }
-    
     
     
 }

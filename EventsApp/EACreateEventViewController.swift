@@ -28,7 +28,7 @@ class EACreateEventViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         print("get ready to create event here")
         if segue.identifier == "createEventUnWind" {
-            event = EAEvent(eventName: eventNameTextField.text!)
+            event = EAEvent(id:nil, eventName: eventNameTextField.text!)
         }
     }
     
