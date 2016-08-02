@@ -191,27 +191,33 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="xhz-dp-WTX">
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="xhz-dp-WTX">
                                 <rect key="frame" x="16" y="107" width="343" height="40"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="beQ-ER-H8M">
-                                        <rect key="frame" x="0.0" y="0.0" width="115" height="40"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="105" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="SQl-kG-qkd"/>
-                                            <constraint firstAttribute="width" constant="115" id="vbF-kG-XWw"/>
+                                            <constraint firstAttribute="width" constant="105" id="Xb6-jy-ySu"/>
+                                            <constraint firstAttribute="width" constant="103" id="vbF-kG-XWw"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="vbF-kG-XWw"/>
+                                            </mask>
+                                        </variation>
                                     </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="MyEvent" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JwF-rw-rmn">
-                                        <rect key="frame" x="115" y="0.0" width="228" height="40"/>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" placeholder="MyEvent" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JwF-rw-rmn">
+                                        <rect key="frame" x="105" y="0.0" width="238" height="40"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="228" id="BXb-gU-pwd"/>
+                                            <constraint firstAttribute="width" constant="238" id="BXb-gU-pwd"/>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="Xtr-b2-lhM"/>
                                             <constraint firstAttribute="height" constant="30" id="je1-16-DOS"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <attributedString key="attributedText"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <variation key="default">
                                             <mask key="constraints">
@@ -232,9 +238,27 @@
                                     </mask>
                                 </variation>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KlW-f6-jkS">
-                                <rect key="frame" x="16" y="163" width="46" height="30"/>
-                                <state key="normal" title="Create"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KlW-f6-jkS">
+                                <rect key="frame" x="135" y="163" width="105" height="35"/>
+                                <color key="backgroundColor" name="keyboardFocusIndicatorColor" catalog="System" colorSpace="catalog"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="QtZ-tD-wAK"/>
+                                    <constraint firstAttribute="width" constant="105" id="Rkg-Q2-UGN"/>
+                                </constraints>
+                                <state key="normal">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="Create">
+                                            <attributes>
+                                                <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layer.CornerRadius" value="10"/>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <segue destination="8w7-xV-239" kind="unwind" identifier="createEventUnWind" unwindAction="unWindToMenu:" id="mef-s0-1pG"/>
                                 </connections>
@@ -242,10 +266,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="KlW-f6-jkS" firstAttribute="centerX" secondItem="Vh5-xv-kPQ" secondAttribute="centerXWithinMargins" id="3zf-P0-EXd"/>
                             <constraint firstItem="xhz-dp-WTX" firstAttribute="top" secondItem="lF6-v9-X4j" secondAttribute="bottom" constant="43" id="4aX-Mk-6gq"/>
                             <constraint firstItem="KlW-f6-jkS" firstAttribute="leading" secondItem="Vh5-xv-kPQ" secondAttribute="leading" constant="16" id="Gwq-BA-rFh"/>
-                            <constraint firstItem="KlW-f6-jkS" firstAttribute="leading" secondItem="Vh5-xv-kPQ" secondAttribute="leading" constant="16" id="M5e-uN-U4h"/>
                             <constraint firstItem="xhz-dp-WTX" firstAttribute="leading" secondItem="Vh5-xv-kPQ" secondAttribute="leading" constant="16" id="MWJ-nG-vBo"/>
+                            <constraint firstItem="beQ-ER-H8M" firstAttribute="leading" secondItem="Vh5-xv-kPQ" secondAttribute="leading" constant="16" id="QhQ-Jm-J05"/>
                             <constraint firstItem="xhz-dp-WTX" firstAttribute="centerX" secondItem="Vh5-xv-kPQ" secondAttribute="centerX" id="ban-g1-3GM"/>
                             <constraint firstItem="KlW-f6-jkS" firstAttribute="top" secondItem="beQ-ER-H8M" secondAttribute="bottom" constant="16" id="mYE-Qn-nCJ"/>
                         </constraints>

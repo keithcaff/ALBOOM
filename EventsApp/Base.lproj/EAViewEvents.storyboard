@@ -32,9 +32,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Events" id="jke-hs-N8y">
-                        <barButtonItem key="rightBarButtonItem" title="Done" id="XdY-N9-AEb">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="ABL-64-muV">
                             <connections>
-                                <segue destination="zfi-Gk-gQY" kind="unwind" identifier="exitViewEventsUnwind" unwindAction="unWindToMenu:" id="XPQ-Lk-SGr"/>
+                                <segue destination="zfi-Gk-gQY" kind="unwind" identifier="exitViewEventsUnwind" unwindAction="unWindToMenu:" id="GXq-0N-aM5"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

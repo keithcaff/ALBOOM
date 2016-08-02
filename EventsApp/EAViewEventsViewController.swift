@@ -58,7 +58,7 @@ public class EAViewEventsViewController: UIViewController, UITableViewDelegate, 
         let delete = UITableViewRowAction(style: .Destructive, title: "Delete") { (action, indexPath) in
             if let data = weakSelf.data {
                 let event:EAEvent = data.objectAtIndex(indexPath.row) as! EAEvent
-                print("KCTEST: id \(event.id)")
+                print("KCTEST: id \(event.id!)")
             }
         }
         
