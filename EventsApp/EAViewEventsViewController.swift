@@ -62,13 +62,11 @@ public class EAViewEventsViewController: UIViewController, UITableViewDelegate, 
             }
         }
         
-        let share = UITableViewRowAction(style: .Normal, title: "Switch Event") { (action, indexPath) in
-            // share item at indexPath
-        }
-        
-        share.backgroundColor = UIColor.greenColor()
-        
-        return [delete, share]
+        return [delete]
+    }
+    
+    public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        print("selected row \(indexPath.row)")
     }
     
     public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
