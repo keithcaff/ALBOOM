@@ -13,12 +13,15 @@ import GTMOAuth2
 class EAHomeViewController: UIViewController {
     
     var currentEventFolder:GTLDriveFile?
+    var currentFiles:GTLDriveFileList?
 
     @IBOutlet var menuButton: UIBarButtonItem!
     override func viewDidLoad() {
         super.viewDidLoad()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(newEventCreated), name: NOTIFICATION_EVENT_FOLDER_CREATED, object: nil)
-        
+
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(eventFilesRetrieved), name: NOTIFICATION_EVENT_FILES_RETRIEVED, object: nil)
+
         let defaults = NSUserDefaults.standardUserDefaults()
         if let currentEventName = defaults.stringForKey(DEFAULT_CURRENT_EVENT_NAME) {
             self.navigationController?.navigationBar.topItem?.title = currentEventName
@@ -45,6 +48,8 @@ class EAHomeViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    
+    // MARK:notifaction responses/selectors
     func newEventCreated(notifiaction : NSNotification) {
         print("new event folder created")
         revealViewController().revealToggleAnimated(true)
@@ -55,6 +60,16 @@ class EAHomeViewController: UIViewController {
             defaults.setObject(folder.name, forKey: DEFAULT_CURRENT_EVENT_NAME)
         }
     }
+    
+    func eventFilesRetrieved(notifiaction : NSNotification) {
+        print("event files retrieved selector")
+        revealViewController().revealToggleAnimated(true)
+        if let files = notifiaction.object as? GTLDriveFileList  {
+            currentFiles = files
+            
+        }
+    }
+
     
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)

@@ -20,7 +20,8 @@ public class EAViewEventsViewController: UIViewController, UITableViewDelegate, 
     
     func unWindToMenu(event:EAEvent) {
         print("selected event \(event.name!)")
-        self.performSegueWithIdentifier("exitViewEventsUnwind",sender:self);
+        selectedEvent = event
+        self.performSegueWithIdentifier(EXIT_VIEW_EVENTS_UNWIND_SEGUE,sender:self);
     }
     
     public override func viewDidLoad() {

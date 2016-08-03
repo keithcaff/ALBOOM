@@ -113,7 +113,7 @@ class EAGoogleAPIManager {
     func getAllEventFolders() {
         let service:GTLService = gtlServiceDrive
         setAuthorizerForService(GIDSignIn.sharedInstance(), user: GIDSignIn.sharedInstance().currentUser,service:service)
-        print("Getting files...")
+        print("Getting all event folders...")
         let query = GTLQueryDrive.queryForFilesList()
         query.pageSize = 20//and name contains '\(EVENT_FOLDER_PREFIX)'
         query.q = "mimeType='application/vnd.google-apps.folder' and 'root' in parents and name contains '\(EVENT_FOLDER_PREFIX)' and trashed = false"
@@ -128,9 +128,31 @@ class EAGoogleAPIManager {
                 NSNotificationCenter.defaultCenter().postNotificationName(NOTIFICATION_EVENT_FOLDERS_RETRIEVED, object: folders)
             }
         }
-
     }
     
     
+    func switchEventFolder(event:EAEvent) {
+        let service:GTLService = gtlServiceDrive
+        setAuthorizerForService(GIDSignIn.sharedInstance(), user: GIDSignIn.sharedInstance().currentUser,service:service)
+        print("Getting files inside event folder")
+        let parentId:String  = event.id!;
+        let query = GTLQueryDrive.queryForFilesList()
+        query.q = "'\(parentId)' in parents and trashed = false"
+        query.fields = "nextPageToken, files(id, name)"
+        service.executeQuery(query) { (ticket: GTLServiceTicket!, files: AnyObject!, error: NSError!) -> Void in
+                        if(error != nil){
+                            print("Error: \(error)")
+                            return
+                        }
+                        let defaults = NSUserDefaults.standardUserDefaults()
+                        defaults.setObject(event.name, forKey: DEFAULT_CURRENT_EVENT_NAME)
+                        print("successfully retrieved files:  \(files)")
+                        dispatch_async(dispatch_get_main_queue()) {
+                            NSNotificationCenter.defaultCenter().postNotificationName(NOTIFICATION_EVENT_FILES_RETRIEVED, object: files)
+                        }
+        }
+    }
+
+
    
 }

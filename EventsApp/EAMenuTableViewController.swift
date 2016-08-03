@@ -23,11 +23,19 @@ class EAMenuTableViewController: UITableViewController {
     
     @IBAction func unWindToMenu(sender: UIStoryboardSegue) {
         print("unWindToMenu")
-        if(sender.identifier == "createEventUnWind") {
+        if (sender.identifier == "createEventUnWind") {
             let source: EACreateEventViewController
             source = sender.sourceViewController as! EACreateEventViewController
             if let event = source.event {
                 EAGoogleAPIManager.sharedInstance.createEventFolder(event)
+            }
+        }
+        if (sender.identifier == EXIT_VIEW_EVENTS_UNWIND_SEGUE) {
+            print("exitViewEventsUnwindSegue")
+            let source: EAViewEventsViewController
+            source = sender.sourceViewController as! EAViewEventsViewController
+            if let event = source.selectedEvent {
+                EAGoogleAPIManager.sharedInstance.switchEventFolder(event)
             }
         }
     }
