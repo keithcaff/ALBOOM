@@ -16,6 +16,12 @@ public class EAViewEventsViewController: UIViewController, UITableViewDelegate, 
     
     var data:NSMutableArray?
     let viewEventCellIdentifier:String = "VIEW_EVENT_CELL"
+    var selectedEvent:EAEvent?
+    
+    func unWindToMenu(event:EAEvent) {
+        print("selected event \(event.name!)")
+        self.performSegueWithIdentifier("exitViewEventsUnwind",sender:self);
+    }
     
     public override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +31,7 @@ public class EAViewEventsViewController: UIViewController, UITableViewDelegate, 
         let nib = UINib(nibName: "EAViewEventTableViewCell", bundle:nil)
         self.tableView.registerNib(nib, forCellReuseIdentifier: viewEventCellIdentifier)
     }
+    
     
     public override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -82,9 +89,10 @@ public class EAViewEventsViewController: UIViewController, UITableViewDelegate, 
         if self.data == nil {
             return EAViewEventTableViewCell()
         }
-        cell = tableView.dequeueReusableCellWithIdentifier(viewEventCellIdentifier, forIndexPath: indexPath) as? EAViewEventTableViewCell
-        
         let event:EAEvent = (self.data!.objectAtIndex(indexPath.row) as! EAEvent)
+        cell = tableView.dequeueReusableCellWithIdentifier(viewEventCellIdentifier, forIndexPath: indexPath) as? EAViewEventTableViewCell
+        cell?.event = event
+        cell?.unWindCallback = unWindToMenu;
         cell!.name.text = event.name!
         cell?.selectionStyle = .None
         return cell!
