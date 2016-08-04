@@ -10,13 +10,14 @@ import UIKit
 import GoogleAPIClient
 import GTMOAuth2
 
-class EAHomeViewController: UIViewController {
+public class EAHomeViewController: UIViewController,UITableViewDelegate, UITableViewDataSource{
     
+    @IBOutlet var tableView: UITableView!
     var currentEventFolder:GTLDriveFile?
     var currentFiles:GTLDriveFileList?
 
     @IBOutlet var menuButton: UIBarButtonItem!
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(newEventCreated), name: NOTIFICATION_EVENT_FOLDER_CREATED, object: nil)
 
@@ -32,22 +33,60 @@ class EAHomeViewController: UIViewController {
         
         revealViewController().rightViewRevealWidth = 150
         view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
-        // Do any additional setup after loading the view.
+        
+        
+        self.tableView.dataSource = self
+        self.tableView.delegate = self
+        let nib = UINib(nibName: NIB_HOME_CELL_IDENFIER, bundle:nil)
+        self.tableView.registerNib(nib, forCellReuseIdentifier: CELL_VIEW_EVENT_IDENTIFIER)
         
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override public func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         print("currentEventFolder: \(currentEventFolder?.name)")
         EAGoogleAPIManager.sharedInstance.fetchFiles()
         
     }
 
-    override func didReceiveMemoryWarning() {
+    override public func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
+    // MARK:Tableview delegates
+    
+    public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        print("selected row \(indexPath.row)")
+    }
+    
+    public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        var count:Int = 0
+        if let data = currentFiles?.files {
+            count = data.count
+        }
+        return count;
+    }
+    
+    public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        var cell:EAHomeTableViewCell?
+        if (self.currentFiles?.files == nil || self.currentFiles?.files?.count < 1){
+            return EAHomeTableViewCell()
+        }
+        
+        let currentFiles:NSArray? = self.currentFiles?.files
+        var file:GTLDriveFile?
+        if let files = currentFiles{
+            file = (files.objectAtIndex(indexPath.row) as! GTLDriveFile)
+        }
+        
+        cell = tableView.dequeueReusableCellWithIdentifier(CELL_HOME_IDENTIFIER, forIndexPath: indexPath) as? EAHomeTableViewCell
+        if let name:String = file?.name {
+            cell?.imageTitleLabel.text = name
+        }
+        return cell!
+    }
+
     
     // MARK:notifaction responses/selectors
     func newEventCreated(notifiaction : NSNotification) {
@@ -66,7 +105,6 @@ class EAHomeViewController: UIViewController {
         revealViewController().revealToggleAnimated(true)
         if let files = notifiaction.object as? GTLDriveFileList  {
             currentFiles = files
-            
         }
     }
 

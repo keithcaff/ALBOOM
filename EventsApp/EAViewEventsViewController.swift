@@ -99,9 +99,4 @@ public class EAViewEventsViewController: UIViewController, UITableViewDelegate, 
         return cell!
     }
     
-    public func numberOfRowsInSection(section: Int) -> Int {
-        return 1
-    }
-    
-    
 }

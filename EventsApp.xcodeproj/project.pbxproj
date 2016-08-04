@@ -21,6 +21,8 @@
 		44CC1C321D4533D0007AFB89 /* EAViewEventTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44CC1C311D4533D0007AFB89 /* EAViewEventTableViewCell.xib */; };
 		44CC1C341D45340F007AFB89 /* EAViewEventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CC1C331D45340F007AFB89 /* EAViewEventTableViewCell.swift */; };
 		44CC1C361D454925007AFB89 /* EAViewEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CC1C351D454925007AFB89 /* EAViewEventsViewController.swift */; };
+		44F753521D5295370034BCC0 /* EAHomeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44F753511D5295370034BCC0 /* EAHomeTableViewCell.xib */; };
+		44F753541D52971F0034BCC0 /* EAHomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F753531D52971F0034BCC0 /* EAHomeTableViewCell.swift */; };
 		53160D911D3801DE0095906E /* EAEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53160D901D3801DE0095906E /* EAEvent.swift */; };
 		538D48181D41372700957BF0 /* EAGlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538D48171D41372700957BF0 /* EAGlobalConstants.swift */; };
 		538D481A1D4155BF00957BF0 /* EAGoogleAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538D48191D4155BF00957BF0 /* EAGoogleAPIManager.swift */; };
@@ -49,6 +51,8 @@
 		44CC1C311D4533D0007AFB89 /* EAViewEventTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EAViewEventTableViewCell.xib; sourceTree = "<group>"; };
 		44CC1C331D45340F007AFB89 /* EAViewEventTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EAViewEventTableViewCell.swift; sourceTree = "<group>"; };
 		44CC1C351D454925007AFB89 /* EAViewEventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EAViewEventsViewController.swift; sourceTree = "<group>"; };
+		44F753511D5295370034BCC0 /* EAHomeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EAHomeTableViewCell.xib; sourceTree = "<group>"; };
+		44F753531D52971F0034BCC0 /* EAHomeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EAHomeTableViewCell.swift; sourceTree = "<group>"; };
 		50CB0735F08D28AAA653068E /* Pods-EventsApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EventsApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EventsApp/Pods-EventsApp.debug.xcconfig"; sourceTree = "<group>"; };
 		53160D901D3801DE0095906E /* EAEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EAEvent.swift; sourceTree = "<group>"; };
 		538D48171D41372700957BF0 /* EAGlobalConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EAGlobalConstants.swift; sourceTree = "<group>"; };
@@ -100,7 +104,9 @@
 				44CC1C2E1D45311D007AFB89 /* EAViewEvents.storyboard */,
 				44CC1C351D454925007AFB89 /* EAViewEventsViewController.swift */,
 				44CC1C311D4533D0007AFB89 /* EAViewEventTableViewCell.xib */,
+				44F753511D5295370034BCC0 /* EAHomeTableViewCell.xib */,
 				44CC1C331D45340F007AFB89 /* EAViewEventTableViewCell.swift */,
+				44F753531D52971F0034BCC0 /* EAHomeTableViewCell.swift */,
 				44BAB9181CF8E69500B1D18D /* EACreateEventViewController.swift */,
 				53F47AB81CF75817005F0DE9 /* EAMenuTableViewController.swift */,
 				44BAB9161CF362D100B1D18D /* EARootViewController.swift */,
@@ -209,6 +215,7 @@
 				44323FB41CE9EF730049F7FC /* Assets.xcassets in Resources */,
 				44CC1C301D45311D007AFB89 /* EAViewEvents.storyboard in Resources */,
 				44323FB21CE9EF730049F7FC /* EAMain.storyboard in Resources */,
+				44F753521D5295370034BCC0 /* EAHomeTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -267,6 +274,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44F753541D52971F0034BCC0 /* EAHomeTableViewCell.swift in Sources */,
 				4419E46B1CF1E2CC00FFCE0D /* EALoginViewController.swift in Sources */,
 				53160D911D3801DE0095906E /* EAEvent.swift in Sources */,
 				538D48181D41372700957BF0 /* EAGlobalConstants.swift in Sources */,
