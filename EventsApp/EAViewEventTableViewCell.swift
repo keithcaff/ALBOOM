@@ -1,3 +1,4 @@
+
 //
 //  EAViewEventTableViewCell.swift
 //  EventsApp
@@ -12,6 +13,8 @@ import Foundation
 class EAViewEventTableViewCell: UITableViewCell {
     
     @IBOutlet weak var name: UILabel!
+    
+    
     var unWindCallback: ((EAEvent) -> Void)?
     var event: EAEvent!
     @IBAction func didClickSelectButton(sender: AnyObject) {
