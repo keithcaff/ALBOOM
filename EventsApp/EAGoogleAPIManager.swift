@@ -54,8 +54,6 @@ class EAGoogleAPIManager {
         })
     }
     
-    
-    //id of dit talk folder 0By-3eIhKXJNzRmVDckY4WlcwVDQ
     func getRootEventAppFolder() {
         let service:GTLService = gtlServiceDrive
 //        GTLQueryDrive *queryFilesList = [GTLQueryDrive queryForChildrenListWithFolderId:@"root"];
@@ -68,41 +66,6 @@ class EAGoogleAPIManager {
         service.executeQuery(query) { (ticket: GTLServiceTicket!, object: AnyObject!, error: NSError!) -> Void in
             if(error != nil){
                 print("Error :\(error.localizedDescription)")
-                return
-            }
-            print("object:  \(object)")
-        }
-    }
-    
-    
-//    GTLServiceDrive *drive = ...;
-//    NSString *parentId = @"root";
-//    
-//    GTLQueryDrive *query = [GTLQueryDrive queryForFilesList];
-//    query.q = [NSString stringWithFormat:@"'%@' in parents", parentId];
-//    [drive executeQuery:query completionHandler:^(GTLServiceTicket *ticket,
-//    GTLDriveFileList *fileList,
-//    NSError *error) {
-//    if (error == nil) {
-//    NSLog(@"Have results");
-//    // Iterate over fileList.files array
-//    } else {
-//    NSLog(@"An error occurred: %@", error);
-//    }
-//    }];
-    
-    // Construct a query to get names and IDs of 10 files using the Google Drive API
-    func fetchFiles() {
-        let service:GTLService = gtlServiceDrive
-        setAuthorizerForService(GIDSignIn.sharedInstance(), user: GIDSignIn.sharedInstance().currentUser,service:service)
-        print("Getting files...")
-        let query = GTLQueryDrive.queryForFilesList()
-        query.pageSize = 10
-        query.q = "'0By-3eIhKXJNzRmVDckY4WlcwVDQ' in parents"
-        query.fields = "nextPageToken, files(id, name)"
-        service.executeQuery(query) { (ticket: GTLServiceTicket!, object: AnyObject!, error: NSError!) -> Void in
-            if(error != nil){
-                print("Error: \(error)")
                 return
             }
             print("object:  \(object)")
@@ -140,19 +103,39 @@ class EAGoogleAPIManager {
         query.q = "'\(parentId)' in parents and trashed = false"
         query.fields = "nextPageToken, files(id, name)"
         service.executeQuery(query) { (ticket: GTLServiceTicket!, files: AnyObject!, error: NSError!) -> Void in
-                        if(error != nil){
-                            print("Error: \(error)")
-                            return
-                        }
-                        let defaults = NSUserDefaults.standardUserDefaults()
-                        defaults.setObject(event.name, forKey: DEFAULT_CURRENT_EVENT_NAME)
-                        print("successfully retrieved files:  \(files)")
-                        dispatch_async(dispatch_get_main_queue()) {
-                            NSNotificationCenter.defaultCenter().postNotificationName(NOTIFICATION_EVENT_FILES_RETRIEVED, object: files)
-                        }
+            if(error != nil){
+                print("Error: \(error)")
+            }
+            else {
+                let defaults = NSUserDefaults.standardUserDefaults()
+                defaults.setObject(event.name, forKey: DEFAULT_CURRENT_EVENT_NAME)
+                print("successfully retrieved files:  \(files)")
+                dispatch_async(dispatch_get_main_queue()) {
+                    NSNotificationCenter.defaultCenter().postNotificationName(NOTIFICATION_EVENT_FILES_RETRIEVED, object: files)
+                }
+            }
         }
     }
-
+    
+    
+    func downloadFile(file:GTLDriveFile) {
+        let service:GTLService = gtlServiceDrive
+        setAuthorizerForService(GIDSignIn.sharedInstance(), user: GIDSignIn.sharedInstance().currentUser,service:service)
+        print("Downloading file \(file)")
+        let stringURL:String = "https://www.googleapis.com/drive/v3/files/\(file.identifier)?alt=media"
+        let url:NSURL = NSURL(fileURLWithPath:stringURL)
+        let fetcher:GTMSessionFetcher = service.fetcherService.fetcherWithURL(url)
+        fetcher.beginFetchWithCompletionHandler { (data:NSData?, error:NSError?) in
+            if(error != nil){
+                print("Error: \(error)")
+            }
+            else {
+                
+            }
+        }
+            //drive.fetcherService fetcherWithURLString:url];
+        
+    }
 
    
 }
