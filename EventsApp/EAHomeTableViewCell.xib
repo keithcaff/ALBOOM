@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -16,15 +16,20 @@
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xKc-mj-vNV">
                         <rect key="frame" x="0.0" y="0.0" width="376" height="482"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="482" id="Dz8-TZ-buC"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Dz8-TZ-buC"/>
+                            </mask>
+                        </variation>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jake in the park 18/8/2015" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MDA-0S-Ujx">
                         <rect key="frame" x="8" y="490" width="360" height="47"/>
+                        <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="360" id="Kxn-Or-yk9"/>
                             <constraint firstAttribute="height" constant="47" id="QO9-aD-pB6"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
@@ -32,6 +37,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
+                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
                     <constraint firstItem="MDA-0S-Ujx" firstAttribute="leading" secondItem="NIh-Lb-NOh" secondAttribute="leading" constant="8" id="4dv-mB-PtP"/>
                     <constraint firstAttribute="bottom" secondItem="MDA-0S-Ujx" secondAttribute="bottom" constant="52" id="CyN-pW-7lo"/>
@@ -59,6 +65,7 @@
                 </variation>
             </tableViewCellContentView>
             <connections>
+                <outlet property="imageTitleLabel" destination="MDA-0S-Ujx" id="EMa-E7-zwH"/>
                 <outlet property="placeHolderView" destination="xKc-mj-vNV" id="5nH-ct-SAa"/>
             </connections>
             <point key="canvasLocation" x="326" y="305.5"/>

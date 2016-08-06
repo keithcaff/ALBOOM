@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="gG4-gm-gAO">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="gG4-gm-gAO">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -16,7 +16,7 @@
                         <viewControllerLayoutGuide type="bottom" id="SSO-mE-D2Q"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="xwf-Rq-Sfs">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -35,12 +35,12 @@
                         <viewControllerLayoutGuide type="bottom" id="SVs-Hr-QkG"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="qPV-Gr-Mom">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CfA-69-nSa">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
-                                <color key="backgroundColor" red="0.31620660420000002" green="0.64583259820000005" blue="0.049916371700000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -48,8 +48,14 @@
                             <constraint firstAttribute="bottomMargin" secondItem="CfA-69-nSa" secondAttribute="bottom" constant="49" id="3go-Br-tUK"/>
                             <constraint firstAttribute="topMargin" secondItem="CfA-69-nSa" secondAttribute="top" id="DbH-mG-wTI"/>
                             <constraint firstItem="CfA-69-nSa" firstAttribute="leading" secondItem="qPV-Gr-Mom" secondAttribute="leading" id="Rne-oJ-leC"/>
+                            <constraint firstItem="CfA-69-nSa" firstAttribute="bottom" secondItem="qPV-Gr-Mom" secondAttribute="bottomMargin" id="iwy-4A-E3Q"/>
                             <constraint firstAttribute="trailing" secondItem="CfA-69-nSa" secondAttribute="trailing" id="qOO-qh-v2N"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="3go-Br-tUK"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="F2q-gH-Q7B">
                         <barButtonItem key="leftBarButtonItem" image="Menu" id="8RJ-gf-3dH"/>
@@ -308,7 +314,9 @@
         <scene sceneID="ICr-n9-wZJ">
             <objects>
                 <tabBarController storyboardIdentifier="HomeViewController" id="WuL-rn-SYP" customClass="EAHomeTabBarController" customModule="EventsApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="414" height="736"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="bwW-2M-vpk">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
