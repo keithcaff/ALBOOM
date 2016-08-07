@@ -16,6 +16,7 @@ let EVENT_FOLDER_PREFIX:String! = "Event_App_"
 let NOTIFICATION_EVENT_FOLDER_CREATED:String! = "notification.event.folder.created"
 let NOTIFICATION_EVENT_FOLDERS_RETRIEVED:String! = "notification.event.folders.retrieved"
 let NOTIFICATION_EVENT_FILES_RETRIEVED:String! = "notification.event.files.retrieved"
+let NOTIFICATION_EVENT_FILE_DOWNLOADED:String! = "notification.event.file.downloaded"
 
 //User defaults keys
 let DEFAULT_CURRENT_EVENT_NAME:String! = "user.defaults.current.event.name"

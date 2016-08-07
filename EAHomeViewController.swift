@@ -14,13 +14,16 @@ public class EAHomeViewController: UIViewController,UITableViewDelegate, UITable
     
     @IBOutlet var tableView: UITableView!
     var currentEventFolder:GTLDriveFile?
-    var currentFiles:GTLDriveFileList?
+    var currentFilesList:GTLDriveFileList?
+    var fileDataMap:Dictionary = Dictionary<String, NSData>()
     let homeCellIdentifier:String = "HOME_CELL_IDENTFIER"
 
     @IBOutlet var menuButton: UIBarButtonItem!
     override public func viewDidLoad() {
         super.viewDidLoad()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(newEventCreated), name: NOTIFICATION_EVENT_FOLDER_CREATED, object: nil)
+        
+         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(eventFileDownloaded), name: NOTIFICATION_EVENT_FILE_DOWNLOADED, object: nil)
 
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(eventFilesRetrieved), name: NOTIFICATION_EVENT_FILES_RETRIEVED, object: nil)
 
@@ -48,7 +51,6 @@ public class EAHomeViewController: UIViewController,UITableViewDelegate, UITable
     override public func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         print("currentEventFolder: \(currentEventFolder?.name)")
-        EAGoogleAPIManager.sharedInstance.fetchFiles()
         
     }
 
@@ -57,15 +59,25 @@ public class EAHomeViewController: UIViewController,UITableViewDelegate, UITable
         // Dispose of any resources that can be recreated.
     }
     
-    func addBackground(view:UIView) {
+    func addBackground(view:UIView, file:GTLDriveFile?) {
         
         // screen width and height:
         let width = view.bounds.size.width
         let height = view.bounds.size.height
+        var bgImage:UIImage?
+        
+        if let file = file {
+            //TODO: use the actual file identifier here
+            print("\(file.identifier)")
+            let fileData:NSData? = self.fileDataMap[file.identifier]
+            
+            if let fileData = fileData {
+                bgImage = UIImage(data: fileData)
+            }
+        }
         
         let imageViewBackground = UIImageView(frame: CGRectMake(0, 0, width, height))
-        imageViewBackground.image = UIImage(named: "jake.jpg")
-        
+        imageViewBackground.image = bgImage
         // you can change the content mode:
         imageViewBackground.contentMode = UIViewContentMode.ScaleToFill
         
@@ -77,7 +89,7 @@ public class EAHomeViewController: UIViewController,UITableViewDelegate, UITable
     
     public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var count:Int = 0
-        if let data = currentFiles?.files {
+        if let data = currentFilesList?.files {
             count = data.count
         }
         return count;
@@ -89,22 +101,25 @@ public class EAHomeViewController: UIViewController,UITableViewDelegate, UITable
         for view in homeCell.placeHolderView.subviews{
             view.removeFromSuperview()
         }
-        addBackground(homeCell.placeHolderView)
+        if (self.currentFilesList?.files.indices.contains(indexPath.row) != nil) {
+            addBackground(homeCell.placeHolderView, file: (self.currentFilesList?.files[indexPath.row] as! GTLDriveFile))
+        }
     }
 
     public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell:EAHomeTableViewCell?
-        if (self.currentFiles?.files == nil || self.currentFiles!.files.count < 1){
+        if (self.currentFilesList?.files == nil || self.currentFilesList!.files.count < 1){
             return EAHomeTableViewCell()
         }
         
-        let currentFiles:NSArray? = self.currentFiles!.files
+        let currentFilesList:NSArray? = self.currentFilesList!.files
         var file:GTLDriveFile?
-        if let files = currentFiles{
+        if let files = currentFilesList{
             file = (files.objectAtIndex(indexPath.row) as! GTLDriveFile)
         }
         
         cell = tableView.dequeueReusableCellWithIdentifier(homeCellIdentifier, forIndexPath: indexPath) as? EAHomeTableViewCell
+        cell?.imageTitleLabel.text = file?.name
         
         //        if let name:String = file?.name {
         //            cell?.imageTitleLabel.text = name
@@ -128,6 +143,24 @@ public class EAHomeViewController: UIViewController,UITableViewDelegate, UITable
     }
     
     // MARK:notifaction responses/selectors
+    func eventFileDownloaded(notifiaction : NSNotification) {
+        print("event file downloaded")
+        var fileId:String?
+        if let fileData = notifiaction.object as? NSData  {
+            fileId = (notifiaction.userInfo!["fileId"] as! String)
+            fileDataMap[fileId!] = fileData
+        }
+        var fileIndex:Int?
+        for (index, element) in self.currentFilesList!.files.enumerate() {
+            if element.identifier == fileId! {
+                fileIndex = index
+            }
+        }
+        
+        let index:NSIndexPath = NSIndexPath(forRow:fileIndex!, inSection:0)
+        self.tableView.reloadRowsAtIndexPaths([index], withRowAnimation: UITableViewRowAnimation.None)
+    }
+    
     func newEventCreated(notifiaction : NSNotification) {
         print("new event folder created")
         revealViewController().revealToggleAnimated(true)
@@ -142,9 +175,12 @@ public class EAHomeViewController: UIViewController,UITableViewDelegate, UITable
     func eventFilesRetrieved(notifiaction : NSNotification) {
         print("event files retrieved selector")
         revealViewController().revealToggleAnimated(true)
-        if let files = notifiaction.object as? GTLDriveFileList  {
-            currentFiles = files
-           self.tableView.reloadData()
+        if let fileList = notifiaction.object as? GTLDriveFileList  {
+            currentFilesList = fileList
+            self.tableView.reloadData()
+            for file in fileList.files {
+                EAGoogleAPIManager.sharedInstance.downloadFile(file as! GTLDriveFile)
+            }
         }
     }
 

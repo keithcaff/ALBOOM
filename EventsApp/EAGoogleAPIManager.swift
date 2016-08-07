@@ -54,6 +54,8 @@ class EAGoogleAPIManager {
         })
     }
     
+    
+    //id of dit talk folder 0By-3eIhKXJNzRmVDckY4WlcwVDQ
     func getRootEventAppFolder() {
         let service:GTLService = gtlServiceDrive
 //        GTLQueryDrive *queryFilesList = [GTLQueryDrive queryForChildrenListWithFolderId:@"root"];
@@ -105,17 +107,17 @@ class EAGoogleAPIManager {
         service.executeQuery(query) { (ticket: GTLServiceTicket!, files: AnyObject!, error: NSError!) -> Void in
             if(error != nil){
                 print("Error: \(error)")
+                return
             }
-            else {
-                let defaults = NSUserDefaults.standardUserDefaults()
-                defaults.setObject(event.name, forKey: DEFAULT_CURRENT_EVENT_NAME)
-                print("successfully retrieved files:  \(files)")
-                dispatch_async(dispatch_get_main_queue()) {
-                    NSNotificationCenter.defaultCenter().postNotificationName(NOTIFICATION_EVENT_FILES_RETRIEVED, object: files)
-                }
+            let defaults = NSUserDefaults.standardUserDefaults()
+            defaults.setObject(event.name, forKey: DEFAULT_CURRENT_EVENT_NAME)
+            print("successfully retrieved files:  \(files)")
+            dispatch_async(dispatch_get_main_queue()) {
+                NSNotificationCenter.defaultCenter().postNotificationName(NOTIFICATION_EVENT_FILES_RETRIEVED, object: files)
             }
         }
     }
+    
     
     
     func downloadFile(file:GTLDriveFile) {
@@ -123,19 +125,27 @@ class EAGoogleAPIManager {
         setAuthorizerForService(GIDSignIn.sharedInstance(), user: GIDSignIn.sharedInstance().currentUser,service:service)
         print("Downloading file \(file)")
         let stringURL:String = "https://www.googleapis.com/drive/v3/files/\(file.identifier)?alt=media"
-        let url:NSURL = NSURL(fileURLWithPath:stringURL)
+        let url:NSURL = NSURL(string:stringURL)!
         let fetcher:GTMSessionFetcher = service.fetcherService.fetcherWithURL(url)
+        fetcher.setProperty(file.identifier, forKey:"fileId")
         fetcher.beginFetchWithCompletionHandler { (data:NSData?, error:NSError?) in
             if(error != nil){
                 print("Error: \(error)")
             }
             else {
-                
+                let fetcherProperties: Dictionary<String,String>! = [
+                    "fileId": (fetcher.properties!["fileId"] as! String)
+                ]
+                dispatch_async(dispatch_get_main_queue()) {
+                    NSNotificationCenter.defaultCenter().postNotificationName(NOTIFICATION_EVENT_FILE_DOWNLOADED, object: data, userInfo:fetcherProperties )
+                }
             }
         }
-            //drive.fetcherService fetcherWithURLString:url];
+        
         
     }
+
+
 
    
 }
