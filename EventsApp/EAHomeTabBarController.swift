@@ -9,16 +9,20 @@
 import UIKit
 import GoogleAPIClient
 
-class EAHomeTabBarController: UITabBarController {
+public class EAHomeTabBarController: UITabBarController {
 
-    override func viewDidLoad() {
+    var contentViewController:UIViewController?
+    
+    override public func viewDidLoad() {
         super.viewDidLoad()
+        self.updateContentViewController(0)
         //(UIApplication.sharedApplication().delegate as! AppDelegate).signInCallBack = refereshInterface
         
         // Do any additional setup after loading the view.
     }
+    
 
-    override func didReceiveMemoryWarning() {
+    override public func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
@@ -30,6 +34,19 @@ class EAHomeTabBarController: UITabBarController {
 //    }
     
     
+    public func updateContentViewController(selectedTabIndex:Int) {
+        var viewController:UIViewController =  self.viewControllers![selectedTabIndex]
+        if viewController.isKindOfClass(UINavigationController) {
+            viewController = (viewController as! UINavigationController).viewControllers.first!
+        }
+        contentViewController = viewController
+    }
+    
+    
+    
+    public override func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem) {
+        self.updateContentViewController(self.selectedIndex)
+    }
     
     func showLogin(animated:Bool) {
         let storyboard = UIStoryboard(name: "EAMain", bundle: nil)

@@ -59,6 +59,13 @@ public class EAHomeViewController: UIViewController,UITableViewDelegate, UITable
         // Dispose of any resources that can be recreated.
     }
     
+    
+    public func didSwitchEvent() {
+        self.currentFilesList = nil;
+        self.fileDataMap = Dictionary<String, NSData>()
+        self.tableView.reloadData()
+    }
+    
     func addBackground(view:UIView, file:GTLDriveFile?) {
         
         // screen width and height:

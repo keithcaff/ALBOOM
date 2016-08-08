@@ -33,6 +33,20 @@ class EAMenuTableViewController: UITableViewController {
         if (sender.identifier == EXIT_VIEW_EVENTS_UNWIND_SEGUE) {
             print("exitViewEventsUnwindSegue")
             let source: EAViewEventsViewController
+            
+            // Clear current files on home vc here..
+            let viewController:EAHomeTabBarController = (revealViewController().frontViewController as! EAHomeTabBarController)
+            let contentVC:UIViewController! = viewController.contentViewController
+            
+            if let homeVc = contentVC as? EAHomeViewController {
+                homeVc.didSwitchEvent()
+            }
+            
+            
+//            if(contentVC!.isKindOfClass(EAHomeViewController)) {
+//                (contentVC as! EAHomeViewController).didSwitchEvent()
+//            }
+            
             source = sender.sourceViewController as! EAViewEventsViewController
             if let event = source.selectedEvent {
                 EAGoogleAPIManager.sharedInstance.switchEventFolder(event)
