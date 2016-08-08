@@ -8,4 +8,5 @@ target 'EventsApp' do
  	pod 'Google/AppInvite'
  	pod 'Google/SignIn'
  	pod 'GTMOAuth2'
+	pod ‘UIColor-Hex’
 end

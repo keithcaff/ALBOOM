@@ -9,6 +9,7 @@
 import UIKit
 import GoogleAPIClient
 import GTMOAuth2
+import UIColor_Hex
 
 public class EAHomeViewController: UIViewController,UITableViewDelegate, UITableViewDataSource{
     
@@ -84,21 +85,23 @@ public class EAHomeViewController: UIViewController,UITableViewDelegate, UITable
                 imageViewBackground.image = bgImage
                 // you can change the content mode:
                 imageViewBackground.contentMode = UIViewContentMode.ScaleToFill
-                
+                imageViewBackground.translatesAutoresizingMaskIntoConstraints = false;
                 view.addSubview(imageViewBackground)
+                
+                let top = NSLayoutConstraint(item: imageViewBackground, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem:view , attribute: NSLayoutAttribute.Top, multiplier: 1, constant: 0)
+                let bottom = NSLayoutConstraint(item: imageViewBackground, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.Equal, toItem:view , attribute: NSLayoutAttribute.Bottom, multiplier: 1, constant: 0)
+                let leading = NSLayoutConstraint(item: imageViewBackground, attribute: NSLayoutAttribute.Leading, relatedBy: NSLayoutRelation.Equal, toItem:view , attribute: NSLayoutAttribute.Leading, multiplier: 1, constant: 0)
+                let trailing = NSLayoutConstraint(item: imageViewBackground, attribute: NSLayoutAttribute.Trailing, relatedBy: NSLayoutRelation.Equal, toItem:view , attribute: NSLayoutAttribute.Trailing, multiplier: 1, constant: 0)
+                
+                view.addConstraint(top)
+                view.addConstraint(bottom)
+                view.addConstraint(leading)
+                view.addConstraint(trailing)
                 view.sendSubviewToBack(imageViewBackground)
 
             }
             else {
-                //TODO add this to the palceholder view
-                print("NO fileDATA")
-                print("KCTEST!!!!!!!!!")
-                let spinner:UIActivityIndicatorView = UIActivityIndicatorView.init(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
-                spinner.center = CGPointMake(160, 240);
-                spinner.hidesWhenStopped = true
-                view.addSubview(spinner)
-                spinner.startAnimating()
-
+                self.showActivityIndicatory(view)
             }
         }
     }
@@ -122,21 +125,6 @@ public class EAHomeViewController: UIViewController,UITableViewDelegate, UITable
         if (self.currentFilesList?.files.indices.contains(indexPath.row) != nil) {
             addBackground(homeCell.placeHolderView, file: (self.currentFilesList?.files[indexPath.row] as! GTLDriveFile))
         }
-//        else {
-////            UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc]
-////                initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-////            spinner.center = CGPointMake(160, 240);
-////            spinner.hidesWhenStopped = YES;
-////            [self.view addSubview:spinner];
-////            [spinner startAnimating];
-////            [spinner release];
-//            print("KCTEST!!!!!!!!!")
-//            let spinner:UIActivityIndicatorView = UIActivityIndicatorView.init(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
-//            spinner.center = CGPointMake(160, 240);
-//            spinner.hidesWhenStopped = true
-//            homeCell.placeHolderView.addSubview(spinner)
-//            spinner.startAnimating()
-//        }
     }
 
     public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -166,6 +154,31 @@ public class EAHomeViewController: UIViewController,UITableViewDelegate, UITable
     }
     
     
+    func showActivityIndicatory(uiView: UIView) {
+        let container: UIView = UIView()
+        container.frame = uiView.frame
+        container.center = uiView.center
+        container.backgroundColor = UIColor(hex: 0xffffff, alpha: 0.3)
+        let loadingView: UIView = UIView()
+        loadingView.frame = CGRectMake(0, 0, 80, 80)
+        loadingView.center = uiView.center
+        loadingView.backgroundColor = UIColor(hex: 0x444444, alpha: 0.7)
+        loadingView.clipsToBounds = true
+        loadingView.layer.cornerRadius = 10
+        
+        let actInd: UIActivityIndicatorView = UIActivityIndicatorView()
+        actInd.frame = CGRectMake(0.0, 0.0, 80.0, 80.0);
+        actInd.activityIndicatorViewStyle =
+            UIActivityIndicatorViewStyle.WhiteLarge
+        actInd.center = CGPointMake(loadingView.frame.size.width / 2,
+                                    loadingView.frame.size.height / 2);
+        loadingView.addSubview(actInd)
+        container.addSubview(loadingView)
+        uiView.addSubview(container)
+        actInd.startAnimating()
+    }
+    
+    
     public func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
     {
         let topNavHeight:CGFloat = self.navigationController!.navigationBar.frame.height
@@ -190,8 +203,10 @@ public class EAHomeViewController: UIViewController,UITableViewDelegate, UITable
             }
         }
         
-        let index:NSIndexPath = NSIndexPath(forRow:fileIndex!, inSection:0)
-        self.tableView.reloadRowsAtIndexPaths([index], withRowAnimation: UITableViewRowAnimation.None)
+        if let fileIndex = fileIndex {
+            let index:NSIndexPath = NSIndexPath(forRow:fileIndex, inSection:0)
+            self.tableView.reloadRowsAtIndexPaths([index], withRowAnimation: UITableViewRowAnimation.None)
+        }
     }
     
     func newEventCreated(notifiaction : NSNotification) {

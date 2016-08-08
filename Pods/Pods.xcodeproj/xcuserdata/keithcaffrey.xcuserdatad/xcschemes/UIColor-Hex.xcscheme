@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C82D9972CD04B2C5A94AB799DC1BADF6"
-               BuildableName = "Pods_EventsApp.framework"
-               BlueprintName = "Pods-EventsApp"
+               BlueprintIdentifier = "FE1C3B92731FA51D2A5AC7BE672C5942"
+               BuildableName = "UIColor_Hex.framework"
+               BlueprintName = "UIColor-Hex"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,9 +45,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "C82D9972CD04B2C5A94AB799DC1BADF6"
-            BuildableName = "Pods_EventsApp.framework"
-            BlueprintName = "Pods-EventsApp"
+            BlueprintIdentifier = "FE1C3B92731FA51D2A5AC7BE672C5942"
+            BuildableName = "UIColor_Hex.framework"
+            BlueprintName = "UIColor-Hex"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
