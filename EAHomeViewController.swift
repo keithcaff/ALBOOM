@@ -80,16 +80,27 @@ public class EAHomeViewController: UIViewController,UITableViewDelegate, UITable
             
             if let fileData = fileData {
                 bgImage = UIImage(data: fileData)
+                let imageViewBackground = UIImageView(frame: CGRectMake(0, 0, width, height))
+                imageViewBackground.image = bgImage
+                // you can change the content mode:
+                imageViewBackground.contentMode = UIViewContentMode.ScaleToFill
+                
+                view.addSubview(imageViewBackground)
+                view.sendSubviewToBack(imageViewBackground)
+
+            }
+            else {
+                //TODO add this to the palceholder view
+                print("NO fileDATA")
+                print("KCTEST!!!!!!!!!")
+                let spinner:UIActivityIndicatorView = UIActivityIndicatorView.init(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
+                spinner.center = CGPointMake(160, 240);
+                spinner.hidesWhenStopped = true
+                view.addSubview(spinner)
+                spinner.startAnimating()
+
             }
         }
-        
-        let imageViewBackground = UIImageView(frame: CGRectMake(0, 0, width, height))
-        imageViewBackground.image = bgImage
-        // you can change the content mode:
-        imageViewBackground.contentMode = UIViewContentMode.ScaleToFill
-        
-        view.addSubview(imageViewBackground)
-        view.sendSubviewToBack(imageViewBackground)
     }
     
     // MARK:Tableview delegates
@@ -111,6 +122,21 @@ public class EAHomeViewController: UIViewController,UITableViewDelegate, UITable
         if (self.currentFilesList?.files.indices.contains(indexPath.row) != nil) {
             addBackground(homeCell.placeHolderView, file: (self.currentFilesList?.files[indexPath.row] as! GTLDriveFile))
         }
+//        else {
+////            UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc]
+////                initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+////            spinner.center = CGPointMake(160, 240);
+////            spinner.hidesWhenStopped = YES;
+////            [self.view addSubview:spinner];
+////            [spinner startAnimating];
+////            [spinner release];
+//            print("KCTEST!!!!!!!!!")
+//            let spinner:UIActivityIndicatorView = UIActivityIndicatorView.init(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
+//            spinner.center = CGPointMake(160, 240);
+//            spinner.hidesWhenStopped = true
+//            homeCell.placeHolderView.addSubview(spinner)
+//            spinner.startAnimating()
+//        }
     }
 
     public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
