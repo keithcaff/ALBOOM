@@ -11,7 +11,7 @@ import GoogleAPIClient
 import GTMOAuth2
 import UIColor_Hex
 
-public class EAHomeViewController: UIViewController,UITableViewDelegate, UITableViewDataSource{
+public class EAHomeViewController: UIViewController,UITableViewDelegate, UITableViewDataSource, EAEventUpdateDelegate{
     
     @IBOutlet var tableView: UITableView!
     var currentEventFolder:GTLDriveFile?
@@ -60,9 +60,11 @@ public class EAHomeViewController: UIViewController,UITableViewDelegate, UITable
     }
     
     
-    public func didSwitchEvent() {
-        self.currentFilesList = nil;
+    func didSwitchEvent(event:EAEvent) {
+        self.currentFilesList = nil
+        currentEventFolder = nil
         self.fileDataMap = Dictionary<String, NSData>()
+        self.navigationController?.navigationBar.topItem?.title = event.name
         self.tableView.reloadData()
     }
     

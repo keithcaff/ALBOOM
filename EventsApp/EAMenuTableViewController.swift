@@ -35,22 +35,18 @@ class EAMenuTableViewController: UITableViewController {
             let source: EAViewEventsViewController
             
             // Clear current files on home vc here..
-            let viewController:EAHomeTabBarController = (revealViewController().frontViewController as! EAHomeTabBarController)
-            let contentVC:UIViewController! = viewController.contentViewController
-            
-            //TODO:po (viewController.viewControllers![0] as! UINavigationController).visibleViewController!
-            
-            if let homeVc = contentVC as? EAHomeViewController {
-                homeVc.didSwitchEvent()
+            let homeTabBarController:EAHomeTabBarController = (revealViewController().frontViewController as! EAHomeTabBarController)
+            var contentVC:UIViewController = homeTabBarController.viewControllers!.first!
+            if(contentVC.isKindOfClass(UINavigationController)) {
+                contentVC = (contentVC as! UINavigationController).viewControllers[0]
             }
-            
-            
-//            if(contentVC!.isKindOfClass(EAHomeViewController)) {
-//                (contentVC as! EAHomeViewController).didSwitchEvent()
-//            }
+            print("content vc is \(contentVC)")
             
             source = sender.sourceViewController as! EAViewEventsViewController
             if let event = source.selectedEvent {
+                if let contentVC = contentVC as? EAEventUpdateDelegate {
+                    contentVC.didSwitchEvent(event)
+                }
                 EAGoogleAPIManager.sharedInstance.switchEventFolder(event)
             }
         }

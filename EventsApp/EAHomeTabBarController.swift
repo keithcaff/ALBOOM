@@ -11,7 +11,7 @@ import GoogleAPIClient
 
 public class EAHomeTabBarController: UITabBarController {
 
-    var contentViewController:UIViewController?
+    var contentViewController:AnyObject?
     
     override public func viewDidLoad() {
         super.viewDidLoad()

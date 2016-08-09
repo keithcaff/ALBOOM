@@ -67,38 +67,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "EventsApp/EACreateEventViewController.swift"
-            timestampString = "490211047.23163"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "30"
-            endingLineNumber = "30"
-            landmarkName = "prepareForSegue(_:sender:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "EventsApp/EACreateEventViewController.swift"
-            timestampString = "490211025.993446"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "30"
-            endingLineNumber = "30"
-            landmarkName = "prepareForSegue(_:sender:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "EventsApp/EAGoogleAPIManager.swift"
             timestampString = "490823523.303235"
             startingColumnNumber = "9223372036854775807"
@@ -164,12 +132,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EAHomeViewController.swift"
-            timestampString = "492370285.647185"
+            timestampString = "492456591.069008"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "64"
             endingLineNumber = "64"
-            landmarkName = "didSwitchEvent()"
+            landmarkName = "didSwitchEvent(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EAHomeViewController.swift"
+            timestampString = "492456591.069008"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "121"
+            endingLineNumber = "121"
+            landmarkName = "tableView(_:willDisplayCell:forRowAtIndexPath:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -180,11 +164,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EventsApp/EAMenuTableViewController.swift"
-            timestampString = "492370301.679184"
+            timestampString = "492455350.648657"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "38"
-            endingLineNumber = "38"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
             landmarkName = "unWindToMenu(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -196,27 +180,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EventsApp/EAMenuTableViewController.swift"
-            timestampString = "492370866.049305"
+            timestampString = "492455365.960226"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "42"
-            endingLineNumber = "42"
-            landmarkName = "unWindToMenu(_:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "EventsApp/EAMenuTableViewController.swift"
-            timestampString = "492370875.049448"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "41"
-            endingLineNumber = "41"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
             landmarkName = "unWindToMenu(_:)"
             landmarkType = "5">
             <Locations>
@@ -228,12 +196,12 @@
                   moduleName = "EventsApp"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/keith/Dev/KC-DEV/eventapp/EventsApp/EAMenuTableViewController.swift"
-                  timestampString = "492372084.740449"
+                  timestampString = "492458512.540235"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "41"
-                  endingLineNumber = "41"
-                  offsetFromSymbolStart = "1840">
+                  startingLineNumber = "47"
+                  endingLineNumber = "47"
+                  offsetFromSymbolStart = "3640">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -243,12 +211,12 @@
                   moduleName = "EventsApp"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/keith/Dev/KC-DEV/eventapp/EventsApp/EAMenuTableViewController.swift"
-                  timestampString = "492372084.740568"
+                  timestampString = "492458512.540389"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "41"
-                  endingLineNumber = "41"
-                  offsetFromSymbolStart = "2025">
+                  startingLineNumber = "47"
+                  endingLineNumber = "47"
+                  offsetFromSymbolStart = "3807">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -259,14 +227,46 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "EAHomeViewController.swift"
-            timestampString = "492372493.230048"
+            filePath = "EventsApp/EACreateEventViewController.swift"
+            timestampString = "492458511.258583"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "118"
-            endingLineNumber = "118"
-            landmarkName = "tableView(_:willDisplayCell:forRowAtIndexPath:)"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
+            landmarkName = "textFieldDidChange(_:)"
             landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "EventsApp.EACreateEventViewController.textFieldDidChange (__ObjC.UITextField) -&gt; ()"
+                  moduleName = "EventsApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/keith/Dev/KC-DEV/eventapp/EventsApp/EACreateEventViewController.swift"
+                  timestampString = "492458512.541395"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "40"
+                  endingLineNumber = "40"
+                  offsetFromSymbolStart = "28">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "EventsApp.EACreateEventViewController.textFieldDidChange (__ObjC.UITextField) -&gt; ()"
+                  moduleName = "EventsApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/keith/Dev/KC-DEV/eventapp/EventsApp/EACreateEventViewController.swift"
+                  timestampString = "492458512.541541"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "40"
+                  endingLineNumber = "40"
+                  offsetFromSymbolStart = "279">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
