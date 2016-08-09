@@ -38,6 +38,8 @@ class EAMenuTableViewController: UITableViewController {
             let viewController:EAHomeTabBarController = (revealViewController().frontViewController as! EAHomeTabBarController)
             let contentVC:UIViewController! = viewController.contentViewController
             
+            //TODO:po (viewController.viewControllers![0] as! UINavigationController).visibleViewController!
+            
             if let homeVc = contentVC as? EAHomeViewController {
                 homeVc.didSwitchEvent()
             }

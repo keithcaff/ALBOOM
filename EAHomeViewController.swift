@@ -51,7 +51,6 @@ public class EAHomeViewController: UIViewController,UITableViewDelegate, UITable
     
     override public func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        print("currentEventFolder: \(currentEventFolder?.name)")
         
     }
 
@@ -197,15 +196,17 @@ public class EAHomeViewController: UIViewController,UITableViewDelegate, UITable
             fileDataMap[fileId!] = fileData
         }
         var fileIndex:Int?
-        for (index, element) in self.currentFilesList!.files.enumerate() {
-            if element.identifier == fileId! {
-                fileIndex = index
+        if let currentFilesList = currentFilesList {
+            for (index, element) in currentFilesList.files.enumerate() {
+                if element.identifier == fileId! {
+                    fileIndex = index
+                }
             }
-        }
-        
-        if let fileIndex = fileIndex {
-            let index:NSIndexPath = NSIndexPath(forRow:fileIndex, inSection:0)
-            self.tableView.reloadRowsAtIndexPaths([index], withRowAnimation: UITableViewRowAnimation.None)
+            
+            if let fileIndex = fileIndex {
+                let index:NSIndexPath = NSIndexPath(forRow:fileIndex, inSection:0)
+                self.tableView.reloadRowsAtIndexPaths([index], withRowAnimation: UITableViewRowAnimation.None)
+            }
         }
     }
     
