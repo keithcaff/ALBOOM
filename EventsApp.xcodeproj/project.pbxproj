@@ -15,6 +15,7 @@
 		44323FB41CE9EF730049F7FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 44323FB31CE9EF730049F7FC /* Assets.xcassets */; };
 		44323FB71CE9EF730049F7FC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44323FB51CE9EF730049F7FC /* LaunchScreen.storyboard */; };
 		445208191CEFCAA400CC231B /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 445208181CEFCAA400CC231B /* SWRevealViewController.m */; };
+		4490597E1D5BD2A00095A52A /* EAImageTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4490597D1D5BD2A00095A52A /* EAImageTabBarController.swift */; };
 		44BAB9171CF362D100B1D18D /* EARootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44BAB9161CF362D100B1D18D /* EARootViewController.swift */; };
 		44BAB9191CF8E69500B1D18D /* EACreateEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44BAB9181CF8E69500B1D18D /* EACreateEventViewController.swift */; };
 		44CC1C301D45311D007AFB89 /* EAViewEvents.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44CC1C2E1D45311D007AFB89 /* EAViewEvents.storyboard */; };
@@ -25,7 +26,6 @@
 		44F753541D52971F0034BCC0 /* EAHomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F753531D52971F0034BCC0 /* EAHomeTableViewCell.swift */; };
 		53160D911D3801DE0095906E /* EAEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53160D901D3801DE0095906E /* EAEvent.swift */; };
 		537076531D5A43F600D139AA /* EAEventUpdateDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537076521D5A43F600D139AA /* EAEventUpdateDelegate.swift */; };
-		537076551D5B8CE900D139AA /* EAPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537076541D5B8CE900D139AA /* EAPhotoViewController.swift */; };
 		537F477A1D53BA0C00F9A664 /* jake.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 537F47791D53BA0C00F9A664 /* jake.jpg */; };
 		538D48181D41372700957BF0 /* EAGlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538D48171D41372700957BF0 /* EAGlobalConstants.swift */; };
 		538D481A1D4155BF00957BF0 /* EAGoogleAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538D48191D4155BF00957BF0 /* EAGoogleAPIManager.swift */; };
@@ -48,6 +48,7 @@
 		445208171CEFCAA400CC231B /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		445208181CEFCAA400CC231B /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		4452081A1CEFCAB100CC231B /* EventsApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EventsApp-Bridging-Header.h"; sourceTree = "<group>"; };
+		4490597D1D5BD2A00095A52A /* EAImageTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EAImageTabBarController.swift; sourceTree = "<group>"; };
 		44BAB9161CF362D100B1D18D /* EARootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EARootViewController.swift; sourceTree = "<group>"; };
 		44BAB9181CF8E69500B1D18D /* EACreateEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EACreateEventViewController.swift; sourceTree = "<group>"; };
 		44CC1C2F1D45311D007AFB89 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/EAViewEvents.storyboard; sourceTree = "<group>"; };
@@ -59,7 +60,6 @@
 		50CB0735F08D28AAA653068E /* Pods-EventsApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EventsApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EventsApp/Pods-EventsApp.debug.xcconfig"; sourceTree = "<group>"; };
 		53160D901D3801DE0095906E /* EAEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EAEvent.swift; sourceTree = "<group>"; };
 		537076521D5A43F600D139AA /* EAEventUpdateDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EAEventUpdateDelegate.swift; sourceTree = "<group>"; };
-		537076541D5B8CE900D139AA /* EAPhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EAPhotoViewController.swift; sourceTree = "<group>"; };
 		537F47791D53BA0C00F9A664 /* jake.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = jake.jpg; sourceTree = "<group>"; };
 		538D48171D41372700957BF0 /* EAGlobalConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EAGlobalConstants.swift; sourceTree = "<group>"; };
 		538D48191D4155BF00957BF0 /* EAGoogleAPIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EAGoogleAPIManager.swift; sourceTree = "<group>"; };
@@ -107,7 +107,6 @@
 				4419E4681CF1DC8100FFCE0D /* GoogleService-Info.plist */,
 				4419E46A1CF1E2CC00FFCE0D /* EALoginViewController.swift */,
 				44323FB01CE9EF730049F7FC /* EAMain.storyboard */,
-				537076541D5B8CE900D139AA /* EAPhotoViewController.swift */,
 				44CC1C2E1D45311D007AFB89 /* EAViewEvents.storyboard */,
 				44CC1C351D454925007AFB89 /* EAViewEventsViewController.swift */,
 				44CC1C311D4533D0007AFB89 /* EAViewEventTableViewCell.xib */,
@@ -126,6 +125,7 @@
 				53160D901D3801DE0095906E /* EAEvent.swift */,
 				538D48191D4155BF00957BF0 /* EAGoogleAPIManager.swift */,
 				537076521D5A43F600D139AA /* EAEventUpdateDelegate.swift */,
+				4490597D1D5BD2A00095A52A /* EAImageTabBarController.swift */,
 			);
 			path = EventsApp;
 			sourceTree = "<group>";
@@ -285,11 +285,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				44F753541D52971F0034BCC0 /* EAHomeTableViewCell.swift in Sources */,
+				4490597E1D5BD2A00095A52A /* EAImageTabBarController.swift in Sources */,
 				4419E46B1CF1E2CC00FFCE0D /* EALoginViewController.swift in Sources */,
 				53160D911D3801DE0095906E /* EAEvent.swift in Sources */,
 				538D48181D41372700957BF0 /* EAGlobalConstants.swift in Sources */,
 				44CC1C341D45340F007AFB89 /* EAViewEventTableViewCell.swift in Sources */,
-				537076551D5B8CE900D139AA /* EAPhotoViewController.swift in Sources */,
 				4419E46D1CF26C8000FFCE0D /* EAHomeTabBarController.swift in Sources */,
 				53F47AB91CF75817005F0DE9 /* EAMenuTableViewController.swift in Sources */,
 				44BAB9171CF362D100B1D18D /* EARootViewController.swift in Sources */,

@@ -335,38 +335,6 @@
             endingLineNumber = "41"
             landmarkName = "unWindToMenu(_:)"
             landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "EventsApp.EAMenuTableViewController.unWindToMenu (__ObjC.UIStoryboardSegue) -&gt; ()"
-                  moduleName = "EventsApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/keithcaffrey/Dev/ios/EventsApp/EventsApp/EventsApp/EAMenuTableViewController.swift"
-                  timestampString = "492389912.963703"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "41"
-                  endingLineNumber = "41"
-                  offsetFromSymbolStart = "1840">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "EventsApp.EAMenuTableViewController.unWindToMenu (__ObjC.UIStoryboardSegue) -&gt; ()"
-                  moduleName = "EventsApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/keithcaffrey/Dev/ios/EventsApp/EventsApp/EventsApp/EAMenuTableViewController.swift"
-                  timestampString = "492389912.963851"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "41"
-                  endingLineNumber = "41"
-                  offsetFromSymbolStart = "2025">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -381,7 +349,23 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "64"
             endingLineNumber = "64"
-            landmarkName = "didSwitchEvent()"
+            landmarkName = "didSwitchEvent(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EventsApp/EAImageTabBarController.swift"
+            timestampString = "492559272.617234"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "13"
+            endingLineNumber = "13"
+            landmarkName = "viewDidLoad()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

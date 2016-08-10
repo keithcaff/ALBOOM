@@ -1,5 +1,5 @@
 //
-//  EAPhotoViewController.swift
+//  EAImageTabBarController.swift
 //  EventsApp
 //
 //  Created by Keith Caffrey on 10/08/2016.
@@ -7,16 +7,10 @@
 //
 
 import Foundation
-
-
-public class EAPhotoViewController:UIViewController {
-    
-    
+public class EAImageTabBarController:UITabBarController {
     
     override public func viewDidLoad() {
         super.viewDidLoad()
-//        if let tabVc = self.tabBarController {
-//            tabVc.tabBar.hidden = true
-//        }
+        // Do any additional setup after loading the view, typically from a nib.
     }
 }
