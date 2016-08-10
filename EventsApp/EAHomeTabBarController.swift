@@ -45,7 +45,16 @@ public class EAHomeTabBarController: UITabBarController {
     
     
     public override func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem) {
-        self.updateContentViewController(self.selectedIndex)
+        let index:Int = tabBar.items!.indexOf(item)!
+        self.updateContentViewController(index)
+        if index == 1 {
+            //change the tab bar items
+            self.tabBar.hidden = true
+            let home: UITabBarItem = self.tabBar.items![0]
+            let camera: UITabBarItem = self.tabBar.items![1]
+            home.title = "gallery"
+            
+        }
     }
     
     func showLogin(animated:Bool) {
