@@ -49,6 +49,12 @@ public class EAHomeViewController: UIViewController,UITableViewDelegate, UITable
         
     }
     
+    
+    @IBAction func unWindToHomeViewController(sender: UIStoryboardSegue) {
+        print("unWindToHomeViewController")
+        self.tabBarController?.tabBar.hidden = false;
+    }
+    
     override public func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -153,6 +159,8 @@ public class EAHomeViewController: UIViewController,UITableViewDelegate, UITable
         
         return cell!
     }
+    
+    
     
     
     func showActivityIndicatory(uiView: UIView) {

@@ -27,12 +27,9 @@ public class EAHomeTabBarController: UITabBarController {
         // Dispose of any resources that can be recreated.
     }
     
-//    func refereshInterface() {
-//        if (GIDSignIn.sharedInstance().currentUser == nil) {
-//          showLogin(true);
-//        }
-//    }
-    
+    public override func viewDidAppear(animated: Bool) {
+        self.tabBar.hidden = false;
+    }
     
     public func updateContentViewController(selectedTabIndex:Int) {
         var viewController:UIViewController =  self.viewControllers![selectedTabIndex]
@@ -42,18 +39,12 @@ public class EAHomeTabBarController: UITabBarController {
         contentViewController = viewController
     }
     
-    
-    
     public override func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem) {
         let index:Int = tabBar.items!.indexOf(item)!
         self.updateContentViewController(index)
         if index == 1 {
-            //change the tab bar items
+            //if camera selected
             self.tabBar.hidden = true
-            let home: UITabBarItem = self.tabBar.items![0]
-            let camera: UITabBarItem = self.tabBar.items![1]
-            home.title = "gallery"
-            
         }
     }
     
