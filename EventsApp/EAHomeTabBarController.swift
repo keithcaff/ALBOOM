@@ -28,7 +28,12 @@ public class EAHomeTabBarController: UITabBarController {
     }
     
     public override func viewDidAppear(animated: Bool) {
-        self.tabBar.hidden = false;
+        let selectedIndex:Int? = self.tabBar.items!.indexOf(self.tabBar.selectedItem!)
+        if let selectedIndex = selectedIndex {
+            if selectedIndex != 1 {
+                self.tabBar.hidden = false;
+            }
+        }
     }
     
     public func updateContentViewController(selectedTabIndex:Int) {

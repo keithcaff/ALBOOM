@@ -5,6 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--Home View Controller-->
@@ -413,7 +414,6 @@
         <!--Camera-->
         <scene sceneID="xDp-Iv-pit">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="3XT-uG-WKf" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" modalTransitionStyle="flipHorizontal" id="bNh-Zj-Abi" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Camera" image="Camera" id="0jz-3X-sgq"/>
                     <toolbarItems/>
@@ -426,13 +426,14 @@
                         <segue destination="lIb-ej-e03" kind="relationship" relationship="rootViewController" id="ivl-ec-AhC"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3XT-uG-WKf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-875" y="1112"/>
         </scene>
         <!--Gallery-->
         <scene sceneID="grQ-bx-VOh">
             <objects>
-                <viewController id="IKp-Fb-WEL" sceneMemberID="viewController">
+                <viewController id="IKp-Fb-WEL" customClass="EAGalleryViewController" customModule="EventsApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="n8E-8e-Ugw"/>
                         <viewControllerLayoutGuide type="bottom" id="4Mm-0L-ahd"/>
@@ -440,13 +441,42 @@
                     <view key="view" contentMode="scaleToFill" id="k7O-Hq-dDR">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" layoutMarginsFollowReadableWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iPp-pK-vNU">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="368"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UnU-iz-anW">
+                                <rect key="frame" x="0.0" y="368" width="414" height="319"/>
+                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="UnU-iz-anW" firstAttribute="top" secondItem="iPp-pK-vNU" secondAttribute="bottom" id="1wr-oB-msC"/>
+                            <constraint firstItem="4Mm-0L-ahd" firstAttribute="top" secondItem="UnU-iz-anW" secondAttribute="bottom" id="4q5-mc-2bj"/>
+                            <constraint firstItem="UnU-iz-anW" firstAttribute="leading" secondItem="k7O-Hq-dDR" secondAttribute="leading" id="6Zf-Jl-YbZ"/>
+                            <constraint firstItem="iPp-pK-vNU" firstAttribute="leading" secondItem="k7O-Hq-dDR" secondAttribute="leading" id="EXd-md-f1N"/>
+                            <constraint firstAttribute="trailing" secondItem="UnU-iz-anW" secondAttribute="trailing" id="P9R-vl-YfT"/>
+                            <constraint firstItem="iPp-pK-vNU" firstAttribute="height" secondItem="k7O-Hq-dDR" secondAttribute="height" multiplier="0.5" id="WIb-0w-Q0Y"/>
+                            <constraint firstAttribute="bottom" secondItem="UnU-iz-anW" secondAttribute="bottom" id="dDt-zn-Jd4"/>
+                            <constraint firstAttribute="trailing" secondItem="iPp-pK-vNU" secondAttribute="trailing" id="dSZ-VJ-f8H"/>
+                            <constraint firstAttribute="topMargin" secondItem="iPp-pK-vNU" secondAttribute="top" id="pbh-py-sXz"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="dDt-zn-Jd4"/>
+                            </mask>
+                        </variation>
                     </view>
                     <tabBarItem key="tabBarItem" title="Gallery" image="Gallery" id="J8E-25-qXx"/>
+                    <connections>
+                        <outlet property="imagePickerViewArea" destination="UnU-iz-anW" id="s5Y-k2-toE"/>
+                        <outlet property="imageView" destination="iPp-pK-vNU" id="11t-bk-nOx"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ji3-uS-ezL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1668" y="3823"/>
+            <point key="canvasLocation" x="-1241" y="2972"/>
         </scene>
         <!--Camera-->
         <scene sceneID="ZMm-i3-606">
@@ -465,14 +495,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AfU-SN-7ay" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-537" y="3437"/>
+            <point key="canvasLocation" x="-574" y="2972"/>
         </scene>
         <!--Image Tab Bar Controller-->
         <scene sceneID="sQv-cf-P9G">
             <objects>
                 <tabBarController id="lIb-ej-e03" customClass="EAImageTabBarController" customModule="EventsApp" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="FoK-ip-Gt5">
-                        <barButtonItem key="leftBarButtonItem" image="Back" id="tRQ-hS-4bJ">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="tRQ-hS-4bJ">
                             <connections>
                                 <segue destination="XoE-Gz-cbf" kind="unwind" unwindAction="unWindToHomeViewController:" id="m42-tz-eJU"/>
                             </connections>
@@ -484,8 +514,8 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="b2Z-39-FzF" kind="relationship" relationship="viewControllers" id="tZe-PJ-UyS"/>
                         <segue destination="IKp-Fb-WEL" kind="relationship" relationship="viewControllers" id="hYE-H2-tYF"/>
+                        <segue destination="b2Z-39-FzF" kind="relationship" relationship="viewControllers" id="MK5-Ma-HS6"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mLj-V3-0LS" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -521,7 +551,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Back" width="30" height="30"/>
         <image name="Camera" width="30" height="30"/>
         <image name="Gallery" width="30" height="30"/>
         <image name="Home" width="30" height="30"/>

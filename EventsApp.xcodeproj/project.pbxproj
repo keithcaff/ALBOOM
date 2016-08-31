@@ -27,6 +27,7 @@
 		53160D911D3801DE0095906E /* EAEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53160D901D3801DE0095906E /* EAEvent.swift */; };
 		537076531D5A43F600D139AA /* EAEventUpdateDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537076521D5A43F600D139AA /* EAEventUpdateDelegate.swift */; };
 		537F477A1D53BA0C00F9A664 /* jake.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 537F47791D53BA0C00F9A664 /* jake.jpg */; };
+		538183061D773EC200393344 /* EAGalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538183051D773EC200393344 /* EAGalleryViewController.swift */; };
 		538D48181D41372700957BF0 /* EAGlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538D48171D41372700957BF0 /* EAGlobalConstants.swift */; };
 		538D481A1D4155BF00957BF0 /* EAGoogleAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538D48191D4155BF00957BF0 /* EAGoogleAPIManager.swift */; };
 		53F47AB91CF75817005F0DE9 /* EAMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F47AB81CF75817005F0DE9 /* EAMenuTableViewController.swift */; };
@@ -61,6 +62,7 @@
 		53160D901D3801DE0095906E /* EAEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EAEvent.swift; sourceTree = "<group>"; };
 		537076521D5A43F600D139AA /* EAEventUpdateDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EAEventUpdateDelegate.swift; sourceTree = "<group>"; };
 		537F47791D53BA0C00F9A664 /* jake.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = jake.jpg; sourceTree = "<group>"; };
+		538183051D773EC200393344 /* EAGalleryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EAGalleryViewController.swift; sourceTree = "<group>"; };
 		538D48171D41372700957BF0 /* EAGlobalConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EAGlobalConstants.swift; sourceTree = "<group>"; };
 		538D48191D4155BF00957BF0 /* EAGoogleAPIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EAGoogleAPIManager.swift; sourceTree = "<group>"; };
 		53F47AB81CF75817005F0DE9 /* EAMenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EAMenuTableViewController.swift; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 				538D48191D4155BF00957BF0 /* EAGoogleAPIManager.swift */,
 				537076521D5A43F600D139AA /* EAEventUpdateDelegate.swift */,
 				4490597D1D5BD2A00095A52A /* EAImageTabBarController.swift */,
+				538183051D773EC200393344 /* EAGalleryViewController.swift */,
 			);
 			path = EventsApp;
 			sourceTree = "<group>";
@@ -292,6 +295,7 @@
 				44CC1C341D45340F007AFB89 /* EAViewEventTableViewCell.swift in Sources */,
 				4419E46D1CF26C8000FFCE0D /* EAHomeTabBarController.swift in Sources */,
 				53F47AB91CF75817005F0DE9 /* EAMenuTableViewController.swift in Sources */,
+				538183061D773EC200393344 /* EAGalleryViewController.swift in Sources */,
 				44BAB9171CF362D100B1D18D /* EARootViewController.swift in Sources */,
 				44323FAD1CE9EF730049F7FC /* AppDelegate.swift in Sources */,
 				538D481A1D4155BF00957BF0 /* EAGoogleAPIManager.swift in Sources */,
