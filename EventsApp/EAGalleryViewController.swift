@@ -7,58 +7,50 @@
 //
 
 import Foundation
+import ImagePicker
 
-public class EAGalleryViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+public class EAGalleryViewController: UIViewController, ImagePickerDelegate {
     
     @IBOutlet weak var imageView: UIImageView!
+    let imagePickerController = ImagePickerController()
     
-    let imagePicker = UIImagePickerController()
+    @IBOutlet weak var uploadButton: UIButton!
+    @IBOutlet weak var selectButton: UIButton!
     
-    @IBOutlet weak var imagePickerViewArea: UIView!
-
+    @IBAction func selectButtonClicked(sender: AnyObject) {
+        presentImagePicker()
+    }
     override public func viewDidLoad() {
         super.viewDidLoad()
-        imagePicker.delegate = self
-        imagePicker.allowsEditing = false
-        imagePicker.sourceType = .PhotoLibrary
-
-            imagePicker.view.translatesAutoresizingMaskIntoConstraints = false;
-            view.addSubview(imagePicker.view)
-//            
-            let top = NSLayoutConstraint(item: imagePicker.view, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem:imagePickerViewArea , attribute: NSLayoutAttribute.Top, multiplier: 1, constant: 0)
-            let bottom = NSLayoutConstraint(item: imagePicker.view, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.Equal, toItem:imagePickerViewArea , attribute: NSLayoutAttribute.Bottom, multiplier: 1, constant: 0)
-            let leading = NSLayoutConstraint(item: imagePicker.view, attribute: NSLayoutAttribute.Leading, relatedBy: NSLayoutRelation.Equal, toItem:imagePickerViewArea , attribute: NSLayoutAttribute.Leading, multiplier: 1, constant: 0)
-            let trailing = NSLayoutConstraint(item: imagePicker.view, attribute: NSLayoutAttribute.Trailing, relatedBy: NSLayoutRelation.Equal, toItem:imagePickerViewArea , attribute: NSLayoutAttribute.Trailing, multiplier: 1, constant: 0)
-            
-            view.addConstraint(top)
-            view.addConstraint(bottom)
-            view.addConstraint(leading)
-            view.addConstraint(trailing)
-            
-        
-        
+        uploadButton.enabled = false
+        uploadButton.alpha = 0.3
+        imagePickerController
+        imagePickerController.delegate = self
+        imagePickerController.imageLimit = 1
+        Configuration.doneButtonTitle = "Done"
+        Configuration.noImagesTitle = "Sorry! There are no images here!"
+        presentViewController(imagePickerController, animated: true, completion: nil)
     }
     
     override public func viewDidAppear(animated: Bool) {
         imageView.image = nil
-        //presentImagePicker()
+        presentImagePicker()
     }
     
-    func presentImagePicker() {
-        presentViewController(imagePicker, animated: false, completion: nil)
+   func presentImagePicker() {
+        presentViewController(imagePickerController, animated: true, completion: nil)
     }
     
-    // MARK: - UIImagePickerControllerDelegate Methods
-    public func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            imageView.contentMode = .ScaleAspectFit
-            imageView.image = pickedImage
-        }
-        //dismissViewControllerAnimated(true, completion: nil)
-    }
+// MARK: - ImagePickerDelegate Methods
     
-    public func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-        //dismissViewControllerAnimated(true, completion: nil)
-        //imagePicker.dismissViewControllerAnimated(true, completion:nil)
+    public func wrapperDidPress(imagePicker: ImagePickerController, images: [UIImage]) {
+        
+    }
+    public func doneButtonDidPress(imagePicker: ImagePickerController, images: [UIImage]) {
+        imagePicker.dismissViewControllerAnimated(true, completion:nil)
+        imageView.image = images[0]
+    }
+    public func cancelButtonDidPress(imagePicker: ImagePickerController) {
+        
     }
 }

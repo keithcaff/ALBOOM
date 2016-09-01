@@ -28,12 +28,12 @@ public class EAHomeTabBarController: UITabBarController {
     }
     
     public override func viewDidAppear(animated: Bool) {
-        let selectedIndex:Int? = self.tabBar.items!.indexOf(self.tabBar.selectedItem!)
-        if let selectedIndex = selectedIndex {
-            if selectedIndex != 1 {
-                self.tabBar.hidden = false;
-            }
-        }
+//        let selectedIndex:Int? = self.tabBar.items!.indexOf(self.tabBar.selectedItem!)
+//        if let selectedIndex = selectedIndex {
+//            if selectedIndex != 1 {
+//                self.tabBar.hidden = false;
+//            }
+//        }
     }
     
     public func updateContentViewController(selectedTabIndex:Int) {
@@ -47,10 +47,10 @@ public class EAHomeTabBarController: UITabBarController {
     public override func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem) {
         let index:Int = tabBar.items!.indexOf(item)!
         self.updateContentViewController(index)
-        if index == 1 {
-            //if camera selected
-            self.tabBar.hidden = true
-        }
+//        if index == 1 {
+//            //if camera selected
+//            self.tabBar.hidden = true
+//        }
     }
     
     func showLogin(animated:Bool) {

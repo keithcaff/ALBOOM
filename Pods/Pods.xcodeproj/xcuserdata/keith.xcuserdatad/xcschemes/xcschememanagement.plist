@@ -19,6 +19,16 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>ImagePicker-ImagePicker.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>ImagePicker.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-EventsApp.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -37,12 +47,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7D505932284C7172E62B61B1590FC7A8</key>
+		<key>55BD3033702F62283C42C1F6E037342D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C82D9972CD04B2C5A94AB799DC1BADF6</key>
+		<key>7C4108C3722F95AE55CEDD665AC9630D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7D505932284C7172E62B61B1590FC7A8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -52,7 +67,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>FE1C3B92731FA51D2A5AC7BE672C5942</key>
+		<key>D7536E121FC95DDAB9A7CBB4CFABE189</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>EAC425FD2BB761AE67E0C43D94EF1C77</key>
 		<dict>
 			<key>primary</key>
 			<true/>
