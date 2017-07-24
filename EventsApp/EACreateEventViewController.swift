@@ -17,9 +17,9 @@ class EACreateEventViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        eventNameTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), forControlEvents: UIControlEvents.EditingChanged)
+        eventNameTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: UIControlEvents.editingChanged)
         eventNameTextField.delegate = self;
-        createEventButton.enabled = false
+        createEventButton.isEnabled = false
         createEventButton.alpha = 0.3
     }
     
@@ -29,14 +29,14 @@ class EACreateEventViewController: UIViewController, UITextFieldDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         print("get ready to create event here")
         if segue.identifier == "createEventUnWind" {
             event = EAEvent(id:nil, eventName: eventNameTextField.text!)
         }
     }
     
-    func textFieldDidChange(textField: UITextField) {
+    func textFieldDidChange(_ textField: UITextField) {
         if let text = textField.text {
             if (text.characters.count == 0 || text.characters.count > 30) {
                 createEventButtonEnabled(false)
@@ -47,7 +47,7 @@ class EACreateEventViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
         let currentCharacterCount = textField.text?.characters.count ?? 0
         if (range.length + range.location > currentCharacterCount){
@@ -58,8 +58,8 @@ class EACreateEventViewController: UIViewController, UITextFieldDelegate {
     }
     
     
-    func createEventButtonEnabled(enabled:Bool) {
-        createEventButton.enabled = enabled
+    func createEventButtonEnabled(_ enabled:Bool) {
+        createEventButton.isEnabled = enabled
         if(enabled) {
               createEventButton.alpha = 1.0
         }

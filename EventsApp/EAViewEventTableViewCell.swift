@@ -17,7 +17,7 @@ class EAViewEventTableViewCell: UITableViewCell {
     
     var unWindCallback: ((EAEvent) -> Void)?
     var event: EAEvent!
-    @IBAction func didClickSelectButton(sender: AnyObject) {
+    @IBAction func didClickSelectButton(_ sender: AnyObject) {
         unWindCallback?(self.event)
     }
 }

@@ -13,7 +13,7 @@ import GTMOAuth2
 
 class EAMenuTableViewController: UITableViewController {
     
-    private let service = GTLServiceDrive()
+    fileprivate let service = GTLServiceDrive()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,11 +21,11 @@ class EAMenuTableViewController: UITableViewController {
     }
     
     
-    @IBAction func unWindToMenu(sender: UIStoryboardSegue) {
+    @IBAction func unWindToMenu(_ sender: UIStoryboardSegue) {
         print("unWindToMenu")
         if (sender.identifier == "createEventUnWind") {
             let source: EACreateEventViewController
-            source = sender.sourceViewController as! EACreateEventViewController
+            source = sender.source as! EACreateEventViewController
             if let event = source.event {
                 EAGoogleAPIManager.sharedInstance.createEventFolder(event)
             }
@@ -37,12 +37,12 @@ class EAMenuTableViewController: UITableViewController {
             // Clear current files on home vc here..
             let homeTabBarController:EAHomeTabBarController = (revealViewController().frontViewController as! EAHomeTabBarController)
             var contentVC:UIViewController = homeTabBarController.viewControllers!.first!
-            if(contentVC.isKindOfClass(UINavigationController)) {
+            if(contentVC.isKind(of: UINavigationController.self)) {
                 contentVC = (contentVC as! UINavigationController).viewControllers[0]
             }
             print("content vc is \(contentVC)")
             
-            source = sender.sourceViewController as! EAViewEventsViewController
+            source = sender.source as! EAViewEventsViewController
             if let event = source.selectedEvent {
                 if let contentVC = contentVC as? EAEventUpdateDelegate {
                     contentVC.didSwitchEvent(event)
@@ -53,6 +53,6 @@ class EAMenuTableViewController: UITableViewController {
     }
    
     func hideMenu() {
-        revealViewController().revealToggleAnimated(true)
+        revealViewController().revealToggle(animated: true)
     }
 }

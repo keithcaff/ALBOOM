@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class EAHomeTableViewCell:UITableViewCell {
+open class EAHomeTableViewCell:UITableViewCell {
     
     @IBOutlet weak var imageTitleLabel: UILabel!
     @IBOutlet weak var placeHolderView: UIView!

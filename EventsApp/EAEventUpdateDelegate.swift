@@ -10,5 +10,5 @@ import Foundation
 
 @objc protocol EAEventUpdateDelegate {
     
-    func didSwitchEvent(event:EAEvent);
+    func didSwitchEvent(_ event:EAEvent);
 }

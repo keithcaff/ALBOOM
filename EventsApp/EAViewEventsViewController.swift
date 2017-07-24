@@ -10,7 +10,7 @@ import Foundation
 import GoogleAPIClient
 import UIKit
 
-public class EAViewEventsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+open class EAViewEventsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet var tableView: UITableView!
     
@@ -18,41 +18,41 @@ public class EAViewEventsViewController: UIViewController, UITableViewDelegate, 
     let viewEventCellIdentifier:String = "VIEW_EVENT_CELL"
     var selectedEvent:EAEvent?
     
-    func unWindToMenu(event:EAEvent) {
+    func unWindToMenu(_ event:EAEvent) {
         print("selected event \(event.name!)")
         selectedEvent = event
-        self.performSegueWithIdentifier(EXIT_VIEW_EVENTS_UNWIND_SEGUE,sender:self);
+        self.performSegue(withIdentifier: EXIT_VIEW_EVENTS_UNWIND_SEGUE,sender:self);
     }
     
-    public override func viewDidLoad() {
+    open override func viewDidLoad() {
         super.viewDidLoad()
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(eventFoldersRetrieved), name: NOTIFICATION_EVENT_FOLDERS_RETRIEVED, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(eventFoldersRetrieved), name: .NOTIFICATION_EVENT_FOLDERS_RETRIEVED, object: nil)
         self.tableView.dataSource = self
         self.tableView.delegate = self
         let nib = UINib(nibName: "EAViewEventTableViewCell", bundle:nil)
-        self.tableView.registerNib(nib, forCellReuseIdentifier: viewEventCellIdentifier)
+        self.tableView.register(nib, forCellReuseIdentifier: viewEventCellIdentifier)
     }
     
     
-    public override func viewWillAppear(animated: Bool) {
+    open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         EAGoogleAPIManager.sharedInstance.getAllEventFolders()
     }
 
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
     
     // MARK:notifaction responses
-    func eventFoldersRetrieved(notifiaction : NSNotification) {
+    func eventFoldersRetrieved(_ notifiaction : Notification) {
         data = NSMutableArray();
         if let object = notifiaction.object {
             let foldersList:GTLDriveFileList = (object as! GTLDriveFileList)
-            for folder:AnyObject in foldersList.files {
+            for folder:Any in foldersList.files {
                 let name:String? = (folder as! GTLDriveFile).name
                 let id:String? = (folder as! GTLDriveFile).identifier
                 let event:EAEvent = EAEvent.init(id:id!, eventName: name!);
-                data?.addObject(event)
+                data?.add(event)
             }
         }
         self.tableView.reloadData()
@@ -61,11 +61,11 @@ public class EAViewEventsViewController: UIViewController, UITableViewDelegate, 
     // MARK:Tableview delegates
     
     
-    public func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+    open func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         weak var weakSelf:EAViewEventsViewController! = self
-        let delete = UITableViewRowAction(style: .Destructive, title: "Delete") { (action, indexPath) in
+        let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
             if let data = weakSelf.data {
-                let event:EAEvent = data.objectAtIndex(indexPath.row) as! EAEvent
+                let event:EAEvent = data.object(at: indexPath.row) as! EAEvent
                 print("KCTEST: id \(event.id!)")
             }
         }
@@ -73,11 +73,11 @@ public class EAViewEventsViewController: UIViewController, UITableViewDelegate, 
         return [delete]
     }
     
-    public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("selected row \(indexPath.row)")
     }
     
-    public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var count:Int = 0
         if let data = data {
             count = data.count
@@ -85,17 +85,17 @@ public class EAViewEventsViewController: UIViewController, UITableViewDelegate, 
         return count;
     }
     
-    public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell:EAViewEventTableViewCell?
         if self.data == nil {
             return EAViewEventTableViewCell()
         }
-        let event:EAEvent = (self.data!.objectAtIndex(indexPath.row) as! EAEvent)
-        cell = tableView.dequeueReusableCellWithIdentifier(viewEventCellIdentifier, forIndexPath: indexPath) as? EAViewEventTableViewCell
+        let event:EAEvent = (self.data!.object(at: indexPath.row) as! EAEvent)
+        cell = tableView.dequeueReusableCell(withIdentifier: viewEventCellIdentifier, for: indexPath) as? EAViewEventTableViewCell
         cell?.event = event
         cell?.unWindCallback = unWindToMenu;
         cell!.name.text = event.name!
-        cell?.selectionStyle = .None
+        cell?.selectionStyle = .none
         return cell!
     }
     

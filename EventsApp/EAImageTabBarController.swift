@@ -7,14 +7,14 @@
 //
 
 import Foundation
-public class EAImageTabBarController:UITabBarController {
+open class EAImageTabBarController:UITabBarController {
     
-    override public func viewDidLoad() {
+    override open func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
     
-    @IBAction func unWindToImageTabBar(sender: UIStoryboardSegue) {
+    @IBAction func unWindToImageTabBar(_ sender: UIStoryboardSegue) {
         print("unWindToImageTabBar")
         //self.dismissViewControllerAnimated(false, completion:nil)
     }

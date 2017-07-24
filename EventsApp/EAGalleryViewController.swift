@@ -9,7 +9,7 @@
 import Foundation
 import ImagePicker
 
-public class EAGalleryViewController: UIViewController, ImagePickerDelegate {
+open class EAGalleryViewController: UIViewController, ImagePickerDelegate {
     
     @IBOutlet weak var imageView: UIImageView!
     let imagePickerController = ImagePickerController()
@@ -17,40 +17,40 @@ public class EAGalleryViewController: UIViewController, ImagePickerDelegate {
     @IBOutlet weak var uploadButton: UIButton!
     @IBOutlet weak var selectButton: UIButton!
     
-    @IBAction func selectButtonClicked(sender: AnyObject) {
+    @IBAction func selectButtonClicked(_ sender: AnyObject) {
         presentImagePicker()
     }
-    override public func viewDidLoad() {
+    override open func viewDidLoad() {
         super.viewDidLoad()
-        uploadButton.enabled = false
+        uploadButton.isEnabled = false
         uploadButton.alpha = 0.3
         imagePickerController
         imagePickerController.delegate = self
         imagePickerController.imageLimit = 1
-        Configuration.doneButtonTitle = "Done"
-        Configuration.noImagesTitle = "Sorry! There are no images here!"
-        presentViewController(imagePickerController, animated: true, completion: nil)
+//        Configuration.doneButtonTitle = "Done"
+//        Configuration.noImagesTitle = "Sorry! There are no images here!"
+        present(imagePickerController, animated: true, completion: nil)
     }
     
-    override public func viewDidAppear(animated: Bool) {
+    override open func viewDidAppear(_ animated: Bool) {
         imageView.image = nil
         presentImagePicker()
     }
     
    func presentImagePicker() {
-        presentViewController(imagePickerController, animated: true, completion: nil)
+        present(imagePickerController, animated: true, completion: nil)
     }
     
 // MARK: - ImagePickerDelegate Methods
     
-    public func wrapperDidPress(imagePicker: ImagePickerController, images: [UIImage]) {
+    open func wrapperDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
         
     }
-    public func doneButtonDidPress(imagePicker: ImagePickerController, images: [UIImage]) {
-        imagePicker.dismissViewControllerAnimated(true, completion:nil)
+    open func doneButtonDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
+        imagePicker.dismiss(animated: true, completion:nil)
         imageView.image = images[0]
     }
-    public func cancelButtonDidPress(imagePicker: ImagePickerController) {
+    open func cancelButtonDidPress(_ imagePicker: ImagePickerController) {
         
     }
 }

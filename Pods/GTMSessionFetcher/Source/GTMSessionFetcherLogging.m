@@ -17,12 +17,16 @@
 #error "This file requires ARC support."
 #endif
 
-#if !STRIP_GTM_FETCH_LOGGING
-
 #include <sys/stat.h>
 #include <unistd.h>
 
 #import "GTMSessionFetcherLogging.h"
+
+#ifndef STRIP_GTM_FETCH_LOGGING
+  #error GTMSessionFetcher headers should have defaulted this if it wasn't already defined.
+#endif
+
+#if !STRIP_GTM_FETCH_LOGGING
 
 // Sensitive credential strings are replaced in logs with _snip_
 //
@@ -83,7 +87,7 @@ static NSString *gLoggingProcessName = nil;
     // directory that a developer can find easily, the application home
     paths = @[ NSHomeDirectory() ];
 #elif TARGET_OS_IPHONE
-    // Neither ~/Desktop nor ~/Home is writable on an actual iPhone device.
+    // Neither ~/Desktop nor ~/Home is writable on an actual iOS, watchOS, or tvOS device.
     // Put it in ~/Documents.
     paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 #else
@@ -540,7 +544,7 @@ static NSString *gLoggingProcessName = nil;
   [outputHTML appendFormat:@"elapsed: %5.3fsec<br>", elapsed];
 
   // write the request URL
-  NSURLRequest *request = self.mutableRequest;
+  NSURLRequest *request = self.request;
   NSString *requestMethod = request.HTTPMethod;
   NSURL *requestURL = request.URL;
 
@@ -595,7 +599,7 @@ static NSString *gLoggingProcessName = nil;
   } else {
     bodyData = self.bodyData;
     if (bodyData == nil) {
-      bodyData = self.mutableRequest.HTTPBody;
+      bodyData = self.request.HTTPBody;
     }
   }
   uint64_t bodyDataLength = bodyData.length;

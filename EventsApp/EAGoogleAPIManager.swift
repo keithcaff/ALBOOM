@@ -12,10 +12,10 @@ import GTMOAuth2
 
 class EAGoogleAPIManager {
     static let sharedInstance = EAGoogleAPIManager()
-    private init() {}
-    private let gtlServiceDrive = GTLServiceDrive()
+    fileprivate init() {}
+    fileprivate let gtlServiceDrive = GTLServiceDrive()
     
-    func setAuthorizerForService(signIn:GIDSignIn,user:GIDGoogleUser, service:GTLService) {
+    func setAuthorizerForService(_ signIn:GIDSignIn,user:GIDGoogleUser, service:GTLService) {
         if service.authorizer == nil {
             let auth:GTMOAuth2Authentication = GTMOAuth2Authentication()
             auth.clientID = signIn.clientID
@@ -29,7 +29,7 @@ class EAGoogleAPIManager {
     }
 
     
-    func createEventFolder(event:EAEvent) {
+    func createEventFolder(_ event:EAEvent) {
         let service:GTLService = gtlServiceDrive
         setAuthorizerForService(GIDSignIn.sharedInstance(), user: GIDSignIn.sharedInstance().currentUser,service:service)
         service.setExactUserAgent(GIDSignIn.sharedInstance().currentUser.userID)
@@ -37,7 +37,7 @@ class EAGoogleAPIManager {
         let folder:GTLDriveFile =  GTLDriveFile() ;
         folder.name = EVENT_FOLDER_PREFIX+event.name!
         folder.mimeType = "application/vnd.google-apps.folder";
-        let query:GTLQueryDrive = GTLQueryDrive.queryForFilesCreateWithObject(folder,uploadParameters:nil)
+        let query:GTLQueryDrive = GTLQueryDrive.queryForFilesCreate(withObject: folder,uploadParameters:nil)
         
        // weak var weakSelf:EAGoogleAPIManager! = self
         service.executeQuery(query, completionHandler:  { (ticket, createdFolder , error) -> Void in
@@ -49,7 +49,7 @@ class EAGoogleAPIManager {
                 print("success crated folder: \(createdFolder)")
                 //weakSelf.hideMenu()
                 //post some notification that an event was created with event name
-                NSNotificationCenter.defaultCenter().postNotificationName(NOTIFICATION_EVENT_FOLDER_CREATED, object: createdFolder)
+                NotificationCenter.default.post(name: .NOTIFICATION_EVENT_FOLDER_CREATED, object: createdFolder)
             }
         })
     }
@@ -65,13 +65,13 @@ class EAGoogleAPIManager {
         query.q = "mimeType='application/vnd.google-apps.folder' and 'root' in parents and trashed=false";
         //weak var weakSelf:EAGoogleAPIManager! = self
         setAuthorizerForService(GIDSignIn.sharedInstance(), user: GIDSignIn.sharedInstance().currentUser,service:service)
-        service.executeQuery(query) { (ticket: GTLServiceTicket!, object: AnyObject!, error: NSError!) -> Void in
+        service.executeQuery(query, completionHandler: {(ticket: GTLServiceTicket?, object: Any?, error: Error?) in
             if(error != nil){
-                print("Error :\(error.localizedDescription)")
+                print("Error :\(error?.localizedDescription)")
                 return
             }
             print("object:  \(object)")
-        }
+        })
     }
     
     
@@ -79,56 +79,56 @@ class EAGoogleAPIManager {
         let service:GTLService = gtlServiceDrive
         setAuthorizerForService(GIDSignIn.sharedInstance(), user: GIDSignIn.sharedInstance().currentUser,service:service)
         print("Getting all event folders...")
-        let query = GTLQueryDrive.queryForFilesList()
+        let query:GTLQueryDrive = GTLQueryDrive.queryForFilesList()
         query.pageSize = 20//and name contains '\(EVENT_FOLDER_PREFIX)'
         query.q = "mimeType='application/vnd.google-apps.folder' and 'root' in parents and name contains '\(EVENT_FOLDER_PREFIX)' and trashed = false"
         query.fields = "nextPageToken, files(id, name)"
-        service.executeQuery(query) { (ticket: GTLServiceTicket!, folders: AnyObject!, error: NSError!) -> Void in
+        service.executeQuery(query, completionHandler:  { (ticket, folders , error) -> Void in
             if(error != nil){
                 print("Error: \(error)")
                 return
             }
             print("successfully retrieved folders:  \(folders)")
-            dispatch_async(dispatch_get_main_queue()) {
-                NSNotificationCenter.defaultCenter().postNotificationName(NOTIFICATION_EVENT_FOLDERS_RETRIEVED, object: folders)
+            DispatchQueue.main.async {
+                NotificationCenter.default.post(name: .NOTIFICATION_EVENT_FOLDERS_RETRIEVED, object: folders)
             }
-        }
+        })
     }
     
     
-    func switchEventFolder(event:EAEvent) {
+    func switchEventFolder(_ event:EAEvent) {
         let service:GTLService = gtlServiceDrive
         setAuthorizerForService(GIDSignIn.sharedInstance(), user: GIDSignIn.sharedInstance().currentUser,service:service)
         print("Getting files inside event folder")
         let parentId:String  = event.id!;
-        let query = GTLQueryDrive.queryForFilesList()
+        let query:GTLQueryDrive  = GTLQueryDrive.queryForFilesList()
         query.q = "'\(parentId)' in parents and trashed = false"
         query.fields = "nextPageToken, files(id, name)"
-        service.executeQuery(query) { (ticket: GTLServiceTicket!, files: AnyObject!, error: NSError!) -> Void in
+        service.executeQuery(query, completionHandler: {(ticket: GTLServiceTicket?, files:Any?, error:Error?) in
             if(error != nil){
                 print("Error: \(error)")
                 return
             }
-            let defaults = NSUserDefaults.standardUserDefaults()
-            defaults.setObject(event.name, forKey: DEFAULT_CURRENT_EVENT_NAME)
+            let defaults = UserDefaults.standard
+            defaults.set(event.name, forKey: DEFAULT_CURRENT_EVENT_NAME)
             print("successfully retrieved files:  \(files)")
-            dispatch_async(dispatch_get_main_queue()) {
-                NSNotificationCenter.defaultCenter().postNotificationName(NOTIFICATION_EVENT_FILES_RETRIEVED, object: files)
+            DispatchQueue.main.async {
+                NotificationCenter.default.post(name: .NOTIFICATION_EVENT_FILES_RETRIEVED, object: files)
             }
-        }
+        })
     }
     
     
     
-    func downloadFile(file:GTLDriveFile) {
+    func downloadFile(_ file:GTLDriveFile!) {
         let service:GTLService = gtlServiceDrive
         setAuthorizerForService(GIDSignIn.sharedInstance(), user: GIDSignIn.sharedInstance().currentUser,service:service)
         print("Downloading file \(file)")
-        let stringURL:String = "https://www.googleapis.com/drive/v3/files/\(file.identifier)?alt=media"
-        let url:NSURL = NSURL(string:stringURL)!
-        let fetcher:GTMSessionFetcher = service.fetcherService.fetcherWithURL(url)
+        let stringURL:String = "https://www.googleapis.com/drive/v3/files/\(file.identifier!)?alt=media"
+        let url:URL = URL(string: stringURL)!
+        let fetcher:GTMSessionFetcher = service.fetcherService.fetcher(with: url)
         fetcher.setProperty(file.identifier, forKey:"fileId")
-        fetcher.beginFetchWithCompletionHandler { (data:NSData?, error:NSError?) in
+        fetcher.beginFetch { (data:Data?, error:Error?) in
             if(error != nil){
                 print("Error: \(error)")
             }
@@ -136,13 +136,11 @@ class EAGoogleAPIManager {
                 let fetcherProperties: Dictionary<String,String>! = [
                     "fileId": (fetcher.properties!["fileId"] as! String)
                 ]
-                dispatch_async(dispatch_get_main_queue()) {
-                    NSNotificationCenter.defaultCenter().postNotificationName(NOTIFICATION_EVENT_FILE_DOWNLOADED, object: data, userInfo:fetcherProperties )
+                DispatchQueue.main.async {
+                    NotificationCenter.default.post(name: .NOTIFICATION_EVENT_FILE_DOWNLOADED, object: data, userInfo:fetcherProperties )
                 }
             }
         }
-        
-        
     }
 
 

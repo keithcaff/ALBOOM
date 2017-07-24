@@ -12,7 +12,17 @@ This is the recommended library for accessing JSON-based Google APIs for iOS and
 Mac OS X applications.  The library is compatible with applications built for
 iOS 3 and later, and Mac OS X 10.5 and later.
 
-**To get started** with Google  APIs and the Objective-C client library,  read
+---
+
+> **NOTE:** This library has been replaced by
+> [Google APIs Client Library for Objective-C For REST](https://github.com/google/google-api-objectivec-client-for-rest).
+> New applications should use that instead; existing application should be
+> updated as soon as possible as the Google servers will eventually stop
+> accepting JSON-RPC requests.
+
+---
+
+**To get started** with Google APIs and the Objective-C client library, read
 the [wiki](https://github.com/google/google-api-objectivec-client/wiki)
 and study the
 [example applications](https://github.com/google/google-api-objectivec-client/tree/master/Examples).
@@ -66,9 +76,8 @@ for requests and responses when posting questions. Bugs may also be submitted
 on the [issues list](https://github.com/google/google-api-objectivec-client/issues).
 
 **Externally-included projects**: The library includes code from the separate
-projects [GTM HTTP Fetcher](https://github.com/google/gtm-http-fetcher),
-[GTM OAuth 2](https://github.com/google/gtm-oauth2), and
-[json-framework](http://code.google.com/p/json-framework/).
+projects [GTM Session Fetcher](https://github.com/google/gtm-session-fetcher),
+[GTM OAuth 2](https://github.com/google/gtm-oauth2).
 
 **Google Data APIs**: The library for older, XML-based APIs is
 [still available](https://github.com/google/gdata-objectivec-client).

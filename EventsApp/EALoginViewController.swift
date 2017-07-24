@@ -18,10 +18,10 @@ class EALoginViewController: UIViewController, GIDSignInUIDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         GIDSignIn.sharedInstance().uiDelegate = self
-        profilePic.hidden = true;
-        googleSignInButton.hidden = false
-        signOutButton.hidden = true
-        welcomeLabel.hidden = false;
+        profilePic.isHidden = true;
+        googleSignInButton.isHidden = false
+        signOutButton.isHidden = true
+        welcomeLabel.isHidden = false;
        // refereshInterface()
         // Do any additional setup after loading the view.
     }
@@ -32,27 +32,27 @@ class EALoginViewController: UIViewController, GIDSignInUIDelegate{
     }
     
 
-    @IBAction func signOutWasPressed(sender: AnyObject) {
+    @IBAction func signOutWasPressed(_ sender: AnyObject) {
         GIDSignIn.sharedInstance().signOut()
         //refereshInterface()
     }
     
     func refereshInterface() {
         if let currentUser = GIDSignIn.sharedInstance().currentUser {
-            self .dismissViewControllerAnimated(true, completion:nil)
-            googleSignInButton.hidden = true
-            signOutButton.hidden = false
+            self .dismiss(animated: true, completion:nil)
+            googleSignInButton.isHidden = true
+            signOutButton.isHidden = false
             welcomeLabel.text = "Welcome, \(currentUser.profile.name)!"
-            let profilePicURL = currentUser.profile.imageURLWithDimension(175);
-            profilePic.image = UIImage(data:NSData(contentsOfURL:profilePicURL)!)
-            profilePic.hidden = false;
+            let profilePicURL = currentUser.profile.imageURL(withDimension: 175);
+            profilePic.image = UIImage(data:try! Data(contentsOf: profilePicURL!))
+            profilePic.isHidden = false;
         }
         else {
-            googleSignInButton.hidden = false
-            signOutButton.hidden = true
-            welcomeLabel.hidden = false
+            googleSignInButton.isHidden = false
+            signOutButton.isHidden = true
+            welcomeLabel.isHidden = false
             welcomeLabel.text = "Sign in, stranger!"
-            profilePic.hidden = true;
+            profilePic.isHidden = true;
             profilePic.image = nil;
         }
     }

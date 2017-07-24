@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "8E90057D8F0A0768453B2ED567D4C1CC7A2C08E2",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "8E90057D8F0A0768453B2ED567D4C1CC7A2C08E2" : 9223372036854775807,
+    "3A7A8AEC0E9C925352B200BF5BEDE3BCF66F8BEC" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "A56B10D1-6520-4189-939F-B0367772E60D",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "8E90057D8F0A0768453B2ED567D4C1CC7A2C08E2" : "eventapp\/",
+    "3A7A8AEC0E9C925352B200BF5BEDE3BCF66F8BEC" : ".."
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "EventsApp",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "EventsApp.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/keithcaff\/SimpleNavigationApp.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "3A7A8AEC0E9C925352B200BF5BEDE3BCF66F8BEC"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/bitbucket.org\/rinzl3r\/eventapp.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "8E90057D8F0A0768453B2ED567D4C1CC7A2C08E2"
+    }
+  ]
+}

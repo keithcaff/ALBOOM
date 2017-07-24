@@ -9,14 +9,17 @@
 import Foundation
 
 //Google Constants
-let EVENT_FOLDER_PREFIX:String! = "Event_App_"
+let EVENT_FOLDER_PREFIX:String = "Event_App_"
 
 
 //Notification Constants
-let NOTIFICATION_EVENT_FOLDER_CREATED:String! = "notification.event.folder.created"
-let NOTIFICATION_EVENT_FOLDERS_RETRIEVED:String! = "notification.event.folders.retrieved"
-let NOTIFICATION_EVENT_FILES_RETRIEVED:String! = "notification.event.files.retrieved"
-let NOTIFICATION_EVENT_FILE_DOWNLOADED:String! = "notification.event.file.downloaded"
+extension Notification.Name {
+    static let NOTIFICATION_EVENT_FOLDER_CREATED = Notification.Name("notification.event.folder.created")
+    static let NOTIFICATION_EVENT_FOLDERS_RETRIEVED = Notification.Name( "notification.event.folders.retrieved")
+    static let NOTIFICATION_EVENT_FILES_RETRIEVED = Notification.Name("notification.event.files.retrieved")
+    static let NOTIFICATION_EVENT_FILE_DOWNLOADED = Notification.Name( "notification.event.file.downloaded")
+}
+
 
 //User defaults keys
 let DEFAULT_CURRENT_EVENT_NAME:String! = "user.defaults.current.event.name"

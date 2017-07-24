@@ -21,7 +21,7 @@
 //   than delegate methods.
 // - Out-of-process uploads and downloads using NSURLSession, including
 //   management of fetches after relaunch.
-// - Integration with GTMOAuth2 for invisible management and refresh of
+// - Integration with GTMAppAuth for invisible management and refresh of
 //   authorization tokens.
 // - Pretty-printed http logging.
 // - Cookies handling that does not interfere with or get interfered with
@@ -86,7 +86,7 @@
 // be uploaded from a system temporary or cache directory.
 //
 // Background session transfers are slower, and should typically be used only
-// or very large downloads or uploads (hundreds of megabytes).
+// for very large downloads or uploads (hundreds of megabytes).
 //
 // When background sessions are used in iOS apps, the application delegate must
 // pass through the parameters from UIApplicationDelegate's
@@ -134,7 +134,7 @@
 // HTTP methods and headers:
 //
 // Alternative HTTP methods, like PUT, and custom headers can be specified by
-// creating the fetcher with an appropriate NSMutableURLRequest
+// creating the fetcher with an appropriate NSMutableURLRequest.
 //
 //
 // Caching:
@@ -264,6 +264,19 @@
 #if TARGET_OS_IPHONE
 #import <UIKit/UIKit.h>
 #endif
+#if TARGET_OS_WATCH
+#import <WatchKit/WatchKit.h>
+#endif
+
+// By default it is stripped from non DEBUG builds. Developers can override
+// this in their project settings.
+#ifndef STRIP_GTM_FETCH_LOGGING
+  #if !DEBUG
+    #define STRIP_GTM_FETCH_LOGGING 1
+  #else
+    #define STRIP_GTM_FETCH_LOGGING 0
+  #endif
+#endif
 
 // Logs in debug builds.
 #ifndef GTMSESSION_LOG_DEBUG
@@ -329,10 +342,17 @@
   #endif  // __has_feature(nullability)
 #endif  // GTM_NULLABLE
 
+#if (TARGET_OS_TV \
+     || TARGET_OS_WATCH \
+     || (!TARGET_OS_IPHONE && defined(MAC_OS_X_VERSION_10_12) && MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_12) \
+     || (TARGET_OS_IPHONE && defined(__IPHONE_10_0) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0))
+#define GTMSESSION_DEPRECATE_ON_2016_SDKS(_MSG) __attribute__((deprecated("" _MSG)))
+#else
+#define GTMSESSION_DEPRECATE_ON_2016_SDKS(_MSG)
+#endif
+
 #ifndef GTM_DECLARE_GENERICS
-  #if __has_feature(objc_generics) \
-    && ((!TARGET_OS_IPHONE && defined(MAC_OS_X_VERSION_10_11) && MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_11) \
-      || (TARGET_OS_IPHONE && defined(__IPHONE_9_0) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_9_0))
+  #if __has_feature(objc_generics)
     #define GTM_DECLARE_GENERICS 1
   #else
     #define GTM_DECLARE_GENERICS 0
@@ -358,7 +378,7 @@
 // To disallow use of background tasks during fetches, the target should define
 // GTM_BACKGROUND_TASK_FETCHING to 0, or alternatively may set the
 // skipBackgroundTask property to YES.
-#if TARGET_OS_IPHONE && !defined(GTM_BACKGROUND_TASK_FETCHING)
+#if TARGET_OS_IPHONE && !TARGET_OS_WATCH && !defined(GTM_BACKGROUND_TASK_FETCHING)
   #define GTM_BACKGROUND_TASK_FETCHING 1
 #endif
 
@@ -366,13 +386,13 @@
 extern "C" {
 #endif
 
-#if (!TARGET_OS_IPHONE && defined(MAC_OS_X_VERSION_10_11) && MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_11) \
-  || (TARGET_OS_IPHONE && defined(__IPHONE_9_0) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_9_0)
+#if (TARGET_OS_TV \
+     || TARGET_OS_WATCH \
+     || (!TARGET_OS_IPHONE && defined(MAC_OS_X_VERSION_10_11) && MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_11) \
+     || (TARGET_OS_IPHONE && defined(__IPHONE_9_0) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_9_0))
   #ifndef GTM_USE_SESSION_FETCHER
     #define GTM_USE_SESSION_FETCHER 1
   #endif
-
-  #define GTMSESSION_DEPRECATE_OLD_ENUMS 1
 #endif
 
 #if !defined(GTMBridgeFetcher)
@@ -473,21 +493,6 @@ typedef NS_ENUM(NSInteger, GTMSessionFetcherStatus) {
   GTMSessionFetcherStatusPreconditionFailed = 412
 };
 
-#if !GTMSESSION_DEPRECATE_OLD_ENUMS
-#define kGTMSessionFetcherErrorDownloadFailed         GTMSessionFetcherErrorDownloadFailed
-#define kGTMSessionFetcherErrorUploadChunkUnavailable GTMSessionFetcherErrorUploadChunkUnavailable
-#define kGTMSessionFetcherErrorBackgroundExpiration   GTMSessionFetcherErrorBackgroundExpiration
-#define kGTMSessionFetcherErrorBackgroundFetchFailed  GTMSessionFetcherErrorBackgroundFetchFailed
-#define kGTMSessionFetcherErrorInsecureRequest        GTMSessionFetcherErrorInsecureRequest
-#define kGTMSessionFetcherErrorTaskCreationFailed     GTMSessionFetcherErrorTaskCreationFailed
-
-#define kGTMSessionFetcherStatusNotModified        GTMSessionFetcherStatusNotModified
-#define kGTMSessionFetcherStatusBadRequest         GTMSessionFetcherStatusBadRequest
-#define kGTMSessionFetcherStatusUnauthorized       GTMSessionFetcherStatusUnauthorized
-#define kGTMSessionFetcherStatusForbidden          GTMSessionFetcherStatusForbidden
-#define kGTMSessionFetcherStatusPreconditionFailed GTMSessionFetcherStatusPreconditionFailed
-#endif  // !GTMSESSION_DEPRECATE_OLD_ENUMS
-
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -507,11 +512,20 @@ typedef void (^GTMSessionFetcherBodyStreamProvider)(GTMSessionFetcherBodyStreamP
 typedef void (^GTMSessionFetcherDidReceiveResponseDispositionBlock)(NSURLSessionResponseDisposition disposition);
 typedef void (^GTMSessionFetcherDidReceiveResponseBlock)(NSURLResponse *response,
                                                          GTMSessionFetcherDidReceiveResponseDispositionBlock dispositionBlock);
+typedef void (^GTMSessionFetcherChallengeDispositionBlock)(NSURLSessionAuthChallengeDisposition disposition,
+                                                           NSURLCredential * GTM_NULLABLE_TYPE credential);
+typedef void (^GTMSessionFetcherChallengeBlock)(GTMSessionFetcher *fetcher,
+                                                NSURLAuthenticationChallenge *challenge,
+                                                GTMSessionFetcherChallengeDispositionBlock dispositionBlock);
 typedef void (^GTMSessionFetcherWillRedirectResponse)(NSURLRequest * GTM_NULLABLE_TYPE redirectedRequest);
 typedef void (^GTMSessionFetcherWillRedirectBlock)(NSHTTPURLResponse *redirectResponse,
                                                    NSURLRequest *redirectRequest,
                                                    GTMSessionFetcherWillRedirectResponse response);
 typedef void (^GTMSessionFetcherAccumulateDataBlock)(NSData * GTM_NULLABLE_TYPE buffer);
+typedef void (^GTMSessionFetcherSimulateByteTransferBlock)(NSData * GTM_NULLABLE_TYPE buffer,
+                                                           int64_t bytesWritten,
+                                                           int64_t totalBytesWritten,
+                                                           int64_t totalBytesExpectedToWrite);
 typedef void (^GTMSessionFetcherReceivedProgressBlock)(int64_t bytesWritten,
                                                        int64_t totalBytesWritten);
 typedef void (^GTMSessionFetcherDownloadProgressBlock)(int64_t bytesWritten,
@@ -599,7 +613,7 @@ NSData * GTM_NULLABLE_TYPE GTMDataFromInputStream(NSInputStream *inputStream, NS
 // This protocol allows us to call into the service without requiring
 // GTMSessionFetcherService sources in this project
 
-@property(strong) dispatch_queue_t callbackQueue;
+@property(atomic, strong) dispatch_queue_t callbackQueue;
 
 - (BOOL)fetcherShouldBeginFetching:(GTMSessionFetcher *)fetcher;
 - (void)fetcherDidCreateSession:(GTMSessionFetcher *)fetcher;
@@ -626,7 +640,7 @@ NSData * GTM_NULLABLE_TYPE GTMDataFromInputStream(NSInputStream *inputStream, NS
 @required
 // This protocol allows us to call the authorizer without requiring its sources
 // in this project.
-- (void)authorizeRequest:(NSMutableURLRequest * GTM_NULLABLE_TYPE)request
+- (void)authorizeRequest:(GTM_NULLABLE NSMutableURLRequest *)request
                 delegate:(id)delegate
        didFinishSelector:(SEL)sel;
 
@@ -638,7 +652,7 @@ NSData * GTM_NULLABLE_TYPE GTMDataFromInputStream(NSInputStream *inputStream, NS
 
 - (BOOL)isAuthorizedRequest:(NSURLRequest *)request;
 
-@property(strong, readonly) NSString *userEmail;
+@property(strong, readonly, GTM_NULLABLE) NSString *userEmail;
 
 @optional
 
@@ -664,7 +678,7 @@ NSData * GTM_NULLABLE_TYPE GTMDataFromInputStream(NSInputStream *inputStream, NS
 @end
 #endif  // GTM_FETCHER_AUTHORIZATION_PROTOCOL
 
-#if TARGET_OS_IPHONE
+#if GTM_BACKGROUND_TASK_FETCHING
 // A protocol for an alternative target for messages from GTMSessionFetcher to UIApplication.
 // Set the target using +[GTMSessionFetcher setSubstituteUIApplication:]
 @protocol GTMUIApplicationProtocol <NSObject>
@@ -695,28 +709,49 @@ NSData * GTM_NULLABLE_TYPE GTMDataFromInputStream(NSInputStream *inputStream, NS
 
 // Methods for creating fetchers to continue previous fetches.
 + (instancetype)fetcherWithDownloadResumeData:(NSData *)resumeData;
-+ (instancetype)fetcherWithSessionIdentifier:(NSString *)sessionIdentifier;
++ (GTM_NULLABLE instancetype)fetcherWithSessionIdentifier:(NSString *)sessionIdentifier;
 
 // Returns an array of currently active fetchers for background sessions,
 // both restarted and newly created ones.
 + (GTM_NSArrayOf(GTMSessionFetcher *) *)fetchersForBackgroundSessions;
 
 // Designated initializer.
+//
+// Applications should create fetchers with a "fetcherWith..." method on a fetcher
+// service or a class method, not with this initializer.
+//
+// The configuration should typically be nil. Applications needing to customize
+// the configuration may do so by setting the configurationBlock property.
 - (instancetype)initWithRequest:(GTM_NULLABLE NSURLRequest *)request
                   configuration:(GTM_NULLABLE NSURLSessionConfiguration *)configuration;
 
-// The fetcher's request
+// The fetcher's request.  This may not be set after beginFetch has been invoked. The request
+// may change due to redirects.
+@property(strong, GTM_NULLABLE) NSURLRequest *request;
+
+// Set a header field value on the request. Header field value changes will not
+// affect a fetch after the fetch has begun.
+- (void)setRequestValue:(GTM_NULLABLE NSString *)value forHTTPHeaderField:(NSString *)field;
+
+// The fetcher's request (deprecated.)
 //
-// The underlying request is mutable and may be modified by the caller.  Request changes will not
-// affect a fetch after it has begun.
-@property(readonly, GTM_NULLABLE) NSMutableURLRequest *mutableRequest;
+// Exposing a mutable object in the interface was convenient but a bad design decision due
+// to thread-safety requirements.  Clients should use the request property and
+// setRequestValue:forHTTPHeaderField: instead.
+@property(atomic, readonly, GTM_NULLABLE) NSMutableURLRequest *mutableRequest
+    GTMSESSION_DEPRECATE_ON_2016_SDKS("use 'request' or '-setRequestValue:forHTTPHeaderField:'");
 
 // Data used for resuming a download task.
-@property(strong, GTM_NULLABLE) NSData *downloadResumeData;
+@property(atomic, readonly, GTM_NULLABLE) NSData *downloadResumeData;
 
 // The configuration; this must be set before the fetch begins. If no configuration is
 // set or inherited from the fetcher service, then the fetcher uses an ephemeral config.
-@property(strong, GTM_NULLABLE) NSURLSessionConfiguration *configuration;
+//
+// NOTE: This property should typically be nil. Applications needing to customize
+// the configuration should do so by setting the configurationBlock property.
+// That allows the fetcher to pick an appropriate base configuration, with the
+// application setting only the configuration properties it needs to customize.
+@property(atomic, strong, GTM_NULLABLE) NSURLSessionConfiguration *configuration;
 
 // A block the client may use to customize the configuration used to create the session.
 //
@@ -728,39 +763,39 @@ NSData * GTM_NULLABLE_TYPE GTMDataFromInputStream(NSInputStream *inputStream, NS
 // DO NOT change any fetcher properties in the configuration block. Fetcher properties
 // may be set in the fetcher service prior to fetcher creation, or on the fetcher prior
 // to invoking beginFetch.
-@property(copy, GTM_NULLABLE) GTMSessionFetcherConfigurationBlock configurationBlock;
+@property(atomic, copy, GTM_NULLABLE) GTMSessionFetcherConfigurationBlock configurationBlock;
 
 // A session is created as needed by the fetcher.  A fetcher service object
 // may maintain sessions for multiple fetches to the same host.
-@property(strong, GTM_NULLABLE) NSURLSession *session;
+@property(atomic, strong, GTM_NULLABLE) NSURLSession *session;
 
 // The task in flight.
-@property(readonly, GTM_NULLABLE) NSURLSessionTask *sessionTask;
+@property(atomic, readonly, GTM_NULLABLE) NSURLSessionTask *sessionTask;
 
 // The background session identifier.
-@property(readonly, GTM_NULLABLE) NSString *sessionIdentifier;
+@property(atomic, readonly, GTM_NULLABLE) NSString *sessionIdentifier;
 
 // Indicates a fetcher created to finish a background session task.
-@property(readonly) BOOL wasCreatedFromBackgroundSession;
+@property(atomic, readonly) BOOL wasCreatedFromBackgroundSession;
 
 // Additional user-supplied data to encode into the session identifier. Since session identifier
 // length limits are unspecified, this should be kept small. Key names beginning with an underscore
 // are reserved for use by the fetcher.
-@property(strong, GTM_NULLABLE) GTM_NSDictionaryOf(NSString *, NSString *) *sessionUserInfo;
+@property(atomic, strong, GTM_NULLABLE) GTM_NSDictionaryOf(NSString *, NSString *) *sessionUserInfo;
 
 // The human-readable description to be assigned to the task.
-@property(copy, GTM_NULLABLE) NSString *taskDescription;
+@property(atomic, copy, GTM_NULLABLE) NSString *taskDescription;
 
 // The priority assigned to the task, if any.  Use NSURLSessionTaskPriorityLow,
 // NSURLSessionTaskPriorityDefault, or NSURLSessionTaskPriorityHigh.
-@property(assign) float taskPriority;
+@property(atomic, assign) float taskPriority;
 
 // The fetcher encodes information used to resume a session in the session identifier.
 // This method, intended for internal use returns the encoded information.  The sessionUserInfo
 // dictionary is stored as identifier metadata.
 - (GTM_NULLABLE GTM_NSDictionaryOf(NSString *, NSString *) *)sessionIdentifierMetadata;
 
-#if TARGET_OS_IPHONE
+#if TARGET_OS_IPHONE && !TARGET_OS_WATCH
 // The app should pass to this method the completion handler passed in the app delegate method
 // application:handleEventsForBackgroundURLSession:completionHandler:
 + (void)application:(UIApplication *)application
@@ -770,6 +805,27 @@ NSData * GTM_NULLABLE_TYPE GTMDataFromInputStream(NSInputStream *inputStream, NS
 
 // Indicate that a newly created session should be a background session.
 // A new session identifier will be created by the fetcher.
+//
+// Warning:  The only thing background sessions are for is rare download
+// of huge, batched files of data. And even just for those, there's a lot
+// of pain and hackery needed to get transfers to actually happen reliably
+// with background sessions.
+//
+// Don't try to upload or download in many background sessions, since the system
+// will impose an exponentially increasing time penalty to prevent the app from
+// getting too much background execution time.
+//
+// References:
+//
+//   "Moving to Fewer, Larger Transfers"
+//   https://forums.developer.apple.com/thread/14853
+//
+//   "NSURLSession’s Resume Rate Limiter"
+//   https://forums.developer.apple.com/thread/14854
+//
+//   "Background Session Task state persistence"
+//   https://forums.developer.apple.com/thread/11554
+//
 @property(assign) BOOL useBackgroundSession;
 
 // Indicates if the fetcher was started using a background session.
@@ -777,10 +833,10 @@ NSData * GTM_NULLABLE_TYPE GTMDataFromInputStream(NSInputStream *inputStream, NS
 
 // Indicates if uploads should use an upload task.  This is always set for file or stream-provider
 // bodies, but may be set explicitly for NSData bodies.
-@property(assign) BOOL useUploadTask;
+@property(atomic, assign) BOOL useUploadTask;
 
 // Indicates that the fetcher is using a session that may be shared with other fetchers.
-@property(readonly) BOOL canShareSession;
+@property(atomic, readonly) BOOL canShareSession;
 
 // By default, the fetcher allows only secure (https) schemes unless this
 // property is set, or the GTM_ALLOW_INSECURE_REQUESTS build flag is set.
@@ -795,7 +851,7 @@ NSData * GTM_NULLABLE_TYPE GTMDataFromInputStream(NSInputStream *inputStream, NS
 //
 // For builds with the iOS 9/OS X 10.11 and later SDKs, this property is required only when
 // the app specifies NSAppTransportSecurity/NSAllowsArbitraryLoads in the main bundle's Info.plist.
-@property(copy, GTM_NULLABLE) GTM_NSArrayOf(NSString *) *allowedInsecureSchemes;
+@property(atomic, copy, GTM_NULLABLE) GTM_NSArrayOf(NSString *) *allowedInsecureSchemes;
 
 // By default, the fetcher prohibits localhost requests unless this property is set,
 // or the GTM_ALLOW_INSECURE_REQUESTS build flag is set.
@@ -804,11 +860,11 @@ NSData * GTM_NULLABLE_TYPE GTMDataFromInputStream(NSInputStream *inputStream, NS
 //
 // For builds with the iOS 9/OS X 10.11 and later SDKs, this property is required only when
 // the app specifies NSAppTransportSecurity/NSAllowsArbitraryLoads in the main bundle's Info.plist.
-@property(assign) BOOL allowLocalhostRequest;
+@property(atomic, assign) BOOL allowLocalhostRequest;
 
 // By default, the fetcher requires valid server certs.  This may be bypassed
 // temporarily for development against a test server with an invalid cert.
-@property(assign) BOOL allowInvalidServerCertificates;
+@property(atomic, assign) BOOL allowInvalidServerCertificates;
 
 // Cookie storage object for this fetcher. If nil, the fetcher will use a static cookie
 // storage instance shared among fetchers. If this fetcher was created by a fetcher service
@@ -818,38 +874,40 @@ NSData * GTM_NULLABLE_TYPE GTMDataFromInputStream(NSInputStream *inputStream, NS
 // Because as of Jan 2014 standalone instances of NSHTTPCookieStorage do not actually
 // store any cookies (Radar 15735276) we use our own subclass, GTMSessionCookieStorage,
 // to hold cookies in memory.
-@property(strong, GTM_NULLABLE) NSHTTPCookieStorage *cookieStorage;
+@property(atomic, strong, GTM_NULLABLE) NSHTTPCookieStorage *cookieStorage;
 
 // Setting the credential is optional; it is used if the connection receives
 // an authentication challenge.
-@property(strong, GTM_NULLABLE) NSURLCredential *credential;
+@property(atomic, strong, GTM_NULLABLE) NSURLCredential *credential;
 
 // Setting the proxy credential is optional; it is used if the connection
 // receives an authentication challenge from a proxy.
-@property(strong, GTM_NULLABLE) NSURLCredential *proxyCredential;
+@property(atomic, strong, GTM_NULLABLE) NSURLCredential *proxyCredential;
 
 // If body data, body file URL, or body stream provider is not set, then a GET request
 // method is assumed.
-@property(strong, GTM_NULLABLE) NSData *bodyData;
+@property(atomic, strong, GTM_NULLABLE) NSData *bodyData;
 
 // File to use as the request body. This forces use of an upload task.
-@property(strong, GTM_NULLABLE) NSURL *bodyFileURL;
+@property(atomic, strong, GTM_NULLABLE) NSURL *bodyFileURL;
 
 // Length of body to send, expected or actual.
-@property(readonly) int64_t bodyLength;
+@property(atomic, readonly) int64_t bodyLength;
 
 // The body stream provider may be called repeatedly to provide a body.
 // Setting a body stream provider forces use of an upload task.
-@property(copy, GTM_NULLABLE) GTMSessionFetcherBodyStreamProvider bodyStreamProvider;
+@property(atomic, copy, GTM_NULLABLE) GTMSessionFetcherBodyStreamProvider bodyStreamProvider;
 
 // Object to add authorization to the request, if needed.
-@property(strong, GTM_NULLABLE) id<GTMFetcherAuthorizationProtocol> authorizer;
+//
+// This may not be changed once beginFetch has been invoked.
+@property(atomic, strong, GTM_NULLABLE) id<GTMFetcherAuthorizationProtocol> authorizer;
 
 // The service object that created and monitors this fetcher, if any.
-@property(strong) id<GTMSessionFetcherServiceProtocol> service;
+@property(atomic, strong) id<GTMSessionFetcherServiceProtocol> service;
 
 // The host, if any, used to classify this fetcher in the fetcher service.
-@property(copy, GTM_NULLABLE) NSString *serviceHost;
+@property(atomic, copy, GTM_NULLABLE) NSString *serviceHost;
 
 // The priority, if any, used for starting fetchers in the fetcher service.
 //
@@ -858,24 +916,37 @@ NSData * GTM_NULLABLE_TYPE GTMDataFromInputStream(NSInputStream *inputStream, NS
 // fetchers that are being delayed by a fetcher service when the running fetchers
 // exceeds the service's maxRunningFetchersPerHost.  A priority of NSIntegerMin will
 // exempt this fetcher from delay.
-@property(assign) NSInteger servicePriority;
+@property(atomic, assign) NSInteger servicePriority;
 
 // The delegate's optional didReceiveResponse block may be used to inspect or alter
-// the session response.
+// the session task response.
 //
 // This is called on the callback queue.
-@property(copy, GTM_NULLABLE) GTMSessionFetcherDidReceiveResponseBlock didReceiveResponseBlock;
+@property(atomic, copy, GTM_NULLABLE) GTMSessionFetcherDidReceiveResponseBlock didReceiveResponseBlock;
+
+// The delegate's optional challenge block may be used to inspect or alter
+// the session task challenge.
+//
+// If this block is not set, the fetcher's default behavior for the NSURLSessionTask
+// didReceiveChallenge: delegate method is to use the fetcher's respondToChallenge: method
+// which relies on the fetcher's credential and proxyCredential properties.
+//
+// Warning: This may be called repeatedly if the challenge fails. Check
+// challenge.previousFailureCount to identify repeated invocations.
+//
+// This is called on the callback queue.
+@property(atomic, copy, GTM_NULLABLE) GTMSessionFetcherChallengeBlock challengeBlock;
 
 // The delegate's optional willRedirect block may be used to inspect or alter
 // the redirection.
 //
 // This is called on the callback queue.
-@property(copy, GTM_NULLABLE) GTMSessionFetcherWillRedirectBlock willRedirectBlock;
+@property(atomic, copy, GTM_NULLABLE) GTMSessionFetcherWillRedirectBlock willRedirectBlock;
 
 // The optional send progress block reports body bytes uploaded.
 //
 // This is called on the callback queue.
-@property(copy, GTM_NULLABLE) GTMSessionFetcherSendProgressBlock sendProgressBlock;
+@property(atomic, copy, GTM_NULLABLE) GTMSessionFetcherSendProgressBlock sendProgressBlock;
 
 // The optional accumulate block may be set by clients wishing to accumulate data
 // themselves rather than let the fetcher append each buffer to an NSData.
@@ -884,57 +955,57 @@ NSData * GTM_NULLABLE_TYPE GTMDataFromInputStream(NSInputStream *inputStream, NS
 // should empty its accumulation buffer.
 //
 // This is called on the callback queue.
-@property(copy, GTM_NULLABLE) GTMSessionFetcherAccumulateDataBlock accumulateDataBlock;
+@property(atomic, copy, GTM_NULLABLE) GTMSessionFetcherAccumulateDataBlock accumulateDataBlock;
 
 // The optional received progress block may be used to monitor data
 // received from a data task.
 //
 // This is called on the callback queue.
-@property(copy, GTM_NULLABLE) GTMSessionFetcherReceivedProgressBlock receivedProgressBlock;
+@property(atomic, copy, GTM_NULLABLE) GTMSessionFetcherReceivedProgressBlock receivedProgressBlock;
 
 // The delegate's optional downloadProgress block may be used to monitor download
 // progress in writing to disk.
 //
 // This is called on the callback queue.
-@property(copy, GTM_NULLABLE) GTMSessionFetcherDownloadProgressBlock downloadProgressBlock;
+@property(atomic, copy, GTM_NULLABLE) GTMSessionFetcherDownloadProgressBlock downloadProgressBlock;
 
 // The delegate's optional willCacheURLResponse block may be used to alter the cached
 // NSURLResponse. The user may prevent caching by passing nil to the block's response.
 //
 // This is called on the callback queue.
-@property(copy, GTM_NULLABLE) GTMSessionFetcherWillCacheURLResponseBlock willCacheURLResponseBlock;
+@property(atomic, copy, GTM_NULLABLE) GTMSessionFetcherWillCacheURLResponseBlock willCacheURLResponseBlock;
 
 // Enable retrying; see comments at the top of this file.  Setting
 // retryEnabled=YES resets the min and max retry intervals.
-@property(assign, getter=isRetryEnabled) BOOL retryEnabled;
+@property(atomic, assign, getter=isRetryEnabled) BOOL retryEnabled;
 
 // Retry block is optional for retries.
 //
 // If present, this block should call the response block with YES to cause a retry or NO to end the
 // fetch.
 // See comments at the top of this file.
-@property(copy, GTM_NULLABLE) GTMSessionFetcherRetryBlock retryBlock;
+@property(atomic, copy, GTM_NULLABLE) GTMSessionFetcherRetryBlock retryBlock;
 
 // Retry intervals must be strictly less than maxRetryInterval, else
 // they will be limited to maxRetryInterval and no further retries will
 // be attempted.  Setting maxRetryInterval to 0.0 will reset it to the
 // default value, 60 seconds for downloads and 600 seconds for uploads.
-@property(assign) NSTimeInterval maxRetryInterval;
+@property(atomic, assign) NSTimeInterval maxRetryInterval;
 
 // Starting retry interval.  Setting minRetryInterval to 0.0 will reset it
 // to a random value between 1.0 and 2.0 seconds.  Clients should normally not
 // set this except for unit testing.
-@property(assign) NSTimeInterval minRetryInterval;
+@property(atomic, assign) NSTimeInterval minRetryInterval;
 
 // Multiplier used to increase the interval between retries, typically 2.0.
 // Clients should not need to set this.
-@property(assign) double retryFactor;
+@property(atomic, assign) double retryFactor;
 
 // Number of retries attempted.
-@property(readonly) NSUInteger retryCount;
+@property(atomic, readonly) NSUInteger retryCount;
 
 // Interval delay to precede next retry.
-@property(readonly) NSTimeInterval nextRetryInterval;
+@property(atomic, readonly) NSTimeInterval nextRetryInterval;
 
 #if GTM_BACKGROUND_TASK_FETCHING
 // Skip use of a UIBackgroundTask, thus requiring fetches to complete when the app is in the
@@ -943,7 +1014,7 @@ NSData * GTM_NULLABLE_TYPE GTMDataFromInputStream(NSInputStream *inputStream, NS
 // Targets should define GTM_BACKGROUND_TASK_FETCHING to 0 to avoid use of a UIBackgroundTask
 // on iOS to allow fetches to complete in the background.  This property is available when
 // it's not practical to set the preprocessor define.
-@property(assign) BOOL skipBackgroundTask;
+@property(atomic, assign) BOOL skipBackgroundTask;
 #endif  // GTM_BACKGROUND_TASK_FETCHING
 
 // Begin fetching the request
@@ -964,83 +1035,82 @@ NSData * GTM_NULLABLE_TYPE GTMDataFromInputStream(NSInputStream *inputStream, NS
 // If the application has specified a destinationFileURL or an accumulateDataBlock
 // for the fetcher, the data parameter passed to the callback will be nil.
 
-- (void)beginFetchWithDelegate:(GTM_NULLABLE_TYPE id)delegate
-             didFinishSelector:(GTM_NULLABLE_TYPE SEL)finishedSEL;
+- (void)beginFetchWithDelegate:(GTM_NULLABLE id)delegate
+             didFinishSelector:(GTM_NULLABLE SEL)finishedSEL;
 
 - (void)beginFetchWithCompletionHandler:(GTM_NULLABLE GTMSessionFetcherCompletionHandler)handler;
 
 // Returns YES if this fetcher is in the process of fetching a URL.
-@property(readonly, getter=isFetching) BOOL fetching;
+@property(atomic, readonly, getter=isFetching) BOOL fetching;
 
 // Cancel the fetch of the request that's currently in progress.  The completion handler
 // will not be called.
 - (void)stopFetching;
 
 // A block to be called when the fetch completes.
-@property(copy, GTM_NULLABLE) GTMSessionFetcherCompletionHandler completionHandler;
+@property(atomic, copy, GTM_NULLABLE) GTMSessionFetcherCompletionHandler completionHandler;
 
 // A block to be called if download resume data becomes available.
-@property(strong, GTM_NULLABLE) void (^resumeDataBlock)(NSData *);
+@property(atomic, strong, GTM_NULLABLE) void (^resumeDataBlock)(NSData *);
 
 // Return the status code from the server response.
-@property(readonly) NSInteger statusCode;
+@property(atomic, readonly) NSInteger statusCode;
 
 // Return the http headers from the response.
-@property(strong, readonly, GTM_NULLABLE) GTM_NSDictionaryOf(NSString *, NSString *) *responseHeaders;
+@property(atomic, strong, readonly, GTM_NULLABLE) GTM_NSDictionaryOf(NSString *, NSString *) *responseHeaders;
 
 // The response, once it's been received.
-@property(strong, readonly, GTM_NULLABLE) NSURLResponse *response;
+@property(atomic, strong, readonly, GTM_NULLABLE) NSURLResponse *response;
 
 // Bytes downloaded so far.
-@property(readonly) int64_t downloadedLength;
+@property(atomic, readonly) int64_t downloadedLength;
 
 // Buffer of currently-downloaded data, if available.
-@property(readonly, strong, GTM_NULLABLE) NSData *downloadedData;
+@property(atomic, readonly, strong, GTM_NULLABLE) NSData *downloadedData;
 
 // Local path to which the downloaded file will be moved.
 //
 // If a file already exists at the path, it will be overwritten.
 // Will create the enclosing folders if they are not present.
-@property(strong, GTM_NULLABLE) NSURL *destinationFileURL;
+@property(atomic, strong, GTM_NULLABLE) NSURL *destinationFileURL;
 
 // The time this fetcher originally began fetching. This is useful as a time
 // barrier for ignoring irrelevant fetch notifications or callbacks.
-@property(strong, readonly, GTM_NULLABLE) NSDate *initialBeginFetchDate;
+@property(atomic, strong, readonly, GTM_NULLABLE) NSDate *initialBeginFetchDate;
 
 // userData is retained solely for the convenience of the client.
-@property(strong, GTM_NULLABLE) id userData;
+@property(atomic, strong, GTM_NULLABLE) id userData;
 
 // Stored property values are retained solely for the convenience of the client.
-@property(copy, GTM_NULLABLE) GTM_NSDictionaryOf(NSString *, id) *properties;
+@property(atomic, copy, GTM_NULLABLE) GTM_NSDictionaryOf(NSString *, id) *properties;
 
 - (void)setProperty:(GTM_NULLABLE id)obj forKey:(NSString *)key;  // Pass nil for obj to remove the property.
-- (id GTM_NULLABLE_TYPE)propertyForKey:(NSString *)key;
+- (GTM_NULLABLE id)propertyForKey:(NSString *)key;
 
 - (void)addPropertiesFromDictionary:(GTM_NSDictionaryOf(NSString *, id) *)dict;
 
 // Comments are useful for logging, so are strongly recommended for each fetcher.
-@property(copy, GTM_NULLABLE) NSString *comment;
+@property(atomic, copy, GTM_NULLABLE) NSString *comment;
 
 - (void)setCommentWithFormat:(NSString *)format, ... NS_FORMAT_FUNCTION(1, 2);
 
 // Log of request and response, if logging is enabled
-@property(copy, GTM_NULLABLE) NSString *log;
+@property(atomic, copy, GTM_NULLABLE) NSString *log;
 
 // Callbacks are run on this queue.  If none is supplied, the main queue is used.
-@property(strong, GTM_NULL_RESETTABLE) dispatch_queue_t callbackQueue;
+@property(atomic, strong, GTM_NULL_RESETTABLE) dispatch_queue_t callbackQueue;
 
 // The queue used internally by the session to invoke its delegate methods in the fetcher.
 //
 // Application callbacks are always called by the fetcher on the callbackQueue above,
 // not on this queue. Apps should generally not change this queue.
 //
-// The default delegate queue is the main queue. A nil value tells NSURLSession to
-// create a serial queue.
+// The default delegate queue is the main queue.
 //
 // This value is ignored after the session has been created, so this
 // property should be set in the fetcher service rather in the fetcher as it applies
 // to a shared session.
-@property(strong, GTM_NULL_RESETTABLE) NSOperationQueue *sessionDelegateQueue;
+@property(atomic, strong, GTM_NULL_RESETTABLE) NSOperationQueue *sessionDelegateQueue;
 
 // Spin the run loop or sleep the thread, discarding events, until the fetch has completed.
 //
@@ -1066,16 +1136,22 @@ NSData * GTM_NULLABLE_TYPE GTMDataFromInputStream(NSInputStream *inputStream, NS
 // should proceed.
 //
 // Applications can exclude test block support by setting GTM_DISABLE_FETCHER_TEST_BLOCK.
-@property(copy, GTM_NULLABLE) GTMSessionFetcherTestBlock testBlock;
+@property(atomic, copy, GTM_NULLABLE) GTMSessionFetcherTestBlock testBlock;
 
 + (void)setGlobalTestBlock:(GTM_NULLABLE GTMSessionFetcherTestBlock)block;
 
-#if TARGET_OS_IPHONE
+// When using the testBlock, |testBlockAccumulateDataChunkCount| is the desired number of chunks to
+// divide the response data into if the client has streaming enabled. The data will be divided up to
+// |testBlockAccumulateDataChunkCount| chunks; however, the exact amount may vary depending on the
+// size of the response data (e.g. a 1-byte response can only be divided into one chunk).
+@property(atomic, readwrite) NSUInteger testBlockAccumulateDataChunkCount;
+
+#if GTM_BACKGROUND_TASK_FETCHING
 // For testing or to override UIApplication invocations, apps may specify an alternative
 // target for messages to UIApplication.
 + (void)setSubstituteUIApplication:(nullable id<GTMUIApplicationProtocol>)substituteUIApplication;
 + (nullable id<GTMUIApplicationProtocol>)substituteUIApplication;
-#endif  // TARGET_OS_IPHONE
+#endif  // GTM_BACKGROUND_TASK_FETCHING
 
 // Exposed for testing.
 + (GTMSessionCookieStorage *)staticCookieStorage;
@@ -1102,14 +1178,14 @@ NSData * GTM_NULLABLE_TYPE GTMDataFromInputStream(NSInputStream *inputStream, NS
 //      fetcher.deferResponseBodyLogging = NO;
 //   }];
 
-@property(copy, GTM_NULLABLE) NSString *logRequestBody;
-@property(assign) BOOL deferResponseBodyLogging;
-@property(copy, GTM_NULLABLE) NSString *logResponseBody;
+@property(atomic, copy, GTM_NULLABLE) NSString *logRequestBody;
+@property(atomic, assign) BOOL deferResponseBodyLogging;
+@property(atomic, copy, GTM_NULLABLE) NSString *logResponseBody;
 
 // Internal logging support.
-@property(readonly) NSData *loggedStreamData;
-@property(assign) BOOL hasLoggedError;
-@property(strong, GTM_NULLABLE) NSURL *redirectedFromURL;
+@property(atomic, readonly) NSData *loggedStreamData;
+@property(atomic, assign) BOOL hasLoggedError;
+@property(atomic, strong, GTM_NULLABLE) NSURL *redirectedFromURL;
 - (void)appendLoggedStreamData:(NSData *)dataToAdd;
 - (void)clearLoggedStreamData;
 

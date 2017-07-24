@@ -9,7 +9,7 @@
 import Foundation
 
 
-public class EAEvent:NSObject{
+open class EAEvent:NSObject{
     var name:String?
     var id:String?
     

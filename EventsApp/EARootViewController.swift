@@ -33,7 +33,7 @@ class EARootViewController: UIViewController,GIDSignInDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         if(GIDSignIn.sharedInstance().currentUser == nil) {
@@ -41,21 +41,21 @@ class EARootViewController: UIViewController,GIDSignInDelegate {
         }
     }
     
-    func showLogin(animated:Bool) {
+    func showLogin(_ animated:Bool) {
         let storyboard = UIStoryboard(name: "EAMain", bundle: nil)
-        loginViewController = (storyboard.instantiateViewControllerWithIdentifier("LoginViewController") as! EALoginViewController)
-        self.presentViewController(loginViewController!, animated: true, completion: nil)
+        loginViewController = (storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! EALoginViewController)
+        self.present(loginViewController!, animated: true, completion: nil)
     }
     
     
-    func showRootSWRevealViewController(animated:Bool) {
+    func showRootSWRevealViewController(_ animated:Bool) {
         let storyboard = UIStoryboard(name: "EAMain", bundle: nil)
-        eaRootSWRevealViewController = (storyboard.instantiateViewControllerWithIdentifier("RootSWRevealViewController") as! SWRevealViewController)
-        self.presentViewController(eaRootSWRevealViewController!, animated: true, completion: nil)
+        eaRootSWRevealViewController = (storyboard.instantiateViewController(withIdentifier: "RootSWRevealViewController") as! SWRevealViewController)
+        self.present(eaRootSWRevealViewController!, animated: true, completion: nil)
     }
 
     // MARK: GIDSignInDelegate methods
-    func signIn(signIn: GIDSignIn!, didSignInForUser user: GIDGoogleUser!, withError error: NSError!) {
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if(error != nil) {
             print("Looks like we got a sign in error \(error)")
             //present the login view controller if not already presented
@@ -67,7 +67,7 @@ class EARootViewController: UIViewController,GIDSignInDelegate {
             print("Wow our user signed in \(user)")
             if (self.loginViewController != nil) {
                 weak var weakSelf:EARootViewController? = self;
-                self.dismissViewControllerAnimated(true, completion:{
+                self.dismiss(animated: true, completion:{
                     weakSelf?.showRootSWRevealViewController(true);
                 })
             }
@@ -77,10 +77,6 @@ class EARootViewController: UIViewController,GIDSignInDelegate {
             
         }
     }
-    
-    
-    
-
     
   
 }

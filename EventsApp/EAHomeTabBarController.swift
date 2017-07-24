@@ -9,11 +9,11 @@
 import UIKit
 import GoogleAPIClient
 
-public class EAHomeTabBarController: UITabBarController {
+open class EAHomeTabBarController: UITabBarController {
 
     var contentViewController:AnyObject?
     
-    override public func viewDidLoad() {
+    override open func viewDidLoad() {
         super.viewDidLoad()
         self.updateContentViewController(0)
         //(UIApplication.sharedApplication().delegate as! AppDelegate).signInCallBack = refereshInterface
@@ -22,12 +22,12 @@ public class EAHomeTabBarController: UITabBarController {
     }
     
 
-    override public func didReceiveMemoryWarning() {
+    override open func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    public override func viewDidAppear(animated: Bool) {
+    open override func viewDidAppear(_ animated: Bool) {
 //        let selectedIndex:Int? = self.tabBar.items!.indexOf(self.tabBar.selectedItem!)
 //        if let selectedIndex = selectedIndex {
 //            if selectedIndex != 1 {
@@ -36,16 +36,16 @@ public class EAHomeTabBarController: UITabBarController {
 //        }
     }
     
-    public func updateContentViewController(selectedTabIndex:Int) {
+    open func updateContentViewController(_ selectedTabIndex:Int) {
         var viewController:UIViewController =  self.viewControllers![selectedTabIndex]
-        if viewController.isKindOfClass(UINavigationController) {
+        if viewController.isKind(of: UINavigationController.self) {
             viewController = (viewController as! UINavigationController).viewControllers.first!
         }
         contentViewController = viewController
     }
     
-    public override func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem) {
-        let index:Int = tabBar.items!.indexOf(item)!
+    open override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        let index:Int = tabBar.items!.index(of: item)!
         self.updateContentViewController(index)
 //        if index == 1 {
 //            //if camera selected
@@ -53,10 +53,10 @@ public class EAHomeTabBarController: UITabBarController {
 //        }
     }
     
-    func showLogin(animated:Bool) {
+    func showLogin(_ animated:Bool) {
         let storyboard = UIStoryboard(name: "EAMain", bundle: nil)
-        let signInViewControler:EALoginViewController = storyboard.instantiateViewControllerWithIdentifier("LoginViewController") as! EALoginViewController
-        self.presentViewController(signInViewControler, animated: true, completion: nil)
+        let signInViewControler:EALoginViewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! EALoginViewController
+        self.present(signInViewControler, animated: true, completion: nil)
     }
 
 }

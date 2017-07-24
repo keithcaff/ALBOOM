@@ -48,12 +48,11 @@ NSString *const kGTMSessionFetcherServiceSessionKey
 // The session for the tasks in this dispatcher's task-to-fetcher map.
 @property(atomic) NSURLSession *session;
 
-// This semaphore can block access to the session property while another fetcher is creating
-// a session.
-@property(atomic, readonly) dispatch_semaphore_t sessionCreationSemaphore;
-
 // The timer interval for invalidating a session that has no active tasks.
 @property(atomic) NSTimeInterval discardInterval;
+
+// The current discard timer.
+@property(atomic, readonly) NSTimer *discardTimer;
 
 
 - (instancetype)initWithParentService:(GTMSessionFetcherService *)parentService
@@ -80,6 +79,9 @@ NSString *const kGTMSessionFetcherServiceSessionKey
 
   // When this ivar is nil, the service will not reuse sessions.
   GTMSessionFetcherSessionDelegateDispatcher *_delegateDispatcher;
+
+  // Fetchers will wait on this if another fetcher is creating the shared NSURLSession.
+  dispatch_semaphore_t _sessionCreationSemaphore;
 
   dispatch_queue_t _callbackQueue;
   NSOperationQueue *_delegateQueue;
@@ -109,6 +111,7 @@ NSString *const kGTMSessionFetcherServiceSessionKey
             configurationBlock = _configurationBlock,
             cookieStorage = _cookieStorage,
             userAgent = _userAgent,
+            challengeBlock = _challengeBlock,
             credential = _credential,
             proxyCredential = _proxyCredential,
             allowedInsecureSchemes = _allowedInsecureSchemes,
@@ -138,7 +141,12 @@ NSString *const kGTMSessionFetcherServiceSessionKey
         [[GTMSessionFetcherSessionDelegateDispatcher alloc] initWithParentService:self
                                                            sessionDiscardInterval:_unusedSessionTimeout];
     _callbackQueue = dispatch_get_main_queue();
-    _delegateQueue = [NSOperationQueue mainQueue];
+
+    _delegateQueue = [[NSOperationQueue alloc] init];
+    _delegateQueue.maxConcurrentOperationCount = 1;
+    _delegateQueue.name = @"com.google.GTMSessionFetcher.NSURLSessionDelegateQueue";
+
+    _sessionCreationSemaphore = dispatch_semaphore_create(1);
 
     // Starting with the SDKs for OS X 10.11/iOS 9, the service has a default useragent.
     // Apps can remove this and get the default system "CFNetwork" useragent by setting the
@@ -158,12 +166,14 @@ NSString *const kGTMSessionFetcherServiceSessionKey
 
 #pragma mark Generate a new fetcher
 
+// Clients may override this method. Clients should not override any other library methods.
 - (id)fetcherWithRequest:(NSURLRequest *)request
             fetcherClass:(Class)fetcherClass {
   GTMSessionFetcher *fetcher = [[fetcherClass alloc] initWithRequest:request
                                                        configuration:self.configuration];
   fetcher.callbackQueue = self.callbackQueue;
   fetcher.sessionDelegateQueue = self.sessionDelegateQueue;
+  fetcher.challengeBlock = self.challengeBlock;
   fetcher.credential = self.credential;
   fetcher.proxyCredential = self.proxyCredential;
   fetcher.authorizer = self.authorizer;
@@ -189,8 +199,8 @@ NSString *const kGTMSessionFetcherServiceSessionKey
   NSString *userAgent = self.userAgent;
   if (userAgent.length > 0
       && [request valueForHTTPHeaderField:@"User-Agent"] == nil) {
-    [fetcher.mutableRequest setValue:userAgent
-                  forHTTPHeaderField:@"User-Agent"];
+    [fetcher setRequestValue:userAgent
+          forHTTPHeaderField:@"User-Agent"];
   }
   fetcher.testBlock = self.testBlock;
 
@@ -225,34 +235,32 @@ NSString *const kGTMSessionFetcherServiceSessionKey
 // waits on a semaphore, blocking other fetchers while the caller creates the
 // session if needed.
 - (NSURLSession *)sessionForFetcherCreation {
-  // Avoid waiting in the @synchronized section since that can deadlock.
-  dispatch_semaphore_t semaphore;
+  @synchronized(self) {
+    GTMSessionMonitorSynchronized(self);
+    if (!_delegateDispatcher) {
+      // This fetcher is creating a non-shared session, so skip the semaphore usage.
+      return nil;
+    }
+  }
+
+  // Wait if another fetcher is currently creating a session; avoid waiting
+  // inside the @synchronized block, as that can deadlock.
+  dispatch_semaphore_wait(_sessionCreationSemaphore, DISPATCH_TIME_FOREVER);
+
   @synchronized(self) {
     GTMSessionMonitorSynchronized(self);
 
+    // Before getting the NSURLSession for task creation, it is
+    // important to invalidate and nil out the session discard timer; otherwise
+    // the session can be invalidated between when it is returned to the
+    // fetcher, and when the fetcher attempts to create its NSURLSessionTask.
     [_delegateDispatcher startSessionUsage];
-
-    semaphore = _delegateDispatcher.sessionCreationSemaphore;
-    GTMSESSION_ASSERT_DEBUG(semaphore != nil || _delegateDispatcher == nil, @"Expected semaphore");
-  }
-  if (semaphore) {
-    // Wait if another fetcher is currently creating a session.
-    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-  } else {
-    // This fetcher is creating a non-shared session, so skip the semaphore usage.
-    return self.session;
-  }
-
-  @synchronized(self) {
-    GTMSessionMonitorSynchronized(self);
 
     NSURLSession *session = _delegateDispatcher.session;
     if (session) {
-      GTMSESSION_ASSERT_DEBUG(semaphore == _delegateDispatcher.sessionCreationSemaphore,
-                              @"delegate dispatcher semaphore changed");
       // The calling fetcher will receive a preexisting session, so
       // we can allow other fetchers to create a session.
-      dispatch_semaphore_signal(semaphore);
+      dispatch_semaphore_signal(_sessionCreationSemaphore);
     } else {
       // No existing session was obtained, so the calling fetcher will create the session;
       // it *must* invoke fetcherDidCreateSession: to signal the dispatcher's semaphore after
@@ -300,7 +308,7 @@ NSString *const kGTMSessionFetcherServiceSessionKey
   @synchronized(self) {
     GTMSessionMonitorSynchronized(self);
 
-    NSString *host = fetcher.mutableRequest.URL.host;
+    NSString *host = fetcher.request.URL.host;
     if (host == nil) {
       return NO;
     }
@@ -313,7 +321,7 @@ NSString *const kGTMSessionFetcherServiceSessionKey
 
 - (BOOL)fetcherShouldBeginFetching:(GTMSessionFetcher *)fetcher {
   // Entry point from the fetcher
-  NSURL *requestURL = fetcher.mutableRequest.URL;
+  NSURL *requestURL = fetcher.request.URL;
   NSString *host = requestURL.host;
 
   // Addresses "file:///path" case where localhost is the implicit host.
@@ -398,7 +406,7 @@ NSString *const kGTMSessionFetcherServiceSessionKey
       delegateDispatcher.session = fetcherSession;
 
       // Allow other fetchers to request this session now.
-      dispatch_semaphore_signal(delegateDispatcher.sessionCreationSemaphore);
+      dispatch_semaphore_signal(_sessionCreationSemaphore);
     }
   }
 }
@@ -576,7 +584,7 @@ NSString *const kGTMSessionFetcherServiceSessionKey
   NSIndexSet *indexes = [allFetchers indexesOfObjectsPassingTest:^BOOL(GTMSessionFetcher *fetcher,
                                                                        NSUInteger idx,
                                                                        BOOL *stop) {
-      NSURL *fetcherURL = [fetcher.mutableRequest.URL absoluteURL];
+      NSURL *fetcherURL = [fetcher.request.URL absoluteURL];
       return [fetcherURL isEqual:targetURL];
   }];
 
@@ -660,17 +668,51 @@ NSString *const kGTMSessionFetcherServiceSessionKey
 }
 
 - (void)resetSession {
+  GTMSessionCheckNotSynchronized(self);
+  dispatch_semaphore_wait(_sessionCreationSemaphore, DISPATCH_TIME_FOREVER);
+
+  @synchronized(self) {
+    GTMSessionMonitorSynchronized(self);
+    [self resetSessionInternal];
+  }
+
+  dispatch_semaphore_signal(_sessionCreationSemaphore);
+}
+
+- (void)resetSessionInternal {
+  GTMSessionCheckSynchronized(self);
+
+  // The old dispatchers may be retained as delegates of any ongoing sessions by those sessions.
+  if (_delegateDispatcher) {
+    [self abandonDispatcher];
+    _delegateDispatcher =
+        [[GTMSessionFetcherSessionDelegateDispatcher alloc] initWithParentService:self
+                                                           sessionDiscardInterval:_unusedSessionTimeout];
+  }
+}
+
+- (void)resetSessionForDispatcherDiscardTimer:(NSTimer *)timer {
+  GTMSessionCheckNotSynchronized(self);
+
+  dispatch_semaphore_wait(_sessionCreationSemaphore, DISPATCH_TIME_FOREVER);
   @synchronized(self) {
     GTMSessionMonitorSynchronized(self);
 
-    // The old dispatchers may be retained as delegates of any ongoing sessions by those sessions.
-    if (_delegateDispatcher) {
-      [self abandonDispatcher];
-      _delegateDispatcher =
-          [[GTMSessionFetcherSessionDelegateDispatcher alloc] initWithParentService:self
-                                                             sessionDiscardInterval:_unusedSessionTimeout];
+    if (_delegateDispatcher.discardTimer == timer) {
+      // If the delegate dispatcher's current discardTimer is the same object as the timer
+      // that fired, no fetcher has recently attempted to start using the session by calling
+      // startSessionUsage, which invalidates and nils out the timer.
+      [self resetSessionInternal];
+    } else {
+      // A fetcher has invalidated the timer between its triggering and now, potentially
+      // meaning a fetcher has requested access to the NSURLSession, and may be in the process
+      // of starting a new task. The dispatcher should not be abandoned, as this can lead
+      // to a race condition between calling -finishTasksAndInvalidate on the NSURLSession
+      // and the fetcher attempting to create a new task.
     }
   }
+
+  dispatch_semaphore_signal(_sessionCreationSemaphore);
 }
 
 - (NSTimeInterval)unusedSessionTimeout {
@@ -692,6 +734,7 @@ NSString *const kGTMSessionFetcherServiceSessionKey
 
 // This method should be called inside of @synchronized(self)
 - (void)abandonDispatcher {
+  GTMSessionCheckSynchronized(self);
   [_delegateDispatcher abandon];
 }
 
@@ -907,7 +950,6 @@ NSString *const kGTMSessionFetcherServiceSessionKey
 @implementation GTMSessionFetcherSessionDelegateDispatcher {
   __weak GTMSessionFetcherService *_parentService;
   NSURLSession *_session;
-  dispatch_semaphore_t _sessionCreationSemaphore;
 
   // The task map maps NSURLSessionTasks to GTMSessionFetchers
   NSMutableDictionary *_taskToFetcherMap;
@@ -917,8 +959,7 @@ NSString *const kGTMSessionFetcherServiceSessionKey
 }
 
 @synthesize discardInterval = _discardInterval,
-            session = _session,
-            sessionCreationSemaphore = _sessionCreationSemaphore;
+            session = _session;
 
 - (instancetype)init {
   [self doesNotRecognizeSelector:_cmd];
@@ -931,7 +972,6 @@ NSString *const kGTMSessionFetcherServiceSessionKey
   if (self) {
     _discardInterval = discardInterval;
     _parentService = parentService;
-    _sessionCreationSemaphore = dispatch_semaphore_create(1);
   }
   return self;
 }
@@ -943,8 +983,16 @@ NSString *const kGTMSessionFetcherServiceSessionKey
           _taskToFetcherMap.count > 0 ? _taskToFetcherMap : @"<no tasks>"];
 }
 
+- (NSTimer *)discardTimer {
+  GTMSessionCheckNotSynchronized(self);
+  @synchronized(self) {
+    return _discardTimer;
+  }
+}
+
 // This method should be called inside of a @synchronized(self) block.
 - (void)startDiscardTimer {
+  GTMSessionCheckSynchronized(self);
   [_discardTimer invalidate];
   _discardTimer = nil;
   if (_discardInterval > 0) {
@@ -960,6 +1008,7 @@ NSString *const kGTMSessionFetcherServiceSessionKey
 
 // This method should be called inside of a @synchronized(self) block.
 - (void)destroyDiscardTimer {
+  GTMSessionCheckSynchronized(self);
   [_discardTimer invalidate];
   _discardTimer = nil;
 }
@@ -974,24 +1023,23 @@ NSString *const kGTMSessionFetcherServiceSessionKey
       service = _parentService;
     }
   }
-  // Ask the service to abandon us. It will create a new delegate dispatcher
-  // which will have a distinct session.
+
+  // Inform the service that the discard timer has fired, and should check whether the
+  // service can abandon us. -resetSession cannot be called directly, as there is a
+  // race condition that must be guarded against with the NSURLSession being returned
+  // from sessionForFetcherCreation outside other locks. The service can take steps
+  // to prevent resetting the session if that has occurred.
   //
-  // Since finishing this session takes a while, it's better for the service to have a new
-  // delegate dispatcher while the tasks on this session's delegate dispatcher finish up.
-  //
-  // We want to call the service from outside of a @synchronized section.
-  [service resetSession];
+  // The service must be called from outside the @synchronized block.
+  [service resetSessionForDispatcherDiscardTimer:timer];
 }
 
 - (void)abandon {
-  dispatch_semaphore_wait(_sessionCreationSemaphore, DISPATCH_TIME_FOREVER);
   @synchronized(self) {
     GTMSessionMonitorSynchronized(self);
 
     [self destroySessionAndTimer];
   }
-  dispatch_semaphore_signal(_sessionCreationSemaphore);
 }
 
 - (void)startSessionUsage {
@@ -1004,6 +1052,7 @@ NSString *const kGTMSessionFetcherServiceSessionKey
 
 // This method should be called inside of a @synchronized(self) block.
 - (void)destroySessionAndTimer {
+  GTMSessionCheckSynchronized(self);
   [self destroyDiscardTimer];
 
   // Break any retain cycle from the session holding the delegate.
