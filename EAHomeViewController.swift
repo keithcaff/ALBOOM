@@ -24,7 +24,9 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(newEventCreated), name: .NOTIFICATION_EVENT_FOLDER_CREATED, object: nil)
         
-         NotificationCenter.default.addObserver(self, selector: #selector(eventFileDownloaded), name: .NOTIFICATION_EVENT_FILE_DOWNLOADED, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(eventFileDownloaded), name: .NOTIFICATION_EVENT_FILE_DOWNLOADED, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(eventDeleted), name: .NOTIFICATION_EVENT_FOLDER_DELETED, object: nil)
 
         NotificationCenter.default.addObserver(self, selector: #selector(eventFilesRetrieved), name: .NOTIFICATION_EVENT_FILES_RETRIEVED, object: nil)
 
@@ -66,11 +68,23 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
     }
     
     
-    func didSwitchEvent(_ event:EAEvent) {
+    func didSwitchEvent(_ event:EAEvent?) {
         self.currentFilesList = nil
         currentEventFolder = nil
         self.fileDataMap = Dictionary<String, Data>()
-        self.navigationController?.navigationBar.topItem?.title = event.name
+        var name:String = ""
+        var id:String = ""
+        let defaults = UserDefaults.standard
+        
+        if let event = event {
+            name = event.name!
+            id = event.id!
+        }
+        
+        defaults.set(id, forKey: DEFAULT_CURRENT_EVENT_ID)
+        defaults.set(name, forKey: DEFAULT_CURRENT_EVENT_NAME)
+        updateNavBarTitle(name)
+        
         self.tableView.reloadData()
     }
     
@@ -225,12 +239,21 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
         revealViewController().revealToggle(animated: true)
         if let folder = notifiaction.object as? GTLDriveFile  {
             currentEventFolder = folder
-            self.navigationController?.navigationBar.topItem?.title = folder.name
+            updateNavBarTitle(folder.name)
             let defaults = UserDefaults.standard
-            defaults.set(folder.name, forKey: DEFAULT_CURRENT_EVENT_NAME)
+            defaults.set(folder.name!, forKey: DEFAULT_CURRENT_EVENT_NAME)
+            defaults.set(folder.identifier!, forKey: DEFAULT_CURRENT_EVENT_ID)
         }
     }
     
+    func eventDeleted(_ notifiaction : Notification) {
+        let defaults = UserDefaults.standard
+        let currentEventId:String = defaults.string(forKey: DEFAULT_CURRENT_EVENT_ID)!
+        if let event:EAEvent = notifiaction.object as? EAEvent, event.id == currentEventId {
+            resetHomeViewController()
+        }
+    }
+
     func eventFilesRetrieved(_ notifiaction : Notification) {
         print("event files retrieved selector")
         revealViewController().revealToggle(animated: true)
@@ -242,7 +265,14 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
             }
         }
     }
-
+    
+    func resetHomeViewController() {
+       didSwitchEvent(nil)
+    }
+    
+    func updateNavBarTitle(_ title:String) {
+        self.navigationController?.navigationBar.topItem?.title = title
+    }
     
     deinit {
         NotificationCenter.default.removeObserver(self)

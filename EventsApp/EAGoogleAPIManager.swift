@@ -28,7 +28,6 @@ class EAGoogleAPIManager {
         }
     }
 
-    
     func createEventFolder(_ event:EAEvent) {
         let service:GTLService = gtlServiceDrive
         setAuthorizerForService(GIDSignIn.sharedInstance(), user: GIDSignIn.sharedInstance().currentUser,service:service)
@@ -54,8 +53,6 @@ class EAGoogleAPIManager {
         })
     }
     
-    
-    //id of dit talk folder 0By-3eIhKXJNzRmVDckY4WlcwVDQ
     func getRootEventAppFolder() {
         let service:GTLService = gtlServiceDrive
 //        GTLQueryDrive *queryFilesList = [GTLQueryDrive queryForChildrenListWithFolderId:@"root"];
@@ -73,7 +70,6 @@ class EAGoogleAPIManager {
             print("object:  \(object)")
         })
     }
-    
     
     func getAllEventFolders() {
         let service:GTLService = gtlServiceDrive
@@ -95,7 +91,6 @@ class EAGoogleAPIManager {
         })
     }
     
-    
     func switchEventFolder(_ event:EAEvent) {
         let service:GTLService = gtlServiceDrive
         setAuthorizerForService(GIDSignIn.sharedInstance(), user: GIDSignIn.sharedInstance().currentUser,service:service)
@@ -111,14 +106,13 @@ class EAGoogleAPIManager {
             }
             let defaults = UserDefaults.standard
             defaults.set(event.name, forKey: DEFAULT_CURRENT_EVENT_NAME)
+            defaults.set(event.id, forKey: DEFAULT_CURRENT_EVENT_ID)
             print("successfully retrieved files:  \(files)")
             DispatchQueue.main.async {
                 NotificationCenter.default.post(name: .NOTIFICATION_EVENT_FILES_RETRIEVED, object: files)
             }
         })
     }
-    
-    
     
     func downloadFile(_ file:GTLDriveFile!) {
         let service:GTLService = gtlServiceDrive
@@ -143,7 +137,29 @@ class EAGoogleAPIManager {
         }
     }
 
+    
+    func deleteEvent(_ event:EAEvent) {
+        let service:GTLService = gtlServiceDrive
+        setAuthorizerForService(GIDSignIn.sharedInstance(), user: GIDSignIn.sharedInstance().currentUser,service:service)
+        print("Deleting folder")
+        let parentId:String  = event.id!;
+        let query:GTLQueryDrive  = GTLQueryDrive.queryForFilesDelete(withFileId: parentId)
+        service.executeQuery(query, completionHandler: {(ticket: GTLServiceTicket?, id:Any?, error:Error?) in
+            if(error != nil){
+                print("Error: \(error)")
+                return
+            }
+//            let defaults = UserDefaults.standard
+//            defaults.set(event.name, forKey: DEFAULT_CURRENT_EVENT_NAME)
 
+            print("deleted file successfully!!! \(id)")
+            DispatchQueue.main.async {
+                NotificationCenter.default.post(name: .NOTIFICATION_EVENT_FOLDER_DELETED, object: event)
+            }
+        })
+    }
 
+    
+    
    
 }

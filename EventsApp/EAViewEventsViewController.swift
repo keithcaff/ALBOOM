@@ -27,6 +27,7 @@ open class EAViewEventsViewController: UIViewController, UITableViewDelegate, UI
     open override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(eventFoldersRetrieved), name: .NOTIFICATION_EVENT_FOLDERS_RETRIEVED, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(eventFolderDeleted), name: .NOTIFICATION_EVENT_FOLDER_DELETED, object: nil)
         self.tableView.dataSource = self
         self.tableView.delegate = self
         let nib = UINib(nibName: "EAViewEventTableViewCell", bundle:nil)
@@ -57,19 +58,25 @@ open class EAViewEventsViewController: UIViewController, UITableViewDelegate, UI
         }
         self.tableView.reloadData()
     }
+    
+    func eventFolderDeleted(_ notifiaction : Notification) {
+        if let event:EAEvent = notifiaction.object as? EAEvent {
+            print("need to delete folder from table here \(event)")
+            data?.remove(event)
+            self.tableView.reloadData()
+        }
+    }
+
 
     // MARK:Tableview delegates
-    
-    
     open func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         weak var weakSelf:EAViewEventsViewController! = self
         let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
             if let data = weakSelf.data {
                 let event:EAEvent = data.object(at: indexPath.row) as! EAEvent
-                print("KCTEST: id \(event.id!)")
+                EAGoogleAPIManager.sharedInstance.deleteEvent(event)
             }
         }
-        
         return [delete]
     }
     
