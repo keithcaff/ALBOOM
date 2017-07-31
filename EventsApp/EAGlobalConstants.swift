@@ -28,6 +28,9 @@ let DEFAULT_CURRENT_EVENT_ID:String! = "user.defaults.current.event.id"
 
 //Segue Constants
 let EXIT_VIEW_EVENTS_UNWIND_SEGUE:String! = "exitViewEventsUnwindSegue"
+let CREATE_EVENT_SEGUE:String! = "createEventSegue"
+let VIEW_EVENTS_SEGUE:String! = "viewEventsSegue"
+
 
 //NIB Identifiers
 let NIB_VIEW_EVENT_CELL_IDENFIER:String! = "EAViewEventTableViewCell"

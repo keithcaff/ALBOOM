@@ -238,6 +238,7 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
         print("new event folder created")
         revealViewController().revealToggle(animated: true)
         if let folder = notifiaction.object as? GTLDriveFile  {
+            resetHomeViewController()
             currentEventFolder = folder
             updateNavBarTitle(folder.name)
             let defaults = UserDefaults.standard
