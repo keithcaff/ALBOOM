@@ -26,13 +26,19 @@ class EAMenuViewController: UIViewController ,UITableViewDelegate, UITableViewDa
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var footerView: UIView!
+    @IBOutlet weak var logOutButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
+        logOutButton.setTitle(EAMenuItemLabels.LOG_OUT, for: .normal)
     }
     
+    //MARK: UITableViewDelegate delegate methods
+    @IBAction func logOutButtonTapped(_ sender: Any) {
+         print("Log out button tapped!")
+    }
     
     @IBAction func unWindToMenu(_ sender: UIStoryboardSegue) {
         print("unWindToMenu")
@@ -64,10 +70,6 @@ class EAMenuViewController: UIViewController ,UITableViewDelegate, UITableViewDa
             }
         }
     }
-   
-    func hideMenu() {
-        revealViewController().revealToggle(animated: true)
-    }
     
     //MARK: UITableViewDelegate delegate methods
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -98,13 +100,18 @@ class EAMenuViewController: UIViewController ,UITableViewDelegate, UITableViewDa
         let menuOption:MenuOptions = MenuOptions(rawValue: indexPath.row)!
         switch menuOption {
         case .CreateEvent:
-            labelText = "Create event"
+            labelText = EAMenuItemLabels.CREATE_EVENT
         case .ViewEvents:
-            labelText = "View events"
+            labelText = EAMenuItemLabels.VIEW_EVENTS
         }
         menuItemLabel.text = labelText
         
         return menuItemCell
+    }
+    
+    
+    func hideMenu() {
+        revealViewController().revealToggle(animated: true)
     }
     
 }

@@ -40,3 +40,8 @@ let NIB_HOME_CELL_IDENFIER:String! = "EAHomeTableViewCell"
 let CELL_VIEW_EVENT_IDENTIFIER:String! = "cell.view.event"
 let CELL_HOME_IDENTIFIER:String! = "cell.home"
 
+struct EAMenuItemLabels {
+    public static let CREATE_EVENT = "Create Event"
+    static let VIEW_EVENTS = "View Events"
+    static let LOG_OUT = "Log Out"
+}

@@ -118,7 +118,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create event" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m18-tM-z0e">
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create Event" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m18-tM-z0e">
                                                     <rect key="frame" x="15" y="14" width="173" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="Pqi-Dp-zT2"/>
@@ -140,7 +140,33 @@
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ewc-r7-oQZ">
                                 <rect key="frame" x="0.0" y="601" width="375" height="66"/>
-                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" image="signOut" translatesAutoresizingMaskIntoConstraints="NO" id="goc-nr-jDZ">
+                                        <rect key="frame" x="15" y="18" width="30" height="29.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="30" id="A4b-Nh-6R8"/>
+                                        </constraints>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rZg-hg-RZi">
+                                        <rect key="frame" x="53" y="18" width="117" height="29.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="117" id="eK6-yy-m9u"/>
+                                        </constraints>
+                                        <state key="normal" title="Log Out"/>
+                                        <connections>
+                                            <action selector="logOutButtonTapped:" destination="diU-Hf-e08" eventType="touchUpInside" id="f5w-6O-dhE"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="rZg-hg-RZi" secondAttribute="trailing" constant="205" id="6Vc-c5-QaB"/>
+                                    <constraint firstItem="rZg-hg-RZi" firstAttribute="top" secondItem="ewc-r7-oQZ" secondAttribute="top" constant="18" id="UTm-zL-nTa"/>
+                                    <constraint firstAttribute="bottom" secondItem="goc-nr-jDZ" secondAttribute="bottom" constant="18.5" id="aqk-fa-W0h"/>
+                                    <constraint firstItem="rZg-hg-RZi" firstAttribute="leading" secondItem="goc-nr-jDZ" secondAttribute="trailing" constant="8" id="fhs-F7-lKO"/>
+                                    <constraint firstItem="goc-nr-jDZ" firstAttribute="top" secondItem="ewc-r7-oQZ" secondAttribute="top" constant="18" id="j2U-wZ-Aql"/>
+                                    <constraint firstItem="goc-nr-jDZ" firstAttribute="leading" secondItem="ewc-r7-oQZ" secondAttribute="leading" constant="15" id="kUc-wB-8WP"/>
+                                    <constraint firstAttribute="bottom" secondItem="rZg-hg-RZi" secondAttribute="bottom" constant="18.5" id="oGd-7C-ebv"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -157,6 +183,7 @@
                     </view>
                     <connections>
                         <outlet property="footerView" destination="ewc-r7-oQZ" id="AAy-2e-PkM"/>
+                        <outlet property="logOutButton" destination="rZg-hg-RZi" id="Rxz-60-XJP"/>
                         <outlet property="tableView" destination="Q8b-cN-lZ9" id="eWR-52-sHw"/>
                         <segue destination="xKY-4c-aVb" kind="show" identifier="viewEventsSegue" id="bJH-Xu-qVY"/>
                         <segue destination="Xfu-PU-6Mx" kind="show" identifier="createEventSegue" id="Lhe-3d-i8w"/>
@@ -164,7 +191,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GMf-eI-mvt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1732" y="-1263"/>
+            <point key="canvasLocation" x="-1732" y="-1263.4182908545729"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="wXq-0Y-YvV">
@@ -619,6 +646,7 @@
         <image name="Camera" width="30" height="30"/>
         <image name="Home" width="30" height="30"/>
         <image name="Menu" width="22" height="22"/>
+        <image name="signOut" width="100" height="100"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Lhe-3d-i8w"/>
