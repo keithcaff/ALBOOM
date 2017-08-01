@@ -80,10 +80,19 @@ class EAGoogleAPIManager {
         query.q = "mimeType='application/vnd.google-apps.folder' and 'root' in parents and name contains '\(EVENT_FOLDER_PREFIX)' and trashed = false"
         query.fields = "nextPageToken, files(id, name)"
         service.executeQuery(query, completionHandler:  { (ticket, folders , error) -> Void in
-            if(error != nil){
+            if(error != nil && error is NSError){
                 print("Error: \(error)")
+                let nsError:NSError  = (error as! NSError)
+                let code:Int = nsError.code
+                if(code == 401) {
+                    //user needs to be authenticated again.
+                }
                 return
             }
+            else {
+                print("Error: \(error)")
+            }
+            
             print("successfully retrieved folders:  \(folders)")
             DispatchQueue.main.async {
                 NotificationCenter.default.post(name: .NOTIFICATION_EVENT_FOLDERS_RETRIEVED, object: folders)
