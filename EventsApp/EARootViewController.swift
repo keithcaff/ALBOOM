@@ -35,23 +35,30 @@ class EARootViewController: UIViewController,GIDSignInDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        if(GIDSignIn.sharedInstance().currentUser == nil) {
-            GIDSignIn.sharedInstance().signInSilently()
+        if (GIDSignIn.sharedInstance().currentUser == nil || !GIDSignIn.sharedInstance().hasAuthInKeychain()) {
+            //GIDSignIn.sharedInstance().signInSilently()
+            showLogin(false)
+        }
+        else {
+            showRootSWRevealViewController(false)
         }
     }
     
     func showLogin(_ animated:Bool) {
         let storyboard = UIStoryboard(name: "EAMain", bundle: nil)
         loginViewController = (storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! EALoginViewController)
-        self.present(loginViewController!, animated: true, completion: nil)
+        if let nav = self.navigationController {
+            nav.pushViewController(self.loginViewController!, animated: false)
+        }
     }
     
     
     func showRootSWRevealViewController(_ animated:Bool) {
         let storyboard = UIStoryboard(name: "EAMain", bundle: nil)
         eaRootSWRevealViewController = (storyboard.instantiateViewController(withIdentifier: "RootSWRevealViewController") as! SWRevealViewController)
-        self.present(eaRootSWRevealViewController!, animated: true, completion: nil)
+        if let nav = self.navigationController {
+            nav.pushViewController(self.eaRootSWRevealViewController!, animated: false)
+        }
     }
 
     // MARK: GIDSignInDelegate methods
@@ -65,16 +72,15 @@ class EARootViewController: UIViewController,GIDSignInDelegate {
         }
         else {
             print("Wow our user signed in \(user)")
-            if (self.loginViewController != nil) {
-                weak var weakSelf:EARootViewController? = self;
-                self.dismiss(animated: true, completion:{
-                    weakSelf?.showRootSWRevealViewController(true);
-                })
+            if (self.loginViewController != nil) { //remove the login view controller from the root nav before navigating swreveal vc
+                if let nav = self.navigationController {
+                    nav.popViewController(animated: false)
+                    showRootSWRevealViewController(true)
+                }
             }
             else {
-                showRootSWRevealViewController(true);
+                showRootSWRevealViewController(true)
             }
-            
         }
     }
     

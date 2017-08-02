@@ -38,6 +38,11 @@ class EAMenuViewController: UIViewController ,UITableViewDelegate, UITableViewDa
     //MARK: UITableViewDelegate delegate methods
     @IBAction func logOutButtonTapped(_ sender: Any) {
          print("Log out button tapped!")
+        GIDSignIn.sharedInstance().signOut()
+        if let nav = revealViewController().frontViewController.navigationController {
+            revealViewController().revealToggle(animated: true)
+            nav.popToRootViewController(animated: true)// the root vc is the EARootViewController
+        }
     }
     
     @IBAction func unWindToMenu(_ sender: UIStoryboardSegue) {
