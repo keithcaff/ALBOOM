@@ -143,7 +143,7 @@
                                 <rect key="frame" x="0.0" y="601" width="375" height="66"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="MRp-dV-Ebg">
-                                        <rect key="frame" x="15" y="18" width="106" height="46"/>
+                                        <rect key="frame" x="8" y="8" width="106" height="46"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" image="signOut" translatesAutoresizingMaskIntoConstraints="NO" id="goc-nr-jDZ">
                                                 <rect key="frame" x="8" y="8" width="30" height="30"/>
@@ -164,8 +164,8 @@
                                     </stackView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="MRp-dV-Ebg" firstAttribute="leading" secondItem="ewc-r7-oQZ" secondAttribute="leading" constant="15" id="4n0-kW-u96"/>
-                                    <constraint firstItem="MRp-dV-Ebg" firstAttribute="top" secondItem="ewc-r7-oQZ" secondAttribute="top" constant="18" id="ali-t9-JfB"/>
+                                    <constraint firstItem="MRp-dV-Ebg" firstAttribute="leading" secondItem="ewc-r7-oQZ" secondAttribute="leading" constant="8" id="6pQ-Yh-iVt"/>
+                                    <constraint firstItem="MRp-dV-Ebg" firstAttribute="top" secondItem="ewc-r7-oQZ" secondAttribute="top" constant="8" id="Rfa-Mo-Foz"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -583,7 +583,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jc1-Qe-43E" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Home" image="Home" id="2KK-oI-2xU"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="vDp-9T-d2p">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="vDp-9T-d2p">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -601,7 +601,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Xfu-PU-6Mx" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="1UC-Ot-N59">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="1UC-Ot-N59">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -628,7 +628,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="eGo-rL-NXi" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Camera" image="Camera" id="3nf-Kf-bxp"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="mxb-VR-cb2">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="mxb-VR-cb2">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -646,7 +646,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="yZD-8J-kw3" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Qvo-Zm-fZs">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Qvo-Zm-fZs">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
