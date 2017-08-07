@@ -17,4 +17,19 @@ open class EAEvent:NSObject{
         self.id = id
         self.name = eventName;
     }
+    
+    
+    static func didSwitchEvent(_ event:EAEvent?) {
+        var name:String = ""
+        var id:String = ""
+        let defaults = UserDefaults.standard
+        
+        if let event = event {
+            name = event.name!
+            id = event.id!
+        }
+        
+        defaults.set(id, forKey: DEFAULT_CURRENT_EVENT_ID)
+        defaults.set(name, forKey: DEFAULT_CURRENT_EVENT_NAME)
+    }
 }

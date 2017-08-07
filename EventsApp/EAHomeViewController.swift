@@ -52,6 +52,11 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
     }
     
     
+    func didSwitchEvent(_ event:EAEvent?) {
+        EAEvent.didSwitchEvent(event)
+        resetHomeViewController()
+    }
+    
     @IBAction func unWindToHomeViewController(_ sender: UIStoryboardSegue) {
         print("unWindToHomeViewController")
         self.tabBarController?.tabBar.isHidden = false;
@@ -65,27 +70,6 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
     override open func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    
-    func didSwitchEvent(_ event:EAEvent?) {
-        self.currentFilesList = nil
-        currentEventFolder = nil
-        self.fileDataMap = Dictionary<String, Data>()
-        var name:String = ""
-        var id:String = ""
-        let defaults = UserDefaults.standard
-        
-        if let event = event {
-            name = event.name!
-            id = event.id!
-        }
-        
-        defaults.set(id, forKey: DEFAULT_CURRENT_EVENT_ID)
-        defaults.set(name, forKey: DEFAULT_CURRENT_EVENT_NAME)
-        updateNavBarTitle(name)
-        
-        self.tableView.reloadData()
     }
     
     func addBackground(_ view:UIView, file:GTLDriveFile!) {
@@ -238,12 +222,14 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
         print("new event folder created")
         revealViewController().revealToggle(animated: true)
         if let folder = notifiaction.object as? GTLDriveFile  {
-            resetHomeViewController()
             currentEventFolder = folder
             updateNavBarTitle(folder.name)
             let defaults = UserDefaults.standard
             defaults.set(folder.name!, forKey: DEFAULT_CURRENT_EVENT_NAME)
             defaults.set(folder.identifier!, forKey: DEFAULT_CURRENT_EVENT_ID)
+            let createdEvent:EAEvent = EAEvent(id: folder.identifier!,eventName: folder.name!)
+            self.didSwitchEvent(createdEvent)
+            resetHomeViewController()
         }
     }
     
@@ -268,7 +254,13 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
     }
     
     func resetHomeViewController() {
-       didSwitchEvent(nil)
+        self.currentFilesList = nil
+        currentEventFolder = nil
+        self.fileDataMap = Dictionary<String, Data>()
+        let defaults = UserDefaults.standard
+        let name:String = defaults.string(forKey: DEFAULT_CURRENT_EVENT_NAME)!
+        updateNavBarTitle(name)
+        self.tableView.reloadData()
     }
     
     func updateNavBarTitle(_ title:String) {
