@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -16,19 +20,39 @@
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xKc-mj-vNV">
                         <rect key="frame" x="0.0" y="0.0" width="376" height="502"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8O1-QO-xkX">
+                                <rect key="frame" x="148" y="211" width="80" height="80"/>
+                                <subviews>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Wly-Yq-4g6">
+                                        <rect key="frame" x="22" y="22" width="37" height="37"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="37" id="2MV-IF-nIy"/>
+                                            <constraint firstAttribute="width" constant="37" id="Qml-Kj-gkH"/>
+                                        </constraints>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="6wQ-8f-Gkf"/>
+                                    <constraint firstItem="Wly-Yq-4g6" firstAttribute="centerX" secondItem="8O1-QO-xkX" secondAttribute="centerX" id="HRZ-oA-Sjj"/>
+                                    <constraint firstAttribute="height" constant="80" id="MwK-EH-s6X"/>
+                                    <constraint firstItem="Wly-Yq-4g6" firstAttribute="centerY" secondItem="8O1-QO-xkX" secondAttribute="centerY" id="i4J-PB-ggc"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="5"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="482" id="Dz8-TZ-buC"/>
+                            <constraint firstItem="8O1-QO-xkX" firstAttribute="centerY" secondItem="xKc-mj-vNV" secondAttribute="centerY" id="bHg-CK-qd9"/>
+                            <constraint firstItem="8O1-QO-xkX" firstAttribute="centerX" secondItem="xKc-mj-vNV" secondAttribute="centerX" id="uNZ-9L-KLT"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="Dz8-TZ-buC"/>
-                            </mask>
-                        </variation>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jake in the park 18/8/2015" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MDA-0S-Ujx">
                         <rect key="frame" x="10" y="512" width="356" height="25"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="25" id="QO9-aD-pB6"/>
                         </constraints>
@@ -65,6 +89,8 @@
                 </variation>
             </tableViewCellContentView>
             <connections>
+                <outlet property="activityIndicator" destination="Wly-Yq-4g6" id="3Yp-rl-DyI"/>
+                <outlet property="activityIndicatorContainerView" destination="8O1-QO-xkX" id="mcQ-58-Mts"/>
                 <outlet property="imageTitleLabel" destination="MDA-0S-Ujx" id="EMa-E7-zwH"/>
                 <outlet property="placeHolderView" destination="xKc-mj-vNV" id="5nH-ct-SAa"/>
             </connections>

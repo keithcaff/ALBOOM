@@ -18,6 +18,7 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
     var currentFilesList:GTLDriveFileList?
     var fileDataMap:Dictionary = Dictionary<String, Data>()
     let homeCellIdentifier:String = "HOME_CELL_IDENTFIER"
+    let UIImageViewTagId = 303
 
     @IBOutlet var menuButton: UIBarButtonItem!
     override open func viewDidLoad() {
@@ -88,41 +89,47 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
         self.tableView.reloadData()
     }
     
-    func addBackground(_ view:UIView, file:GTLDriveFile!) {
-        
+    func addBackground(_ cell:EAHomeTableViewCell, file:GTLDriveFile!) {
+        let view:UIView = cell.placeHolderView
         // screen width and height:
         let width = view.bounds.size.width
         let height = view.bounds.size.height
         var bgImage:UIImage?
+        var imageViewBackground:UIImageView?
         
         if let file = file {
-            //TODO: use the actual file identifier here
-            print("\(file.identifier)")
             let fileData:Data? = self.fileDataMap[file.identifier]
-            
             if let fileData = fileData {
                 bgImage = UIImage(data: fileData)
-                let imageViewBackground = UIImageView(frame: CGRect(x: 0, y: 0, width: width, height: height))
-                imageViewBackground.image = bgImage
-                // you can change the content mode:
-                imageViewBackground.contentMode = UIViewContentMode.scaleToFill
-                imageViewBackground.translatesAutoresizingMaskIntoConstraints = false;
-                view.addSubview(imageViewBackground)
-                
-                let top = NSLayoutConstraint(item: imageViewBackground, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem:view , attribute: NSLayoutAttribute.top, multiplier: 1, constant: 0)
-                let bottom = NSLayoutConstraint(item: imageViewBackground, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem:view , attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 0)
-                let leading = NSLayoutConstraint(item: imageViewBackground, attribute: NSLayoutAttribute.leading, relatedBy: NSLayoutRelation.equal, toItem:view , attribute: NSLayoutAttribute.leading, multiplier: 1, constant: 0)
-                let trailing = NSLayoutConstraint(item: imageViewBackground, attribute: NSLayoutAttribute.trailing, relatedBy: NSLayoutRelation.equal, toItem:view , attribute: NSLayoutAttribute.trailing, multiplier: 1, constant: 0)
-                
-                view.addConstraint(top)
-                view.addConstraint(bottom)
-                view.addConstraint(leading)
-                view.addConstraint(trailing)
-                view.sendSubview(toBack: imageViewBackground)
-
+                activityIndicatorVisible(false, cell:cell)
+                if let view = view.viewWithTag(UIImageViewTagId) {
+                    imageViewBackground = view as? UIImageView
+                }
+                else {
+                    imageViewBackground = UIImageView(frame: CGRect(x: 0, y: 0, width: width, height: height))
+                    imageViewBackground?.tag = UIImageViewTagId
+                    // you can change the content mode:
+                    imageViewBackground?.contentMode = UIViewContentMode.scaleToFill
+                    imageViewBackground?.translatesAutoresizingMaskIntoConstraints = false;
+                    view.addSubview(imageViewBackground!)
+                    let top = NSLayoutConstraint(item: imageViewBackground!, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem:view , attribute: NSLayoutAttribute.top, multiplier: 1, constant: 0)
+                    let bottom = NSLayoutConstraint(item: imageViewBackground!, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem:view , attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 0)
+                    let leading = NSLayoutConstraint(item: imageViewBackground!, attribute: NSLayoutAttribute.leading, relatedBy: NSLayoutRelation.equal, toItem:view , attribute: NSLayoutAttribute.leading, multiplier: 1, constant: 0)
+                    let trailing = NSLayoutConstraint(item: imageViewBackground!, attribute: NSLayoutAttribute.trailing, relatedBy: NSLayoutRelation.equal, toItem:view , attribute: NSLayoutAttribute.trailing, multiplier: 1, constant: 0)
+                    view.addConstraint(top)
+                    view.addConstraint(bottom)
+                    view.addConstraint(leading)
+                    view.addConstraint(trailing)
+                    view.sendSubview(toBack: imageViewBackground!)
+                }
+                imageViewBackground?.image = bgImage
             }
             else {
-                self.showActivityIndicatory(view)
+                if let view = view.viewWithTag(UIImageViewTagId) {
+                    imageViewBackground = view as? UIImageView
+                    imageViewBackground?.image = nil
+                }
+                self.activityIndicatorVisible(true, cell:cell)
             }
         }
     }
@@ -135,17 +142,6 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
             count = data.count
         }
         return count;
-    }
-    
-    open func tableView(_ tableView: UITableView,willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let homeCell:EAHomeTableViewCell = (cell as! EAHomeTableViewCell)
-        //FYI:Adding background image here because the placeHolderview.frame.bounds seem to be incorrect on first call to cell for row
-        for view in homeCell.placeHolderView.subviews{
-            view.removeFromSuperview()
-        }
-        if (self.currentFilesList?.files.indices.contains(indexPath.row) != nil) {
-            addBackground(homeCell.placeHolderView, file: (self.currentFilesList?.files[indexPath.row] as! GTLDriveFile))
-        }
     }
 
     open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -163,42 +159,46 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
         cell = tableView.dequeueReusableCell(withIdentifier: homeCellIdentifier, for: indexPath) as? EAHomeTableViewCell
         cell?.imageTitleLabel.text = file?.name
         
-        //        if let name:String = file?.name {
-        //            cell?.imageTitleLabel.text = name
-        //        }
-        //        let bgImage:UIImage! = UIImage(named: "jake.jpg")
-        //        bgImage.resizableImageWithCapInsets(UIEdgeInsetsMake(0,5,40,1), resizingMode: UIImageResizingMode.Stretch)
-        //        let imageView:UIImageView = UIImageView(image: bgImage)
-        //        cell?.backgroundView = imageView
-        
+        if (self.currentFilesList?.files.indices.contains(indexPath.row) != nil) {
+            addBackground(cell!, file: (self.currentFilesList?.files[indexPath.row] as! GTLDriveFile))
+        }
         return cell!
     }
     
     
     
     
-    func showActivityIndicatory(_ uiView: UIView) {
-        let container: UIView = UIView()
-        container.frame = uiView.frame
-        container.center = uiView.center
-        container.backgroundColor = UIColor(hex: 0xffffff, alpha: 0.3)
-        let loadingView: UIView = UIView()
-        loadingView.frame = CGRect(x:0, y:0, width:80, height:80)
-        loadingView.center = uiView.center
-        loadingView.backgroundColor = UIColor(hex: 0x444444, alpha: 0.7)
-        loadingView.clipsToBounds = true
-        loadingView.layer.cornerRadius = 10
+    func activityIndicatorVisible(_ visible:Bool, cell:EAHomeTableViewCell!) {
+        cell.activityIndicatorContainerView.isHidden = !visible
         
-        let actInd: UIActivityIndicatorView = UIActivityIndicatorView()
-        actInd.frame = CGRect(x:0.0, y:0.0, width:80.0, height:80.0);
-        actInd.activityIndicatorViewStyle =
-            UIActivityIndicatorViewStyle.whiteLarge
-        actInd.center = CGPoint(x:loadingView.frame.size.width / 2,
-                                y:loadingView.frame.size.height / 2);
-        loadingView.addSubview(actInd)
-        container.addSubview(loadingView)
-        uiView.addSubview(container)
-        actInd.startAnimating()
+        if(visible) {
+           cell.activityIndicator.startAnimating()
+        }
+        
+//        let container: UIView = UIView()
+//        container.frame = uiView.frame
+//        container.center = uiView.center
+//        container.backgroundColor = UIColor(hex: 0xffffff, alpha: 0.3)
+//        let loadingView: UIView = UIView()
+//        loadingView.frame = CGRect(x:0, y:0, width:80, height:80)
+//        loadingView.center = uiView.center
+//        loadingView.backgroundColor = UIColor(hex: 0x444444, alpha: 0.7)
+//        loadingView.clipsToBounds = true
+//        loadingView.layer.cornerRadius = 10
+//        
+//        let actInd: UIActivityIndicatorView = UIActivityIndicatorView()
+//        actInd.frame = CGRect(x:0.0, y:0.0, width:80.0, height:80.0);
+//        actInd.activityIndicatorViewStyle =
+//            UIActivityIndicatorViewStyle.whiteLarge
+//        actInd.center = CGPoint(x:loadingView.frame.size.width / 2,
+//                                y:loadingView.frame.size.height / 2);
+//        loadingView.addSubview(actInd)
+//        container.addSubview(loadingView)
+//        uiView.addSubview(container)
+//        actInd.startAnimating()
+        
+        
+        
     }
     
     

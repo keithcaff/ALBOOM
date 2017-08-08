@@ -13,5 +13,6 @@ open class EAHomeTableViewCell:UITableViewCell {
     @IBOutlet weak var imageTitleLabel: UILabel!
     @IBOutlet weak var placeHolderView: UIView!
     
-    
+    @IBOutlet weak var activityIndicatorContainerView: UIView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 }
