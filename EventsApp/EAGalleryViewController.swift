@@ -24,7 +24,6 @@ open class EAGalleryViewController: UIViewController, ImagePickerDelegate {
         super.viewDidLoad()
         uploadButton.isEnabled = false
         uploadButton.alpha = 0.3
-        imagePickerController
         imagePickerController.delegate = self
         imagePickerController.imageLimit = 1
 //        Configuration.doneButtonTitle = "Done"

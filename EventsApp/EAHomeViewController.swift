@@ -53,6 +53,11 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
     }
     
     
+    func didSwitchEvent(_ event:EAEvent?) {
+        EAEvent.didSwitchEvent(event)
+        resetHomeViewController()
+    }
+    
     @IBAction func unWindToHomeViewController(_ sender: UIStoryboardSegue) {
         print("unWindToHomeViewController")
         self.tabBarController?.tabBar.isHidden = false;
@@ -68,6 +73,7 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
         // Dispose of any resources that can be recreated.
     }
     
+<<<<<<< HEAD
     
     func didSwitchEvent(_ event:EAEvent?) {
         self.currentFilesList = nil
@@ -238,12 +244,14 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
         print("new event folder created")
         revealViewController().revealToggle(animated: true)
         if let folder = notifiaction.object as? GTLDriveFile  {
-            resetHomeViewController()
             currentEventFolder = folder
             updateNavBarTitle(folder.name)
             let defaults = UserDefaults.standard
             defaults.set(folder.name!, forKey: DEFAULT_CURRENT_EVENT_NAME)
             defaults.set(folder.identifier!, forKey: DEFAULT_CURRENT_EVENT_ID)
+            let createdEvent:EAEvent = EAEvent(id: folder.identifier!,eventName: folder.name!)
+            self.didSwitchEvent(createdEvent)
+            resetHomeViewController()
         }
     }
     
@@ -268,7 +276,13 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
     }
     
     func resetHomeViewController() {
-       didSwitchEvent(nil)
+        self.currentFilesList = nil
+        currentEventFolder = nil
+        self.fileDataMap = Dictionary<String, Data>()
+        let defaults = UserDefaults.standard
+        let name:String = defaults.string(forKey: DEFAULT_CURRENT_EVENT_NAME)!
+        updateNavBarTitle(name)
+        self.tableView.reloadData()
     }
     
     func updateNavBarTitle(_ title:String) {

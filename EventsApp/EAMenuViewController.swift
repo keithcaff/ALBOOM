@@ -37,8 +37,9 @@ class EAMenuViewController: UIViewController ,UITableViewDelegate, UITableViewDa
     
     //MARK: UITableViewDelegate delegate methods
     @IBAction func logOutButtonTapped(_ sender: Any) {
-         print("Log out button tapped!")
+        print("Log out button tapped!")
         GIDSignIn.sharedInstance().signOut()
+        EAEvent.didSwitchEvent(nil)
         if let nav = revealViewController().frontViewController.navigationController {
             revealViewController().revealToggle(animated: true)
             nav.popToRootViewController(animated: true)// the root vc is the EARootViewController
