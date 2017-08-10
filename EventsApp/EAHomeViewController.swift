@@ -73,28 +73,7 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
         // Dispose of any resources that can be recreated.
     }
     
-<<<<<<< HEAD
-    
-    func didSwitchEvent(_ event:EAEvent?) {
-        self.currentFilesList = nil
-        currentEventFolder = nil
-        self.fileDataMap = Dictionary<String, Data>()
-        var name:String = ""
-        var id:String = ""
-        let defaults = UserDefaults.standard
-        
-        if let event = event {
-            name = event.name!
-            id = event.id!
-        }
-        
-        defaults.set(id, forKey: DEFAULT_CURRENT_EVENT_ID)
-        defaults.set(name, forKey: DEFAULT_CURRENT_EVENT_NAME)
-        updateNavBarTitle(name)
-        
-        self.tableView.reloadData()
-    }
-    
+       
     func addBackground(_ cell:EAHomeTableViewCell, file:GTLDriveFile!) {
         let view:UIView = cell.placeHolderView
         // screen width and height:
