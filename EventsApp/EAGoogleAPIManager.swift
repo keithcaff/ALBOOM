@@ -38,16 +38,12 @@ class EAGoogleAPIManager {
         folder.mimeType = "application/vnd.google-apps.folder";
         let query:GTLQueryDrive = GTLQueryDrive.queryForFilesCreate(withObject: folder,uploadParameters:nil)
         
-       // weak var weakSelf:EAGoogleAPIManager! = self
         service.executeQuery(query, completionHandler:  { (ticket, createdFolder , error) -> Void in
             if let error = error {
-                print("failed with error: \(error)")
-                //TODO:if 401 error - showlogin screen...
+                self.handleGoogleAPIError(error)
             }
             else {
                 print("success crated folder: \(createdFolder)")
-                //weakSelf.hideMenu()
-                //post some notification that an event was created with event name
                 NotificationCenter.default.post(name: .NOTIFICATION_EVENT_FOLDER_CREATED, object: createdFolder)
             }
         })
@@ -57,17 +53,16 @@ class EAGoogleAPIManager {
         let service:GTLService = gtlServiceDrive
 //        GTLQueryDrive *queryFilesList = [GTLQueryDrive queryForChildrenListWithFolderId:@"root"];
 //        queryFilesList.q = @"mimeType='application/vnd.google-apps.folder'";
-
         let query:GTLQueryDrive = GTLQueryDrive.queryForFilesList()
         query.q = "mimeType='application/vnd.google-apps.folder' and 'root' in parents and trashed=false";
-        //weak var weakSelf:EAGoogleAPIManager! = self
         setAuthorizerForService(GIDSignIn.sharedInstance(), user: GIDSignIn.sharedInstance().currentUser,service:service)
         service.executeQuery(query, completionHandler: {(ticket: GTLServiceTicket?, object: Any?, error: Error?) in
-            if(error != nil){
-                print("Error :\(error?.localizedDescription)")
-                return
+            if let error = error {
+                self.handleGoogleAPIError(error)
             }
-            print("object:  \(object)")
+            else {
+                print("Root event folder retrieved:  \(object)")
+            }
         })
     }
     
@@ -80,22 +75,20 @@ class EAGoogleAPIManager {
         query.q = "mimeType='application/vnd.google-apps.folder' and 'root' in parents and name contains '\(EVENT_FOLDER_PREFIX)' and trashed = false"
         query.fields = "nextPageToken, files(id, name)"
         service.executeQuery(query, completionHandler:  { (ticket, folders , error) -> Void in
-            if(error != nil && error is NSError){
-                print("Error: \(error)")
-                let nsError:NSError  = (error as! NSError)
-                let code:Int = nsError.code
-                if(code == 401) {
-                    //user needs to be authenticated again.
-                }
-                return
+            let testing401:Bool = true
+            
+            if let error = error {
+                self.handleGoogleAPIError(error)
+            }
+            else if testing401 {
+                let testError = NSError(domain: "KC_TEST_ERROR", code: 401, userInfo: nil)
+                self.handleGoogleAPIError(testError)
             }
             else {
-                print("Error: \(error)")
-            }
-            
-            print("successfully retrieved folders:  \(folders)")
-            DispatchQueue.main.async {
-                NotificationCenter.default.post(name: .NOTIFICATION_EVENT_FOLDERS_RETRIEVED, object: folders)
+                print("successfully retrieved folders:  \(folders)")
+                DispatchQueue.main.async {
+                    NotificationCenter.default.post(name: .NOTIFICATION_EVENT_FOLDERS_RETRIEVED, object: folders)
+                }
             }
         })
     }
@@ -109,16 +102,17 @@ class EAGoogleAPIManager {
         query.q = "'\(parentId)' in parents and trashed = false"
         query.fields = "nextPageToken, files(id, name)"
         service.executeQuery(query, completionHandler: {(ticket: GTLServiceTicket?, files:Any?, error:Error?) in
-            if(error != nil){
-                print("Error: \(error)")
-                return
+            if let error = error {
+                self.handleGoogleAPIError(error)
             }
-            let defaults = UserDefaults.standard
-            defaults.set(event.name, forKey: DEFAULT_CURRENT_EVENT_NAME)
-            defaults.set(event.id, forKey: DEFAULT_CURRENT_EVENT_ID)
-            print("successfully retrieved files:  \(files)")
-            DispatchQueue.main.async {
-                NotificationCenter.default.post(name: .NOTIFICATION_EVENT_FILES_RETRIEVED, object: files)
+            else {
+                let defaults = UserDefaults.standard
+                defaults.set(event.name, forKey: DEFAULT_CURRENT_EVENT_NAME)
+                defaults.set(event.id, forKey: DEFAULT_CURRENT_EVENT_ID)
+                print("successfully retrieved files:  \(files)")
+                DispatchQueue.main.async {
+                    NotificationCenter.default.post(name: .NOTIFICATION_EVENT_FILES_RETRIEVED, object: files)
+                }
             }
         })
     }
@@ -132,8 +126,8 @@ class EAGoogleAPIManager {
         let fetcher:GTMSessionFetcher = service.fetcherService.fetcher(with: url)
         fetcher.setProperty(file.identifier, forKey:"fileId")
         fetcher.beginFetch { (data:Data?, error:Error?) in
-            if(error != nil){
-                print("Error: \(error)")
+            if let error = error {
+                self.handleGoogleAPIError(error)
             }
             else {
                 let fetcherProperties: Dictionary<String,String>! = [
@@ -145,7 +139,6 @@ class EAGoogleAPIManager {
             }
         }
     }
-
     
     func deleteEvent(_ event:EAEvent) {
         let service:GTLService = gtlServiceDrive
@@ -154,21 +147,37 @@ class EAGoogleAPIManager {
         let parentId:String  = event.id!;
         let query:GTLQueryDrive  = GTLQueryDrive.queryForFilesDelete(withFileId: parentId)
         service.executeQuery(query, completionHandler: {(ticket: GTLServiceTicket?, id:Any?, error:Error?) in
-            if(error != nil){
-                print("Error: \(error)")
-                return
+            if let error = error {
+                self.handleGoogleAPIError(error)
             }
-//            let defaults = UserDefaults.standard
-//            defaults.set(event.name, forKey: DEFAULT_CURRENT_EVENT_NAME)
-
-            print("deleted file successfully!!! \(id)")
-            DispatchQueue.main.async {
-                NotificationCenter.default.post(name: .NOTIFICATION_EVENT_FOLDER_DELETED, object: event)
+            else {
+                print("deleted file successfully!!! \(id)")
+                DispatchQueue.main.async {
+                    NotificationCenter.default.post(name: .NOTIFICATION_EVENT_FOLDER_DELETED, object: event)
+                }
             }
         })
     }
+    
+    func handleGoogleAPIError(_ error:Error) {
+        print("EAGoogleAPIManager-Error: \(error)")
+        let nserror:NSError! = error as NSError
+        switch nserror.code {
+            case 401:
+                self.postUnAuthenticatedNotifcation()
+                break;
+            default:
+                break;
+        }
+    }
 
-    
-    
+    func postUnAuthenticatedNotifcation() {
+        //TODO: Next two lines are test code remove!!!
+        GIDSignIn.sharedInstance().signOut()
+        EAEvent.didSwitchEvent(nil)
+        DispatchQueue.main.async {
+            NotificationCenter.default.post(name: .NOTIFICATION_USER_UNAUTHENTICATED, object: nil)
+        }
+    }
    
 }

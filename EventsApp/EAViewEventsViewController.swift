@@ -21,7 +21,7 @@ open class EAViewEventsViewController: UIViewController, UITableViewDelegate, UI
     func unWindToMenu(_ event:EAEvent) {
         print("selected event \(event.name!)")
         selectedEvent = event
-        self.performSegue(withIdentifier: EXIT_VIEW_EVENTS_UNWIND_SEGUE,sender:self);
+        self.performSegue(withIdentifier: SegueIdentifiers.EXIT_VIEW_EVENTS_UNWIND_SEGUE,sender:self);
     }
     
     open override func viewDidLoad() {

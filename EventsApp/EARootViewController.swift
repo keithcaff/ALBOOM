@@ -16,6 +16,9 @@ class EARootViewController: UIViewController,GIDSignInDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(userUnAuthenticated), name: .NOTIFICATION_USER_UNAUTHENTICATED, object: nil)
+        
+        
         var configureError: NSError?
         GGLContext.sharedInstance().configureWithError(&configureError)
         if (configureError != nil) {
@@ -35,36 +38,64 @@ class EARootViewController: UIViewController,GIDSignInDelegate {
         super.viewDidAppear(animated)
         if (GIDSignIn.sharedInstance().currentUser == nil || !GIDSignIn.sharedInstance().hasAuthInKeychain()) {
             GIDSignIn.sharedInstance().signInSilently()
-            showLogin()
+            createAndShowLoginViewController()
         }
         else {
             showRootSWRevealViewController()
         }
     }
     
-    func showLogin() {
-        let storyboard = UIStoryboard(name: StoryBoardIdentifiers.MAIN_STORYBOARD, bundle: nil)
-        loginViewController = (storyboard.instantiateViewController(withIdentifier: ViewControllerIdentifiers.LOGIN_VIEW_CONTROLLER) as! EALoginViewController)
-        if let nav = self.navigationController {
-            nav.pushViewController(self.loginViewController!, animated: false)
+    func createAndShowLoginViewController() {
+        var loginVCOnStack:Bool = false
+        
+        if let nav = self.navigationController, let loginVc = self.loginViewController {
+            loginVCOnStack = nav.viewControllers.contains(loginVc)
+        }
+        
+        if !(loginVCOnStack) {
+            let storyboard = UIStoryboard(name: StoryBoardIdentifiers.MAIN_STORYBOARD, bundle: nil)
+            loginViewController = (storyboard.instantiateViewController(withIdentifier: ViewControllerIdentifiers.LOGIN_VIEW_CONTROLLER) as! EALoginViewController)
+            if let nav = self.navigationController {
+                nav.pushViewController(self.loginViewController!, animated: false)
+            }
         }
     }
     
     func showRootSWRevealViewController() {
         let storyboard = UIStoryboard(name: StoryBoardIdentifiers.MAIN_STORYBOARD, bundle: nil)
         eaRootSWRevealViewController = (storyboard.instantiateViewController(withIdentifier: ViewControllerIdentifiers.ROOT_SW_REVEAL_VIEW_CONTROLLER) as! SWRevealViewController)
+        var swREvealViewControllerOnStack:Bool = false
+        
+        
         if let nav = self.navigationController {
-            nav.pushViewController(self.eaRootSWRevealViewController!, animated: false)
+            nav.viewControllers.forEach { viewController in
+                if viewController.isKind(of:SWRevealViewController.self) {
+                    swREvealViewControllerOnStack = true
+                }
+            }
+            if (!swREvealViewControllerOnStack) {
+                nav.pushViewController(self.eaRootSWRevealViewController!, animated: false)
+            }
         }
     }
-
+    
+    func pushViewControllerOnTop(_ viewController:UIViewController!) {
+        if let nav = self.navigationController {
+            nav.pushViewController(viewController, animated: false)
+        }
+    }
+    
     // MARK: GIDSignInDelegate methods
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if(error != nil) {
             print("We got a sign in error: \(error)")
             //present the login view controller if not already presented
             if(self.loginViewController == nil) {
-                 showLogin()
+                 createAndShowLoginViewController()
+            }
+            else {
+                //Push login vc when user has been aunthenticated/timed out
+                self.pushViewControllerOnTop(self.loginViewController)
             }
         }
         else {
@@ -79,5 +110,11 @@ class EARootViewController: UIViewController,GIDSignInDelegate {
                 showRootSWRevealViewController()
             }
         }
+    }
+    
+    
+    //MARK: Notifcation Handlers
+    func userUnAuthenticated() {
+       GIDSignIn.sharedInstance().signInSilently()
     }
 }

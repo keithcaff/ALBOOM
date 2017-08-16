@@ -19,6 +19,7 @@ extension Notification.Name {
     static let NOTIFICATION_EVENT_FOLDERS_RETRIEVED = Notification.Name("notification.event.folders.retrieved")
     static let NOTIFICATION_EVENT_FILES_RETRIEVED = Notification.Name("notification.event.files.retrieved")
     static let NOTIFICATION_EVENT_FILE_DOWNLOADED = Notification.Name("notification.event.file.downloaded")
+    static let NOTIFICATION_USER_UNAUTHENTICATED = Notification.Name("notification.user.unathenticated")
 }
 
 
@@ -27,9 +28,12 @@ let DEFAULT_CURRENT_EVENT_NAME:String! = "user.defaults.current.event.name"
 let DEFAULT_CURRENT_EVENT_ID:String! = "user.defaults.current.event.id"
 
 //Segue Constants
-let EXIT_VIEW_EVENTS_UNWIND_SEGUE:String! = "exitViewEventsUnwindSegue"
-let CREATE_EVENT_SEGUE:String! = "createEventSegue"
-let VIEW_EVENTS_SEGUE:String! = "viewEventsSegue"
+struct SegueIdentifiers {
+    static let EXIT_VIEW_EVENTS_UNWIND_SEGUE = "exitViewEventsUnwindSegue"
+    static let CREATE_EVENT_SEGUE = "createEventSegue"
+    static let CREATE_EVENT_UNWIND_SEGUE = "createEventUnWind"
+    static let VIEW_EVENTS_SEGUE = "viewEventsSegue"
+}
 
 
 //XIB Identifiers

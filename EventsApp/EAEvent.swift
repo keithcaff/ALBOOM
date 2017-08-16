@@ -9,7 +9,7 @@
 import Foundation
 
 
-open class EAEvent:NSObject{
+class EAEvent:NSObject{
     var name:String?
     var id:String?
     
@@ -28,7 +28,6 @@ open class EAEvent:NSObject{
             name = event.name!
             id = event.id!
         }
-        
         defaults.set(id, forKey: DEFAULT_CURRENT_EVENT_ID)
         defaults.set(name, forKey: DEFAULT_CURRENT_EVENT_NAME)
     }

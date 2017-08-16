@@ -547,7 +547,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.98594826459999996" green="0.0" blue="0.026950567960000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="Ox2-g1-eKX" firstAttribute="leading" secondItem="U55-Wi-QcK" secondAttribute="leadingMargin" constant="54" id="ADJ-iU-LIq"/>
                             <constraint firstItem="TCP-aV-dMw" firstAttribute="top" secondItem="U55-Wi-QcK" secondAttribute="topMargin" constant="80" id="Atj-So-iQp"/>

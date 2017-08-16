@@ -14,15 +14,13 @@ class EAMenuViewController: UIViewController ,UITableViewDelegate, UITableViewDa
     
     fileprivate let service = GTLServiceDrive()
     
-    private let menuItemCellIdentifier = "EAMenuItemCell"
+    private let menuItemCellIReuseIdentifier = "EAMenuItemCell"
     private let menuItemLabelTag = 101
     enum MenuOptions: Int {
         case CreateEvent = 0
         case ViewEvents = 1
         static var count: Int{ return 2 }//UPDATE IF ADDING NEW ENUM VALUES!!!!
     }
-    
-    //private let menuItems = [menuOptions.CreateEvent:"Create event",menuOptions.ViewEvents:"View events"];
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var footerView: UIView!
@@ -41,21 +39,21 @@ class EAMenuViewController: UIViewController ,UITableViewDelegate, UITableViewDa
         GIDSignIn.sharedInstance().signOut()
         EAEvent.didSwitchEvent(nil)
         if let nav = revealViewController().frontViewController.navigationController {
-            revealViewController().revealToggle(animated: true)
-            nav.popToRootViewController(animated: true)// the root vc is the EARootViewController
+            revealViewController().revealToggle(animated: false)
+            nav.popToRootViewController(animated: false)// the root vc is the EARootViewController
         }
     }
     
     @IBAction func unWindToMenu(_ sender: UIStoryboardSegue) {
         print("unWindToMenu")
-        if (sender.identifier == "createEventUnWind") {
+        if (sender.identifier == SegueIdentifiers.CREATE_EVENT_UNWIND_SEGUE) {
             let source: EACreateEventViewController
             source = sender.source as! EACreateEventViewController
             if let event = source.event {
                 EAGoogleAPIManager.sharedInstance.createEventFolder(event)
             }
         }
-        if (sender.identifier == EXIT_VIEW_EVENTS_UNWIND_SEGUE) {
+        if (sender.identifier == SegueIdentifiers.EXIT_VIEW_EVENTS_UNWIND_SEGUE) {
             print("exitViewEventsUnwindSegue")
             let source: EAViewEventsViewController
             
@@ -80,15 +78,13 @@ class EAMenuViewController: UIViewController ,UITableViewDelegate, UITableViewDa
     //MARK: UITableViewDelegate delegate methods
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let menuOption:MenuOptions = MenuOptions(rawValue: indexPath.row)!
-         //self.performSegue(withIdentifier: EXIT_VIEW_EVENTS_UNWIND_SEGUE,sender:self);
         switch menuOption {
         case .CreateEvent:
             print("segue to create event")
-           self.performSegue(withIdentifier: CREATE_EVENT_SEGUE,sender:self)
+           self.performSegue(withIdentifier: SegueIdentifiers.CREATE_EVENT_SEGUE,sender:self)
         case .ViewEvents:
-            self.performSegue(withIdentifier: VIEW_EVENTS_SEGUE,sender:self)
+            self.performSegue(withIdentifier: SegueIdentifiers.VIEW_EVENTS_SEGUE,sender:self)
         }
-
     }
     
     
@@ -98,9 +94,8 @@ class EAMenuViewController: UIViewController ,UITableViewDelegate, UITableViewDa
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let menuItemCell:UITableViewCell! = tableView.dequeueReusableCell(withIdentifier: menuItemCellIdentifier)
+        let menuItemCell:UITableViewCell! = tableView.dequeueReusableCell(withIdentifier: menuItemCellIReuseIdentifier)
         let menuItemLabel:UILabel = menuItemCell?.viewWithTag(menuItemLabelTag) as! UILabel
-        //menuItemCell.selectionStyle = .default
         var labelText:String;
         
         let menuOption:MenuOptions = MenuOptions(rawValue: indexPath.row)!
@@ -111,13 +106,11 @@ class EAMenuViewController: UIViewController ,UITableViewDelegate, UITableViewDa
             labelText = MenuItemLabels.VIEW_EVENTS
         }
         menuItemLabel.text = labelText
-        
         return menuItemCell
     }
     
-    
     func hideMenu() {
-        revealViewController().revealToggle(animated: true)
+        revealViewController().revealToggle(animated: false)
     }
     
 }
