@@ -32,16 +32,23 @@ let CREATE_EVENT_SEGUE:String! = "createEventSegue"
 let VIEW_EVENTS_SEGUE:String! = "viewEventsSegue"
 
 
-//NIB Identifiers
-let NIB_VIEW_EVENT_CELL_IDENFIER:String! = "EAViewEventTableViewCell"
-let NIB_HOME_CELL_IDENFIER:String! = "EAHomeTableViewCell"
+//XIB Identifiers
+struct XIBIdentifiers {
+    static let XIB_VIEW_EVENT_CELL_IDENTIFIER:String! = "EAViewEventTableViewCell"
+    static let XIB_HOME_CELL_IDENTIFIER:String! = "EAHomeTableViewCell"
+}
 
-//Cell identifiers
-let CELL_VIEW_EVENT_IDENTIFIER:String! = "cell.view.event"
-let CELL_HOME_IDENTIFIER:String! = "cell.home"
-
-struct EAMenuItemLabels {
-    public static let CREATE_EVENT = "Create Event"
+struct MenuItemLabels {
+    static let CREATE_EVENT = "Create Event"
     static let VIEW_EVENTS = "View Events"
     static let LOG_OUT = "Log Out"
+}
+
+struct StoryBoardIdentifiers {
+    static let MAIN_STORYBOARD = "EAMain"
+}
+
+struct ViewControllerIdentifiers {
+    static let LOGIN_VIEW_CONTROLLER = "LoginViewController"
+    static let ROOT_SW_REVEAL_VIEW_CONTROLLER = "RootSWRevealViewController"
 }

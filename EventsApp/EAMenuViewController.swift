@@ -32,7 +32,7 @@ class EAMenuViewController: UIViewController ,UITableViewDelegate, UITableViewDa
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
-        logOutButton.setTitle(EAMenuItemLabels.LOG_OUT, for: .normal)
+        logOutButton.setTitle(MenuItemLabels.LOG_OUT, for: .normal)
     }
     
     //MARK: UITableViewDelegate delegate methods
@@ -106,9 +106,9 @@ class EAMenuViewController: UIViewController ,UITableViewDelegate, UITableViewDa
         let menuOption:MenuOptions = MenuOptions(rawValue: indexPath.row)!
         switch menuOption {
         case .CreateEvent:
-            labelText = EAMenuItemLabels.CREATE_EVENT
+            labelText = MenuItemLabels.CREATE_EVENT
         case .ViewEvents:
-            labelText = EAMenuItemLabels.VIEW_EVENTS
+            labelText = MenuItemLabels.VIEW_EVENTS
         }
         menuItemLabel.text = labelText
         

@@ -21,11 +21,9 @@ class EARootViewController: UIViewController,GIDSignInDelegate {
         if (configureError != nil) {
             print("We have an error! \(configureError)")
         }
+        
         GIDSignIn.sharedInstance().scopes.append(kGTLAuthScopeDrive)
-        
         GIDSignIn.sharedInstance().delegate = self
-        
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -36,26 +34,25 @@ class EARootViewController: UIViewController,GIDSignInDelegate {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if (GIDSignIn.sharedInstance().currentUser == nil || !GIDSignIn.sharedInstance().hasAuthInKeychain()) {
-            //GIDSignIn.sharedInstance().signInSilently()
-            showLogin(false)
+            GIDSignIn.sharedInstance().signInSilently()
+            showLogin()
         }
         else {
-            showRootSWRevealViewController(false)
+            showRootSWRevealViewController()
         }
     }
     
-    func showLogin(_ animated:Bool) {
-        let storyboard = UIStoryboard(name: "EAMain", bundle: nil)
-        loginViewController = (storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! EALoginViewController)
+    func showLogin() {
+        let storyboard = UIStoryboard(name: StoryBoardIdentifiers.MAIN_STORYBOARD, bundle: nil)
+        loginViewController = (storyboard.instantiateViewController(withIdentifier: ViewControllerIdentifiers.LOGIN_VIEW_CONTROLLER) as! EALoginViewController)
         if let nav = self.navigationController {
             nav.pushViewController(self.loginViewController!, animated: false)
         }
     }
     
-    
-    func showRootSWRevealViewController(_ animated:Bool) {
-        let storyboard = UIStoryboard(name: "EAMain", bundle: nil)
-        eaRootSWRevealViewController = (storyboard.instantiateViewController(withIdentifier: "RootSWRevealViewController") as! SWRevealViewController)
+    func showRootSWRevealViewController() {
+        let storyboard = UIStoryboard(name: StoryBoardIdentifiers.MAIN_STORYBOARD, bundle: nil)
+        eaRootSWRevealViewController = (storyboard.instantiateViewController(withIdentifier: ViewControllerIdentifiers.ROOT_SW_REVEAL_VIEW_CONTROLLER) as! SWRevealViewController)
         if let nav = self.navigationController {
             nav.pushViewController(self.eaRootSWRevealViewController!, animated: false)
         }
@@ -64,25 +61,23 @@ class EARootViewController: UIViewController,GIDSignInDelegate {
     // MARK: GIDSignInDelegate methods
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if(error != nil) {
-            print("Looks like we got a sign in error \(error)")
+            print("We got a sign in error: \(error)")
             //present the login view controller if not already presented
             if(self.loginViewController == nil) {
-                 showLogin(true)
+                 showLogin()
             }
         }
         else {
-            print("Wow our user signed in \(user)")
+            print("Our user signed in:  \(user)")
             if (self.loginViewController != nil) { //remove the login view controller from the root nav before navigating swreveal vc
                 if let nav = self.navigationController {
                     nav.popViewController(animated: false)
-                    showRootSWRevealViewController(true)
+                    showRootSWRevealViewController()
                 }
             }
             else {
-                showRootSWRevealViewController(true)
+                showRootSWRevealViewController()
             }
         }
     }
-    
-  
 }

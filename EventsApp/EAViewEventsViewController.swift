@@ -15,7 +15,7 @@ open class EAViewEventsViewController: UIViewController, UITableViewDelegate, UI
     @IBOutlet var tableView: UITableView!
     
     var data:NSMutableArray?
-    let viewEventCellIdentifier:String = "VIEW_EVENT_CELL"
+    let viewEventCellIReuseIdentifier:String = "VIEW_EVENT_CELL"
     var selectedEvent:EAEvent?
     
     func unWindToMenu(_ event:EAEvent) {
@@ -30,8 +30,8 @@ open class EAViewEventsViewController: UIViewController, UITableViewDelegate, UI
         NotificationCenter.default.addObserver(self, selector: #selector(eventFolderDeleted), name: .NOTIFICATION_EVENT_FOLDER_DELETED, object: nil)
         self.tableView.dataSource = self
         self.tableView.delegate = self
-        let nib = UINib(nibName: "EAViewEventTableViewCell", bundle:nil)
-        self.tableView.register(nib, forCellReuseIdentifier: viewEventCellIdentifier)
+        let nib = UINib(nibName: XIBIdentifiers.XIB_VIEW_EVENT_CELL_IDENTIFIER, bundle:nil)
+        self.tableView.register(nib, forCellReuseIdentifier: viewEventCellIReuseIdentifier)
     }
     
     
@@ -98,7 +98,7 @@ open class EAViewEventsViewController: UIViewController, UITableViewDelegate, UI
             return EAViewEventTableViewCell()
         }
         let event:EAEvent = (self.data!.object(at: indexPath.row) as! EAEvent)
-        cell = tableView.dequeueReusableCell(withIdentifier: viewEventCellIdentifier, for: indexPath) as? EAViewEventTableViewCell
+        cell = tableView.dequeueReusableCell(withIdentifier: viewEventCellIReuseIdentifier, for: indexPath) as? EAViewEventTableViewCell
         cell?.event = event
         cell?.unWindCallback = unWindToMenu;
         cell!.name.text = event.name!

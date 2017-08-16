@@ -17,7 +17,7 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
     var currentEventFolder:GTLDriveFile?
     var currentFilesList:GTLDriveFileList?
     var fileDataMap:Dictionary = Dictionary<String, Data>()
-    let homeCellIdentifier:String = "HOME_CELL_IDENTFIER"
+    let homeCellReuseIdentifier:String = "eaHomeTableViewCell"
     let UIImageViewTagId = 303
 
     @IBOutlet var menuButton: UIBarButtonItem!
@@ -47,8 +47,8 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
         self.tableView.delegate = self
         self.tableView.rowHeight = UITableViewAutomaticDimension;
         self.tableView.estimatedRowHeight = 545
-        let nib = UINib(nibName: "EAHomeTableViewCell", bundle:nil)
-        self.tableView.register(nib, forCellReuseIdentifier: homeCellIdentifier)
+        let nib = UINib(nibName: XIBIdentifiers.XIB_VIEW_EVENT_CELL_IDENTIFIER, bundle:nil)
+        self.tableView.register(nib, forCellReuseIdentifier: homeCellReuseIdentifier)
         
     }
     
@@ -120,7 +120,6 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
     }
     
     // MARK:Tableview delegates
-    
     open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var count:Int = 0
         if let data = currentFilesList?.files {
@@ -141,7 +140,7 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
             file = (files.object(at: indexPath.row) as! GTLDriveFile)
         }
         
-        cell = tableView.dequeueReusableCell(withIdentifier: homeCellIdentifier, for: indexPath) as? EAHomeTableViewCell
+        cell = tableView.dequeueReusableCell(withIdentifier: homeCellReuseIdentifier, for: indexPath) as? EAHomeTableViewCell
         cell?.imageTitleLabel.text = file?.name
         
         if (self.currentFilesList?.files.indices.contains(indexPath.row) != nil) {
@@ -159,31 +158,6 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
         if(visible) {
            cell.activityIndicator.startAnimating()
         }
-        
-//        let container: UIView = UIView()
-//        container.frame = uiView.frame
-//        container.center = uiView.center
-//        container.backgroundColor = UIColor(hex: 0xffffff, alpha: 0.3)
-//        let loadingView: UIView = UIView()
-//        loadingView.frame = CGRect(x:0, y:0, width:80, height:80)
-//        loadingView.center = uiView.center
-//        loadingView.backgroundColor = UIColor(hex: 0x444444, alpha: 0.7)
-//        loadingView.clipsToBounds = true
-//        loadingView.layer.cornerRadius = 10
-//        
-//        let actInd: UIActivityIndicatorView = UIActivityIndicatorView()
-//        actInd.frame = CGRect(x:0.0, y:0.0, width:80.0, height:80.0);
-//        actInd.activityIndicatorViewStyle =
-//            UIActivityIndicatorViewStyle.whiteLarge
-//        actInd.center = CGPoint(x:loadingView.frame.size.width / 2,
-//                                y:loadingView.frame.size.height / 2);
-//        loadingView.addSubview(actInd)
-//        container.addSubview(loadingView)
-//        uiView.addSubview(container)
-//        actInd.startAnimating()
-        
-        
-        
     }
     
     
