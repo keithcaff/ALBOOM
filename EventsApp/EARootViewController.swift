@@ -84,14 +84,14 @@ class EARootViewController: UIViewController,GIDSignInDelegate {
             nav.pushViewController(viewController, animated: false)
         }
     }
-    
+ 
     // MARK: GIDSignInDelegate methods
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if(error != nil) {
             print("We got a sign in error: \(error)")
             //present the login view controller if not already presented
             if(self.loginViewController == nil) {
-                 createAndShowLoginViewController()
+                createAndShowLoginViewController()
             }
             else {
                 //Push login vc when user has been aunthenticated/timed out
@@ -102,8 +102,13 @@ class EARootViewController: UIViewController,GIDSignInDelegate {
             print("Our user signed in:  \(user)")
             if (self.loginViewController != nil) { //remove the login view controller from the root nav before navigating swreveal vc
                 if let nav = self.navigationController {
-                    nav.popViewController(animated: false)
-                    showRootSWRevealViewController()
+                    if (nav.viewControllers.contains(self.loginViewController!)) {
+                        nav.popViewController(animated: false)
+                        showRootSWRevealViewController()
+                    }
+                    else {
+                        self.loginViewController?.dismiss(animated: false, completion: nil)
+                    }
                 }
             }
             else {
@@ -112,9 +117,21 @@ class EARootViewController: UIViewController,GIDSignInDelegate {
         }
     }
     
-    
     //MARK: Notifcation Handlers
     func userUnAuthenticated() {
-       GIDSignIn.sharedInstance().signInSilently()
+        if let nav = self.navigationController {
+            let topVC = nav.topViewController
+            var presentedViewController:UIViewController? = topVC?.presentedViewController
+            var lastPresentedVC:UIViewController?
+            
+            while presentedViewController?.presentedViewController != nil {
+                lastPresentedVC = presentedViewController
+                presentedViewController = presentedViewController?.presentedViewController
+            }
+            
+            self.loginViewController?.modalPresentationStyle = .overCurrentContext
+            lastPresentedVC = lastPresentedVC != nil ? lastPresentedVC : presentedViewController
+            lastPresentedVC?.present(self.loginViewController!, animated: false, completion: nil)
+        }
     }
 }

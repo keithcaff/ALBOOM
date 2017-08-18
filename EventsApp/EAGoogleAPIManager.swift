@@ -75,15 +75,14 @@ class EAGoogleAPIManager {
         query.q = "mimeType='application/vnd.google-apps.folder' and 'root' in parents and name contains '\(EVENT_FOLDER_PREFIX)' and trashed = false"
         query.fields = "nextPageToken, files(id, name)"
         service.executeQuery(query, completionHandler:  { (ticket, folders , error) -> Void in
-            let testing401:Bool = true
-            
+//            let testing401:Bool = true
             if let error = error {
                 self.handleGoogleAPIError(error)
             }
-            else if testing401 {
-                let testError = NSError(domain: "KC_TEST_ERROR", code: 401, userInfo: nil)
-                self.handleGoogleAPIError(testError)
-            }
+//            else if testing401 {
+//                let testError = NSError(domain: "KC_TEST_ERROR", code: 401, userInfo: nil)
+//                self.handleGoogleAPIError(testError)
+//            }
             else {
                 print("successfully retrieved folders:  \(folders)")
                 DispatchQueue.main.async {
@@ -172,9 +171,6 @@ class EAGoogleAPIManager {
     }
 
     func postUnAuthenticatedNotifcation() {
-        //TODO: Next two lines are test code remove!!!
-        GIDSignIn.sharedInstance().signOut()
-        EAEvent.didSwitchEvent(nil)
         DispatchQueue.main.async {
             NotificationCenter.default.post(name: .NOTIFICATION_USER_UNAUTHENTICATED, object: nil)
         }

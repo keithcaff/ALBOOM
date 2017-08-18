@@ -47,7 +47,7 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
         self.tableView.delegate = self
         self.tableView.rowHeight = UITableViewAutomaticDimension;
         self.tableView.estimatedRowHeight = 545
-        let nib = UINib(nibName: XIBIdentifiers.XIB_VIEW_EVENT_CELL_IDENTIFIER, bundle:nil)
+        let nib = UINib(nibName: XIBIdentifiers.XIB_HOME_CELL_IDENTIFIER, bundle:nil)
         self.tableView.register(nib, forCellReuseIdentifier: homeCellReuseIdentifier)
         
     }
