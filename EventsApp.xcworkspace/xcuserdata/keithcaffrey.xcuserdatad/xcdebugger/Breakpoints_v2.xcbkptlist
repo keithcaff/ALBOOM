@@ -179,8 +179,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "73"
             endingLineNumber = "73"
-            landmarkName = "EAGoogleAPIManager"
-            landmarkType = "3">
+            landmarkName = "getAllEventFolders()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -195,7 +195,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "69"
             endingLineNumber = "69"
-            landmarkName = "getRootEventAppFolder()"
+            landmarkName = "getAllEventFolders()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -460,9 +460,7 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "257"
-            endingLineNumber = "257"
-            landmarkName = "resetHomeViewController()"
-            landmarkType = "7">
+            endingLineNumber = "257">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -476,9 +474,7 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "261"
-            endingLineNumber = "261"
-            landmarkName = "resetHomeViewController()"
-            landmarkType = "7">
+            endingLineNumber = "261">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -492,9 +488,7 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "263"
-            endingLineNumber = "263"
-            landmarkName = "resetHomeViewController()"
-            landmarkType = "7">
+            endingLineNumber = "263">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

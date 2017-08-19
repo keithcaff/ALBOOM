@@ -82,6 +82,59 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4427AF931F484A0A006A571E /* VIew */ = {
+			isa = PBXGroup;
+			children = (
+				537F47791D53BA0C00F9A664 /* jake.jpg */,
+				44323FB51CE9EF730049F7FC /* LaunchScreen.storyboard */,
+				44323FB31CE9EF730049F7FC /* Assets.xcassets */,
+				44323FB01CE9EF730049F7FC /* EAMain.storyboard */,
+				44CC1C2E1D45311D007AFB89 /* EAViewEvents.storyboard */,
+				44CC1C311D4533D0007AFB89 /* EAViewEventTableViewCell.xib */,
+				44F753511D5295370034BCC0 /* EAHomeTableViewCell.xib */,
+				44CC1C331D45340F007AFB89 /* EAViewEventTableViewCell.swift */,
+				44F753531D52971F0034BCC0 /* EAHomeTableViewCell.swift */,
+			);
+			name = VIew;
+			sourceTree = "<group>";
+		};
+		4427AF941F484A17006A571E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				53160D901D3801DE0095906E /* EAEvent.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		4427AF951F484A29006A571E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				537076521D5A43F600D139AA /* EAEventUpdateDelegate.swift */,
+				5310B4E01F325A7B00466952 /* EAHomeViewController.swift */,
+				4419E46A1CF1E2CC00FFCE0D /* EALoginViewController.swift */,
+				44CC1C351D454925007AFB89 /* EAViewEventsViewController.swift */,
+				44BAB9181CF8E69500B1D18D /* EACreateEventViewController.swift */,
+				53F47AB81CF75817005F0DE9 /* EAMenuViewController.swift */,
+				44BAB9161CF362D100B1D18D /* EARootViewController.swift */,
+				4419E46C1CF26C8000FFCE0D /* EAHomeTabBarController.swift */,
+				4490597D1D5BD2A00095A52A /* EAImageTabBarController.swift */,
+				538183051D773EC200393344 /* EAGalleryViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		4427AF961F484A76006A571E /* Supporting */ = {
+			isa = PBXGroup;
+			children = (
+				4419E4681CF1DC8100FFCE0D /* GoogleService-Info.plist */,
+				44323FAC1CE9EF730049F7FC /* AppDelegate.swift */,
+				538D48171D41372700957BF0 /* EAGlobalConstants.swift */,
+				44323FB81CE9EF730049F7FC /* Info.plist */,
+				538D48191D4155BF00957BF0 /* EAGoogleAPIManager.swift */,
+			);
+			name = Supporting;
+			sourceTree = "<group>";
+		};
 		44323FA01CE9EF730049F7FC = {
 			isa = PBXGroup;
 			children = (
@@ -103,32 +156,11 @@
 		44323FAB1CE9EF730049F7FC /* EventsApp */ = {
 			isa = PBXGroup;
 			children = (
-				5310B4E01F325A7B00466952 /* EAHomeViewController.swift */,
-				538D48171D41372700957BF0 /* EAGlobalConstants.swift */,
-				44323FAC1CE9EF730049F7FC /* AppDelegate.swift */,
-				4419E4681CF1DC8100FFCE0D /* GoogleService-Info.plist */,
-				4419E46A1CF1E2CC00FFCE0D /* EALoginViewController.swift */,
-				44323FB01CE9EF730049F7FC /* EAMain.storyboard */,
-				44CC1C2E1D45311D007AFB89 /* EAViewEvents.storyboard */,
-				44CC1C351D454925007AFB89 /* EAViewEventsViewController.swift */,
-				44CC1C311D4533D0007AFB89 /* EAViewEventTableViewCell.xib */,
-				44F753511D5295370034BCC0 /* EAHomeTableViewCell.xib */,
-				44CC1C331D45340F007AFB89 /* EAViewEventTableViewCell.swift */,
-				44F753531D52971F0034BCC0 /* EAHomeTableViewCell.swift */,
-				44BAB9181CF8E69500B1D18D /* EACreateEventViewController.swift */,
-				53F47AB81CF75817005F0DE9 /* EAMenuViewController.swift */,
-				44BAB9161CF362D100B1D18D /* EARootViewController.swift */,
-				4419E46C1CF26C8000FFCE0D /* EAHomeTabBarController.swift */,
-				537F47791D53BA0C00F9A664 /* jake.jpg */,
-				44323FB31CE9EF730049F7FC /* Assets.xcassets */,
-				44323FB51CE9EF730049F7FC /* LaunchScreen.storyboard */,
+				4427AF961F484A76006A571E /* Supporting */,
+				4427AF951F484A29006A571E /* Controller */,
+				4427AF941F484A17006A571E /* Model */,
+				4427AF931F484A0A006A571E /* VIew */,
 				4452081B1CEFCADB00CC231B /* SupportingFiles */,
-				44323FB81CE9EF730049F7FC /* Info.plist */,
-				53160D901D3801DE0095906E /* EAEvent.swift */,
-				538D48191D4155BF00957BF0 /* EAGoogleAPIManager.swift */,
-				537076521D5A43F600D139AA /* EAEventUpdateDelegate.swift */,
-				4490597D1D5BD2A00095A52A /* EAImageTabBarController.swift */,
-				538183051D773EC200393344 /* EAGalleryViewController.swift */,
 			);
 			path = EventsApp;
 			sourceTree = "<group>";
