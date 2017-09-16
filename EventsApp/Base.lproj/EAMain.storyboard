@@ -424,23 +424,10 @@
                     <view key="view" contentMode="scaleToFill" id="0oa-xr-gOf">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q3B-HI-C6n">
-                                <rect key="frame" x="0.0" y="20" width="414" height="667"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="q3B-HI-C6n" secondAttribute="trailing" id="410-mX-px4"/>
-                            <constraint firstItem="q3B-HI-C6n" firstAttribute="leading" secondItem="0oa-xr-gOf" secondAttribute="leading" id="FOD-fk-pbg"/>
-                            <constraint firstItem="S8z-uB-FKT" firstAttribute="top" secondItem="q3B-HI-C6n" secondAttribute="bottom" id="boO-Ki-hpS"/>
-                            <constraint firstItem="q3B-HI-C6n" firstAttribute="top" secondItem="SdR-yL-8Fb" secondAttribute="bottom" id="zeP-Sx-YHP"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="UI9-6j-aNp"/>
                     <connections>
-                        <outlet property="imagePickerPlaceHolderView" destination="q3B-HI-C6n" id="Nes-JN-3wc"/>
                         <segue destination="nA8-x9-x2G" kind="unwind" identifier="exitGalleryView" unwindAction="unWindToHomeViewController:" id="0WD-l6-sra"/>
                     </connections>
                 </viewController>
