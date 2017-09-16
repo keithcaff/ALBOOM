@@ -10,7 +10,7 @@ import Foundation
 
 //Google Constants
 let EVENT_FOLDER_PREFIX:String = "Event_App_"
-
+let APP_NAME = "EventsApp"
 
 //Notification Constants
 extension Notification.Name {

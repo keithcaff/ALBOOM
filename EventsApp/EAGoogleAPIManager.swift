@@ -144,7 +144,43 @@ class EAGoogleAPIManager {
     func uploadImageToEvent(_ image:UIImage, event:EAEvent) {
         let service:GTLService = gtlServiceDrive
         setAuthorizerForService(GIDSignIn.sharedInstance(), user: GIDSignIn.sharedInstance().currentUser,service:service)
-     //   service.upload
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .long
+        dateFormatter.timeStyle = .medium
+        
+        let file : GTLDriveFile = GTLDriveFile()
+        
+        file.name = "\(dateFormatter.string(from:Date()))_\(APP_NAME).jpg"
+        file.descriptionProperty = "File uploaded with \(APP_NAME)"
+        
+        // set the folder to where the file is going to be uploaded
+        file.parents = [event.id!]
+        file.mimeType = "image/jpg"
+        
+        guard let data : NSData = UIImageJPEGRepresentation(image, 1) as NSData? else {
+            assertionFailure("could not create jpeg representation from image")
+            return
+        }
+        
+        let uploadParameters : GTLUploadParameters = GTLUploadParameters(data: data as Data, mimeType: file.mimeType)
+        
+        let query = GTLQueryDrive.queryForFilesCreate(withObject: file, uploadParameters: uploadParameters)
+        DispatchQueue.main.async {
+            service.executeQuery(query!, completionHandler: {
+                (ticket: GTLServiceTicket?, id:Any?, error:Error?) in
+                
+                if let error = error {
+                    self.handleGoogleAPIError(error)
+                }
+                
+                else {
+                    print("file uploaded successfully!!! \(id)")
+                    DispatchQueue.main.async {
+                        NotificationCenter.default.post(name: .NOTIFICATION_IMAGE_UPLOADED, object: event)
+                    }
+                }
+            })
+        }
     }
     
     
