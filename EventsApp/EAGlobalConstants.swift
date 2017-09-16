@@ -20,6 +20,7 @@ extension Notification.Name {
     static let NOTIFICATION_EVENT_FILES_RETRIEVED = Notification.Name("notification.event.files.retrieved")
     static let NOTIFICATION_EVENT_FILE_DOWNLOADED = Notification.Name("notification.event.file.downloaded")
     static let NOTIFICATION_USER_UNAUTHENTICATED = Notification.Name("notification.user.unathenticated")
+    static let NOTIFICATION_IMAGE_UPLOADED = Notification.Name("notification.image.uploaded")
 }
 
 
@@ -33,6 +34,7 @@ struct SegueIdentifiers {
     static let CREATE_EVENT_SEGUE = "createEventSegue"
     static let CREATE_EVENT_UNWIND_SEGUE = "createEventUnWind"
     static let VIEW_EVENTS_SEGUE = "viewEventsSegue"
+    static let EXIT_GALLERY_SEGUE = "exitGalleryView"
 }
 
 

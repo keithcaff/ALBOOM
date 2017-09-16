@@ -14,29 +14,37 @@ open class EAGalleryViewController: UIViewController, ImagePickerDelegate {
     @IBOutlet weak var imageView: UIImageView!
     let imagePickerController = ImagePickerController()
     
-    @IBOutlet weak var uploadButton: UIButton!
-    @IBOutlet weak var selectButton: UIButton!
     
-    @IBAction func selectButtonClicked(_ sender: AnyObject) {
-        presentImagePicker()
-    }
+    
+    @IBOutlet weak var imagePickerPlaceHolderView: UIView!
     override open func viewDidLoad() {
         super.viewDidLoad()
-        uploadButton.isEnabled = false
-        uploadButton.alpha = 0.3
         imagePickerController.delegate = self
-        imagePickerController.imageLimit = 1
+        //imagePickerController.imageLimit = 1
 //        Configuration.doneButtonTitle = "Done"
 //        Configuration.noImagesTitle = "Sorry! There are no images here!"
-        present(imagePickerController, animated: true, completion: nil)
+        //present(imagePickerController, animated: true, completion: nil)
+        presentImagePicker()
     }
     
     override open func viewDidAppear(_ animated: Bool) {
-        imageView.image = nil
-        presentImagePicker()
+       presentImagePicker()
     }
     
    func presentImagePicker() {
+//        self.addChildViewController(imagePickerController)
+//        self.imagePickerPlaceHolderView.addSubview(imagePickerController.view)
+//    
+//        imagePickerController.view.translatesAutoresizingMaskIntoConstraints = false
+//        NSLayoutConstraint.activate([
+//        imagePickerController.view.leadingAnchor.constraint(equalTo: imagePickerPlaceHolderView.leadingAnchor, constant: 0),
+//        imagePickerController.view.trailingAnchor.constraint(equalTo: imagePickerPlaceHolderView.trailingAnchor, constant: 0),
+//        imagePickerController.view.topAnchor.constraint(equalTo: imagePickerPlaceHolderView.topAnchor, constant: 0),
+//        imagePickerController.view.bottomAnchor.constraint(equalTo: imagePickerPlaceHolderView.bottomAnchor, constant: 0)
+//        ])
+//    
+//        imagePickerController.didMove(toParentViewController: self)
+    
         present(imagePickerController, animated: true, completion: nil)
     }
     
@@ -46,10 +54,11 @@ open class EAGalleryViewController: UIViewController, ImagePickerDelegate {
         
     }
     open func doneButtonDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
-        imagePicker.dismiss(animated: true, completion:nil)
-        imageView.image = images[0]
+        //transition to an upload screen
     }
     open func cancelButtonDidPress(_ imagePicker: ImagePickerController) {
-        
+        //return to the home vc
+        self.performSegue(withIdentifier: SegueIdentifiers.EXIT_GALLERY_SEGUE,sender:self)
     }
+
 }

@@ -139,6 +139,15 @@ class EAGoogleAPIManager {
         }
     }
     
+    
+    
+    func uploadImageToEvent(_ image:UIImage, event:EAEvent) {
+        let service:GTLService = gtlServiceDrive
+        setAuthorizerForService(GIDSignIn.sharedInstance(), user: GIDSignIn.sharedInstance().currentUser,service:service)
+     //   service.upload
+    }
+    
+    
     func deleteEvent(_ event:EAEvent) {
         let service:GTLService = gtlServiceDrive
         setAuthorizerForService(GIDSignIn.sharedInstance(), user: GIDSignIn.sharedInstance().currentUser,service:service)

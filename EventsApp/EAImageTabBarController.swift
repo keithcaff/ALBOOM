@@ -18,4 +18,8 @@ open class EAImageTabBarController:UITabBarController {
         print("unWindToImageTabBar")
         //self.dismissViewControllerAnimated(false, completion:nil)
     }
+    
+    override open func viewDidAppear(_ animated: Bool) {
+        print("EAImageTabBarController view did appear")
+    }
 }
