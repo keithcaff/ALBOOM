@@ -164,9 +164,17 @@ class EAGoogleAPIManager {
         
         let uploadParameters : GTLUploadParameters = GTLUploadParameters(data: data as Data, mimeType: file.mimeType)
         
+        
         let query = GTLQueryDrive.queryForFilesCreate(withObject: file, uploadParameters: uploadParameters)
+        
+        let uploadBlock : GTLServiceUploadProgressBlock = {(ticket:GTLServiceTicket?,
+                                                           totalBytesUploaded:UInt64,
+                                                           totalBytesExpectedToUpload:UInt64) in
+            print("Uploaded: \(totalBytesUploaded) out of \(totalBytesExpectedToUpload) bytes")
+        }
+        
         DispatchQueue.main.async {
-            service.executeQuery(query!, completionHandler: {
+            let uploadTicket: GTLServiceTicket = service.executeQuery(query!, completionHandler: {
                 (ticket: GTLServiceTicket?, id:Any?, error:Error?) in
                 
                 if let error = error {
@@ -180,6 +188,8 @@ class EAGoogleAPIManager {
                     }
                 }
             })
+            
+            uploadTicket.uploadProgressBlock = uploadBlock
         }
     }
     
