@@ -176,7 +176,7 @@ class EAGoogleAPIManager {
             let percentageUploaded = totalBytesUploaded/totalBytesExpectedToUpload
             
             let uploadDetails:[String:Any] = [UploadImageKeys.UPLOAD_PERCENTAGE:percentageUploaded, UploadImageKeys.IMAGE_NAME:file.name]
-            NotificationCenter.default.post(name: .NOTIFICATION_IMAGE_UPLOADED, object: uploadDetails)
+            NotificationCenter.default.post(name: .NOTIFICATION_IMAGE_UPLOAD_PROGRESS_UPDATE, object: uploadDetails)
         }
         
         DispatchQueue.main.async {
