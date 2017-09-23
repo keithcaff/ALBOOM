@@ -14,6 +14,9 @@
 		44323FB21CE9EF730049F7FC /* EAMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44323FB01CE9EF730049F7FC /* EAMain.storyboard */; };
 		44323FB41CE9EF730049F7FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 44323FB31CE9EF730049F7FC /* Assets.xcassets */; };
 		44323FB71CE9EF730049F7FC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44323FB51CE9EF730049F7FC /* LaunchScreen.storyboard */; };
+		444242571F769D4B00F762B8 /* EAImageUploadTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 444242561F769D4B00F762B8 /* EAImageUploadTableViewCell.xib */; };
+		444242591F769E6A00F762B8 /* EAImageUploadTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444242581F769E6A00F762B8 /* EAImageUploadTableViewCell.swift */; };
+		4442425B1F76A30800F762B8 /* EAUploadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4442425A1F76A30800F762B8 /* EAUploadImage.swift */; };
 		445208191CEFCAA400CC231B /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 445208181CEFCAA400CC231B /* SWRevealViewController.m */; };
 		4490597E1D5BD2A00095A52A /* EAImageTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4490597D1D5BD2A00095A52A /* EAImageTabBarController.swift */; };
 		44BAB9171CF362D100B1D18D /* EARootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44BAB9161CF362D100B1D18D /* EARootViewController.swift */; };
@@ -46,6 +49,9 @@
 		44323FB31CE9EF730049F7FC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		44323FB61CE9EF730049F7FC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		44323FB81CE9EF730049F7FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		444242561F769D4B00F762B8 /* EAImageUploadTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EAImageUploadTableViewCell.xib; sourceTree = "<group>"; };
+		444242581F769E6A00F762B8 /* EAImageUploadTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EAImageUploadTableViewCell.swift; sourceTree = "<group>"; };
+		4442425A1F76A30800F762B8 /* EAUploadImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EAUploadImage.swift; sourceTree = "<group>"; };
 		445208171CEFCAA400CC231B /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		445208181CEFCAA400CC231B /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		4452081A1CEFCAB100CC231B /* EventsApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EventsApp-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -92,6 +98,8 @@
 				44CC1C2E1D45311D007AFB89 /* EAViewEvents.storyboard */,
 				44CC1C311D4533D0007AFB89 /* EAViewEventTableViewCell.xib */,
 				44F753511D5295370034BCC0 /* EAHomeTableViewCell.xib */,
+				444242561F769D4B00F762B8 /* EAImageUploadTableViewCell.xib */,
+				444242581F769E6A00F762B8 /* EAImageUploadTableViewCell.swift */,
 				44CC1C331D45340F007AFB89 /* EAViewEventTableViewCell.swift */,
 				44F753531D52971F0034BCC0 /* EAHomeTableViewCell.swift */,
 			);
@@ -102,6 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				53160D901D3801DE0095906E /* EAEvent.swift */,
+				4442425A1F76A30800F762B8 /* EAUploadImage.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -263,6 +272,7 @@
 				44CC1C301D45311D007AFB89 /* EAViewEvents.storyboard in Resources */,
 				44323FB21CE9EF730049F7FC /* EAMain.storyboard in Resources */,
 				44F753521D5295370034BCC0 /* EAHomeTableViewCell.xib in Resources */,
+				444242571F769D4B00F762B8 /* EAImageUploadTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -333,10 +343,12 @@
 				538183061D773EC200393344 /* EAGalleryViewController.swift in Sources */,
 				44BAB9171CF362D100B1D18D /* EARootViewController.swift in Sources */,
 				44323FAD1CE9EF730049F7FC /* AppDelegate.swift in Sources */,
+				444242591F769E6A00F762B8 /* EAImageUploadTableViewCell.swift in Sources */,
 				538D481A1D4155BF00957BF0 /* EAGoogleAPIManager.swift in Sources */,
 				44BAB9191CF8E69500B1D18D /* EACreateEventViewController.swift in Sources */,
 				44CC1C361D454925007AFB89 /* EAViewEventsViewController.swift in Sources */,
 				445208191CEFCAA400CC231B /* SWRevealViewController.m in Sources */,
+				4442425B1F76A30800F762B8 /* EAUploadImage.swift in Sources */,
 				537076531D5A43F600D139AA /* EAEventUpdateDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

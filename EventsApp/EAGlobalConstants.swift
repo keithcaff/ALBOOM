@@ -42,6 +42,7 @@ struct SegueIdentifiers {
 struct XIBIdentifiers {
     static let XIB_VIEW_EVENT_CELL_IDENTIFIER:String! = "EAViewEventTableViewCell"
     static let XIB_HOME_CELL_IDENTIFIER:String! = "EAHomeTableViewCell"
+    static let XIB_IMAGE_UPLOAD_CELL_IDENTIFIER:String! = "EAImageUploadTableViewCell"
 }
 
 struct MenuItemLabels {

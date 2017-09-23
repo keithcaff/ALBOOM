@@ -424,10 +424,31 @@
                     <view key="view" contentMode="scaleToFill" id="0oa-xr-gOf">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o9x-6i-UES">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oB6-pk-F1M">
+                                <rect key="frame" x="0.0" y="64" width="414" height="623"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="oB6-pk-F1M" secondAttribute="trailing" id="84J-Ge-Mmw"/>
+                            <constraint firstItem="o9x-6i-UES" firstAttribute="leading" secondItem="0oa-xr-gOf" secondAttribute="leading" id="9CN-Lz-OdV"/>
+                            <constraint firstItem="oB6-pk-F1M" firstAttribute="top" secondItem="SdR-yL-8Fb" secondAttribute="bottom" id="BnB-OS-oWo"/>
+                            <constraint firstAttribute="trailing" secondItem="o9x-6i-UES" secondAttribute="trailing" id="KtO-HD-QdP"/>
+                            <constraint firstAttribute="bottom" secondItem="o9x-6i-UES" secondAttribute="bottom" constant="49" id="MJn-1I-k6g"/>
+                            <constraint firstItem="oB6-pk-F1M" firstAttribute="leading" secondItem="0oa-xr-gOf" secondAttribute="leading" id="kVE-1n-bNW"/>
+                            <constraint firstItem="o9x-6i-UES" firstAttribute="top" secondItem="0oa-xr-gOf" secondAttribute="top" id="rA2-QE-FYd"/>
+                            <constraint firstItem="S8z-uB-FKT" firstAttribute="top" secondItem="oB6-pk-F1M" secondAttribute="bottom" id="sp6-D1-uqW"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="UI9-6j-aNp"/>
                     <connections>
+                        <outlet property="imagePickerPlaceholderView" destination="o9x-6i-UES" id="jsf-J2-7rJ"/>
+                        <outlet property="tableView" destination="oB6-pk-F1M" id="8cI-zs-CYU"/>
                         <segue destination="nA8-x9-x2G" kind="unwind" identifier="exitGalleryView" unwindAction="unWindToHomeViewController:" id="0WD-l6-sra"/>
                     </connections>
                 </viewController>
@@ -458,50 +479,18 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Es0-Fj-2mJ">
                                 <rect key="frame" x="160" y="397" width="57" height="30"/>
                                 <state key="normal" title="Sign out"/>
-                                <connections>
-                                    <action selector="signOutWasPressed:" destination="pxC-4J-eUB" eventType="touchUpInside" id="jtV-kR-LOF"/>
-                                </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TCP-aV-dMw">
-                                <rect key="frame" x="94" y="80" width="188" height="128"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="128" id="ML7-8x-mWe"/>
-                                    <constraint firstAttribute="width" constant="188" id="d0n-vo-Ppg"/>
-                                </constraints>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ox2-g1-eKX">
-                                <rect key="frame" x="70" y="249" width="235" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="9Oa-YJ-nvV"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="Ox2-g1-eKX" firstAttribute="leading" secondItem="U55-Wi-QcK" secondAttribute="leadingMargin" constant="54" id="ADJ-iU-LIq"/>
-                            <constraint firstItem="TCP-aV-dMw" firstAttribute="top" secondItem="U55-Wi-QcK" secondAttribute="topMargin" constant="80" id="Atj-So-iQp"/>
-                            <constraint firstAttribute="trailing" secondItem="Ox2-g1-eKX" secondAttribute="trailing" constant="70" id="JFQ-yN-Fj3"/>
                             <constraint firstItem="Es0-Fj-2mJ" firstAttribute="centerX" secondItem="U55-Wi-QcK" secondAttribute="centerXWithinMargins" constant="1" id="P1t-Rf-Lhy"/>
                             <constraint firstItem="Es0-Fj-2mJ" firstAttribute="top" secondItem="U55-Wi-QcK" secondAttribute="topMargin" constant="397" id="gYR-el-0wf"/>
-                            <constraint firstItem="Ox2-g1-eKX" firstAttribute="top" secondItem="TCP-aV-dMw" secondAttribute="bottom" constant="41" id="he8-jl-s8E"/>
                             <constraint firstItem="ybN-XS-TE0" firstAttribute="top" secondItem="U55-Wi-QcK" secondAttribute="topMargin" constant="493" id="lKr-Z8-TEQ"/>
-                            <constraint firstItem="Ox2-g1-eKX" firstAttribute="centerX" secondItem="TCP-aV-dMw" secondAttribute="centerX" id="wcm-hp-Ze8"/>
                             <constraint firstItem="ybN-XS-TE0" firstAttribute="centerX" secondItem="U55-Wi-QcK" secondAttribute="centerX" id="xjk-49-V7e"/>
-                            <constraint firstItem="TCP-aV-dMw" firstAttribute="centerX" secondItem="U55-Wi-QcK" secondAttribute="centerX" id="zfh-aX-O2u"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="ADJ-iU-LIq"/>
-                            </mask>
-                        </variation>
                     </view>
                     <connections>
                         <outlet property="googleSignInButton" destination="ybN-XS-TE0" id="HCm-BA-DkM"/>
-                        <outlet property="profilePic" destination="TCP-aV-dMw" id="eW6-C2-4Mg"/>
-                        <outlet property="signOutButton" destination="Es0-Fj-2mJ" id="hFP-f5-9dA"/>
-                        <outlet property="welcomeLabel" destination="Ox2-g1-eKX" id="NUf-zh-hhg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3gA-PW-Qjp" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -556,7 +545,7 @@
         <!--Camera-->
         <scene sceneID="Mvj-PO-JTC">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="eGo-rL-NXi" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="eGo-rL-NXi" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Camera" image="Camera" id="3nf-Kf-bxp"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="mxb-VR-cb2">
