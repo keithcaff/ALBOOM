@@ -20,6 +20,7 @@ extension Notification.Name {
     static let NOTIFICATION_EVENT_FILES_RETRIEVED = Notification.Name("notification.event.files.retrieved")
     static let NOTIFICATION_EVENT_FILE_DOWNLOADED = Notification.Name("notification.event.file.downloaded")
     static let NOTIFICATION_USER_UNAUTHENTICATED = Notification.Name("notification.user.unathenticated")
+    static let NOTIFICATION_IMAGE_UPLOAD_PROGRESS_UPDATE = Notification.Name("notification.image.upload.progress.update")
     static let NOTIFICATION_IMAGE_UPLOADED = Notification.Name("notification.image.uploaded")
 }
 
@@ -59,3 +60,10 @@ struct ViewControllerIdentifiers {
     static let LOGIN_VIEW_CONTROLLER = "LoginViewController"
     static let ROOT_SW_REVEAL_VIEW_CONTROLLER = "RootSWRevealViewController"
 }
+
+struct UploadImageKeys {
+    static let UPLOAD_PERCENTAGE = "uploadPecentage"
+    static let IMAGE_NAME = "imageName"
+}
+
+

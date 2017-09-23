@@ -170,7 +170,13 @@ class EAGoogleAPIManager {
         let uploadBlock : GTLServiceUploadProgressBlock = {(ticket:GTLServiceTicket?,
                                                            totalBytesUploaded:UInt64,
                                                            totalBytesExpectedToUpload:UInt64) in
+            
             print("Uploaded: \(totalBytesUploaded) out of \(totalBytesExpectedToUpload) bytes")
+            
+            let percentageUploaded = totalBytesUploaded/totalBytesExpectedToUpload
+            
+            let uploadDetails:[String:Any] = [UploadImageKeys.UPLOAD_PERCENTAGE:percentageUploaded, UploadImageKeys.IMAGE_NAME:file.name]
+            NotificationCenter.default.post(name: .NOTIFICATION_IMAGE_UPLOADED, object: uploadDetails)
         }
         
         DispatchQueue.main.async {
@@ -183,9 +189,7 @@ class EAGoogleAPIManager {
                 
                 else {
                     print("file uploaded successfully!!! \(id)")
-                    DispatchQueue.main.async {
-                        NotificationCenter.default.post(name: .NOTIFICATION_IMAGE_UPLOADED, object: event)
-                    }
+                    NotificationCenter.default.post(name: .NOTIFICATION_IMAGE_UPLOADED, object: event)
                 }
             })
             
