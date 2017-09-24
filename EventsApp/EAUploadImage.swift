@@ -11,7 +11,7 @@ import Foundation
 
 class EAImageUpload {
     var image:UIImage?
-    var uploadPercentage:Float = 0
+    var uploadPercentage:Float?
     var name:String?
     
     init(image:UIImage!, uploadPercentage:Float!) {

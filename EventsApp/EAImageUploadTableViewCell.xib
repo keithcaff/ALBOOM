@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -21,21 +22,40 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fov-dZ-S78">
                         <rect key="frame" x="0.0" y="0.0" width="376" height="547"/>
                     </view>
-                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.10000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="v3g-yg-Rzv">
-                        <rect key="frame" x="113" y="272" width="150" height="2"/>
+                    <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u6j-Iu-YKM">
+                        <rect key="frame" x="83" y="249" width="209" height="48"/>
+                        <subviews>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.10000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="v3g-yg-Rzv">
+                                <rect key="frame" x="29" y="23" width="150" height="2"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="2" id="4yB-ML-wdg"/>
+                                    <constraint firstAttribute="width" constant="150" id="mmG-0F-1Qc"/>
+                                </constraints>
+                            </progressView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="150" id="0Zd-PZ-Fpj"/>
+                            <constraint firstAttribute="width" constant="209" id="2BX-K1-xIN"/>
+                            <constraint firstItem="v3g-yg-Rzv" firstAttribute="centerY" secondItem="u6j-Iu-YKM" secondAttribute="centerY" id="WC1-GE-YGl"/>
+                            <constraint firstItem="v3g-yg-Rzv" firstAttribute="centerX" secondItem="u6j-Iu-YKM" secondAttribute="centerX" id="jP6-lQ-g1O"/>
+                            <constraint firstAttribute="height" constant="48" id="mkp-JC-U8t"/>
                         </constraints>
-                    </progressView>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="20"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                        </userDefinedRuntimeAttributes>
+                    </view>
                 </subviews>
                 <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                 <constraints>
-                    <constraint firstItem="v3g-yg-Rzv" firstAttribute="centerX" secondItem="QuR-dz-lOL" secondAttribute="centerX" id="0zt-dD-2Nu"/>
-                    <constraint firstAttribute="trailing" secondItem="Fov-dZ-S78" secondAttribute="trailing" id="7OI-ka-NfW"/>
-                    <constraint firstAttribute="bottom" secondItem="Fov-dZ-S78" secondAttribute="bottom" id="Jdp-xk-DmV"/>
-                    <constraint firstItem="Fov-dZ-S78" firstAttribute="leading" secondItem="QuR-dz-lOL" secondAttribute="leading" id="WUu-E0-SA0"/>
-                    <constraint firstItem="v3g-yg-Rzv" firstAttribute="centerY" secondItem="QuR-dz-lOL" secondAttribute="centerY" id="ccf-Oa-fM9"/>
-                    <constraint firstItem="Fov-dZ-S78" firstAttribute="top" secondItem="QuR-dz-lOL" secondAttribute="top" id="n8d-Y9-nIl"/>
+                    <constraint firstItem="u6j-Iu-YKM" firstAttribute="centerY" secondItem="QuR-dz-lOL" secondAttribute="centerY" id="6Bq-l4-aSq"/>
+                    <constraint firstItem="Fov-dZ-S78" firstAttribute="leading" secondItem="QuR-dz-lOL" secondAttribute="leading" id="6jz-Zu-Ecy"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="Fov-dZ-S78" secondAttribute="trailing" constant="-8" id="Frr-ne-K4N"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="Fov-dZ-S78" secondAttribute="bottom" constant="-8" id="RjU-fr-f7r"/>
+                    <constraint firstItem="u6j-Iu-YKM" firstAttribute="centerX" secondItem="QuR-dz-lOL" secondAttribute="centerX" id="aQM-ke-mi5"/>
+                    <constraint firstItem="Fov-dZ-S78" firstAttribute="top" secondItem="QuR-dz-lOL" secondAttribute="top" id="aov-EQ-Wja"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

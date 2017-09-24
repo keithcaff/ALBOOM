@@ -113,7 +113,7 @@ class EARootViewController: UIViewController,GIDSignInDelegate {
             }
             else {
                 showRootSWRevealViewController()
-            }
+            }   
         }
     }
     

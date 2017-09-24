@@ -22,10 +22,8 @@ open class EAGalleryViewController: UIViewController, ImagePickerDelegate, UITab
     override open func viewDidLoad() {
         super.viewDidLoad()
         
-        //setup table view
-        //self.tableView = UITableView()
-        //let screenSize:CGRect = UIScreen.main.bounds
-        //tableView!.frame = CGRect(x:0, y:0, width:screenSize.width, height:screenSize.height)
+        self.setupNotifications()
+        
         self.tableView!.dataSource = self
         self.tableView!.delegate = self
         self.tableView!.backgroundColor = UIColor.orange
@@ -48,7 +46,12 @@ open class EAGalleryViewController: UIViewController, ImagePickerDelegate, UITab
     }
     
     override open func viewDidAppear(_ animated: Bool) {
-      // presentImagePicker()
+        super.viewDidAppear(animated)
+    }
+    
+    
+    func setupNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(uploadProgressUpated), name: .NOTIFICATION_IMAGE_UPLOAD_PROGRESS_UPDATE, object: nil)
     }
     
    func presentImagePicker() {
@@ -63,7 +66,6 @@ open class EAGalleryViewController: UIViewController, ImagePickerDelegate, UITab
                 imagePickerController!.view.bottomAnchor.constraint(equalTo: self.imagePickerPlaceholderView.bottomAnchor, constant: 0)
             ])
         imagePickerController!.didMove(toParentViewController: self)
-      //present(imagePickerController!, animated: true, completion: nil)
     }
     
 // MARK: - ImagePickerDelegate Methods
@@ -73,18 +75,21 @@ open class EAGalleryViewController: UIViewController, ImagePickerDelegate, UITab
     }
     
     open func doneButtonDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
-//        let defaults = UserDefaults.standard
-//        let image:UIImage? = images[0]
-//        let eventId:String? = defaults.string(forKey: DEFAULT_CURRENT_EVENT_ID)
-//        let eventName:String? = defaults.string(forKey: DEFAULT_CURRENT_EVENT_NAME)
+        let defaults = UserDefaults.standard
+        let eventId:String? = defaults.string(forKey: DEFAULT_CURRENT_EVENT_ID)
+        let eventName:String? = defaults.string(forKey: DEFAULT_CURRENT_EVENT_NAME)
 //        if let eventId = eventId, let eventName = eventName, let image = image {
 //            let event:EAEvent = EAEvent(id:eventId , eventName: eventName)
 //            EAGoogleAPIManager.sharedInstance.uploadImageToEvent(image,event:event)
 //        }
         
         for image in images {
-            let imageUpload:EAImageUpload = EAImageUpload(image: image, uploadPercentage: 0)
-            data.append(imageUpload)
+            if let eventId = eventId, let eventName = eventName {
+                let event:EAEvent = EAEvent(id:eventId , eventName: eventName)
+                let imageUpload:EAImageUpload = EAImageUpload(image: image, uploadPercentage: 0)
+                data.append(imageUpload)
+                EAGoogleAPIManager.sharedInstance.uploadImageToEvent(imageUpload,event:event)
+            }
         }
         imagePickerController!.willMove(toParentViewController: nil)
         imagePickerController!.view.removeFromSuperview()
@@ -112,7 +117,7 @@ open class EAGalleryViewController: UIViewController, ImagePickerDelegate, UITab
         imageUpload = data![indexPath.row]
         
         cell = tableView.dequeueReusableCell(withIdentifier: imageUplaodCellReuseIdentifier, for: indexPath) as? EAImageUploadTableViewCell
-        cell!.progressView.progress = imageUpload!.uploadPercentage
+        cell!.progressView.progress = imageUpload!.uploadPercentage!
         //cell!.uploadImage.image = imageUpload!.image
         self.addBackground(cell!, imageUpload!.image!)
         return cell!
@@ -151,11 +156,23 @@ open class EAGalleryViewController: UIViewController, ImagePickerDelegate, UITab
     
     open func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
-//        let topNavHeight:CGFloat = self.navigationController!.navigationBar.frame.height
-//        let bottomNavHeight:CGFloat =  self.tabBarController!.tabBar.frame.height
-//        let statusBarHeight:CGFloat = UIApplication.shared.statusBarFrame.size.height
-        //let navHeight:CGFloat = topNavHeight+bottomNavHeight+statusBarHeight
         return self.tableView!.frame.height;
+    }
+    
+    
+    func uploadProgressUpated(_ notifiaction : Notification) {
+        let uploadDetails:[String:Any] = notifiaction.object as! [String:Any]
+        let imageName:String =  uploadDetails[UploadImageKeys.IMAGE_NAME] as! String
+        let uploadPercentage:Float =  uploadDetails[UploadImageKeys.UPLOAD_PERCENTAGE] as! Float
+        print("Uploaded: \(imageName) image \(uploadPercentage)%")
+        if let i = data.index(where: { $0.name == imageName  }) {
+            let eaImageUpload:EAImageUpload = data[i]
+            eaImageUpload.uploadPercentage = uploadPercentage
+            let indexPath = IndexPath(row: i, section: 0)
+            self.tableView.reloadRows(at: [indexPath], with: .none)
+        }
+        
+        
     }
     
 

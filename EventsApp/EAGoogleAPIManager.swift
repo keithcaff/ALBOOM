@@ -141,23 +141,19 @@ class EAGoogleAPIManager {
     
     
     
-    func uploadImageToEvent(_ image:UIImage, event:EAEvent) {
+    func uploadImageToEvent(_ imageUpload:EAImageUpload, event:EAEvent) {
         let service:GTLService = gtlServiceDrive
         setAuthorizerForService(GIDSignIn.sharedInstance(), user: GIDSignIn.sharedInstance().currentUser,service:service)
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .long
-        dateFormatter.timeStyle = .medium
-        
         let file : GTLDriveFile = GTLDriveFile()
         
-        file.name = "\(dateFormatter.string(from:Date()))_\(APP_NAME).jpg"
+        file.name = imageUpload.name!
         file.descriptionProperty = "File uploaded with \(APP_NAME)"
         
         // set the folder to where the file is going to be uploaded
         file.parents = [event.id!]
         file.mimeType = "image/jpg"
         
-        guard let data : NSData = UIImageJPEGRepresentation(image, 1) as NSData? else {
+        guard let data : NSData = UIImageJPEGRepresentation(imageUpload.image!, 1) as NSData? else {
             assertionFailure("could not create jpeg representation from image")
             return
         }
@@ -173,7 +169,7 @@ class EAGoogleAPIManager {
             
             print("Uploaded: \(totalBytesUploaded) out of \(totalBytesExpectedToUpload) bytes")
             
-            let percentageUploaded = totalBytesUploaded/totalBytesExpectedToUpload
+            let percentageUploaded:Float = ((Float(totalBytesUploaded)/Float(totalBytesExpectedToUpload))*100)
             
             let uploadDetails:[String:Any] = [UploadImageKeys.UPLOAD_PERCENTAGE:percentageUploaded, UploadImageKeys.IMAGE_NAME:file.name]
             NotificationCenter.default.post(name: .NOTIFICATION_IMAGE_UPLOAD_PROGRESS_UPDATE, object: uploadDetails)
@@ -222,6 +218,7 @@ class EAGoogleAPIManager {
         let nserror:NSError! = error as NSError
         switch nserror.code {
             case 401:
+                GIDSignIn.sharedInstance().signOut()
                 self.postUnAuthenticatedNotifcation()
                 break;
             default:
