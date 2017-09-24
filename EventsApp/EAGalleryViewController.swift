@@ -26,27 +26,24 @@ open class EAGalleryViewController: UIViewController, ImagePickerDelegate, UITab
         
         self.tableView!.dataSource = self
         self.tableView!.delegate = self
-        self.tableView!.backgroundColor = UIColor.orange
         self.tableView!.rowHeight = UITableViewAutomaticDimension;
         self.tableView!.estimatedRowHeight = 545
         let nib = UINib(nibName: XIBIdentifiers.XIB_IMAGE_UPLOAD_CELL_IDENTIFIER, bundle:nil)
         self.tableView!.register(nib, forCellReuseIdentifier: imageUplaodCellReuseIdentifier)
         self.view.addSubview(self.tableView!)
         
-        //setup image picker
-        var configuration = Configuration()
-        configuration.doneButtonTitle = "Upload"
-        configuration.noImagesTitle = "Sorry! There are no images here!"
-        configuration.recordLocation = false
-        imagePickerController = ImagePickerController(configuration: configuration)
-        imagePickerController!.delegate = self
-        imagePickerController?.imageLimit = 4
         presentImagePicker()
-
+    }
+    
+    override open func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
     }
     
     override open func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        if (data.count == 0 && !imagePickerController!.isBeingPresented) {
+            presentImagePicker()
+        }
     }
     
     
@@ -55,6 +52,17 @@ open class EAGalleryViewController: UIViewController, ImagePickerDelegate, UITab
     }
     
    func presentImagePicker() {
+        var configuration = Configuration()
+        configuration.doneButtonTitle = "Upload"
+        configuration.noImagesTitle = "Sorry! There are no images here!"
+        configuration.recordLocation = false
+        guard imagePickerController != nil else {
+            imagePickerController = ImagePickerController(configuration: configuration)
+            return
+        }
+        imagePickerController!.delegate = self
+        imagePickerController?.imageLimit = 4
+    
         self.addChildViewController(imagePickerController!)
         self.view.addSubview(imagePickerController!.view)
     
@@ -75,6 +83,11 @@ open class EAGalleryViewController: UIViewController, ImagePickerDelegate, UITab
     }
     
     open func doneButtonDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
+        imagePickerController!.willMove(toParentViewController: nil)
+        imagePickerController!.view.removeFromSuperview()
+        imagePickerController!.removeFromParentViewController()
+        
+        
         let defaults = UserDefaults.standard
         let eventId:String? = defaults.string(forKey: DEFAULT_CURRENT_EVENT_ID)
         let eventName:String? = defaults.string(forKey: DEFAULT_CURRENT_EVENT_NAME)
@@ -91,9 +104,7 @@ open class EAGalleryViewController: UIViewController, ImagePickerDelegate, UITab
                 EAGoogleAPIManager.sharedInstance.uploadImageToEvent(imageUpload,event:event)
             }
         }
-        imagePickerController!.willMove(toParentViewController: nil)
-        imagePickerController!.view.removeFromSuperview()
-        imagePickerController!.removeFromParentViewController()
+        
         self.tableView?.reloadData()
     }
     
@@ -118,7 +129,6 @@ open class EAGalleryViewController: UIViewController, ImagePickerDelegate, UITab
         
         cell = tableView.dequeueReusableCell(withIdentifier: imageUplaodCellReuseIdentifier, for: indexPath) as? EAImageUploadTableViewCell
         cell!.progressView.progress = imageUpload!.uploadPercentage!
-        //cell!.uploadImage.image = imageUpload!.image
         self.addBackground(cell!, imageUpload!.image!)
         return cell!
     }
@@ -169,11 +179,19 @@ open class EAGalleryViewController: UIViewController, ImagePickerDelegate, UITab
             let eaImageUpload:EAImageUpload = data[i]
             eaImageUpload.uploadPercentage = uploadPercentage
             let indexPath = IndexPath(row: i, section: 0)
-            self.tableView.reloadRows(at: [indexPath], with: .none)
+            if (uploadPercentage < Float(100.0)) {
+                self.tableView.reloadRows(at: [indexPath], with: .none)
+            }
+            else {
+                data.remove(at: i)
+                self.tableView.deleteRows(at: [indexPath], with: .fade)
+                if(data.isEmpty) {
+                    presentImagePicker()
+                }
+            }
         }
-        
-        
     }
+    
     
 
 }
