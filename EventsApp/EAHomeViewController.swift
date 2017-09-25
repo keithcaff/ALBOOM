@@ -174,8 +174,8 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
         let topNavHeight:CGFloat = self.navigationController!.navigationBar.frame.height
         let bottomNavHeight:CGFloat =  self.tabBarController!.tabBar.frame.height
         let statusBarHeight:CGFloat = UIApplication.shared.statusBarFrame.size.height
-        let navHeight:CGFloat = topNavHeight+bottomNavHeight+statusBarHeight
-        return self.tableView.frame.height - navHeight;
+        let navHeight:CGFloat = topNavHeight + bottomNavHeight + statusBarHeight
+        return self.tableView.frame.height - navHeight;// - navHeight;
     }
     
     // MARK:notifaction responses/selectors
