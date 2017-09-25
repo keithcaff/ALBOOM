@@ -31,10 +31,6 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
 
         NotificationCenter.default.addObserver(self, selector: #selector(eventFilesRetrieved), name: .NOTIFICATION_EVENT_FILES_RETRIEVED, object: nil)
 
-        let defaults = UserDefaults.standard
-        if let currentEventName = defaults.string(forKey: DEFAULT_CURRENT_EVENT_NAME) {
-            self.navigationController?.navigationBar.topItem?.title = currentEventName
-        }
 
         menuButton.target = revealViewController()
         menuButton.action = #selector(SWRevealViewController.revealToggle(_:))
@@ -63,14 +59,26 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
         self.tabBarController?.tabBar.isHidden = false;
     }
     
+    override open func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        updateNavigationBarTitle()
+    }
+    
     override open func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
     }
-
+    
     override open func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func updateNavigationBarTitle() {
+        let defaults = UserDefaults.standard
+        if let currentEventName = defaults.string(forKey: DEFAULT_CURRENT_EVENT_NAME) {
+            self.navigationController?.navigationBar.topItem?.title = currentEventName
+        }
     }
     
        
@@ -167,7 +175,7 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
         let bottomNavHeight:CGFloat =  self.tabBarController!.tabBar.frame.height
         let statusBarHeight:CGFloat = UIApplication.shared.statusBarFrame.size.height
         let navHeight:CGFloat = topNavHeight+bottomNavHeight+statusBarHeight
-        return self.tableView.frame.height-navHeight
+        return self.tableView.frame.height - navHeight;
     }
     
     // MARK:notifaction responses/selectors
@@ -198,10 +206,10 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
         revealViewController().revealToggle(animated: true)
         if let folder = notifiaction.object as? GTLDriveFile  {
             currentEventFolder = folder
-            updateNavBarTitle(folder.name)
             let defaults = UserDefaults.standard
             defaults.set(folder.name!, forKey: DEFAULT_CURRENT_EVENT_NAME)
             defaults.set(folder.identifier!, forKey: DEFAULT_CURRENT_EVENT_ID)
+            updateNavigationBarTitle()
             let createdEvent:EAEvent = EAEvent(id: folder.identifier!,eventName: folder.name!)
             self.didSwitchEvent(createdEvent)
             resetHomeViewController()
@@ -232,14 +240,8 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
         self.currentFilesList = nil
         currentEventFolder = nil
         self.fileDataMap = Dictionary<String, Data>()
-        let defaults = UserDefaults.standard
-        let name:String = defaults.string(forKey: DEFAULT_CURRENT_EVENT_NAME)!
-        updateNavBarTitle(name)
+        updateNavigationBarTitle()
         self.tableView.reloadData()
-    }
-    
-    func updateNavBarTitle(_ title:String) {
-        self.navigationController?.navigationBar.topItem?.title = title
     }
     
     deinit {

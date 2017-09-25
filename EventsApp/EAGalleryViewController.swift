@@ -26,6 +26,7 @@ open class EAGalleryViewController: UIViewController, ImagePickerDelegate, UITab
         
         self.tableView!.dataSource = self
         self.tableView!.delegate = self
+        self.tableView!.isHidden = true
         self.tableView!.rowHeight = UITableViewAutomaticDimension;
         self.tableView!.estimatedRowHeight = 545
         let nib = UINib(nibName: XIBIdentifiers.XIB_IMAGE_UPLOAD_CELL_IDENTIFIER, bundle:nil)
@@ -49,12 +50,14 @@ open class EAGalleryViewController: UIViewController, ImagePickerDelegate, UITab
     
     func setupNotifications() {
         NotificationCenter.default.addObserver(self, selector: #selector(uploadProgressUpated), name: .NOTIFICATION_IMAGE_UPLOAD_PROGRESS_UPDATE, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(imageUploadSuccessfully), name: .NOTIFICATION_IMAGE_UPLOADED, object: nil)
     }
     
    func presentImagePicker() {
         var configuration = Configuration()
         configuration.doneButtonTitle = "Upload"
         configuration.noImagesTitle = "Sorry! There are no images here!"
+        configuration.allowMultiplePhotoSelection = true
         configuration.recordLocation = false
         guard imagePickerController != nil else {
             imagePickerController = ImagePickerController(configuration: configuration)
@@ -63,17 +66,18 @@ open class EAGalleryViewController: UIViewController, ImagePickerDelegate, UITab
         imagePickerController!.delegate = self
         imagePickerController?.imageLimit = 4
     
-        self.addChildViewController(imagePickerController!)
-        self.view.addSubview(imagePickerController!.view)
-    
-        imagePickerController!.view.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate(
-            [imagePickerController!.view.leadingAnchor.constraint(equalTo: self.imagePickerPlaceholderView.leadingAnchor, constant: 0),
-                imagePickerController!.view.trailingAnchor.constraint(equalTo: self.imagePickerPlaceholderView.trailingAnchor, constant:0),
-                imagePickerController!.view.topAnchor.constraint(equalTo: self.imagePickerPlaceholderView!.topAnchor, constant: 0),
-                imagePickerController!.view.bottomAnchor.constraint(equalTo: self.imagePickerPlaceholderView.bottomAnchor, constant: 0)
-            ])
-        imagePickerController!.didMove(toParentViewController: self)
+//        self.addChildViewController(imagePickerController!)
+//        self.view.addSubview(imagePickerController!.view)
+//    
+//        imagePickerController!.view.translatesAutoresizingMaskIntoConstraints = false
+//        NSLayoutConstraint.activate(
+//            [imagePickerController!.view.leadingAnchor.constraint(equalTo: self.imagePickerPlaceholderView.leadingAnchor, constant: 0),
+//                imagePickerController!.view.trailingAnchor.constraint(equalTo: self.imagePickerPlaceholderView.trailingAnchor, constant:0),
+//                imagePickerController!.view.topAnchor.constraint(equalTo: self.imagePickerPlaceholderView!.topAnchor, constant: 0),
+//                imagePickerController!.view.bottomAnchor.constraint(equalTo: self.imagePickerPlaceholderView.bottomAnchor, constant: 0)
+//            ])
+//        imagePickerController!.didMove(toParentViewController: self)
+        present(imagePickerController!, animated: false, completion: nil)
     }
     
 // MARK: - ImagePickerDelegate Methods
@@ -83,18 +87,15 @@ open class EAGalleryViewController: UIViewController, ImagePickerDelegate, UITab
     }
     
     open func doneButtonDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
-        imagePickerController!.willMove(toParentViewController: nil)
-        imagePickerController!.view.removeFromSuperview()
-        imagePickerController!.removeFromParentViewController()
+//        imagePickerController!.willMove(toParentViewController: nil)
+//        imagePickerController!.view.removeFromSuperview()
+//        imagePickerController!.removeFromParentViewController()
+        self.imagePickerController?.dismiss(animated: false, completion: nil)
         
         
         let defaults = UserDefaults.standard
         let eventId:String? = defaults.string(forKey: DEFAULT_CURRENT_EVENT_ID)
         let eventName:String? = defaults.string(forKey: DEFAULT_CURRENT_EVENT_NAME)
-//        if let eventId = eventId, let eventName = eventName, let image = image {
-//            let event:EAEvent = EAEvent(id:eventId , eventName: eventName)
-//            EAGoogleAPIManager.sharedInstance.uploadImageToEvent(image,event:event)
-//        }
         
         for image in images {
             if let eventId = eventId, let eventName = eventName {
@@ -103,6 +104,10 @@ open class EAGalleryViewController: UIViewController, ImagePickerDelegate, UITab
                 data.append(imageUpload)
                 EAGoogleAPIManager.sharedInstance.uploadImageToEvent(imageUpload,event:event)
             }
+        }
+        
+        if(!data.isEmpty) {
+            self.tableView!.isHidden = false
         }
         
         self.tableView?.reloadData()
@@ -179,16 +184,31 @@ open class EAGalleryViewController: UIViewController, ImagePickerDelegate, UITab
             let eaImageUpload:EAImageUpload = data[i]
             eaImageUpload.uploadPercentage = uploadPercentage
             let indexPath = IndexPath(row: i, section: 0)
-            if (uploadPercentage < Float(100.0)) {
-                self.tableView.reloadRows(at: [indexPath], with: .none)
+            self.tableView.reloadRows(at: [indexPath], with: .none)
+            
+//            else {
+//                data.remove(at: i)
+//                self.tableView.deleteRows(at: [indexPath], with: .fade)
+//                if(data.isEmpty) {
+//                    presentImagePicker()
+//                }
+//            }
+        }
+    }
+    
+    
+    func imageUploadSuccessfully(_ notifiaction : Notification) {
+        let uploadDetails:[String:Any] = notifiaction.object as! [String:Any]
+        let imageName:String =  uploadDetails[UploadImageKeys.IMAGE_NAME] as! String
+       // let event:EAEvent =  uploadDetails[UploadImageKeys.EVENT] as! EAEvent
+        if let i = data.index(where: { $0.name == imageName  }) {
+            data.remove(at: i)
+            let indexPath = IndexPath(row: i, section: 0)
+            self.tableView.deleteRows(at: [indexPath], with: .fade)
+            if(data.isEmpty) {
+                presentImagePicker()
             }
-            else {
-                data.remove(at: i)
-                self.tableView.deleteRows(at: [indexPath], with: .fade)
-                if(data.isEmpty) {
-                    presentImagePicker()
-                }
-            }
+
         }
     }
     

@@ -185,7 +185,8 @@ class EAGoogleAPIManager {
                 
                 else {
                     print("file uploaded successfully!!! \(id)")
-                    NotificationCenter.default.post(name: .NOTIFICATION_IMAGE_UPLOADED, object: event)
+                    let uploadDetails:[String:Any] = [UploadImageKeys.EVENT:event, UploadImageKeys.IMAGE_NAME:file.name]
+                    NotificationCenter.default.post(name: .NOTIFICATION_IMAGE_UPLOADED, object: uploadDetails)
                 }
             })
             

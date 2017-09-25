@@ -62,6 +62,7 @@ struct ViewControllerIdentifiers {
 }
 
 struct UploadImageKeys {
+    static let EVENT = "event"
     static let UPLOAD_PERCENTAGE = "uploadPecentage"
     static let IMAGE_NAME = "imageName"
 }
