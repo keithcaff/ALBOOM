@@ -80,6 +80,8 @@ class EARootViewController: UIViewController,GIDSignInDelegate {
     }
     
     func pushViewControllerOnTop(_ viewController:UIViewController!) {
+        
+        //TODO:check if view controller is already on stack before pushing
         if let nav = self.navigationController {
             nav.pushViewController(viewController, animated: false)
         }
