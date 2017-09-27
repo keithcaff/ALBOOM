@@ -66,6 +66,11 @@ open class EAGalleryViewController: UIViewController, ImagePickerDelegate, UITab
         imagePickerController!.delegate = self
         imagePickerController?.imageLimit = 4
     
+    
+    
+        TODO:// PREVENT USER FROM SELECTING IMAGES IF NO EVENT IS IN CONTEXT!
+    
+    
 //        self.addChildViewController(imagePickerController!)
 //        self.view.addSubview(imagePickerController!.view)
 //    
@@ -179,7 +184,7 @@ open class EAGalleryViewController: UIViewController, ImagePickerDelegate, UITab
         let uploadDetails:[String:Any] = notifiaction.object as! [String:Any]
         let imageName:String =  uploadDetails[UploadImageKeys.IMAGE_NAME] as! String
         let uploadPercentage:Float =  uploadDetails[UploadImageKeys.UPLOAD_PERCENTAGE] as! Float
-        print("Uploaded: \(imageName) image \(uploadPercentage)%")
+        print("uploadProgressUpated: \(imageName) image \(uploadPercentage)%")
         if let i = data.index(where: { $0.name == imageName  }) {
             let eaImageUpload:EAImageUpload = data[i]
             eaImageUpload.uploadPercentage = uploadPercentage
@@ -198,6 +203,7 @@ open class EAGalleryViewController: UIViewController, ImagePickerDelegate, UITab
     
     
     func imageUploadSuccessfully(_ notifiaction : Notification) {
+        print("imageUploadSuccessfully CALLED!!!")
         let uploadDetails:[String:Any] = notifiaction.object as! [String:Any]
         let imageName:String =  uploadDetails[UploadImageKeys.IMAGE_NAME] as! String
        // let event:EAEvent =  uploadDetails[UploadImageKeys.EVENT] as! EAEvent
@@ -208,7 +214,6 @@ open class EAGalleryViewController: UIViewController, ImagePickerDelegate, UITab
             if(data.isEmpty) {
                 presentImagePicker()
             }
-
         }
     }
     
