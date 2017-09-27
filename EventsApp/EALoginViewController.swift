@@ -7,16 +7,30 @@
 //
 
 import UIKit
+import GoogleAPIClient
 
-class EALoginViewController: UIViewController, GIDSignInUIDelegate{
+class EALoginViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate{
 
     @IBOutlet var googleSignInButton: GIDSignInButton!
     @IBOutlet var profilePic: UIImageView!
+    
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    var loginListener:EALoginListener?
         
     override func viewDidLoad() {
         super.viewDidLoad()
+        var configureError: NSError?
+        GGLContext.sharedInstance().configureWithError(&configureError)
+        if (configureError != nil) {
+            print("We have an error! \(configureError)")
+        }
         GIDSignIn.sharedInstance().uiDelegate = self
+        GIDSignIn.sharedInstance().scopes.append(kGTLAuthScopeDrive)
+        GIDSignIn.sharedInstance().delegate = self
+        
         googleSignInButton.isHidden = false
+        activityIndicator.isHidden = true;
+
        // refereshInterface()
         // Do any additional setup after loading the view.
     }
@@ -32,6 +46,12 @@ class EALoginViewController: UIViewController, GIDSignInUIDelegate{
         // Dispose of any resources that can be recreated.
     }
     
+
+    @IBAction func signInButtonTapped(_ sender: Any) {
+        activityIndicator.isHidden = false
+        activityIndicator.startAnimating()
+        print("signInButtonClicked")
+    }
     
     func refereshInterface() {
         if let currentUser = GIDSignIn.sharedInstance().currentUser {
@@ -50,12 +70,27 @@ class EALoginViewController: UIViewController, GIDSignInUIDelegate{
         }
     }
     
-//    // The sign-in flow has finished selecting how to proceed, and the UI should no longer display
-//    // a spinner or other "please wait" element.
-//    public func sign(inWillDispatch signIn: GIDSignIn!, error: Error!) {
-//        print("EALoginViewController -1 signInWillDispatch" )
-//    }
-//    
+    
+    // MARK: GIDSignInDelegate methods
+    public func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        if(error != nil) {
+            print("We got a sign in error: \(error)")
+             self.loginListener?.loginFailed()
+        }
+        else {
+            print("Our user signed in:  \(user)")
+            self.loginListener?.loginSuccess()
+        }
+    }
+    
+    // The sign-in flow has finished selecting how to proceed, and the UI should no longer display
+    // a spinner or other "please wait" element.
+    public func sign(inWillDispatch signIn: GIDSignIn!, error: Error!) {
+        print("EALoginViewController -1 signInWillDispatch" )
+        activityIndicator.stopAnimating()
+        activityIndicator.isHidden = true
+    }
+    
 //    // If implemented, this method will be invoked when sign in needs to display a view controller.
 //    // The view controller should be displayed modally (via UIViewController's |presentViewController|
 //    // method, and not pushed unto a navigation controller's stack.

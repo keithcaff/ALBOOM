@@ -121,7 +121,7 @@
                                         <rect key="frame" x="0.0" y="56" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jXy-YY-2rO" id="rtp-Mh-Bcu">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create Event" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m18-tM-z0e">
@@ -213,7 +213,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2TV-bl-nkb" id="QqV-zE-xJ1">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create event" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VnC-Bv-cwt">
@@ -242,7 +242,7 @@
                                         <rect key="frame" x="0.0" y="72" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NkQ-eA-Dpg" id="KQ3-Yc-fDZ">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="View events" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qQB-ah-qly">
@@ -480,22 +480,35 @@
                                     <constraint firstAttribute="width" constant="334" id="38a-aq-bVF"/>
                                     <constraint firstAttribute="height" constant="42" id="elQ-cj-Ri8"/>
                                 </constraints>
+                                <connections>
+                                    <action selector="signInButtonTapped:" destination="pxC-4J-eUB" eventType="touchUpInside" id="XXp-6d-fE5"/>
+                                </connections>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Es0-Fj-2mJ">
                                 <rect key="frame" x="160" y="397" width="57" height="30"/>
                                 <state key="normal" title="Sign out"/>
                             </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="ZYn-z6-Pei">
+                                <rect key="frame" x="169" y="550" width="37" height="37"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="37" id="axP-au-2bo"/>
+                                    <constraint firstAttribute="height" constant="37" id="fbM-27-1zT"/>
+                                </constraints>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Es0-Fj-2mJ" firstAttribute="centerX" secondItem="U55-Wi-QcK" secondAttribute="centerXWithinMargins" constant="1" id="P1t-Rf-Lhy"/>
+                            <constraint firstItem="ZYn-z6-Pei" firstAttribute="centerX" secondItem="U55-Wi-QcK" secondAttribute="centerX" id="ebH-mM-YLz"/>
                             <constraint firstItem="Es0-Fj-2mJ" firstAttribute="top" secondItem="U55-Wi-QcK" secondAttribute="topMargin" constant="397" id="gYR-el-0wf"/>
                             <constraint firstItem="ybN-XS-TE0" firstAttribute="top" secondItem="U55-Wi-QcK" secondAttribute="topMargin" constant="493" id="lKr-Z8-TEQ"/>
+                            <constraint firstItem="ZYn-z6-Pei" firstAttribute="top" secondItem="ybN-XS-TE0" secondAttribute="bottom" constant="15" id="ncr-JE-2Zd"/>
                             <constraint firstItem="ybN-XS-TE0" firstAttribute="centerX" secondItem="U55-Wi-QcK" secondAttribute="centerX" id="xjk-49-V7e"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="googleSignInButton" destination="ybN-XS-TE0" id="HCm-BA-DkM"/>
+                        <outlet property="activityIndicator" destination="ZYn-z6-Pei" id="ctK-L9-fbQ"/>
+                        <outlet property="googleSignInButton" destination="ybN-XS-TE0" id="SjR-8g-26C"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3gA-PW-Qjp" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -508,7 +521,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jc1-Qe-43E" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Home" image="Home" id="2KK-oI-2xU"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="vDp-9T-d2p">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="vDp-9T-d2p">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -575,7 +588,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="yZD-8J-kw3" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Qvo-Zm-fZs">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Qvo-Zm-fZs">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
