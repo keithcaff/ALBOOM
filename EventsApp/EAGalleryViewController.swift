@@ -68,7 +68,7 @@ open class EAGalleryViewController: UIViewController, ImagePickerDelegate, UITab
     
     
     
-        TODO:// PREVENT USER FROM SELECTING IMAGES IF NO EVENT IS IN CONTEXT!
+        //TODO: PREVENT USER FROM SELECTING IMAGES IF NO EVENT IS IN CONTEXT!
     
     
 //        self.addChildViewController(imagePickerController!)
