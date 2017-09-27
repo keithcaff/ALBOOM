@@ -260,6 +260,7 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
+
     
     
 }

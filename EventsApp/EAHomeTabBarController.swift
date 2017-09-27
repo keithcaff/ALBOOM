@@ -16,9 +16,6 @@ open class EAHomeTabBarController: UITabBarController {
     override open func viewDidLoad() {
         super.viewDidLoad()
         self.updateContentViewController(0)
-        //(UIApplication.sharedApplication().delegate as! AppDelegate).signInCallBack = refereshInterface
-        
-        // Do any additional setup after loading the view.
     }
     
 
@@ -28,6 +25,7 @@ open class EAHomeTabBarController: UITabBarController {
     }
     
     open override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated);
 //        let selectedIndex:Int? = self.tabBar.items!.indexOf(self.tabBar.selectedItem!)
 //        if let selectedIndex = selectedIndex {
 //            if selectedIndex != 1 {
@@ -50,13 +48,7 @@ open class EAHomeTabBarController: UITabBarController {
 //        if index == 1 {
 //            //if camera selected
 //            self.tabBar.hidden = true
-//        }
-    }
-    
-    func showLogin(_ animated:Bool) {
-        let storyboard = UIStoryboard(name: "EAMain", bundle: nil)
-        let signInViewControler:EALoginViewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! EALoginViewController
-        self.present(signInViewControler, animated: true, completion: nil)
+//
     }
 
 }

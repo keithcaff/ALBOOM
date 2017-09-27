@@ -56,6 +56,10 @@ struct StoryBoardIdentifiers {
     static let MAIN_STORYBOARD = "EAMain"
 }
 
+struct RestorationIdentifiers {
+    static let CAMERA_NAVIGATION_VIEW_CONTROLLER = "EACameraNavVC"
+}
+
 struct ViewControllerIdentifiers {
     static let LOGIN_VIEW_CONTROLLER = "LoginViewController"
     static let ROOT_SW_REVEAL_VIEW_CONTROLLER = "RootSWRevealViewController"
@@ -66,5 +70,11 @@ struct UploadImageKeys {
     static let UPLOAD_PERCENTAGE = "uploadPecentage"
     static let IMAGE_NAME = "imageName"
 }
+
+struct AlertText {
+    static let CREATE_OR_SELECT_EVENT_TITLE = "No event context"
+    static let CREATE_OR_SELECT_EVENT_MESSAGE = "Create or select an event to upload pictures"
+}
+
 
 

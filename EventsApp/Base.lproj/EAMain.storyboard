@@ -563,7 +563,7 @@
         <!--Camera-->
         <scene sceneID="Mvj-PO-JTC">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="eGo-rL-NXi" sceneMemberID="viewController">
+                <navigationController restorationIdentifier="EACameraNavVC" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="eGo-rL-NXi" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Camera" image="Camera" id="3nf-Kf-bxp"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="mxb-VR-cb2">
