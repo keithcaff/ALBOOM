@@ -62,6 +62,7 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
     override open func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         updateNavigationBarTitle()
+        hideShowTableView()
     }
     
     override open func viewDidAppear(_ animated: Bool) {
@@ -78,6 +79,22 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
         let defaults = UserDefaults.standard
         if let currentEventName = defaults.string(forKey: DEFAULT_CURRENT_EVENT_NAME) {
             self.navigationController?.navigationBar.topItem?.title = currentEventName
+        }
+    }
+    
+    
+    func hideShowTableView() {
+        let defaults = UserDefaults.standard
+        let currentEventName:String = defaults.string(forKey: DEFAULT_CURRENT_EVENT_NAME)!
+        var count:Int = 0
+        if let data = currentFilesList?.files {
+            count = data.count
+        }
+        if(currentEventName.isEmpty) {
+            self.tableView.isHidden = true
+        }
+        else {
+            self.tableView.isHidden = false
         }
     }
     
@@ -157,9 +174,6 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
         return cell!
     }
     
-    
-    
-    
     func activityIndicatorVisible(_ visible:Bool, cell:EAHomeTableViewCell!) {
         cell.activityIndicatorContainerView.isHidden = !visible
         
@@ -167,7 +181,6 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
            cell.activityIndicator.startAnimating()
         }
     }
-    
     
     open func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {

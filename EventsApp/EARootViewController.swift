@@ -22,6 +22,8 @@ class EARootViewController: UIViewController, EALoginListener {
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(userUnAuthenticated), name: .NOTIFICATION_USER_UNAUTHENTICATED, object: nil)
+        EAEvent.didSwitchEvent(nil) //fail safe to remove user defaults if app was forcefully killed
+        GIDSignIn.sharedInstance().signOut()
     }
 
     override func didReceiveMemoryWarning() {

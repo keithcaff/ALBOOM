@@ -50,7 +50,7 @@ class EALoginViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDel
     @IBAction func signInButtonTapped(_ sender: Any) {
         activityIndicator.isHidden = false
         activityIndicator.startAnimating()
-        print("signInButtonClicked")
+        print("signInButtonTapped")
     }
     
     func refereshInterface() {

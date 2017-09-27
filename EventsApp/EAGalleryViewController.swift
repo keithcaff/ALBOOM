@@ -77,7 +77,7 @@ open class EAGalleryViewController: UIViewController, ImagePickerDelegate, UITab
 //                imagePickerController!.view.bottomAnchor.constraint(equalTo: self.imagePickerPlaceholderView.bottomAnchor, constant: 0)
 //            ])
 //        imagePickerController!.didMove(toParentViewController: self)
-        present(imagePickerController!, animated: false, completion: nil)
+        present(imagePickerController!, animated: true, completion: nil)
     }
     
 // MARK: - ImagePickerDelegate Methods
