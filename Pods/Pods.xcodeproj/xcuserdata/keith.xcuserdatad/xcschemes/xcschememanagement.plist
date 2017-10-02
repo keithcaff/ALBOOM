@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Fusuma.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>GTMOAuth2.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -67,7 +72,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>94A72ADFA77108A6ABE7A6AC05F91E21</key>
+		<key>3E0D8640A124012AB6F0A9F775A38285</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>4A93BAB049C189F20182E3E83D3C3552</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -77,12 +87,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C5FE0733E4029EC874F625269D5930FD</key>
+		<key>D1A5CF89B974E970D3A71F3D763E3A88</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D1A5CF89B974E970D3A71F3D763E3A88</key>
+		<key>DC627DB07DD3D8757096D5DDB2B45DE0</key>
 		<dict>
 			<key>primary</key>
 			<true/>

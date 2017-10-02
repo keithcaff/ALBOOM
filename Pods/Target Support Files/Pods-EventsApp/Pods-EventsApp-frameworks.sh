@@ -89,6 +89,7 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "$BUILT_PRODUCTS_DIR/Fusuma/Fusuma.framework"
   install_framework "$BUILT_PRODUCTS_DIR/GTMOAuth2/GTMOAuth2.framework"
   install_framework "$BUILT_PRODUCTS_DIR/GTMSessionFetcher/GTMSessionFetcher.framework"
   install_framework "$BUILT_PRODUCTS_DIR/GoogleAPIClient/GoogleAPIClient.framework"
@@ -97,6 +98,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/UIColor-Hex/UIColor_Hex.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "$BUILT_PRODUCTS_DIR/Fusuma/Fusuma.framework"
   install_framework "$BUILT_PRODUCTS_DIR/GTMOAuth2/GTMOAuth2.framework"
   install_framework "$BUILT_PRODUCTS_DIR/GTMSessionFetcher/GTMSessionFetcher.framework"
   install_framework "$BUILT_PRODUCTS_DIR/GoogleAPIClient/GoogleAPIClient.framework"
