@@ -7,19 +7,16 @@
 //
 
 import Foundation
-import ImagePicker
-import Fusuma
+import ALCameraViewController
+import Photos
 
-open class EAGalleryViewController: UIViewController, ImagePickerDelegate, UITableViewDelegate, UITableViewDataSource, FusumaDelegate {
+open class EAGalleryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var imagePickerPlaceholderView: UIView!
     @IBOutlet weak var imageView: UIImageView!
-    var imagePickerController:FusumaViewController?
-    var imagePickerControllerOld:ImagePickerController?
     var data:[EAImageUpload]! = [EAImageUpload!]()
-    var shoulPresentImagePicker:Bool = true
     let imageUplaodCellReuseIdentifier:String = "eaImageUploadTableViewCell"
     let UIImageViewTagId = 304
     
@@ -36,8 +33,6 @@ open class EAGalleryViewController: UIViewController, ImagePickerDelegate, UITab
         let nib = UINib(nibName: XIBIdentifiers.XIB_IMAGE_UPLOAD_CELL_IDENTIFIER, bundle:nil)
         self.tableView!.register(nib, forCellReuseIdentifier: imageUplaodCellReuseIdentifier)
         self.view.addSubview(self.tableView!)
-        setupImagePicker()
-        //presentImagePickerOld()
     }
     
     override open func viewWillAppear(_ animated: Bool) {
@@ -46,9 +41,7 @@ open class EAGalleryViewController: UIViewController, ImagePickerDelegate, UITab
     
     override open func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if (shoulPresentImagePicker) {
-            presentImagePicker()
-        }
+        presentImagePicker()
     }
     
     
@@ -56,92 +49,51 @@ open class EAGalleryViewController: UIViewController, ImagePickerDelegate, UITab
         NotificationCenter.default.addObserver(self, selector: #selector(uploadProgressUpated), name: .NOTIFICATION_IMAGE_UPLOAD_PROGRESS_UPDATE, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(imageUploadSuccessfully), name: .NOTIFICATION_IMAGE_UPLOADED, object: nil)
     }
-   
-    func setupImagePicker() {
-        imagePickerController = FusumaViewController()
-        imagePickerController!.delegate = self
-        imagePickerController!.cropHeightRatio = 0.6 // Height-to-width ratio. The default value is 1, which means a squared-size photo.
-        imagePickerController!.allowMultipleSelection = true // You can select multiple photos from the camera roll. The default value is false.
-        imagePickerController!.hasVideo = false
-        imagePickerController!.defaultMode = .library
-    }
     
     func presentImagePicker() {
-        if imagePickerController == nil {
-            setupImagePicker()
-        }
-        present(imagePickerController!, animated: true, completion: nil)
-    }
-    
-    func presentImagePickerOld() {
-        var configuration = Configuration()
-        configuration.doneButtonTitle = "Upload"
-        configuration.noImagesTitle = "Sorry! There are no images here!"
-        configuration.allowMultiplePhotoSelection = true
-        configuration.recordLocation = false
-        guard imagePickerControllerOld != nil else {
-            imagePickerControllerOld = ImagePickerController(configuration: configuration)
-            return
-        }
-        imagePickerControllerOld!.delegate = self
-        imagePickerControllerOld?.imageLimit = 4
-    
-    
-    
-        //TODO: PREVENT USER FROM SELECTING IMAGES IF NO EVENT IS IN CONTEXT!
-    
-    
-//        self.addChildViewController(imagePickerController!)
-//        self.view.addSubview(imagePickerController!.view)
-//    
-//        imagePickerController!.view.translatesAutoresizingMaskIntoConstraints = false
-//        NSLayoutConstraint.activate(
-//            [imagePickerController!.view.leadingAnchor.constraint(equalTo: self.imagePickerPlaceholderView.leadingAnchor, constant: 0),
-//                imagePickerController!.view.trailingAnchor.constraint(equalTo: self.imagePickerPlaceholderView.trailingAnchor, constant:0),
-//                imagePickerController!.view.topAnchor.constraint(equalTo: self.imagePickerPlaceholderView!.topAnchor, constant: 0),
-//                imagePickerController!.view.bottomAnchor.constraint(equalTo: self.imagePickerPlaceholderView.bottomAnchor, constant: 0)
-//            ])
-//        imagePickerController!.didMove(toParentViewController: self)
-        present(imagePickerControllerOld!, animated: true, completion: nil)
-    }
-    
-// MARK: - ImagePickerDelegate Methods
-    
-    open func wrapperDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
-        
-    }
-    
-    open func doneButtonDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
-//        imagePickerController!.willMove(toParentViewController: nil)
-//        imagePickerController!.view.removeFromSuperview()
-//        imagePickerController!.removeFromParentViewController()
-        self.imagePickerControllerOld?.dismiss(animated: false, completion: nil)
-        
-        
-        let defaults = UserDefaults.standard
-        let eventId:String? = defaults.string(forKey: DEFAULT_CURRENT_EVENT_ID)
-        let eventName:String? = defaults.string(forKey: DEFAULT_CURRENT_EVENT_NAME)
-        
-        for image in images {
-            if let eventId = eventId, let eventName = eventName {
-                let event:EAEvent = EAEvent(id:eventId , eventName: eventName)
-                let imageUpload:EAImageUpload = EAImageUpload(image: image, uploadPercentage: 0)
-                data.append(imageUpload)
-                EAGoogleAPIManager.sharedInstance.uploadImageToEvent(imageUpload,event:event)
-            }
+        let cameraViewController = CameraViewController { [weak self] image, asset in
+            // Do something with your image here.
+            
+            print("KCTEST1")
+            self?.dismiss(animated: true, completion: nil)
         }
         
-        if(!data.isEmpty) {
-            self.tableView!.isHidden = false
-        }
+        present(cameraViewController, animated: true, completion: nil)
         
-        self.tableView?.reloadData()
+        
+        
+        //        let imagePickerViewController = CameraViewController.imagePickerViewController(croppingParameters: CroppingParameters(isEnabled: true, allowResizing: true, allowMoving: false, minimumSize: CGSize(width: 60, height: 60)), completion:{ (image, asset) in
+//            print("KCTEST CameraViewController.imagePickerViewController completion block called")
+//        })
+        
+        
+//        let imagePickerViewController:PhotoLibraryViewController = PhotoLibraryViewController()
+//        imagePickerViewController.onSelectionComplete = { asset in
+//            
+//            // The asset could be nil if the user doesn't select anything
+//            guard let asset = asset else {
+//                return
+//            }
+//            
+//            // Provides a PHAsset object
+//            // Retrieve a UIImage from a PHAsset using
+//            let options:PHImageRequestOptions = PHImageRequestOptions()
+//            options.deliveryMode = .highQualityFormat
+//            options.isNetworkAccessAllowed = true
+//            
+//            PHImageManager.default().requestImage(for: asset, targetSize: PHImageManagerMaximumSize, contentMode: .aspectFill, options: options) { image, _ in
+//                if let image = image {
+//                    // Do something with your image here
+//                    print("KC test Image selcted!")
+//                }
+//            }
+//        }
+//        
+        //present(imagePickerViewController, animated: true, completion: nil)
+        //present(imagePickerViewController, animated: true, completion: nil)
     }
     
-    open func cancelButtonDidPress(_ imagePicker: ImagePickerController) {
-        //return to the home vc
-        self.performSegue(withIdentifier: SegueIdentifiers.EXIT_GALLERY_SEGUE,sender:self)
-    }
+    //self.performSegue(withIdentifier: SegueIdentifiers.EXIT_GALLERY_SEGUE,sender:self)
     
 // MARK: - UITableViewDelegate Methods
     
@@ -194,8 +146,7 @@ open class EAGalleryViewController: UIViewController, ImagePickerDelegate, UITab
     }
     
     
-    open func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
-    {
+    open func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return self.tableView!.frame.height;
     }
     
@@ -221,7 +172,6 @@ open class EAGalleryViewController: UIViewController, ImagePickerDelegate, UITab
         }
     }
     
-    
     func imageUploadSuccessfully(_ notifiaction : Notification) {
         print("imageUploadSuccessfully CALLED!!!")
         let uploadDetails:[String:Any] = notifiaction.object as! [String:Any]
@@ -236,8 +186,6 @@ open class EAGalleryViewController: UIViewController, ImagePickerDelegate, UITab
             }
         }
     }
-    
-    
     
     func updateViewWithSelectedImages(_ images: [UIImage]) {
         let defaults = UserDefaults.standard
@@ -259,53 +207,5 @@ open class EAGalleryViewController: UIViewController, ImagePickerDelegate, UITab
         
         self.tableView?.reloadData()
     }
-    
-    
-    
-    
-    // MARK: - fusuma delegate Methods
-    
-    public func fusumaImageSelected(_ image: UIImage, source: FusumaMode){
-        print("fusumaImageSelected \(image)")
-        updateViewWithSelectedImages([image])
-        shoulPresentImagePicker = false;
-    }
-    
-    public func fusumaMultipleImageSelected(_ images: [UIImage], source: FusumaMode){
-        print("fusumaMultipleImageSelected \(images)")
-        updateViewWithSelectedImages(images)
-        shoulPresentImagePicker = false;
-    }
-    
-    public func fusumaVideoCompleted(withFileURL fileURL: URL){
-        print("fusumaVideoCompleted")
-    }
-    
-    public func fusumaCameraRollUnauthorized(){
-         print("fusumaCameraRollUnauthorized ")
-    }
-    
-    
-    public func fusumaImageSelected(_ image: UIImage, source: FusumaMode, metaData: ImageMetadata){
-         print("fusumaImageSelected 2 \(image), \(source) \(metaData)")
-    }
-    
-    public func fusumaDismissedWithImage(_ image: UIImage, source: FusumaMode){
-        print("fusumaDismissedWithImage \(image), \(source) ")
-//        /self.performSegue(withIdentifier: SegueIdentifiers.EXIT_GALLERY_SEGUE,sender:self)
-    }
-    
-    public func fusumaClosed(){
-        print("fusumaClosed")
-        self.performSegue(withIdentifier: SegueIdentifiers.EXIT_GALLERY_SEGUE,sender:self)
-        shoulPresentImagePicker = true;
-    }
-    
-    public func fusumaWillClosed(){
-        shoulPresentImagePicker = false;
-        print("fusumaWillClosed")
-    }
-    
-    
 
 }

@@ -8,6 +8,5 @@ target 'EventsApp' do
  	pod 'Google/SignIn'
  	pod 'GTMOAuth2'
 	pod ‘UIColor-Hex'
-	pod 'ImagePicker'
-	pod 'Fusuma'
+	pod 'ALCameraViewController', '~> 2.0.3'
 end

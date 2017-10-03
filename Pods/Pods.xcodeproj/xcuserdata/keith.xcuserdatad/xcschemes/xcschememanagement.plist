@@ -4,7 +4,7 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Fusuma.xcscheme</key>
+		<key>ALCameraViewController.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -29,16 +29,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>ImagePicker-ImagePicker.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>ImagePicker.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Pods-EventsApp.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -52,12 +42,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>09A62655F66AE53A474D64E42E6E9DF9</key>
+		<key>107A9565F9DF88517DFD3E28C05B2B96</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>107A9565F9DF88517DFD3E28C05B2B96</key>
+		<key>155DB289FD75DA739939DDFC46723B7A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -67,17 +57,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3BFF9F651824EF6D7159B996DAA71D25</key>
+		<key>5570ADD82640075EE63C4B974684196D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3E0D8640A124012AB6F0A9F775A38285</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>4A93BAB049C189F20182E3E83D3C3552</key>
+		<key>6EBC29015D621167750F887DA51BF6FD</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -88,11 +73,6 @@
 			<true/>
 		</dict>
 		<key>D1A5CF89B974E970D3A71F3D763E3A88</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>DC627DB07DD3D8757096D5DDB2B45DE0</key>
 		<dict>
 			<key>primary</key>
 			<true/>
