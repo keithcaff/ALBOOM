@@ -81,6 +81,8 @@ open class EAViewEventsViewController: UIViewController, UITableViewDelegate, UI
     }
     
     open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let event:EAEvent =  data?.object(at: indexPath.row) as! EAEvent
+        unWindToMenu(event)
         print("selected row \(indexPath.row)")
     }
     

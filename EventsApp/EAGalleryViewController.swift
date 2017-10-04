@@ -42,12 +42,13 @@ open class EAGalleryViewController: UIViewController, UITableViewDelegate, UITab
     func configureGallery() {
         Gallery.Config.tabsToShow = [.imageTab, .cameraTab]
         Gallery.Config.Camera.imageLimit = 5
+        
         gallery = GalleryController()
         gallery.delegate = self
     }
     
     func setupAlerts() {
-        uploadSuccessAlert = UIAlertController(title: "Upload complete", message: "Image(s) uploaded successfully", preferredStyle: UIAlertControllerStyle.alert)
+        uploadSuccessAlert = UIAlertController(title: "Upload complete", message: "Image(s) uploaded to Google Drive", preferredStyle: UIAlertControllerStyle.alert)
         uploadSuccessAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler:nil))
     }
     
