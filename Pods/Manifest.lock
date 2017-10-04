@@ -8,6 +8,7 @@ PODS:
     - GoogleToolboxForMac/NSData+zlib (~> 2.1)
   - FirebaseInstanceID (1.0.10):
     - FirebaseCore (~> 3.6)
+  - Gallery (1.3.0)
   - Google/Core (3.1.0):
     - FirebaseAnalytics (~> 3.2)
   - Google/SignIn (3.1.0):
@@ -47,6 +48,7 @@ PODS:
 
 DEPENDENCIES:
   - ALCameraViewController (~> 2.0.3)
+  - Gallery
   - Google/SignIn
   - GoogleAPIClient
   - GoogleAPIClient/Drive
@@ -58,6 +60,7 @@ SPEC CHECKSUMS:
   FirebaseAnalytics: e5fe8486efc01bec33f6bf82e2fa9fce4b124052
   FirebaseCore: 9691ee2ade70c098d7cf92440f4303f16d83ca75
   FirebaseInstanceID: b9eedd6846fb5e1f0f7279e1deaa7a7e4cf8392e
+  Gallery: 40220b942a34dfc9815ad06bffcd2025827b5e02
   Google: 98da4b1a60ed0beb80a290387a28333406a1eb90
   GoogleAPIClient: 77df755d41d70ee5a99b7b752614fbb439f19438
   GoogleSignIn: d7ad83f13480e1f30453471d00d19b5293ac46af
@@ -66,6 +69,6 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 5ad62e8200fa00ed011fe5e08d27fef72c5b1429
   UIColor-Hex: fa81910f914482931c150fd73a09e77ff9226ec8
 
-PODFILE CHECKSUM: 7da6194587177c65ae875d94c80a2c14dc83d9a9
+PODFILE CHECKSUM: 0e69466e9d817f28522bafc822c768c3404de2ac
 
 COCOAPODS: 1.2.0

@@ -7,24 +7,56 @@
 //
 
 import Foundation
-import ALCameraViewController
-import Photos
-
-open class EAGalleryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+import Gallery
+open class EAGalleryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, GalleryControllerDelegate {
 
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var imagePickerPlaceholderView: UIView!
     @IBOutlet weak var imageView: UIImageView!
+    var uploadSuccessAlert:UIAlertController!
+    var gallery: GalleryController!
     var data:[EAImageUpload]! = [EAImageUpload!]()
     let imageUplaodCellReuseIdentifier:String = "eaImageUploadTableViewCell"
     let UIImageViewTagId = 304
     
     override open func viewDidLoad() {
         super.viewDidLoad()
-        
         self.setupNotifications()
-        
+        self.setupTableView()
+        self.configureGallery()
+        setupAlerts()
+    }
+    
+    override open func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
+    override open func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if (self.data.count == 0) {
+            presentImagePickerWithAlert(nil)
+        }
+    }
+    
+    func configureGallery() {
+        Gallery.Config.tabsToShow = [.imageTab, .cameraTab]
+        Gallery.Config.Camera.imageLimit = 5
+        gallery = GalleryController()
+        gallery.delegate = self
+    }
+    
+    func setupAlerts() {
+        uploadSuccessAlert = UIAlertController(title: "Upload complete", message: "Image(s) uploaded successfully", preferredStyle: UIAlertControllerStyle.alert)
+        uploadSuccessAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler:nil))
+    }
+    
+    func setupNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(uploadProgressUpated), name: .NOTIFICATION_IMAGE_UPLOAD_PROGRESS_UPDATE, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(imageUploadSuccessfully), name: .NOTIFICATION_IMAGE_UPLOADED, object: nil)
+    }
+    
+    func setupTableView() {
         self.tableView!.dataSource = self
         self.tableView!.delegate = self
         self.tableView!.isHidden = true
@@ -35,68 +67,19 @@ open class EAGalleryViewController: UIViewController, UITableViewDelegate, UITab
         self.view.addSubview(self.tableView!)
     }
     
-    override open func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    
-    override open func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        presentImagePicker()
-    }
-    
-    
-    func setupNotifications() {
-        NotificationCenter.default.addObserver(self, selector: #selector(uploadProgressUpated), name: .NOTIFICATION_IMAGE_UPLOAD_PROGRESS_UPDATE, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(imageUploadSuccessfully), name: .NOTIFICATION_IMAGE_UPLOADED, object: nil)
-    }
-    
-    func presentImagePicker() {
-        let cameraViewController = CameraViewController { [weak self] image, asset in
-            // Do something with your image here.
-            
-            print("KCTEST1")
-            self?.dismiss(animated: true, completion: nil)
+    func presentImagePickerWithAlert(_ alert:UIAlertController?) {
+        if alert != nil {
+            present(gallery, animated: true, completion: {
+                self.gallery.present(alert!, animated:true, completion:nil)
+            })
         }
-        
-        present(cameraViewController, animated: true, completion: nil)
-        
-        
-        
-        //        let imagePickerViewController = CameraViewController.imagePickerViewController(croppingParameters: CroppingParameters(isEnabled: true, allowResizing: true, allowMoving: false, minimumSize: CGSize(width: 60, height: 60)), completion:{ (image, asset) in
-//            print("KCTEST CameraViewController.imagePickerViewController completion block called")
-//        })
-        
-        
-//        let imagePickerViewController:PhotoLibraryViewController = PhotoLibraryViewController()
-//        imagePickerViewController.onSelectionComplete = { asset in
-//            
-//            // The asset could be nil if the user doesn't select anything
-//            guard let asset = asset else {
-//                return
-//            }
-//            
-//            // Provides a PHAsset object
-//            // Retrieve a UIImage from a PHAsset using
-//            let options:PHImageRequestOptions = PHImageRequestOptions()
-//            options.deliveryMode = .highQualityFormat
-//            options.isNetworkAccessAllowed = true
-//            
-//            PHImageManager.default().requestImage(for: asset, targetSize: PHImageManagerMaximumSize, contentMode: .aspectFill, options: options) { image, _ in
-//                if let image = image {
-//                    // Do something with your image here
-//                    print("KC test Image selcted!")
-//                }
-//            }
-//        }
-//        
-        //present(imagePickerViewController, animated: true, completion: nil)
-        //present(imagePickerViewController, animated: true, completion: nil)
+        else {
+            present(gallery, animated: true, completion: nil)
+        }
     }
+
     
-    //self.performSegue(withIdentifier: SegueIdentifiers.EXIT_GALLERY_SEGUE,sender:self)
-    
-// MARK: - UITableViewDelegate Methods
-    
+    // MARK: - UITableViewDelegate Methods
     open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.count;
     }
@@ -161,14 +144,6 @@ open class EAGalleryViewController: UIViewController, UITableViewDelegate, UITab
             eaImageUpload.uploadPercentage = uploadPercentage
             let indexPath = IndexPath(row: i, section: 0)
             self.tableView.reloadRows(at: [indexPath], with: .none)
-            
-//            else {
-//                data.remove(at: i)
-//                self.tableView.deleteRows(at: [indexPath], with: .fade)
-//                if(data.isEmpty) {
-//                    presentImagePicker()
-//                }
-//            }
         }
     }
     
@@ -182,7 +157,7 @@ open class EAGalleryViewController: UIViewController, UITableViewDelegate, UITab
             let indexPath = IndexPath(row: i, section: 0)
             self.tableView.deleteRows(at: [indexPath], with: .fade)
             if(data.isEmpty) {
-                //presentImagePickerOld()
+                presentImagePickerWithAlert(self.uploadSuccessAlert)
             }
         }
     }
@@ -206,6 +181,31 @@ open class EAGalleryViewController: UIViewController, UITableViewDelegate, UITab
         }
         
         self.tableView?.reloadData()
+    }
+    
+    
+    // MARK: - GalleryControllerDelegate
+    public func galleryController(_ controller: GalleryController, didSelectImages images: [Image]) {
+        var imagesToProcess:[UIImage] = [UIImage]()
+        for image in images {
+            let size:CGSize = CGSize(width:image.asset.pixelWidth, height:image.asset.pixelHeight)
+            imagesToProcess.append(image.uiImage(ofSize: size)!)
+        }
+        gallery.dismiss(animated: true, completion: nil)
+        updateViewWithSelectedImages(imagesToProcess)
+    }
+    
+    public func galleryController(_ controller: GalleryController, didSelectVideo video: Video) {
+        
+    }
+    
+    public func galleryController(_ controller: GalleryController, requestLightbox images: [Image]) {
+        
+    }
+    
+    public func galleryControllerDidCancel(_ controller: GalleryController) {
+        gallery.dismiss(animated: true, completion: nil)
+        self.performSegue(withIdentifier: SegueIdentifiers.EXIT_GALLERY_SEGUE,sender:self)
     }
 
 }

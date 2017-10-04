@@ -19,6 +19,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Gallery.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>GoogleAPIClient.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -47,7 +52,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>155DB289FD75DA739939DDFC46723B7A</key>
+		<key>1DDF79789426C485836D92AAB69CF9E7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -62,12 +67,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6EBC29015D621167750F887DA51BF6FD</key>
+		<key>8AC4FC4627A71E6CD7C84EEC47666129</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>B1C4AAFAF49036C7007633DAA3C806AD</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BB4E12B19311EF52068B16873A21E70D</key>
 		<dict>
 			<key>primary</key>
 			<true/>

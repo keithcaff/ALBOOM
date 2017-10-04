@@ -9,4 +9,5 @@ target 'EventsApp' do
  	pod 'GTMOAuth2'
 	pod ‘UIColor-Hex'
 	pod 'ALCameraViewController', '~> 2.0.3'
+	pod 'Gallery'
 end
