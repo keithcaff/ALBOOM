@@ -42,9 +42,6 @@ open class EAGalleryViewController: UIViewController, UITableViewDelegate, UITab
     func configureGallery() {
         Gallery.Config.tabsToShow = [.imageTab, .cameraTab]
         Gallery.Config.Camera.imageLimit = 5
-        
-        gallery = GalleryController()
-        gallery.delegate = self
     }
     
     func setupAlerts() {
@@ -69,6 +66,8 @@ open class EAGalleryViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     func presentImagePickerWithAlert(_ alert:UIAlertController?) {
+        gallery = GalleryController()
+        gallery.delegate = self
         if alert != nil {
             present(gallery, animated: true, completion: {
                 self.gallery.present(alert!, animated:true, completion:nil)
