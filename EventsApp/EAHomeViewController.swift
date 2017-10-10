@@ -18,6 +18,7 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
     var currentFilesList:GTLDriveFileList?
     var fileDataMap:Dictionary = Dictionary<String, Data>()
     let homeCellReuseIdentifier:String = "eaHomeTableViewCell"
+    var rootFolder:String?
     let UIImageViewTagId = 303
 
     @IBOutlet var menuButton: UIBarButtonItem!
@@ -86,10 +87,10 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
     func hideShowTableView() {
         let defaults = UserDefaults.standard
         let currentEventName:String = defaults.string(forKey: DEFAULT_CURRENT_EVENT_NAME)!
-        var count:Int = 0
+        /*var count:Int = 0
         if let data = currentFilesList?.files {
             count = data.count
-        }
+        }*/
         if(currentEventName.isEmpty) {
             self.tableView.isHidden = true
         }
@@ -107,40 +108,37 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
         var bgImage:UIImage?
         var imageViewBackground:UIImageView?
         
-        if let file = file {
-            let fileData:Data? = self.fileDataMap[file.identifier]
-            if let fileData = fileData {
-                bgImage = UIImage(data: fileData)
-                activityIndicatorVisible(false, cell:cell)
-                if let view = view.viewWithTag(UIImageViewTagId) {
-                    imageViewBackground = view as? UIImageView
-                }
-                else {
-                    imageViewBackground = UIImageView(frame: CGRect(x: 0, y: 0, width: width, height: height))
-                    imageViewBackground?.tag = UIImageViewTagId
-                    // you can change the content mode:
-                    imageViewBackground?.contentMode = UIViewContentMode.scaleToFill
-                    imageViewBackground?.translatesAutoresizingMaskIntoConstraints = false;
-                    view.addSubview(imageViewBackground!)
-                    let top = NSLayoutConstraint(item: imageViewBackground!, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem:view , attribute: NSLayoutAttribute.top, multiplier: 1, constant: 0)
-                    let bottom = NSLayoutConstraint(item: imageViewBackground!, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem:view , attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 0)
-                    let leading = NSLayoutConstraint(item: imageViewBackground!, attribute: NSLayoutAttribute.leading, relatedBy: NSLayoutRelation.equal, toItem:view , attribute: NSLayoutAttribute.leading, multiplier: 1, constant: 0)
-                    let trailing = NSLayoutConstraint(item: imageViewBackground!, attribute: NSLayoutAttribute.trailing, relatedBy: NSLayoutRelation.equal, toItem:view , attribute: NSLayoutAttribute.trailing, multiplier: 1, constant: 0)
-                    view.addConstraint(top)
-                    view.addConstraint(bottom)
-                    view.addConstraint(leading)
-                    view.addConstraint(trailing)
-                    view.sendSubview(toBack: imageViewBackground!)
-                }
-                imageViewBackground?.image = bgImage
+        bgImage = EADeviceDataManager.sharedInstance.getImageFromFile(fileId: file.identifier!)
+        if let bgImage = bgImage {
+            activityIndicatorVisible(false, cell:cell)
+            if let view = view.viewWithTag(UIImageViewTagId) {
+                imageViewBackground = view as? UIImageView
             }
             else {
-                if let view = view.viewWithTag(UIImageViewTagId) {
-                    imageViewBackground = view as? UIImageView
-                    imageViewBackground?.image = nil
-                }
-                self.activityIndicatorVisible(true, cell:cell)
+                imageViewBackground = UIImageView(frame: CGRect(x: 0, y: 0, width: width, height: height))
+                imageViewBackground?.tag = UIImageViewTagId
+                // you can change the content mode:
+                imageViewBackground?.contentMode = UIViewContentMode.scaleToFill
+                imageViewBackground?.translatesAutoresizingMaskIntoConstraints = false;
+                view.addSubview(imageViewBackground!)
+                let top = NSLayoutConstraint(item: imageViewBackground!, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem:view , attribute: NSLayoutAttribute.top, multiplier: 1, constant: 0)
+                let bottom = NSLayoutConstraint(item: imageViewBackground!, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem:view , attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 0)
+                let leading = NSLayoutConstraint(item: imageViewBackground!, attribute: NSLayoutAttribute.leading, relatedBy: NSLayoutRelation.equal, toItem:view , attribute: NSLayoutAttribute.leading, multiplier: 1, constant: 0)
+                let trailing = NSLayoutConstraint(item: imageViewBackground!, attribute: NSLayoutAttribute.trailing, relatedBy: NSLayoutRelation.equal, toItem:view , attribute: NSLayoutAttribute.trailing, multiplier: 1, constant: 0)
+                view.addConstraint(top)
+                view.addConstraint(bottom)
+                view.addConstraint(leading)
+                view.addConstraint(trailing)
+                view.sendSubview(toBack: imageViewBackground!)
             }
+            imageViewBackground?.image = bgImage
+        }
+        else {
+            if let view = view.viewWithTag(UIImageViewTagId) {
+                imageViewBackground = view as? UIImageView
+                imageViewBackground?.image = nil
+            }
+            self.activityIndicatorVisible(true, cell:cell)
         }
     }
     
@@ -197,8 +195,9 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
         var fileId:String?
         if let fileData = notifiaction.object as? Data  {
             fileId = (notifiaction.userInfo!["fileId"] as! String)
-            fileDataMap[fileId!] = fileData
+            EADeviceDataManager.sharedInstance.writeFileToRootFolder(fileName:fileId!, data:fileData)
         }
+        
         var fileIndex:Int?
         if let currentFilesList = currentFilesList {
             for (index, element) in currentFilesList.files.enumerated() {
@@ -260,7 +259,5 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
-
-    
     
 }
