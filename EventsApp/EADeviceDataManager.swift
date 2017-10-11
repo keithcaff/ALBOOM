@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 class EADeviceDataManager {
     open static let sharedInstance = EADeviceDataManager()
     fileprivate var rootFolder:String?
@@ -16,63 +15,82 @@ class EADeviceDataManager {
         
     }
     
+    private func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let documentsDirectory = paths[0]
+        return documentsDirectory
+    }
+    
+    private func getRootDirectory() -> URL {
+        let root = getDocumentsDirectory().appendingPathComponent(DeviceFolderNames.EA_ROOT_DEVICE_FOLDER, isDirectory: true)
+        return root
+    }
     
     private func createRootFolder() {
-        var paths: [Any] = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
-        let documentsDirectory: String = paths[0] as! String
-        // Get documents folder
-        let dataPath: String = "\(documentsDirectory)/\(DeviceFolderNames.EA_ROOT_DEVICE_FOLDER)"
-        if !FileManager.default.fileExists(atPath: dataPath) {
+        let rootDirectory = getRootDirectory()
+        if !FileManager.default.fileExists(atPath: rootDirectory.path) {
             do {
-                try FileManager.default.createDirectory(atPath: dataPath, withIntermediateDirectories: false, attributes: nil)
+                try FileManager.default.createDirectory(atPath: rootDirectory.path, withIntermediateDirectories: false, attributes: nil)
             }
             catch let error as NSError {
                 print("Failed to create root folder. Reason: \(error.debugDescription)")
             }
         }
-        self.rootFolder = dataPath
     }
     
-    
     open func writeFileToRootFolder(fileName:String , data:Data ) {
-        print("KCTEST writeFileToRootFolder")
         if (self.rootFolder == nil || !FileManager.default.fileExists(atPath: self.rootFolder!)) {
             createRootFolder()
         }
-        
-        if let rootFolder = rootFolder {
-            //write file to the root folder
-            let filePath = "\(rootFolder)/\(fileName)\(DeviceFolderNames.EA_IMAGE_FILE_TYPE)"
-            let success = FileManager.default.createFile(atPath: filePath, contents: data, attributes:nil)
-            
-            if (!success) {
-                NSLog("Unable to write file to directory. file:\(fileName)")
-            }
+        let file = getDocumentsDirectory().appendingPathComponent(DeviceFolderNames.EA_ROOT_DEVICE_FOLDER, isDirectory: true).appendingPathComponent(fileName, isDirectory:false).appendingPathExtension(DeviceFolderNames.EA_IMAGE_FILE_TYPE)
+        do {
+            try data.write(to: file)
+        }
+        catch let error as NSError {
+            print("Failed to writeFileToRootFolder. Reason: \(error.debugDescription)")
         }
     }
     
-    
     open func getImageFromFile(fileId:String) -> UIImage? {
         var image:UIImage?
-        guard let root = rootFolder else {
-            return image
+        let file = getDocumentsDirectory().appendingPathComponent(DeviceFolderNames.EA_ROOT_DEVICE_FOLDER, isDirectory: true).appendingPathComponent(fileId, isDirectory:false).appendingPathExtension(DeviceFolderNames.EA_IMAGE_FILE_TYPE)
+        do {
+            let imageData =  try Data(contentsOf: file)
+            image = UIImage(data: imageData)
+            print("Retrieved image from file. Path: \(file.path)")
         }
-        let fileName:String = "\(fileId)\(DeviceFolderNames.EA_IMAGE_FILE_TYPE)"
-        let filePath:String = "\(root)/\(fileName)\(DeviceFolderNames.EA_IMAGE_FILE_TYPE)"
-        if (FileManager.default.fileExists(atPath: filePath)) {
-            let url = URL(string: filePath)
+        catch let error as NSError {
+            print("Failed to get image from file. Reason: \(error.debugDescription)")
+            print("Failed to get image from file. Path: \(file.path)")
             do {
-                let imageData =  try Data(contentsOf: url!)
-                image = UIImage(data: imageData)
+                let fileNames = try FileManager.default.contentsOfDirectory(atPath: getRootDirectory().path)
+                for fileName in fileNames {
+                    print("fileName: \(fileName) fileId: \(fileId) matches: \(fileId == fileName)")
+                }
             }
             catch let error as NSError {
-                print("Failed to create root folder. Reason: \(error.debugDescription)")
+                print("Failed to list file names : \(error.debugDescription)")
             }
         }
         return image
     }
     
-    
-    
-    
+    open func cleanupStoredData() {
+        let rootDirectory = getRootDirectory()
+        if FileManager.default.fileExists(atPath: rootDirectory.path) {
+            do {
+                let fileNames = try FileManager.default.contentsOfDirectory(atPath: getRootDirectory().path)
+                for fileName in fileNames {
+                    let fileToRemove = rootDirectory.appendingPathComponent(fileName, isDirectory:false)
+                    try FileManager.default.removeItem(at: fileToRemove)
+                }
+                let files = try FileManager.default.contentsOfDirectory(atPath: getRootDirectory().path)
+                print("all files in cache after deleting images: \(files)")
+                try FileManager.default.removeItem(at: rootDirectory)
+            }
+            catch let error as NSError {
+                print("Failed to cleanupStoredData. Reason: \(error.debugDescription)")
+            }
+        }
+    }
 }

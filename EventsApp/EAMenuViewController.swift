@@ -42,6 +42,7 @@ class EAMenuViewController: UIViewController ,UITableViewDelegate, UITableViewDa
             revealViewController().revealToggle(animated: false)
             nav.popToRootViewController(animated: false)// the root vc is the EARootViewController
         }
+        EADeviceDataManager.sharedInstance.cleanupStoredData()
     }
     
     @IBAction func unWindToMenu(_ sender: UIStoryboardSegue) {
