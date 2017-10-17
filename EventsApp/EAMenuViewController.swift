@@ -38,10 +38,18 @@ class EAMenuViewController: UIViewController ,UITableViewDelegate, UITableViewDa
         print("Log out button tapped!")
         GIDSignIn.sharedInstance().signOut()
         EAEvent.didSwitchEvent(nil)
+        var loginVC:EALoginViewController?
+        
         if let nav = revealViewController().frontViewController.navigationController {
+            nav.viewControllers.forEach { viewController in
+                if viewController is EALoginViewController {
+                    loginVC = viewController as? EALoginViewController
+                }
+            }
             revealViewController().revealToggle(animated: false)
-            nav.popToRootViewController(animated: false)// the root vc is the EARootViewController
+            nav.popToViewController(loginVC!, animated: false)
         }
+        
         EADeviceDataManager.sharedInstance.cleanupStoredData()
     }
     
