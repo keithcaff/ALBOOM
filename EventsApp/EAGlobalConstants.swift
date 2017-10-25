@@ -79,7 +79,7 @@ struct AlertText {
 
 struct DeviceFolderNames {
     static let EA_ROOT_DEVICE_FOLDER = "EARoot"
-    static let EA_IMAGE_FILE_TYPE = ".jpg"
+    static let EA_IMAGE_FILE_TYPE = "jpg"
 }
 
 

@@ -14,9 +14,10 @@ import UIColor_Hex
 open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableViewDataSource, EAEventUpdateDelegate{
     
     @IBOutlet var tableView: UITableView!
+    
     var currentEventFolder:GTLDriveFile?
     var currentFilesList:GTLDriveFileList?
-    var fileDataMap:Dictionary = Dictionary<String, Data>()
+    var downlaodsInProgress:[String] = [String]()
     let homeCellReuseIdentifier:String = "eaHomeTableViewCell"
     var rootFolder:String?
     let UIImageViewTagId = 303
@@ -68,7 +69,6 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
     
     override open func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
     }
     
     override open func didReceiveMemoryWarning() {
@@ -134,6 +134,10 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
             imageViewBackground?.image = bgImage
         }
         else {
+            if(!downlaodsInProgress.contains(file.identifier)) {
+                downlaodsInProgress.append(file.identifier)
+                EAGoogleAPIManager.sharedInstance.downloadFile(file)
+            }
             if let view = view.viewWithTag(UIImageViewTagId) {
                 imageViewBackground = view as? UIImageView
                 imageViewBackground?.image = nil
@@ -195,6 +199,9 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
         var fileId:String?
         if let fileData = notifiaction.object as? Data  {
             fileId = (notifiaction.userInfo!["fileId"] as! String)
+            if let index = downlaodsInProgress.index(of: fileId!) {
+                downlaodsInProgress.remove(at: index)
+            }
             EADeviceDataManager.sharedInstance.writeFileToRootFolder(fileName:fileId!, data:fileData)
         }
         
@@ -242,16 +249,19 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
         if let fileList = notifiaction.object as? GTLDriveFileList  {
             currentFilesList = fileList
             self.tableView.reloadData()
-            for file in fileList.files {
-                EAGoogleAPIManager.sharedInstance.downloadFile(file as! GTLDriveFile)
-            }
+//            let visibleCells = self.tableView.indexPathsForVisibleRows
+//            if let visibleCells = visibleCells {
+//                self.tableView.reloadRows(at:visibleCells , with: .none)
+//            }
+//            for file in fileList.files {
+//                EAGoogleAPIManager.sharedInstance.downloadFile(file as! GTLDriveFile)
+//            }
         }
     }
     
     func resetHomeViewController() {
         self.currentFilesList = nil
         currentEventFolder = nil
-        self.fileDataMap = Dictionary<String, Data>()
         updateNavigationBarTitle()
         self.tableView.reloadData()
     }

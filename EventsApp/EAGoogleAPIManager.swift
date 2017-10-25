@@ -15,6 +15,18 @@ class EAGoogleAPIManager {
     fileprivate init() {}
     fileprivate let gtlServiceDrive = GTLServiceDrive()
     
+    func setAuthorizerForDownload(_ signIn:GIDSignIn,user:GIDGoogleUser, service:GTLService) {
+//            let auth:GTMOAuth2Authentication = GTMOAuth2Authentication()
+//            auth.clientID = signIn.clientID
+//            auth.userEmail = user.profile.email;
+//            auth.userID = user.userID
+//            auth.accessToken = user.authentication.accessToken
+//            auth.refreshToken = user.authentication.refreshToken
+//            auth.expirationDate = user.authentication.accessTokenExpirationDate
+        
+            service.authorizer = user.authentication.fetcherAuthorizer()
+    }
+    
     func setAuthorizerForService(_ signIn:GIDSignIn,user:GIDGoogleUser, service:GTLService) {
         if service.authorizer == nil {
             let auth:GTMOAuth2Authentication = GTMOAuth2Authentication()
@@ -118,7 +130,7 @@ class EAGoogleAPIManager {
     
     func downloadFile(_ file:GTLDriveFile!) {
         let service:GTLService = gtlServiceDrive
-        setAuthorizerForService(GIDSignIn.sharedInstance(), user: GIDSignIn.sharedInstance().currentUser,service:service)
+        setAuthorizerForDownload(GIDSignIn.sharedInstance(), user: GIDSignIn.sharedInstance().currentUser,service:service)
         print("Downloading file \(file)")
         let stringURL:String = "https://www.googleapis.com/drive/v3/files/\(file.identifier!)?alt=media"
         let url:URL = URL(string: stringURL)!
@@ -126,6 +138,7 @@ class EAGoogleAPIManager {
         fetcher.setProperty(file.identifier, forKey:"fileId")
         fetcher.beginFetch { (data:Data?, error:Error?) in
             if let error = error {
+                print("DOWNLOAD FAILED!!!!!!!!!!!!!!!")
                 self.handleGoogleAPIError(error)
             }
             else {

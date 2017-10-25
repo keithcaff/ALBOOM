@@ -64,6 +64,7 @@ class EADeviceDataManager {
             print("Failed to get image from file. Path: \(file.path)")
             do {
                 let fileNames = try FileManager.default.contentsOfDirectory(atPath: getRootDirectory().path)
+                print("There are \(fileNames.count) files saved to the directory")
                 for fileName in fileNames {
                     print("fileName: \(fileName) fileId: \(fileId) matches: \(fileId == fileName)")
                 }
