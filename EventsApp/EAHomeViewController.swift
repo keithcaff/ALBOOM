@@ -194,7 +194,7 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
     }
     
     // MARK:notifaction responses/selectors
-    func eventFileDownloaded(_ notifiaction : Notification) {
+    @objc func eventFileDownloaded(_ notifiaction : Notification) {
         print("event file downloaded")
         var fileId:String?
         if let fileData = notifiaction.object as? Data  {
@@ -220,7 +220,7 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
         }
     }
     
-    func newEventCreated(_ notifiaction : Notification) {
+    @objc func newEventCreated(_ notifiaction : Notification) {
         print("new event folder created")
         revealViewController().revealToggle(animated: true)
         if let folder = notifiaction.object as? GTLDriveFile  {
@@ -235,7 +235,7 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
         }
     }
     
-    func eventDeleted(_ notifiaction : Notification) {
+    @objc func eventDeleted(_ notifiaction : Notification) {
         let defaults = UserDefaults.standard
         let currentEventId:String = defaults.string(forKey: DEFAULT_CURRENT_EVENT_ID)!
         if let event:EAEvent = notifiaction.object as? EAEvent, event.id == currentEventId {
@@ -243,7 +243,7 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
         }
     }
 
-    func eventFilesRetrieved(_ notifiaction : Notification) {
+    @objc func eventFilesRetrieved(_ notifiaction : Notification) {
         print("event files retrieved selector")
         revealViewController().revealToggle(animated: true)
         if let fileList = notifiaction.object as? GTLDriveFileList  {

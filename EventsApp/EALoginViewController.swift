@@ -21,7 +21,7 @@ class EALoginViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDel
         super.viewDidLoad()
         var configureError: NSError?
         GGLContext.sharedInstance().configureWithError(&configureError)
-        if (configureError != nil) {
+        if let configureError =  configureError {
             print("We have an error! \(configureError)")
         }
         GIDSignIn.sharedInstance().uiDelegate = self

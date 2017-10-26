@@ -62,16 +62,6 @@ class EADeviceDataManager {
         catch let error as NSError {
             print("Failed to get image from file. Reason: \(error.debugDescription)")
             print("Failed to get image from file. Path: \(file.path)")
-            do {
-                let fileNames = try FileManager.default.contentsOfDirectory(atPath: getRootDirectory().path)
-                print("There are \(fileNames.count) files saved to the directory")
-                for fileName in fileNames {
-                    print("fileName: \(fileName) fileId: \(fileId) matches: \(fileId == fileName)")
-                }
-            }
-            catch let error as NSError {
-                print("Failed to list file names : \(error.debugDescription)")
-            }
         }
         return image
     }

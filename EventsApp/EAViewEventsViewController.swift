@@ -45,7 +45,7 @@ open class EAViewEventsViewController: UIViewController, UITableViewDelegate, UI
     }
     
     // MARK:notifaction responses
-    func eventFoldersRetrieved(_ notifiaction : Notification) {
+    @objc func eventFoldersRetrieved(_ notifiaction : Notification) {
         data = NSMutableArray();
         if let object = notifiaction.object {
             let foldersList:GTLDriveFileList = (object as! GTLDriveFileList)
@@ -59,7 +59,7 @@ open class EAViewEventsViewController: UIViewController, UITableViewDelegate, UI
         self.tableView.reloadData()
     }
     
-    func eventFolderDeleted(_ notifiaction : Notification) {
+    @objc func eventFolderDeleted(_ notifiaction : Notification) {
         if let event:EAEvent = notifiaction.object as? EAEvent {
             print("need to delete folder from table here \(event)")
             data?.remove(event)

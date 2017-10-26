@@ -84,7 +84,7 @@ class EARootViewController: UIViewController, EALoginListener {
     }
  
     //MARK: Notifcation Handlers
-    func userUnAuthenticated() {
+    @objc func userUnAuthenticated() {
         if let nav = self.navigationController {
             let topVC = nav.topViewController
             var presentedViewController:UIViewController? = topVC?.presentedViewController

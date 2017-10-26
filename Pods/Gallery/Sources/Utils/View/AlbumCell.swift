@@ -54,7 +54,9 @@ class AlbumCell: UITableViewCell {
 
   func makeAlbumImageView() -> UIImageView {
     let imageView = UIImageView()
-    imageView.image = Bundle.image("gallery_placeholder")
+    imageView.clipsToBounds = true
+    imageView.contentMode = .scaleAspectFill
+    imageView.image = GalleryBundle.image("gallery_placeholder")
 
     return imageView
   }

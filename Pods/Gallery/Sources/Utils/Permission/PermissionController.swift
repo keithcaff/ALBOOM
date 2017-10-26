@@ -10,6 +10,8 @@ class PermissionController: UIViewController {
 
   weak var delegate: PermissionControllerDelegate?
 
+  let once = Once()
+
   // MARK: - Life cycle
 
   override func viewDidLoad() {
@@ -21,7 +23,9 @@ class PermissionController: UIViewController {
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
 
-    requestPermission()
+    once.run {
+      self.check()
+    }
   }
 
   // MARK: - Setup
@@ -37,31 +41,31 @@ class PermissionController: UIViewController {
 
   // MARK: - Logic
 
-  func requestPermission() {
-    if Permission.Photos.needsPermission {
-      Permission.Photos.request {
-        self.check()
-      }
-    }
-
-    if Permission.Camera.needsPermission {
-      Permission.Camera.request {
-        self.check()
-      }
-    }
-  }
-
   func check() {
-    if Permission.hasNeededPermissions {
-      DispatchQueue.main.async {
-        self.delegate?.permissionControllerDidFinish(self)
+    if Permission.Photos.status == .notDetermined {
+      Permission.Photos.request { [weak self] in
+        self?.check()
       }
+
+      return
+    }
+
+    if Permission.Camera.needsPermission && Permission.Camera.status == .notDetermined {
+      Permission.Camera.request { [weak self] in
+        self?.check()
+      }
+
+      return
+    }
+
+    DispatchQueue.main.async {
+      self.delegate?.permissionControllerDidFinish(self)
     }
   }
 
   // MARK: - Action
 
-  func settingButtonTouched(_ button: UIButton) {
+  @objc func settingButtonTouched(_ button: UIButton) {
     DispatchQueue.main.async {
       if let settingsURL = URL(string: UIApplicationOpenSettingsURLString) {
         UIApplication.shared.openURL(settingsURL)
@@ -69,7 +73,7 @@ class PermissionController: UIViewController {
     }
   }
 
-  func closeButtonTouched(_ button: UIButton) {
+  @objc func closeButtonTouched(_ button: UIButton) {
     EventHub.shared.close?()
   }
 

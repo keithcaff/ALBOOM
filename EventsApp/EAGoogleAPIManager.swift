@@ -15,18 +15,6 @@ class EAGoogleAPIManager {
     fileprivate init() {}
     fileprivate let gtlServiceDrive = GTLServiceDrive()
     
-    func setAuthorizerForDownload(_ signIn:GIDSignIn,user:GIDGoogleUser, service:GTLService) {
-//            let auth:GTMOAuth2Authentication = GTMOAuth2Authentication()
-//            auth.clientID = signIn.clientID
-//            auth.userEmail = user.profile.email;
-//            auth.userID = user.userID
-//            auth.accessToken = user.authentication.accessToken
-//            auth.refreshToken = user.authentication.refreshToken
-//            auth.expirationDate = user.authentication.accessTokenExpirationDate
-        
-            service.authorizer = user.authentication.fetcherAuthorizer()
-    }
-    
     func setAuthorizerForService(_ signIn:GIDSignIn,user:GIDGoogleUser, service:GTLService) {
         if service.authorizer == nil {
             let auth:GTMOAuth2Authentication = GTMOAuth2Authentication()
@@ -55,7 +43,7 @@ class EAGoogleAPIManager {
                 self.handleGoogleAPIError(error)
             }
             else {
-                print("success crated folder: \(createdFolder)")
+                print("success crated folder: \(createdFolder!)")
                 NotificationCenter.default.post(name: .NOTIFICATION_EVENT_FOLDER_CREATED, object: createdFolder)
             }
         })
@@ -73,7 +61,7 @@ class EAGoogleAPIManager {
                 self.handleGoogleAPIError(error)
             }
             else {
-                print("Root event folder retrieved:  \(object)")
+                print("Root event folder retrieved:  \(object!)")
             }
         })
     }
@@ -96,7 +84,7 @@ class EAGoogleAPIManager {
 //                self.handleGoogleAPIError(testError)
 //            }
             else {
-                print("successfully retrieved folders:  \(folders)")
+                print("successfully retrieved folders:  \(folders!)")
                 DispatchQueue.main.async {
                     NotificationCenter.default.post(name: .NOTIFICATION_EVENT_FOLDERS_RETRIEVED, object: folders)
                 }
@@ -120,7 +108,7 @@ class EAGoogleAPIManager {
                 let defaults = UserDefaults.standard
                 defaults.set(event.name, forKey: DEFAULT_CURRENT_EVENT_NAME)
                 defaults.set(event.id, forKey: DEFAULT_CURRENT_EVENT_ID)
-                print("successfully retrieved files:  \(files)")
+                print("successfully retrieved files:  \(files!)")
                 DispatchQueue.main.async {
                     NotificationCenter.default.post(name: .NOTIFICATION_EVENT_FILES_RETRIEVED, object: files)
                 }
@@ -130,7 +118,7 @@ class EAGoogleAPIManager {
     
     func downloadFile(_ file:GTLDriveFile!) {
         let service:GTLService = gtlServiceDrive
-        setAuthorizerForDownload(GIDSignIn.sharedInstance(), user: GIDSignIn.sharedInstance().currentUser,service:service)
+        setAuthorizerForService(GIDSignIn.sharedInstance(), user: GIDSignIn.sharedInstance().currentUser,service:service)
         print("Downloading file \(file)")
         let stringURL:String = "https://www.googleapis.com/drive/v3/files/\(file.identifier!)?alt=media"
         let url:URL = URL(string: stringURL)!
@@ -197,7 +185,7 @@ class EAGoogleAPIManager {
                 }
                 
                 else {
-                    print("file uploaded successfully!!! \(id)")
+                    print("file uploaded successfully!!! \(id!)")
                     let uploadDetails:[String:Any] = [UploadImageKeys.EVENT:event, UploadImageKeys.IMAGE_NAME:file.name]
                     NotificationCenter.default.post(name: .NOTIFICATION_IMAGE_UPLOADED, object: uploadDetails)
                 }
@@ -219,7 +207,7 @@ class EAGoogleAPIManager {
                 self.handleGoogleAPIError(error)
             }
             else {
-                print("deleted file successfully!!! \(id)")
+                print("deleted file successfully!!! \(id!)")
                 DispatchQueue.main.async {
                     NotificationCenter.default.post(name: .NOTIFICATION_EVENT_FOLDER_DELETED, object: event)
                 }

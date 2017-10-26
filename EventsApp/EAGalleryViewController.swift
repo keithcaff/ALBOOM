@@ -134,7 +134,7 @@ open class EAGalleryViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     
-    func uploadProgressUpated(_ notifiaction : Notification) {
+    @objc func uploadProgressUpated(_ notifiaction : Notification) {
         let uploadDetails:[String:Any] = notifiaction.object as! [String:Any]
         let imageName:String =  uploadDetails[UploadImageKeys.IMAGE_NAME] as! String
         let uploadPercentage:Float =  uploadDetails[UploadImageKeys.UPLOAD_PERCENTAGE] as! Float
@@ -147,7 +147,7 @@ open class EAGalleryViewController: UIViewController, UITableViewDelegate, UITab
         }
     }
     
-    func imageUploadSuccessfully(_ notifiaction : Notification) {
+    @objc func imageUploadSuccessfully(_ notifiaction : Notification) {
         print("imageUploadSuccessfully CALLED!!!")
         let uploadDetails:[String:Any] = notifiaction.object as! [String:Any]
         let imageName:String =  uploadDetails[UploadImageKeys.IMAGE_NAME] as! String

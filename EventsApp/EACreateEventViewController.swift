@@ -36,7 +36,7 @@ class EACreateEventViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    func textFieldDidChange(_ textField: UITextField) {
+    @objc func textFieldDidChange(_ textField: UITextField) {
         if let text = textField.text {
             if (text.characters.count == 0 || text.characters.count > 30) {
                 createEventButtonEnabled(false)
