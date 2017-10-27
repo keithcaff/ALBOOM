@@ -20,11 +20,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EventsApp/EAHomeViewController.swift"
-            timestampString = "530651733.687423"
+            timestampString = "530736806.804836"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "139"
-            endingLineNumber = "139"
+            startingLineNumber = "157"
+            endingLineNumber = "157"
             landmarkName = "addBackground(_:file:)"
             landmarkType = "7">
          </BreakpointContent>

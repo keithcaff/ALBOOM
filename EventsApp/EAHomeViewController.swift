@@ -15,45 +15,66 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
     
     @IBOutlet var tableView: UITableView!
     
-    var currentEventFolder:GTLDriveFile?
-    var currentFilesList:GTLDriveFileList?
-    var downlaodsInProgress:[String] = [String]()
-    let homeCellReuseIdentifier:String = "eaHomeTableViewCell"
-    var rootFolder:String?
-    let UIImageViewTagId = 303
+    private var currentEventFolder:GTLDriveFile?
+    private var currentFilesList:GTLDriveFileList?
+    private var downlaodsInProgress:[String] = [String]()
+    private let homeCellReuseIdentifier:String = "eaHomeTableViewCell"
+    private var rootFolder:String?
+    private let UIImageViewTagId = 303
+    private let refreshControl = UIRefreshControl()
+    private let refreshControlTintColor = UIColor(red:0.25, green:0.72, blue:0.85, alpha:1.0)
+
 
     @IBOutlet var menuButton: UIBarButtonItem!
     override open func viewDidLoad() {
         super.viewDidLoad()
+        setupNotifications()
+        setupSlider()
+        setupTableView()
+        
+    }
+    
+    func setupNotifications() {
         NotificationCenter.default.addObserver(self, selector: #selector(newEventCreated), name: .NOTIFICATION_EVENT_FOLDER_CREATED, object: nil)
-        
         NotificationCenter.default.addObserver(self, selector: #selector(eventFileDownloaded), name: .NOTIFICATION_EVENT_FILE_DOWNLOADED, object: nil)
-        
         NotificationCenter.default.addObserver(self, selector: #selector(eventDeleted), name: .NOTIFICATION_EVENT_FOLDER_DELETED, object: nil)
-
         NotificationCenter.default.addObserver(self, selector: #selector(eventFilesRetrieved), name: .NOTIFICATION_EVENT_FILES_RETRIEVED, object: nil)
-
-
+    }
+    
+    
+    func setupSlider() {
         menuButton.target = revealViewController()
         menuButton.action = #selector(SWRevealViewController.revealToggle(_:))
         
         revealViewController().rightViewRevealWidth = 150
         view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
-        
-        
+    }
+    
+    func setupTableView() {
         self.tableView.dataSource = self
         self.tableView.delegate = self
         self.tableView.rowHeight = UITableViewAutomaticDimension;
         self.tableView.estimatedRowHeight = 545
         let nib = UINib(nibName: XIBIdentifiers.XIB_HOME_CELL_IDENTIFIER, bundle:nil)
         self.tableView.register(nib, forCellReuseIdentifier: homeCellReuseIdentifier)
-        
+
+        // Configure Refresh Control
+        let attributes = [NSAttributedStringKey.foregroundColor : refreshControlTintColor]
+        refreshControl.addTarget(self, action: #selector(refreshFilesList(_:)), for: .valueChanged)
+        refreshControl.tintColor = UIColor.blue
+        refreshControl.attributedTitle = NSAttributedString(string: UIText.EAHOME_TABLE_VIEW_REFRESH_CONTROL_TITLE, attributes: attributes)
+        // Add Refresh Control to Table View
+        tableView.refreshControl = refreshControl
     }
-    
     
     func didSwitchEvent(_ event:EAEvent?) {
         EAEvent.didSwitchEvent(event)
         resetHomeViewController()
+    }
+    
+    @objc private func refreshFilesList(_ sender: Any) {
+        //refresh the files
+        print("got to google drive and get the latest files.")
     }
     
     @IBAction func unWindToHomeViewController(_ sender: UIStoryboardSegue) {
@@ -73,7 +94,7 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
     
     override open func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
     }
     
     func updateNavigationBarTitle() {
@@ -87,10 +108,6 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
     func hideShowTableView() {
         let defaults = UserDefaults.standard
         let currentEventName:String = defaults.string(forKey: DEFAULT_CURRENT_EVENT_NAME)!
-        /*var count:Int = 0
-        if let data = currentFilesList?.files {
-            count = data.count
-        }*/
         if(currentEventName.isEmpty) {
             self.tableView.isHidden = true
         }
@@ -249,13 +266,6 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
         if let fileList = notifiaction.object as? GTLDriveFileList  {
             currentFilesList = fileList
             self.tableView.reloadData()
-//            let visibleCells = self.tableView.indexPathsForVisibleRows
-//            if let visibleCells = visibleCells {
-//                self.tableView.reloadRows(at:visibleCells , with: .none)
-//            }
-//            for file in fileList.files {
-//                EAGoogleAPIManager.sharedInstance.downloadFile(file as! GTLDriveFile)
-//            }
         }
     }
     

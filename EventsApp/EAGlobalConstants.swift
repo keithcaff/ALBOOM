@@ -71,16 +71,20 @@ struct UploadImageKeys {
     static let IMAGE_NAME = "imageName"
 }
 
-struct AlertText {
-    static let CREATE_OR_SELECT_EVENT_TITLE = "No event context"
-    static let CREATE_OR_SELECT_EVENT_MESSAGE = "Create or select an event to upload pictures"
-}
-
-
 struct DeviceFolderNames {
     static let EA_ROOT_DEVICE_FOLDER = "EARoot"
     static let EA_IMAGE_FILE_TYPE = "jpg"
 }
+
+struct UIText {
+    static let EAHOME_TABLE_VIEW_REFRESH_CONTROL_TITLE = "Fetching latest files"
+    static let ALERT_CREATE_OR_SELECT_EVENT_TITLE = "No event context"
+    static let ALERT_CREATE_OR_SELECT_EVENT_MESSAGE = "Create or select an event to upload pictures"
+}
+
+
+
+
 
 
 
