@@ -23,6 +23,7 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
     private let UIImageViewTagId = 303
     private let refreshControl = UIRefreshControl()
     private let refreshControlTintColor = UIColor(red:0.25, green:0.72, blue:0.85, alpha:1.0)
+    private var currentEvent:EAEvent?
 
 
     @IBOutlet var menuButton: UIBarButtonItem!
@@ -39,6 +40,8 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
         NotificationCenter.default.addObserver(self, selector: #selector(eventFileDownloaded), name: .NOTIFICATION_EVENT_FILE_DOWNLOADED, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(eventDeleted), name: .NOTIFICATION_EVENT_FOLDER_DELETED, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(eventFilesRetrieved), name: .NOTIFICATION_EVENT_FILES_RETRIEVED, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(latestEventFilesRetrieved), name: .NOTIFICATION_EVENT_LATEST_FILES_RETRIEVED, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(getlatestEventFilesFailed), name: .NOTIFICATION_EVENT_FAILED_TO_GET_LATEST_FILES, object: nil)
     }
     
     
@@ -74,7 +77,7 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
     
     @objc private func refreshFilesList(_ sender: Any) {
         //refresh the files
-        print("got to google drive and get the latest files.")
+        EAGoogleAPIManager.sharedInstance.getLatestFilesForEvent(EAEvent.getCurrentEvent())
     }
     
     @IBAction func unWindToHomeViewController(_ sender: UIStoryboardSegue) {
@@ -210,6 +213,16 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
         return self.tableView.frame.height - navHeight;// - navHeight;
     }
     
+    func addNewFilesToList(_ newfiles: inout [GTLDriveFile]) {
+        var newFList = [GTLDriveFile]()
+        newFList += newfiles
+        if let files = self.currentFilesList?.files {
+            newFList += (files as! [GTLDriveFile])
+            self.currentFilesList?.files = newFList
+        }
+        self.tableView.reloadData()
+    }
+    
     // MARK:notifaction responses/selectors
     @objc func eventFileDownloaded(_ notifiaction : Notification) {
         print("event file downloaded")
@@ -259,7 +272,41 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
             resetHomeViewController()
         }
     }
-
+    
+    @objc func getlatestEventFilesFailed(_ notifiaction : Notification) {
+        refreshControl.endRefreshing()
+        //TODO show alert to user
+    }
+    
+    @objc func latestEventFilesRetrieved(_ notifiaction : Notification) {
+        refreshControl.endRefreshing()
+        if let fileList = notifiaction.object as? GTLDriveFileList  {
+            //add any new files to the existing files list
+            //let receivedFilesEmpty = fileList.files?.isEmpty
+            if let empty = self.currentFilesList?.files?.isEmpty {
+                if empty {
+                    //we already have some files. Check if we don;t have any of the 'latest'
+                    self.currentFilesList = fileList
+                }
+                else {
+                    //we already have some files. Check if we don't have any of the 'latest'
+                    var filesToAdd = [GTLDriveFile]()
+                    for file in fileList.files {
+                        var contains:Bool? = false
+                        contains =  self.currentFilesList?.files!.contains(where: { (f:Any) -> Bool in
+                                return (f as! GTLDriveFile).identifier == (file as! GTLDriveFile).identifier
+                        })
+                        if !contains! {
+                            filesToAdd.append(file as! GTLDriveFile)
+                        }
+                    }
+                    //call func to update tableview..
+                    addNewFilesToList(&filesToAdd)
+                }
+            }
+        }
+    }
+    
     @objc func eventFilesRetrieved(_ notifiaction : Notification) {
         print("event files retrieved selector")
         revealViewController().revealToggle(animated: true)

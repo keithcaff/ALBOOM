@@ -116,6 +116,36 @@ class EAGoogleAPIManager {
         })
     }
     
+    func getLatestFilesForEvent(_ event:EAEvent) {
+        let service:GTLService = gtlServiceDrive
+        setAuthorizerForService(GIDSignIn.sharedInstance(), user: GIDSignIn.sharedInstance().currentUser,service:service)
+        print("Getting files inside event folder")
+        let parentId:String  = event.id!;
+        let query:GTLQueryDrive  = GTLQueryDrive.queryForFilesList()
+        query.q = "'\(parentId)' in parents and trashed = false"
+        query.fields = "nextPageToken, files(id, name)"
+        service.executeQuery(query, completionHandler: {(ticket: GTLServiceTicket?, files:Any?, error:Error?) in
+            if let error = error {
+                DispatchQueue.main.async {
+                    NotificationCenter.default.post(name: .NOTIFICATION_EVENT_FAILED_TO_GET_LATEST_FILES, object: files)
+                }
+                self.handleGoogleAPIError(error)
+            }
+            else {
+                let defaults = UserDefaults.standard
+                defaults.set(event.name, forKey: DEFAULT_CURRENT_EVENT_NAME)
+                defaults.set(event.id, forKey: DEFAULT_CURRENT_EVENT_ID)
+                print("successfully retrieved files:  \(files!)")
+                if(event.id == EAEvent.getCurrentEventId()) {
+                    DispatchQueue.main.async {
+                        NotificationCenter.default.post(name: .NOTIFICATION_EVENT_LATEST_FILES_RETRIEVED, object: files)
+                    }
+                }
+            }
+        })
+    }
+    
+    
     func downloadFile(_ file:GTLDriveFile!) {
         let service:GTLService = gtlServiceDrive
         setAuthorizerForService(GIDSignIn.sharedInstance(), user: GIDSignIn.sharedInstance().currentUser,service:service)

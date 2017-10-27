@@ -18,6 +18,8 @@ extension Notification.Name {
     static let NOTIFICATION_EVENT_FOLDER_DELETED = Notification.Name("notification.event.folder.deleted")
     static let NOTIFICATION_EVENT_FOLDERS_RETRIEVED = Notification.Name("notification.event.folders.retrieved")
     static let NOTIFICATION_EVENT_FILES_RETRIEVED = Notification.Name("notification.event.files.retrieved")
+    static let NOTIFICATION_EVENT_LATEST_FILES_RETRIEVED = Notification.Name("notification.event.latest.files.retrieved")
+    static let NOTIFICATION_EVENT_FAILED_TO_GET_LATEST_FILES = Notification.Name("notification.event.failed.get.latest.files")
     static let NOTIFICATION_EVENT_FILE_DOWNLOADED = Notification.Name("notification.event.file.downloaded")
     static let NOTIFICATION_USER_UNAUTHENTICATED = Notification.Name("notification.user.unathenticated")
     static let NOTIFICATION_IMAGE_UPLOAD_PROGRESS_UPDATE = Notification.Name("notification.image.upload.progress.update")
