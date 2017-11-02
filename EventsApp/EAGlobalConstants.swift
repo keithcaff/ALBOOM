@@ -67,8 +67,10 @@ struct ViewControllerIdentifiers {
     static let ROOT_SW_REVEAL_VIEW_CONTROLLER = "RootSWRevealViewController"
 }
 
-struct UploadImageKeys {
+struct GoogleAPIKeys {
     static let EVENT = "event"
+    static let EVENT_ID = "eventId"
+    static let DRIVE_FILES = "driveFiles"
     static let UPLOAD_PERCENTAGE = "uploadPecentage"
     static let IMAGE_NAME = "imageName"
 }

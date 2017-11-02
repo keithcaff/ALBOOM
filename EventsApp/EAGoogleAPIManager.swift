@@ -108,7 +108,10 @@ class EAGoogleAPIManager {
                 let defaults = UserDefaults.standard
                 defaults.set(event.name, forKey: DEFAULT_CURRENT_EVENT_NAME)
                 defaults.set(event.id, forKey: DEFAULT_CURRENT_EVENT_ID)
-                print("successfully retrieved files:  \(files!)")
+                if let files = files {
+                    print("successfully retrieved files:  \(files)")
+                }
+                
                 DispatchQueue.main.async {
                     NotificationCenter.default.post(name: .NOTIFICATION_EVENT_FILES_RETRIEVED, object: files)
                 }
@@ -132,14 +135,16 @@ class EAGoogleAPIManager {
                 self.handleGoogleAPIError(error)
             }
             else {
-                let defaults = UserDefaults.standard
-                defaults.set(event.name, forKey: DEFAULT_CURRENT_EVENT_NAME)
-                defaults.set(event.id, forKey: DEFAULT_CURRENT_EVENT_ID)
-                print("successfully retrieved files:  \(files!)")
-                if(event.id == EAEvent.getCurrentEventId()) {
-                    DispatchQueue.main.async {
-                        NotificationCenter.default.post(name: .NOTIFICATION_EVENT_LATEST_FILES_RETRIEVED, object: files)
-                    }
+                if let files = files {
+                    print("successfully retrieved files:  \(files)")
+                }
+                else {
+                    files =
+                }
+                let fileDetails:[String:Any] = [GoogleAPIKeys.DRIVE_FILES:files, GoogleAPIKeys.EVENT_ID:event.id]
+
+                DispatchQueue.main.async {
+                    NotificationCenter.default.post(name: .NOTIFICATION_EVENT_LATEST_FILES_RETRIEVED, object: files, userInfo:fileDetails)
                 }
             }
         })
@@ -202,7 +207,7 @@ class EAGoogleAPIManager {
             
             let percentageUploaded:Float = ((Float(totalBytesUploaded)/Float(totalBytesExpectedToUpload))*100)
             
-            let uploadDetails:[String:Any] = [UploadImageKeys.UPLOAD_PERCENTAGE:percentageUploaded, UploadImageKeys.IMAGE_NAME:file.name]
+            let uploadDetails:[String:Any] = [GoogleAPIKeys.UPLOAD_PERCENTAGE:percentageUploaded, GoogleAPIKeys.IMAGE_NAME:file.name]
             NotificationCenter.default.post(name: .NOTIFICATION_IMAGE_UPLOAD_PROGRESS_UPDATE, object: uploadDetails)
         }
         
@@ -216,7 +221,7 @@ class EAGoogleAPIManager {
                 
                 else {
                     print("file uploaded successfully!!! \(id!)")
-                    let uploadDetails:[String:Any] = [UploadImageKeys.EVENT:event, UploadImageKeys.IMAGE_NAME:file.name]
+                    let uploadDetails:[String:Any] = [GoogleAPIKeys.EVENT:event, GoogleAPIKeys.IMAGE_NAME:file.name]
                     NotificationCenter.default.post(name: .NOTIFICATION_IMAGE_UPLOADED, object: uploadDetails)
                 }
             })

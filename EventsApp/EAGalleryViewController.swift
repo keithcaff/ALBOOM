@@ -136,8 +136,8 @@ open class EAGalleryViewController: UIViewController, UITableViewDelegate, UITab
     
     @objc func uploadProgressUpated(_ notifiaction : Notification) {
         let uploadDetails:[String:Any] = notifiaction.object as! [String:Any]
-        let imageName:String =  uploadDetails[UploadImageKeys.IMAGE_NAME] as! String
-        let uploadPercentage:Float =  uploadDetails[UploadImageKeys.UPLOAD_PERCENTAGE] as! Float
+        let imageName:String =  uploadDetails[GoogleAPIKeys.IMAGE_NAME] as! String
+        let uploadPercentage:Float =  uploadDetails[GoogleAPIKeys.UPLOAD_PERCENTAGE] as! Float
         print("uploadProgressUpated: \(imageName) image \(uploadPercentage)%")
         if let i = data.index(where: { $0.name == imageName  }) {
             let eaImageUpload:EAImageUpload = data[i]
@@ -150,8 +150,7 @@ open class EAGalleryViewController: UIViewController, UITableViewDelegate, UITab
     @objc func imageUploadSuccessfully(_ notifiaction : Notification) {
         print("imageUploadSuccessfully CALLED!!!")
         let uploadDetails:[String:Any] = notifiaction.object as! [String:Any]
-        let imageName:String =  uploadDetails[UploadImageKeys.IMAGE_NAME] as! String
-       // let event:EAEvent =  uploadDetails[UploadImageKeys.EVENT] as! EAEvent
+        let imageName:String =  uploadDetails[GoogleAPIKeys.IMAGE_NAME] as! String
         if let i = data.index(where: { $0.name == imageName  }) {
             data.remove(at: i)
             let indexPath = IndexPath(row: i, section: 0)
