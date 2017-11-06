@@ -109,9 +109,12 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
     
     
     func hideShowTableView() {
-        let defaults = UserDefaults.standard
-        let currentEventName:String = defaults.string(forKey: DEFAULT_CURRENT_EVENT_NAME)!
-        if(currentEventName.isEmpty) {
+        let currentEventName:String = EAEvent.getCurrentEventName()
+        var files:[Any] = [GTLDriveFile]()
+        if let currentFilesList =  self.currentFilesList?.files {
+            files = currentFilesList
+        }
+        if(currentEventName.isEmpty || files.isEmpty) {
             self.tableView.isHidden = true
         }
         else {
@@ -280,12 +283,18 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
     
     @objc func latestEventFilesRetrieved(_ notifiaction : Notification) {
         refreshControl.endRefreshing()
+        //[GoogleAPIKeys.DRIVE_FILES:files != nil ? files! : GTLDriveFileList(), GoogleAPIKeys.EVENT_ID:event.id!]
+        let fileDetails:[String:Any] = notifiaction.userInfo as! [String:Any]
+        let eventId:String = fileDetails[GoogleAPIKeys.EVENT_ID] as! String
+        guard eventId == EAEvent.getCurrentEventId() else {
+            print("files don't match current event selected.")
+            return
+        }
         if let fileList = notifiaction.object as? GTLDriveFileList  {
             //add any new files to the existing files list
             //let receivedFilesEmpty = fileList.files?.isEmpty
             if let empty = self.currentFilesList?.files?.isEmpty {
                 if empty {
-                    //we already have some files. Check if we don;t have any of the 'latest'
                     self.currentFilesList = fileList
                 }
                 else {
@@ -305,15 +314,18 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
                 }
             }
         }
+        hideShowTableView()
     }
     
     @objc func eventFilesRetrieved(_ notifiaction : Notification) {
         print("event files retrieved selector")
+        
         revealViewController().revealToggle(animated: true)
         if let fileList = notifiaction.object as? GTLDriveFileList  {
             currentFilesList = fileList
             self.tableView.reloadData()
         }
+        hideShowTableView()
     }
     
     func resetHomeViewController() {

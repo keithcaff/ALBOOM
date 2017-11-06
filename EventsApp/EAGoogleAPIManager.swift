@@ -75,14 +75,9 @@ class EAGoogleAPIManager {
         query.q = "mimeType='application/vnd.google-apps.folder' and 'root' in parents and name contains '\(EVENT_FOLDER_PREFIX)' and trashed = false"
         query.fields = "nextPageToken, files(id, name)"
         service.executeQuery(query, completionHandler:  { (ticket, folders , error) -> Void in
-//            let testing401:Bool = true
             if let error = error {
                 self.handleGoogleAPIError(error)
             }
-//            else if testing401 {
-//                let testError = NSError(domain: "KC_TEST_ERROR", code: 401, userInfo: nil)
-//                self.handleGoogleAPIError(testError)
-//            }
             else {
                 print("successfully retrieved folders:  \(folders!)")
                 DispatchQueue.main.async {
@@ -138,11 +133,7 @@ class EAGoogleAPIManager {
                 if let files = files {
                     print("successfully retrieved files:  \(files)")
                 }
-                else {
-                    files =
-                }
-                let fileDetails:[String:Any] = [GoogleAPIKeys.DRIVE_FILES:files, GoogleAPIKeys.EVENT_ID:event.id]
-
+                let fileDetails:[String:Any] = [GoogleAPIKeys.DRIVE_FILES:files != nil ? files! : GTLDriveFileList(), GoogleAPIKeys.EVENT_ID:event.id!]
                 DispatchQueue.main.async {
                     NotificationCenter.default.post(name: .NOTIFICATION_EVENT_LATEST_FILES_RETRIEVED, object: files, userInfo:fileDetails)
                 }
