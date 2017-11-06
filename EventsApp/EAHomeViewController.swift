@@ -122,7 +122,7 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
         }
     }
     
-       
+    
     func addBackground(_ cell:EAHomeTableViewCell, file:GTLDriveFile!) {
         let view:UIView = cell.placeHolderView
         // screen width and height:
@@ -283,7 +283,6 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
     
     @objc func latestEventFilesRetrieved(_ notifiaction : Notification) {
         refreshControl.endRefreshing()
-        //[GoogleAPIKeys.DRIVE_FILES:files != nil ? files! : GTLDriveFileList(), GoogleAPIKeys.EVENT_ID:event.id!]
         let fileDetails:[String:Any] = notifiaction.userInfo as! [String:Any]
         let eventId:String = fileDetails[GoogleAPIKeys.EVENT_ID] as! String
         guard eventId == EAEvent.getCurrentEventId() else {
@@ -292,7 +291,6 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
         }
         if let fileList = notifiaction.object as? GTLDriveFileList  {
             //add any new files to the existing files list
-            //let receivedFilesEmpty = fileList.files?.isEmpty
             if let empty = self.currentFilesList?.files?.isEmpty {
                 if empty {
                     self.currentFilesList = fileList
@@ -319,7 +317,6 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
     
     @objc func eventFilesRetrieved(_ notifiaction : Notification) {
         print("event files retrieved selector")
-        
         revealViewController().revealToggle(animated: true)
         if let fileList = notifiaction.object as? GTLDriveFileList  {
             currentFilesList = fileList
