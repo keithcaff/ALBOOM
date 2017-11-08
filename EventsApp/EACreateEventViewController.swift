@@ -38,7 +38,7 @@ class EACreateEventViewController: UIViewController, UITextFieldDelegate {
     
     @objc func textFieldDidChange(_ textField: UITextField) {
         if let text = textField.text {
-            if (text.characters.count == 0 || text.characters.count > 30) {
+            if (text.count == 0 || text.count > 30) {
                 createEventButtonEnabled(false)
             }
             else {
@@ -49,11 +49,11 @@ class EACreateEventViewController: UIViewController, UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
-        let currentCharacterCount = textField.text?.characters.count ?? 0
+        let currentCharacterCount = textField.text?.count ?? 0
         if (range.length + range.location > currentCharacterCount){
             return false
         }
-        let newLength = currentCharacterCount + string.characters.count - range.length
+        let newLength = currentCharacterCount + string.count - range.length
         return newLength <= 30
     }
     

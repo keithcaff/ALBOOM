@@ -214,6 +214,7 @@ class EAGoogleAPIManager {
                     print("file uploaded successfully!!! \(id!)")
                     let uploadDetails:[String:Any] = [GoogleAPIKeys.EVENT:event, GoogleAPIKeys.IMAGE_NAME:file.name]
                     NotificationCenter.default.post(name: .NOTIFICATION_IMAGE_UPLOADED, object: uploadDetails)
+                    self.getLatestFilesForEvent(event)
                 }
             })
             
