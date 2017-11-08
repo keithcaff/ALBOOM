@@ -45,10 +45,6 @@ open class EAHomeTabBarController: UITabBarController {
     open override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         let index:Int = tabBar.items!.index(of: item)!
         self.updateContentViewController(index)
-//        if index == 1 {
-//            //if camera selected
-//            self.tabBar.hidden = true
-//
     }
 
 }

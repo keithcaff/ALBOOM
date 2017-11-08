@@ -24,6 +24,7 @@ extension Notification.Name {
     static let NOTIFICATION_USER_UNAUTHENTICATED = Notification.Name("notification.user.unathenticated")
     static let NOTIFICATION_IMAGE_UPLOAD_PROGRESS_UPDATE = Notification.Name("notification.image.upload.progress.update")
     static let NOTIFICATION_IMAGE_UPLOADED = Notification.Name("notification.image.uploaded")
+    static let NOTIFICATION_IMAGE_UPLOAD_FAILED = Notification.Name("notification.image.upload.failed")
 }
 
 
