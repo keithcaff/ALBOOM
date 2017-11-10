@@ -12,6 +12,6 @@ open class EAImageUploadTableViewCell:UITableViewCell {
     
     
     @IBOutlet weak var imagePlaceHolderView: UIView!
-    @IBOutlet weak var progressView: UIProgressView!
+    //@IBOutlet weak var progressView: UIProgressView!
 }
 

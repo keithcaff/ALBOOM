@@ -97,7 +97,7 @@ open class EAGalleryViewController: UIViewController, UITableViewDelegate, UITab
         //TODO: IF failedUploads contains this image then hide the progress bar and show a retry option
 
         cell = tableView.dequeueReusableCell(withIdentifier: imageUplaodCellReuseIdentifier, for: indexPath) as? EAImageUploadTableViewCell
-        cell!.progressView.progress = imageUpload!.uploadPercentage!
+       // cell!.progressView.progress = imageUpload!.uploadPercentage!
         self.addBackground(cell!, imageUpload!.image!)
         return cell!
     }

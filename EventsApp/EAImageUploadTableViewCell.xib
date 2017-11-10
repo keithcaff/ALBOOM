@@ -1,12 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -16,51 +15,36 @@
             <rect key="frame" x="0.0" y="0.0" width="376" height="548"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ug1-3P-p6c" id="QuR-dz-lOL">
-                <rect key="frame" x="0.0" y="0.0" width="376" height="547"/>
+                <rect key="frame" x="0.0" y="0.0" width="376" height="547.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fov-dZ-S78">
-                        <rect key="frame" x="0.0" y="0.0" width="376" height="547"/>
-                    </view>
-                    <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u6j-Iu-YKM">
-                        <rect key="frame" x="83" y="249" width="209" height="48"/>
+                        <rect key="frame" x="0.0" y="0.0" width="376" height="547.5"/>
                         <subviews>
-                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.10000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="v3g-yg-Rzv">
-                                <rect key="frame" x="29" y="23" width="150" height="2"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K75-Zv-1l0" customClass="EAUploadProgressView" customModule="EventsApp" customModuleProvider="target">
+                                <rect key="frame" x="63" y="193.5" width="250" height="160"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="2" id="4yB-ML-wdg"/>
-                                    <constraint firstAttribute="width" constant="150" id="mmG-0F-1Qc"/>
+                                    <constraint firstAttribute="height" constant="160" id="bZa-2O-WZy"/>
+                                    <constraint firstAttribute="width" constant="250" id="gn1-TU-rOM"/>
                                 </constraints>
-                            </progressView>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="209" id="2BX-K1-xIN"/>
-                            <constraint firstItem="v3g-yg-Rzv" firstAttribute="centerY" secondItem="u6j-Iu-YKM" secondAttribute="centerY" id="WC1-GE-YGl"/>
-                            <constraint firstItem="v3g-yg-Rzv" firstAttribute="centerX" secondItem="u6j-Iu-YKM" secondAttribute="centerX" id="jP6-lQ-g1O"/>
-                            <constraint firstAttribute="height" constant="48" id="mkp-JC-U8t"/>
+                            <constraint firstItem="K75-Zv-1l0" firstAttribute="centerY" secondItem="Fov-dZ-S78" secondAttribute="centerY" id="Wro-UA-hPQ"/>
+                            <constraint firstItem="K75-Zv-1l0" firstAttribute="centerX" secondItem="Fov-dZ-S78" secondAttribute="centerX" id="u9k-Sz-uqE"/>
                         </constraints>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                <integer key="value" value="20"/>
-                            </userDefinedRuntimeAttribute>
-                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                        </userDefinedRuntimeAttributes>
                     </view>
                 </subviews>
                 <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                 <constraints>
-                    <constraint firstItem="u6j-Iu-YKM" firstAttribute="centerY" secondItem="QuR-dz-lOL" secondAttribute="centerY" id="6Bq-l4-aSq"/>
-                    <constraint firstItem="Fov-dZ-S78" firstAttribute="leading" secondItem="QuR-dz-lOL" secondAttribute="leading" id="6jz-Zu-Ecy"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="Fov-dZ-S78" secondAttribute="trailing" constant="-8" id="Frr-ne-K4N"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="Fov-dZ-S78" secondAttribute="bottom" constant="-8" id="RjU-fr-f7r"/>
-                    <constraint firstItem="u6j-Iu-YKM" firstAttribute="centerX" secondItem="QuR-dz-lOL" secondAttribute="centerX" id="aQM-ke-mi5"/>
-                    <constraint firstItem="Fov-dZ-S78" firstAttribute="top" secondItem="QuR-dz-lOL" secondAttribute="top" id="aov-EQ-Wja"/>
+                    <constraint firstAttribute="trailing" secondItem="Fov-dZ-S78" secondAttribute="trailing" id="8lU-xh-Lzg"/>
+                    <constraint firstItem="Fov-dZ-S78" firstAttribute="leading" secondItem="QuR-dz-lOL" secondAttribute="leading" id="F2K-ZW-GxW"/>
+                    <constraint firstAttribute="bottom" secondItem="Fov-dZ-S78" secondAttribute="bottom" id="fse-1I-h5s"/>
+                    <constraint firstItem="Fov-dZ-S78" firstAttribute="top" secondItem="QuR-dz-lOL" secondAttribute="top" id="vLR-zy-Dqu"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="imagePlaceHolderView" destination="Fov-dZ-S78" id="B7f-F8-DKj"/>
-                <outlet property="progressView" destination="v3g-yg-Rzv" id="Si4-hY-6Og"/>
             </connections>
             <point key="canvasLocation" x="549" y="185"/>
         </tableViewCell>

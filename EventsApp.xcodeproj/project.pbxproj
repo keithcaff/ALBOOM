@@ -29,9 +29,10 @@
 		44F753541D52971F0034BCC0 /* EAHomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F753531D52971F0034BCC0 /* EAHomeTableViewCell.swift */; };
 		5310B4E11F325A7B00466952 /* EAHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5310B4E01F325A7B00466952 /* EAHomeViewController.swift */; };
 		53160D911D3801DE0095906E /* EAEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53160D901D3801DE0095906E /* EAEvent.swift */; };
+		535D05441FB619690012A527 /* EAUploadProgressView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 535D05431FB619680012A527 /* EAUploadProgressView.xib */; };
+		535D05461FB625560012A527 /* EAUploadProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535D05451FB625560012A527 /* EAUploadProgressView.swift */; };
 		537076531D5A43F600D139AA /* EAEventUpdateDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537076521D5A43F600D139AA /* EAEventUpdateDelegate.swift */; };
 		5370807A1F8BE78800FB218D /* EADeviceDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537080791F8BE78800FB218D /* EADeviceDataManager.swift */; };
-		537F477A1D53BA0C00F9A664 /* jake.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 537F47791D53BA0C00F9A664 /* jake.jpg */; };
 		538183061D773EC200393344 /* EAGalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538183051D773EC200393344 /* EAGalleryViewController.swift */; };
 		538D48181D41372700957BF0 /* EAGlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538D48171D41372700957BF0 /* EAGlobalConstants.swift */; };
 		538D481A1D4155BF00957BF0 /* EAGoogleAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538D48191D4155BF00957BF0 /* EAGoogleAPIManager.swift */; };
@@ -68,9 +69,10 @@
 		50CB0735F08D28AAA653068E /* Pods-EventsApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EventsApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EventsApp/Pods-EventsApp.debug.xcconfig"; sourceTree = "<group>"; };
 		5310B4E01F325A7B00466952 /* EAHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EAHomeViewController.swift; sourceTree = "<group>"; };
 		53160D901D3801DE0095906E /* EAEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EAEvent.swift; sourceTree = "<group>"; };
+		535D05431FB619680012A527 /* EAUploadProgressView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EAUploadProgressView.xib; sourceTree = "<group>"; };
+		535D05451FB625560012A527 /* EAUploadProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EAUploadProgressView.swift; sourceTree = "<group>"; };
 		537076521D5A43F600D139AA /* EAEventUpdateDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EAEventUpdateDelegate.swift; sourceTree = "<group>"; };
 		537080791F8BE78800FB218D /* EADeviceDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EADeviceDataManager.swift; sourceTree = "<group>"; };
-		537F47791D53BA0C00F9A664 /* jake.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = jake.jpg; sourceTree = "<group>"; };
 		538183051D773EC200393344 /* EAGalleryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EAGalleryViewController.swift; sourceTree = "<group>"; };
 		538D48171D41372700957BF0 /* EAGlobalConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EAGlobalConstants.swift; sourceTree = "<group>"; };
 		538D48191D4155BF00957BF0 /* EAGoogleAPIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EAGoogleAPIManager.swift; sourceTree = "<group>"; };
@@ -93,7 +95,6 @@
 		4427AF931F484A0A006A571E /* VIew */ = {
 			isa = PBXGroup;
 			children = (
-				537F47791D53BA0C00F9A664 /* jake.jpg */,
 				44323FB51CE9EF730049F7FC /* LaunchScreen.storyboard */,
 				44323FB31CE9EF730049F7FC /* Assets.xcassets */,
 				44323FB01CE9EF730049F7FC /* EAMain.storyboard */,
@@ -104,6 +105,8 @@
 				444242581F769E6A00F762B8 /* EAImageUploadTableViewCell.swift */,
 				44CC1C331D45340F007AFB89 /* EAViewEventTableViewCell.swift */,
 				44F753531D52971F0034BCC0 /* EAHomeTableViewCell.swift */,
+				535D05431FB619680012A527 /* EAUploadProgressView.xib */,
+				535D05451FB625560012A527 /* EAUploadProgressView.swift */,
 			);
 			name = VIew;
 			sourceTree = "<group>";
@@ -269,7 +272,7 @@
 			files = (
 				44323FB71CE9EF730049F7FC /* LaunchScreen.storyboard in Resources */,
 				4419E4691CF1DC8100FFCE0D /* GoogleService-Info.plist in Resources */,
-				537F477A1D53BA0C00F9A664 /* jake.jpg in Resources */,
+				535D05441FB619690012A527 /* EAUploadProgressView.xib in Resources */,
 				44CC1C321D4533D0007AFB89 /* EAViewEventTableViewCell.xib in Resources */,
 				44323FB41CE9EF730049F7FC /* Assets.xcassets in Resources */,
 				44CC1C301D45311D007AFB89 /* EAViewEvents.storyboard in Resources */,
@@ -361,6 +364,7 @@
 				538D48181D41372700957BF0 /* EAGlobalConstants.swift in Sources */,
 				44CC1C341D45340F007AFB89 /* EAViewEventTableViewCell.swift in Sources */,
 				5370807A1F8BE78800FB218D /* EADeviceDataManager.swift in Sources */,
+				535D05461FB625560012A527 /* EAUploadProgressView.swift in Sources */,
 				4419E46D1CF26C8000FFCE0D /* EAHomeTabBarController.swift in Sources */,
 				53F47AB91CF75817005F0DE9 /* EAMenuViewController.swift in Sources */,
 				538183061D773EC200393344 /* EAGalleryViewController.swift in Sources */,
