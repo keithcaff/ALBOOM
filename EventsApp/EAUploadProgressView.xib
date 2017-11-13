@@ -20,17 +20,19 @@
             <rect key="frame" x="0.0" y="0.0" width="250" height="160"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view alpha="0.69999998807907104" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jeg-kc-GzA">
-                    <rect key="frame" x="20" y="55.5" width="209" height="48"/>
+                <view alpha="0.94999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jeg-kc-GzA">
+                    <rect key="frame" x="30" y="56" width="189" height="48"/>
                     <subviews>
-                        <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.10000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="RUZ-q5-aj0">
-                            <rect key="frame" x="29" y="23" width="150" height="2"/>
+                        <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.29999999999999999" translatesAutoresizingMaskIntoConstraints="NO" id="RUZ-q5-aj0">
+                            <rect key="frame" x="29" y="23" width="130" height="2"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </progressView>
                     </subviews>
-                    <color key="backgroundColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstItem="RUZ-q5-aj0" firstAttribute="leading" secondItem="Jeg-kc-GzA" secondAttribute="leading" constant="29" id="Wy6-C8-7sF"/>
-                        <constraint firstAttribute="width" constant="209" id="cIa-83-QcP"/>
+                        <constraint firstAttribute="width" constant="189" id="cIa-83-QcP"/>
                         <constraint firstItem="RUZ-q5-aj0" firstAttribute="centerY" secondItem="Jeg-kc-GzA" secondAttribute="centerY" id="f7S-kf-PMS"/>
                         <constraint firstItem="RUZ-q5-aj0" firstAttribute="centerX" secondItem="Jeg-kc-GzA" secondAttribute="centerX" id="kBI-Dw-uzW"/>
                         <constraint firstAttribute="height" constant="48" id="maS-cL-M4C"/>
@@ -38,19 +40,62 @@
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                            <integer key="value" value="20"/>
+                            <integer key="value" value="5"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ydz-Ff-WtA">
+                    <rect key="frame" x="42.5" y="62" width="165" height="35"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a7d-as-sMe">
+                            <rect key="frame" x="10" y="4" width="114" height="27"/>
+                            <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="27" id="ja0-yM-TCM"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                            <state key="normal" title="Retry Upload">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                        </button>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Upload" translatesAutoresizingMaskIntoConstraints="NO" id="pXs-jH-ihU">
+                            <rect key="frame" x="129" y="7" width="25" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="AgT-OO-WwZ"/>
+                                <constraint firstAttribute="width" constant="25" id="kak-PB-QZg"/>
+                            </constraints>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="pXs-jH-ihU" firstAttribute="leading" secondItem="a7d-as-sMe" secondAttribute="trailing" constant="5" id="CkM-MR-dcL"/>
+                        <constraint firstAttribute="trailing" secondItem="pXs-jH-ihU" secondAttribute="trailing" constant="11" id="Ggr-7s-1kW"/>
+                        <constraint firstAttribute="height" constant="35" id="XQF-3w-iG4"/>
+                        <constraint firstItem="a7d-as-sMe" firstAttribute="leading" secondItem="Ydz-Ff-WtA" secondAttribute="leading" constant="10" id="cO9-vR-OzX"/>
+                        <constraint firstItem="a7d-as-sMe" firstAttribute="centerY" secondItem="Ydz-Ff-WtA" secondAttribute="centerY" id="eC8-Lv-TgF"/>
+                        <constraint firstItem="pXs-jH-ihU" firstAttribute="centerY" secondItem="Ydz-Ff-WtA" secondAttribute="centerY" id="urh-tY-1OS"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="5"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                     </userDefinedRuntimeAttributes>
                 </view>
             </subviews>
             <constraints>
+                <constraint firstItem="Ydz-Ff-WtA" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="8yk-jW-Xi0"/>
                 <constraint firstItem="Jeg-kc-GzA" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Sow-4p-Rps"/>
+                <constraint firstItem="Ydz-Ff-WtA" firstAttribute="centerY" secondItem="Jeg-kc-GzA" secondAttribute="centerY" id="Zr0-1u-hY3"/>
                 <constraint firstItem="Jeg-kc-GzA" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="c09-wX-uQF"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <point key="canvasLocation" x="-36.5" y="59.5"/>
+            <point key="canvasLocation" x="-37" y="59"/>
         </view>
     </objects>
+    <resources>
+        <image name="Upload" width="30" height="30"/>
+    </resources>
 </document>
