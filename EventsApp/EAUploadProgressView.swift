@@ -12,7 +12,13 @@ import UIKit
 class EAUploadProgressView: UIView {
     
     
+    @IBOutlet weak var progressContainerView: UIView!
+    @IBOutlet weak var retryContainerView: UIView!
+    @IBOutlet weak var progressView: UIProgressView!
+    @IBOutlet weak var retryButton: UIButton!
     @IBOutlet var contentView: EAUploadProgressView!
+    
+    var buutonClickedClosure: (() -> Void)?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -29,5 +35,12 @@ class EAUploadProgressView: UIView {
         addSubview(contentView)
         contentView.frame = self.bounds
         contentView.autoresizingMask = [.flexibleHeight,.flexibleWidth]
+    }
+    
+    @IBAction func retryUploadClicked(_ sender: Any) {
+        if let buttonClicked = buutonClickedClosure {
+            buttonClicked()
+        }
+
     }
 }

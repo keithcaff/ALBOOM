@@ -45,6 +45,7 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="imagePlaceHolderView" destination="Fov-dZ-S78" id="B7f-F8-DKj"/>
+                <outlet property="uploadProgressView" destination="K75-Zv-1l0" id="G2c-0c-xM0"/>
             </connections>
             <point key="canvasLocation" x="549" y="185"/>
         </tableViewCell>

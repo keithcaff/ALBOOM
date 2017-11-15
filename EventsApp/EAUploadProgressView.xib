@@ -13,6 +13,10 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EAUploadProgressView" customModule="EventsApp" customModuleProvider="target">
             <connections>
                 <outlet property="contentView" destination="iN0-l3-epB" id="jYS-Yv-OhU"/>
+                <outlet property="progressContainerView" destination="Jeg-kc-GzA" id="T6I-DO-92R"/>
+                <outlet property="progressView" destination="RUZ-q5-aj0" id="dXM-nF-ASh"/>
+                <outlet property="retryButton" destination="a7d-as-sMe" id="l1g-bW-GfN"/>
+                <outlet property="retryContainerView" destination="Ydz-Ff-WtA" id="97G-XS-0hJ"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -46,21 +50,25 @@
                     </userDefinedRuntimeAttributes>
                 </view>
                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ydz-Ff-WtA">
-                    <rect key="frame" x="42.5" y="62" width="165" height="35"/>
+                    <rect key="frame" x="43" y="62" width="165" height="35"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a7d-as-sMe">
-                            <rect key="frame" x="10" y="4" width="114" height="27"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a7d-as-sMe">
+                            <rect key="frame" x="7" y="4" width="122" height="27"/>
                             <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
+                                <constraint firstAttribute="width" constant="122" id="1fc-bR-INF"/>
                                 <constraint firstAttribute="height" constant="27" id="ja0-yM-TCM"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                             <state key="normal" title="Retry Upload">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
+                            <connections>
+                                <action selector="retryUploadClicked:" destination="-1" eventType="touchUpInside" id="pPM-Pf-5Bq"/>
+                            </connections>
                         </button>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Upload" translatesAutoresizingMaskIntoConstraints="NO" id="pXs-jH-ihU">
-                            <rect key="frame" x="129" y="7" width="25" height="20"/>
+                            <rect key="frame" x="128" y="7" width="25" height="20"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="20" id="AgT-OO-WwZ"/>
                                 <constraint firstAttribute="width" constant="25" id="kak-PB-QZg"/>
@@ -69,12 +77,13 @@
                     </subviews>
                     <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstItem="pXs-jH-ihU" firstAttribute="leading" secondItem="a7d-as-sMe" secondAttribute="trailing" constant="5" id="CkM-MR-dcL"/>
-                        <constraint firstAttribute="trailing" secondItem="pXs-jH-ihU" secondAttribute="trailing" constant="11" id="Ggr-7s-1kW"/>
+                        <constraint firstItem="a7d-as-sMe" firstAttribute="leading" secondItem="Ydz-Ff-WtA" secondAttribute="leading" constant="7" id="GnR-9n-nV9"/>
+                        <constraint firstItem="pXs-jH-ihU" firstAttribute="leading" secondItem="a7d-as-sMe" secondAttribute="trailing" constant="-1" id="Ncj-Yc-CoA"/>
+                        <constraint firstAttribute="trailing" secondItem="pXs-jH-ihU" secondAttribute="trailing" constant="12" id="UHd-Wj-o8V"/>
                         <constraint firstAttribute="height" constant="35" id="XQF-3w-iG4"/>
-                        <constraint firstItem="a7d-as-sMe" firstAttribute="leading" secondItem="Ydz-Ff-WtA" secondAttribute="leading" constant="10" id="cO9-vR-OzX"/>
                         <constraint firstItem="a7d-as-sMe" firstAttribute="centerY" secondItem="Ydz-Ff-WtA" secondAttribute="centerY" id="eC8-Lv-TgF"/>
                         <constraint firstItem="pXs-jH-ihU" firstAttribute="centerY" secondItem="Ydz-Ff-WtA" secondAttribute="centerY" id="urh-tY-1OS"/>
+                        <constraint firstAttribute="width" constant="165" id="vEZ-gS-yn8"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -85,7 +94,9 @@
                 </view>
             </subviews>
             <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Ydz-Ff-WtA" secondAttribute="trailing" constant="42" id="8KX-j1-nsf"/>
                 <constraint firstItem="Ydz-Ff-WtA" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="8yk-jW-Xi0"/>
+                <constraint firstItem="Ydz-Ff-WtA" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="43" id="GHm-8D-L6d"/>
                 <constraint firstItem="Jeg-kc-GzA" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Sow-4p-Rps"/>
                 <constraint firstItem="Ydz-Ff-WtA" firstAttribute="centerY" secondItem="Jeg-kc-GzA" secondAttribute="centerY" id="Zr0-1u-hY3"/>
                 <constraint firstItem="Jeg-kc-GzA" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="c09-wX-uQF"/>
