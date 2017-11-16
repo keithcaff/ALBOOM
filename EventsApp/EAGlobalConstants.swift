@@ -74,6 +74,8 @@ struct GoogleAPIKeys {
     static let DRIVE_FILES = "driveFiles"
     static let UPLOAD_PERCENTAGE = "uploadPecentage"
     static let IMAGE_NAME = "imageName"
+    static let IMAGE_UPLOAD = "imageUpload"
+    
 }
 
 struct DeviceFolderNames {
@@ -86,10 +88,3 @@ struct UIText {
     static let ALERT_CREATE_OR_SELECT_EVENT_TITLE = "No event context"
     static let ALERT_CREATE_OR_SELECT_EVENT_MESSAGE = "Create or select an event to upload pictures"
 }
-
-
-
-
-
-
-

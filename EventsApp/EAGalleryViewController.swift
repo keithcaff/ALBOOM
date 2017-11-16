@@ -57,14 +57,14 @@ open class EAGalleryViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     func setupTableView() {
-        self.tableView!.dataSource = self
-        self.tableView!.delegate = self
-        self.tableView!.isHidden = true
-        self.tableView!.rowHeight = UITableViewAutomaticDimension;
-        self.tableView!.estimatedRowHeight = 545
+        tableView!.dataSource = self
+        tableView!.delegate = self
+        tableView!.isHidden = true
+        tableView!.rowHeight = UITableViewAutomaticDimension;
+        tableView!.estimatedRowHeight = 545
         let nib = UINib(nibName: XIBIdentifiers.XIB_IMAGE_UPLOAD_CELL_IDENTIFIER, bundle:nil)
-        self.tableView!.register(nib, forCellReuseIdentifier: imageUplaodCellReuseIdentifier)
-        self.view.addSubview(self.tableView!)
+        tableView!.register(nib, forCellReuseIdentifier: imageUplaodCellReuseIdentifier)
+        view.addSubview(self.tableView!)
     }
     
     func presentImagePickerWithAlert(_ alert:UIAlertController?) {
@@ -79,8 +79,26 @@ open class EAGalleryViewController: UIViewController, UITableViewDelegate, UITab
             present(gallery!, animated: true, completion: nil)
         }
     }
-
     
+    func getRetryClosure(_ event:EAEvent, _ image:EAImageUpload) -> () -> Void {
+        let retry: () -> Void = { [weak self] in
+            EAGoogleAPIManager.sharedInstance.uploadImageToEvent(image,event:event)
+            if let i = self?.failedUploads.index(where: { $0.name == image.name!  }) {
+                self?.failedUploads.remove(at: i)
+                let indexPath = IndexPath(row: i, section: 0)
+                self?.tableView.reloadRows(at: [indexPath], with: .none)
+            }
+        }
+        return retry
+    }
+    
+    func didUploadFail (imageUpload:EAImageUpload) -> Bool {
+        let contains = failedUploads.contains(where: { (f:Any) -> Bool in
+            return (f as! EAImageUpload).name == imageUpload.name!
+        })
+        return contains
+    }
+
     // MARK: - UITableViewDelegate Methods
     open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.count;
@@ -94,12 +112,19 @@ open class EAGalleryViewController: UIViewController, UITableViewDelegate, UITab
         var imageUpload:EAImageUpload?
         imageUpload = data[indexPath.row]
         
-        //TODO: IF failedUploads contains this image then hide the progress bar and show a retry option. Set the buutonClickedClosure here!!!
-
         cell = tableView.dequeueReusableCell(withIdentifier: imageUplaodCellReuseIdentifier, for: indexPath) as? EAImageUploadTableViewCell
-       // cell!.progressView.progress = imageUpload!.uploadPercentage!
-        self.addBackground(cell!, imageUpload!.image!)
+        setupTableViewCell(cell: cell!, imageUpload: imageUpload!)
         return cell!
+    }
+    
+    func setupTableViewCell(cell:EAImageUploadTableViewCell, imageUpload:EAImageUpload) {
+        cell.uploadProgressView.buutonClickedClosure = getRetryClosure(EAEvent.getCurrentEvent(), imageUpload)
+        addBackground(cell, imageUpload.image!)
+        let displayRetryButton = didUploadFail(imageUpload: imageUpload)
+        cell.uploadProgressView.progressContainerView.isHidden = displayRetryButton
+        cell.uploadProgressView.retryContainerView.isHidden = !displayRetryButton
+         //TODO: IF failedUploads contains this image then hide the progress bar and show a retry option. Set the buutonClickedClosure here!!!
+        cell.uploadProgressView.progressView.progress = imageUpload.uploadPercentage!
     }
     
     func addBackground(_ cell:EAImageUploadTableViewCell, _ image:UIImage!) {
@@ -132,11 +157,9 @@ open class EAGalleryViewController: UIViewController, UITableViewDelegate, UITab
             imageViewBackground?.image = bgImage
     }
     
-    
     open func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return self.tableView!.frame.height;
     }
-    
     
     @objc func uploadProgressUpated(_ notifiaction : Notification) {
         let uploadDetails:[String:Any] = notifiaction.object as! [String:Any]
@@ -154,15 +177,15 @@ open class EAGalleryViewController: UIViewController, UITableViewDelegate, UITab
     @objc func imageUploadedSuccessfully(_ notifiaction : Notification) {
         print("imageUploadedSuccessfully CALLED!!!")
         let uploadDetails:[String:Any] = notifiaction.object as! [String:Any]
-        let imageName:String =  uploadDetails[GoogleAPIKeys.IMAGE_NAME] as! String
-        if let i = data.index(where: { $0.name == imageName  }) {
-            if let indexOfFailedUpload = failedUploads.index(where: { $0.name == imageName}) {
+        let imageUpload:EAImageUpload =  uploadDetails[GoogleAPIKeys.IMAGE_UPLOAD] as! EAImageUpload
+        if let i = data.index(where: { $0.name == imageUpload.name!  }) {
+            if let indexOfFailedUpload = failedUploads.index(where: { $0.name == imageUpload.name!}) {
                 failedUploads.remove(at: indexOfFailedUpload)
             }
             data.remove(at: i)
             let indexPath = IndexPath(row: i, section: 0)
             tableView.deleteRows(at: [indexPath], with: .fade)
-            if(data.isEmpty) {
+            if (data.isEmpty) {
                 presentImagePickerWithAlert(self.uploadSuccessAlert)
             }
         }
@@ -170,12 +193,11 @@ open class EAGalleryViewController: UIViewController, UITableViewDelegate, UITab
     
     @objc func imageUploadFailed(_ notifiaction : Notification) {
         let uploadDetails:[String:Any] = notifiaction.object as! [String:Any]
-        let imageName:String =  uploadDetails[GoogleAPIKeys.IMAGE_NAME] as! String
-        if let i = data.index(where: { $0.name == imageName  }) {
-            let contains =  failedUploads.contains(where: { (f:Any) -> Bool in
-                return (f as! EAImageUpload).name == imageName
-            })
-            if !contains {
+        let imageUpload:EAImageUpload =  uploadDetails[GoogleAPIKeys.IMAGE_UPLOAD] as! EAImageUpload
+        if let i = data.index(where: { $0.name == imageUpload.name! }) {
+            let uploadFailed = didUploadFail(imageUpload:imageUpload)
+            if !uploadFailed {
+                data[i].uploadPercentage = 0.0
                 failedUploads.append(data[i])
             }
             let indexPath = IndexPath(row: i, section: 0)
@@ -203,7 +225,6 @@ open class EAGalleryViewController: UIViewController, UITableViewDelegate, UITab
         
         self.tableView?.reloadData()
     }
-    
     
     // MARK: - GalleryControllerDelegate
     public func galleryController(_ controller: GalleryController, didSelectImages images: [Image]) {

@@ -205,7 +205,7 @@ class EAGoogleAPIManager {
         DispatchQueue.main.async {
             let uploadTicket: GTLServiceTicket = service.executeQuery(query!, completionHandler: {
                 (ticket: GTLServiceTicket?, id:Any?, error:Error?) in
-                let uploadDetails:[String:Any] = [GoogleAPIKeys.EVENT:event, GoogleAPIKeys.IMAGE_NAME:file.name]
+                let uploadDetails:[String:Any] = [GoogleAPIKeys.EVENT:event, GoogleAPIKeys.IMAGE_UPLOAD:imageUpload]
                 if let error = error {
                     NotificationCenter.default.post(name: .NOTIFICATION_IMAGE_UPLOAD_FAILED, object: uploadDetails)
                     self.handleGoogleAPIError(error)
