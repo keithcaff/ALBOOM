@@ -84,15 +84,12 @@
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationPortraitUpsideDown</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-    <key>NSCameraUsageDescription</key>
-    <string>Need camera access for uploading Images</string>
-    <key>NSLocationUsageDescription</key>
-    <string>Need location access for tagging photo locations</string>
-    <key>NSPhotoLibraryUsageDescription</key>
-    <string>Need Library access for uploading Images</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Need camera access for uploading Images</string>
+	<key>NSLocationUsageDescription</key>
+	<string>Need location access for tagging photo locations</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Need Library access for uploading Images</string>
 </dict>
 </plist>

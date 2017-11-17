@@ -98,7 +98,12 @@ open class EAGalleryViewController: UIViewController, UITableViewDelegate, UITab
         })
         return contains
     }
-
+    // MARK: - IBActions
+    
+    @IBAction func plusButtonClicked(_ sender: Any) {
+        presentImagePickerWithAlert(nil)
+    }
+    
     // MARK: - UITableViewDelegate Methods
     open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.count;
