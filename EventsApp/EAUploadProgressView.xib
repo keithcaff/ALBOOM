@@ -52,11 +52,11 @@
                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ydz-Ff-WtA">
                     <rect key="frame" x="43" y="62" width="165" height="35"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a7d-as-sMe">
-                            <rect key="frame" x="7" y="4" width="122" height="27"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a7d-as-sMe">
+                            <rect key="frame" x="0.0" y="4" width="165" height="27"/>
                             <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="122" id="1fc-bR-INF"/>
+                                <constraint firstAttribute="width" constant="165" id="1fc-bR-INF"/>
                                 <constraint firstAttribute="height" constant="27" id="ja0-yM-TCM"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -67,22 +67,13 @@
                                 <action selector="retryUploadClicked:" destination="-1" eventType="touchUpInside" id="pPM-Pf-5Bq"/>
                             </connections>
                         </button>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Upload" translatesAutoresizingMaskIntoConstraints="NO" id="pXs-jH-ihU">
-                            <rect key="frame" x="128" y="7" width="25" height="20"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="20" id="AgT-OO-WwZ"/>
-                                <constraint firstAttribute="width" constant="25" id="kak-PB-QZg"/>
-                            </constraints>
-                        </imageView>
                     </subviews>
                     <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstItem="a7d-as-sMe" firstAttribute="leading" secondItem="Ydz-Ff-WtA" secondAttribute="leading" constant="7" id="GnR-9n-nV9"/>
-                        <constraint firstItem="pXs-jH-ihU" firstAttribute="leading" secondItem="a7d-as-sMe" secondAttribute="trailing" constant="-1" id="Ncj-Yc-CoA"/>
-                        <constraint firstAttribute="trailing" secondItem="pXs-jH-ihU" secondAttribute="trailing" constant="12" id="UHd-Wj-o8V"/>
+                        <constraint firstAttribute="trailing" secondItem="a7d-as-sMe" secondAttribute="trailing" id="FJA-R2-3cv"/>
+                        <constraint firstItem="a7d-as-sMe" firstAttribute="leading" secondItem="Ydz-Ff-WtA" secondAttribute="leading" id="GnR-9n-nV9"/>
                         <constraint firstAttribute="height" constant="35" id="XQF-3w-iG4"/>
                         <constraint firstItem="a7d-as-sMe" firstAttribute="centerY" secondItem="Ydz-Ff-WtA" secondAttribute="centerY" id="eC8-Lv-TgF"/>
-                        <constraint firstItem="pXs-jH-ihU" firstAttribute="centerY" secondItem="Ydz-Ff-WtA" secondAttribute="centerY" id="urh-tY-1OS"/>
                         <constraint firstAttribute="width" constant="165" id="vEZ-gS-yn8"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
@@ -106,7 +97,4 @@
             <point key="canvasLocation" x="-37" y="59"/>
         </view>
     </objects>
-    <resources>
-        <image name="Upload" width="30" height="30"/>
-    </resources>
 </document>
