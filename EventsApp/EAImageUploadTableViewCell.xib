@@ -42,6 +42,9 @@
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="NO"/>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="cancelButtonClicked:" destination="Ug1-3P-p6c" eventType="touchUpInside" id="JFf-CQ-Aa9"/>
+                                </connections>
                             </button>
                         </subviews>
                         <constraints>
