@@ -338,7 +338,7 @@
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KlW-f6-jkS">
                                 <rect key="frame" x="135" y="163" width="105" height="35"/>
-                                <color key="backgroundColor" red="0.18772074580192566" green="0.51381963491439819" blue="0.9836958646774292" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" name="selectedMenuItemColor" catalog="System" colorSpace="catalog"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="QtZ-tD-wAK"/>
                                     <constraint firstAttribute="width" constant="105" id="Rkg-Q2-UGN"/>
@@ -355,7 +355,8 @@
                                     </attributedString>
                                 </state>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="layer.CornerRadius" value="10"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layer.CornerRadius" value="5"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <segue destination="8w7-xV-239" kind="unwind" identifier="createEventUnWind" unwindAction="unWindToMenu:" id="mef-s0-1pG"/>
@@ -489,10 +490,6 @@
                                     <action selector="signInButtonTapped:" destination="pxC-4J-eUB" eventType="touchUpInside" id="XXp-6d-fE5"/>
                                 </connections>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Es0-Fj-2mJ">
-                                <rect key="frame" x="160" y="417" width="57" height="30"/>
-                                <state key="normal" title="Sign out"/>
-                            </button>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="ZYn-z6-Pei">
                                 <rect key="frame" x="169" y="570" width="37" height="37"/>
                                 <constraints>
@@ -501,11 +498,9 @@
                                 </constraints>
                             </activityIndicatorView>
                         </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" name="selectedMenuItemColor" catalog="System" colorSpace="catalog"/>
                         <constraints>
-                            <constraint firstItem="Es0-Fj-2mJ" firstAttribute="centerX" secondItem="U55-Wi-QcK" secondAttribute="centerXWithinMargins" constant="1" id="P1t-Rf-Lhy"/>
                             <constraint firstItem="ZYn-z6-Pei" firstAttribute="centerX" secondItem="U55-Wi-QcK" secondAttribute="centerX" id="ebH-mM-YLz"/>
-                            <constraint firstItem="Es0-Fj-2mJ" firstAttribute="top" secondItem="U55-Wi-QcK" secondAttribute="topMargin" constant="397" id="gYR-el-0wf"/>
                             <constraint firstItem="ybN-XS-TE0" firstAttribute="top" secondItem="U55-Wi-QcK" secondAttribute="topMargin" constant="493" id="lKr-Z8-TEQ"/>
                             <constraint firstItem="ZYn-z6-Pei" firstAttribute="top" secondItem="ybN-XS-TE0" secondAttribute="bottom" constant="15" id="ncr-JE-2Zd"/>
                             <constraint firstItem="ybN-XS-TE0" firstAttribute="centerX" secondItem="U55-Wi-QcK" secondAttribute="centerX" id="xjk-49-V7e"/>
