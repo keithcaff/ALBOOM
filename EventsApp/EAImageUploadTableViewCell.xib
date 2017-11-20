@@ -28,17 +28,24 @@
                                     <constraint firstAttribute="width" constant="250" id="gn1-TU-rOM"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yVb-1J-Pd3">
-                                <rect key="frame" x="20" y="30" width="30" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yVb-1J-Pd3">
+                                <rect key="frame" x="20" y="20" width="30" height="30"/>
+                                <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="30" id="TCH-dV-oT6"/>
                                     <constraint firstAttribute="height" constant="30" id="qTD-rs-S9N"/>
                                 </constraints>
-                                <state key="normal" image="Camera"/>
+                                <state key="normal" image="Cancel_White"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="NO"/>
+                                </userDefinedRuntimeAttributes>
                             </button>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="yVb-1J-Pd3" firstAttribute="top" secondItem="Fov-dZ-S78" secondAttribute="top" constant="30" id="Bt0-lj-wFY"/>
+                            <constraint firstItem="yVb-1J-Pd3" firstAttribute="top" secondItem="Fov-dZ-S78" secondAttribute="top" constant="20" id="Bt0-lj-wFY"/>
                             <constraint firstItem="yVb-1J-Pd3" firstAttribute="leading" secondItem="Fov-dZ-S78" secondAttribute="leading" constant="20" id="OEA-I2-heE"/>
                             <constraint firstItem="K75-Zv-1l0" firstAttribute="centerY" secondItem="Fov-dZ-S78" secondAttribute="centerY" id="Wro-UA-hPQ"/>
                             <constraint firstItem="K75-Zv-1l0" firstAttribute="centerX" secondItem="Fov-dZ-S78" secondAttribute="centerX" id="u9k-Sz-uqE"/>
@@ -61,6 +68,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="Camera" width="30" height="30"/>
+        <image name="Cancel_White" width="30" height="30"/>
     </resources>
 </document>
