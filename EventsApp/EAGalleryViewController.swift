@@ -80,6 +80,27 @@ open class EAGalleryViewController: UIViewController, UITableViewDelegate, UITab
         }
     }
     
+    func getIndexPathForImage(_ image:EAImageUpload) -> IndexPath?{
+        var indexPath:IndexPath?
+        if let i = data.index(where: { $0.name == image.name }) {
+            indexPath = IndexPath(row: i, section: 0)
+        }
+        return indexPath
+    }
+    
+    func getCancelClosure(_ event:EAEvent, _ image:EAImageUpload) -> () -> Void {
+        let cancel: () -> Void = { [weak self] in
+            if let indexPath = self?.getIndexPathForImage(image) {
+                self?.data.remove(at: indexPath.row)
+                self?.tableView.deleteRows(at: [indexPath], with:.automatic)
+                if (self?.data.isEmpty)! {
+                    self?.presentImagePickerWithAlert(nil)
+                }
+            }
+        }
+        return cancel
+    }
+    
     func getRetryClosure(_ event:EAEvent, _ image:EAImageUpload) -> () -> Void {
         let retry: () -> Void = { [weak self] in
             EAGoogleAPIManager.sharedInstance.uploadImageToEvent(image,event:event)
@@ -123,6 +144,7 @@ open class EAGalleryViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     func setupTableViewCell(cell:EAImageUploadTableViewCell, imageUpload:EAImageUpload) {
+        cell.cancelButtonClosure = getCancelClosure(EAEvent.getCurrentEvent(), imageUpload)
         cell.uploadProgressView.buutonClickedClosure = getRetryClosure(EAEvent.getCurrentEvent(), imageUpload)
         addBackground(cell, imageUpload.image!)
         let displayRetryButton = didUploadFail(imageUpload: imageUpload)
@@ -206,7 +228,7 @@ open class EAGalleryViewController: UIViewController, UITableViewDelegate, UITab
                 failedUploads.append(data[i])
             }
             let indexPath = IndexPath(row: i, section: 0)
-            tableView.reloadRows(at: [indexPath], with: .automatic)
+            tableView.reloadRows(at: [indexPath], with: .none)
         }
     }
     
@@ -214,7 +236,6 @@ open class EAGalleryViewController: UIViewController, UITableViewDelegate, UITab
         let defaults = UserDefaults.standard
         let eventId:String? = defaults.string(forKey: DEFAULT_CURRENT_EVENT_ID)
         let eventName:String? = defaults.string(forKey: DEFAULT_CURRENT_EVENT_NAME)
-        
         for image in images {
             if let eventId = eventId, let eventName = eventName {
                 let event:EAEvent = EAEvent(id:eventId , eventName: eventName)
@@ -223,11 +244,9 @@ open class EAGalleryViewController: UIViewController, UITableViewDelegate, UITab
                 EAGoogleAPIManager.sharedInstance.uploadImageToEvent(imageUpload,event:event)
             }
         }
-        
         if(!data.isEmpty) {
             self.tableView!.isHidden = false
         }
-        
         self.tableView?.reloadData()
     }
     

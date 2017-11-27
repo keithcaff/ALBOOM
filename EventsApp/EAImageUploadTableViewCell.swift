@@ -15,7 +15,6 @@ open class EAImageUploadTableViewCell:UITableViewCell {
     @IBOutlet weak var uploadProgressView: EAUploadProgressView!
     
     @IBAction func cancelButtonClicked(_ sender: Any) {
-        print("KCTEST - cancel button pressed")
         if let cancelButtonClosure = cancelButtonClosure {
             cancelButtonClosure()
         }

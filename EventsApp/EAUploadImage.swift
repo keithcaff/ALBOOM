@@ -19,8 +19,8 @@ class EAImageUpload {
         self.uploadPercentage = uploadPercentage
         
         let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .long
-        dateFormatter.timeStyle = .medium
-        self.name = "\(dateFormatter.string(from:Date()))_\(APP_NAME).jpg"
+        dateFormatter.dateStyle = .short
+        dateFormatter.timeStyle = .short
+        self.name = "\(dateFormatter.string(from:Date()))_\(UUID().uuidString)_\(APP_NAME).\(DeviceFolderNames.EA_IMAGE_FILE_TYPE)"
     }
 }
