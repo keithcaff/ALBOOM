@@ -36,7 +36,6 @@
 		538183061D773EC200393344 /* EAGalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538183051D773EC200393344 /* EAGalleryViewController.swift */; };
 		538D48181D41372700957BF0 /* EAGlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538D48171D41372700957BF0 /* EAGlobalConstants.swift */; };
 		538D481A1D4155BF00957BF0 /* EAGoogleAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538D48191D4155BF00957BF0 /* EAGoogleAPIManager.swift */; };
-		53C5D8C91FBA2B8E00E21176 /* upload_white.png in Resources */ = {isa = PBXBuildFile; fileRef = 53C5D8C81FBA2B8E00E21176 /* upload_white.png */; };
 		53F47AB91CF75817005F0DE9 /* EAMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F47AB81CF75817005F0DE9 /* EAMenuViewController.swift */; };
 		D9717FB16FBE9EC3119AA508 /* Pods_EventsApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 122C79AF285017512BB37DB4 /* Pods_EventsApp.framework */; };
 /* End PBXBuildFile section */
@@ -77,7 +76,6 @@
 		538183051D773EC200393344 /* EAGalleryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EAGalleryViewController.swift; sourceTree = "<group>"; };
 		538D48171D41372700957BF0 /* EAGlobalConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EAGlobalConstants.swift; sourceTree = "<group>"; };
 		538D48191D4155BF00957BF0 /* EAGoogleAPIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EAGoogleAPIManager.swift; sourceTree = "<group>"; };
-		53C5D8C81FBA2B8E00E21176 /* upload_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = upload_white.png; sourceTree = "<group>"; };
 		53F47AB81CF75817005F0DE9 /* EAMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EAMenuViewController.swift; sourceTree = "<group>"; };
 		75CBB103CAD3158E12E5E0B9 /* Pods-EventsApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EventsApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-EventsApp/Pods-EventsApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -97,7 +95,6 @@
 		4427AF931F484A0A006A571E /* VIew */ = {
 			isa = PBXGroup;
 			children = (
-				53C5D8C81FBA2B8E00E21176 /* upload_white.png */,
 				44323FB51CE9EF730049F7FC /* LaunchScreen.storyboard */,
 				44323FB31CE9EF730049F7FC /* Assets.xcassets */,
 				44323FB01CE9EF730049F7FC /* EAMain.storyboard */,
@@ -275,7 +272,6 @@
 			files = (
 				44323FB71CE9EF730049F7FC /* LaunchScreen.storyboard in Resources */,
 				4419E4691CF1DC8100FFCE0D /* GoogleService-Info.plist in Resources */,
-				53C5D8C91FBA2B8E00E21176 /* upload_white.png in Resources */,
 				535D05441FB619690012A527 /* EAUploadProgressView.xib in Resources */,
 				44CC1C321D4533D0007AFB89 /* EAViewEventTableViewCell.xib in Resources */,
 				44323FB41CE9EF730049F7FC /* Assets.xcassets in Resources */,

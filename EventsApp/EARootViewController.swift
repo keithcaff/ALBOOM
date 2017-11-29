@@ -110,4 +110,5 @@ class EARootViewController: UIViewController, EALoginListener {
     func loginFailed() {
          print("Login failed")
     }
+    
 }

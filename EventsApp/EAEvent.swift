@@ -17,7 +17,7 @@ class EAEvent:NSObject{
         self.name = eventName;
     }
     
-    static func getCurrentEventId() -> String! {
+    static func getCurrentEventId() -> String {
         var eventId:String
         let defaults = UserDefaults.standard
         let currentEventId = defaults.string(forKey: DEFAULT_CURRENT_EVENT_ID)
@@ -29,7 +29,7 @@ class EAEvent:NSObject{
         }
         return eventId
     }
-    static func getCurrentEventName() -> String! {
+    static func getCurrentEventName() -> String {
         var eventName:String
         let defaults = UserDefaults.standard
         let currentEventName = defaults.string(forKey: DEFAULT_CURRENT_EVENT_NAME)

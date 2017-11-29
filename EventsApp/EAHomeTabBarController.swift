@@ -9,12 +9,13 @@
 import UIKit
 import GoogleAPIClient
 
-open class EAHomeTabBarController: UITabBarController {
+open class EAHomeTabBarController: UITabBarController, UITabBarControllerDelegate {
 
     var contentViewController:AnyObject?
     
     override open func viewDidLoad() {
         super.viewDidLoad()
+        delegate = self
         self.updateContentViewController(0)
     }
     
@@ -40,6 +41,17 @@ open class EAHomeTabBarController: UITabBarController {
             viewController = (viewController as! UINavigationController).viewControllers.first!
         }
         contentViewController = viewController
+    }
+    
+    open func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        let id:String = EAEvent.getCurrentEventId()
+        if id.count > 1 {
+            return true
+        }
+        else {
+            return false
+            //present alert as to why we can't display the gallery
+        }
     }
     
     open override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {

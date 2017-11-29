@@ -9,7 +9,6 @@
 import Foundation
 import Gallery
 open class EAGalleryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, GalleryControllerDelegate {
-
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var imagePickerPlaceholderView: UIView!
@@ -70,9 +69,9 @@ open class EAGalleryViewController: UIViewController, UITableViewDelegate, UITab
     func presentImagePickerWithAlert(_ alert:UIAlertController?) {
         gallery = GalleryController()
         gallery!.delegate = self
-        if alert != nil {
+        if let alert = alert {
             present(gallery!, animated: true, completion: {
-                self.gallery!.present(alert!, animated:true, completion:nil)
+                self.gallery!.present(alert, animated:true, completion:nil)
             })
         }
         else {
