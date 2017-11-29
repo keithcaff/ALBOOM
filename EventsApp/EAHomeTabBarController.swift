@@ -50,7 +50,7 @@ open class EAHomeTabBarController: UITabBarController, UITabBarControllerDelegat
         }
         else {
             return false
-            //present alert as to why we can't display the gallery
+            //TODO: present alert as to why we can't display the gallery
         }
     }
     
