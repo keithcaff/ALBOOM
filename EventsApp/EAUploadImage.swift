@@ -21,6 +21,8 @@ class EAImageUpload {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .short
         dateFormatter.timeStyle = .short
-        self.name = "\(dateFormatter.string(from:Date()))_\(UUID().uuidString)_\(APP_NAME).\(DeviceFolderNames.EA_IMAGE_FILE_TYPE)"
+        var uuid = UUID().uuidString
+        uuid = String(uuid.prefix(6))
+        self.name = "\(dateFormatter.string(from:Date()))_\(uuid)_\(APP_NAME).\(DeviceFolderNames.EA_IMAGE_FILE_TYPE)"
     }
 }
