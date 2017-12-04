@@ -101,8 +101,8 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
     }
     
     func updateNavigationBarTitle() {
-        let defaults = UserDefaults.standard
-        if let currentEventName = defaults.string(forKey: DEFAULT_CURRENT_EVENT_NAME) {
+        let event = EAEvent.getCurrentEvent()
+        if let currentEventName = event.name {
             self.navigationController?.navigationBar.topItem?.title = currentEventName
         }
     }
@@ -272,6 +272,7 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
         let defaults = UserDefaults.standard
         let currentEventId:String = defaults.string(forKey: DEFAULT_CURRENT_EVENT_ID)!
         if let event:EAEvent = notifiaction.object as? EAEvent, event.id == currentEventId {
+            EAEvent.didSwitchEvent(nil);
             resetHomeViewController()
         }
     }

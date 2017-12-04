@@ -42,7 +42,6 @@ class EAEvent:NSObject{
         return eventName
     }
     
-    
     static func getCurrentEvent() -> EAEvent {
         let id = EAEvent.getCurrentEventId()
         let name = EAEvent.getCurrentEventName()

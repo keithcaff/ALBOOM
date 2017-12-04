@@ -43,8 +43,10 @@ class EAGoogleAPIManager {
                 self.handleGoogleAPIError(error)
             }
             else {
-                print("success crated folder: \(createdFolder!)")
-                NotificationCenter.default.post(name: .NOTIFICATION_EVENT_FOLDER_CREATED, object: createdFolder)
+                if let folder = createdFolder {
+                    print("success crated folder: \(folder)")
+                    NotificationCenter.default.post(name: .NOTIFICATION_EVENT_FOLDER_CREATED, object: folder)
+                }
             }
         })
     }
@@ -61,7 +63,9 @@ class EAGoogleAPIManager {
                 self.handleGoogleAPIError(error)
             }
             else {
-                print("Root event folder retrieved:  \(object!)")
+                if let root = object {
+                    print("Root event folder retrieved:  \(root)")
+                }
             }
         })
     }
@@ -79,7 +83,9 @@ class EAGoogleAPIManager {
                 self.handleGoogleAPIError(error)
             }
             else {
-                print("successfully retrieved folders:  \(folders!)")
+                if let folders = folders {
+                    print("successfully retrieved folders:  \(folders)")
+                }
                 DispatchQueue.main.async {
                     NotificationCenter.default.post(name: .NOTIFICATION_EVENT_FOLDERS_RETRIEVED, object: folders)
                 }
@@ -141,7 +147,6 @@ class EAGoogleAPIManager {
         })
     }
     
-    
     func downloadFile(_ file:GTLDriveFile!) {
         let service:GTLService = gtlServiceDrive
         setAuthorizerForService(GIDSignIn.sharedInstance(), user: GIDSignIn.sharedInstance().currentUser,service:service)
@@ -165,8 +170,6 @@ class EAGoogleAPIManager {
             }
         }
     }
-    
-    
     
     func uploadImageToEvent(_ imageUpload:EAImageUpload, event:EAEvent) {
         let service:GTLService = gtlServiceDrive
@@ -211,7 +214,9 @@ class EAGoogleAPIManager {
                     self.handleGoogleAPIError(error)
                 }
                 else {
-                    print("file uploaded successfully!!! \(id!)")
+                    if let id = id {
+                        print("file uploaded successfully!!! \(id)")
+                    }
                     NotificationCenter.default.post(name: .NOTIFICATION_IMAGE_UPLOADED, object: uploadDetails)
                     self.getLatestFilesForEvent(event)
                 }
@@ -220,7 +225,6 @@ class EAGoogleAPIManager {
             uploadTicket.uploadProgressBlock = uploadBlock
         }
     }
-    
     
     func deleteEvent(_ event:EAEvent) {
         let service:GTLService = gtlServiceDrive
@@ -233,7 +237,9 @@ class EAGoogleAPIManager {
                 self.handleGoogleAPIError(error)
             }
             else {
-                print("deleted file successfully!!! \(id!)")
+                if let name = event.name {
+                    print("deleted file successfully!!! \(name)")
+                }
                 DispatchQueue.main.async {
                     NotificationCenter.default.post(name: .NOTIFICATION_EVENT_FOLDER_DELETED, object: event)
                 }
