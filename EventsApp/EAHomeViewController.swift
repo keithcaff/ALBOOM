@@ -118,6 +118,7 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
             self.tableView.isHidden = true
         }
         else {
+            self.tableView.reloadData()
             self.tableView.isHidden = false
         }
     }
@@ -292,16 +293,12 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
         }
         if let fileList = notifiaction.object as? GTLDriveFileList  {
             //add any new files to the existing files list
-            if let empty = self.currentFilesList?.files?.isEmpty {
-                if empty {
-                    self.currentFilesList = fileList
-                }
-                else {
+            if let currentFilesList = self.currentFilesList  {
                     //we already have some files. Check if we don't have any of the 'latest'
                     var filesToAdd = [GTLDriveFile]()
                     for file in fileList.files {
                         var contains:Bool? = false
-                        contains =  self.currentFilesList?.files!.contains(where: { (f:Any) -> Bool in
+                        contains = currentFilesList.files!.contains(where: { (f:Any) -> Bool in
                                 return (f as! GTLDriveFile).identifier == (file as! GTLDriveFile).identifier
                         })
                         if !contains! {
@@ -310,7 +307,9 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
                     }
                     //call func to update tableview..
                     addNewFilesToList(&filesToAdd)
-                }
+            }
+            else {
+                self.currentFilesList = fileList
             }
         }
         hideShowTableView()

@@ -67,15 +67,17 @@ open class EAGalleryViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     func presentImagePickerWithAlert(_ alert:UIAlertController?) {
-        gallery = GalleryController()
-        gallery!.delegate = self
-        if let alert = alert {
-            present(gallery!, animated: true, completion: {
-                self.gallery!.present(alert, animated:true, completion:nil)
-            })
-        }
-        else {
-            present(gallery!, animated: true, completion: nil)
+        if self.isVisible(view: self.view) {
+            gallery = GalleryController()
+            gallery!.delegate = self
+            if let alert = alert {
+                present(gallery!, animated: true, completion: {
+                    self.gallery!.present(alert, animated:true, completion:nil)
+                })
+            }
+            else {
+                present(gallery!, animated: true, completion: nil)
+            }
         }
     }
     
@@ -271,6 +273,26 @@ open class EAGalleryViewController: UIViewController, UITableViewDelegate, UITab
     public func galleryControllerDidCancel(_ controller: GalleryController) {
         gallery!.dismiss(animated: true, completion: nil)
         self.performSegue(withIdentifier: SegueIdentifiers.EXIT_GALLERY_SEGUE,sender:self)
+    }
+    
+    public func isVisible(view: UIView) -> Bool {
+        if view.window == nil {
+            return false
+        }
+        var currentView: UIView = view
+        while let superview = currentView.superview {
+            
+            if (superview.bounds).intersects(currentView.frame) == false {
+                return false;
+            }
+            
+            if currentView.isHidden {
+                return false
+            }
+            
+            currentView = superview
+        }
+        return true
     }
 
 }
