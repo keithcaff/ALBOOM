@@ -11,7 +11,6 @@ import UIKit
 
 class EAUploadProgressView: UIView {
     
-    
     @IBOutlet weak var progressContainerView: UIView!
     @IBOutlet weak var retryContainerView: UIView!
     @IBOutlet weak var progressView: UIProgressView!

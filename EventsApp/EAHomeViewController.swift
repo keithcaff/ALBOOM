@@ -14,7 +14,6 @@ import UIColor_Hex
 open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableViewDataSource, EAEventUpdateDelegate{
     
     @IBOutlet var tableView: UITableView!
-    
     private var currentEventFolder:GTLDriveFile?
     private var currentFilesList:GTLDriveFileList?
     private var downlaodsInProgress:[String] = [String]()
@@ -24,7 +23,6 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
     private let refreshControl = UIRefreshControl()
     private let refreshControlTintColor = UIColor(red:0.25, green:0.72, blue:0.85, alpha:1.0)
     private var currentEvent:EAEvent?
-
 
     @IBOutlet var menuButton: UIBarButtonItem!
     override open func viewDidLoad() {
@@ -122,7 +120,6 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
             self.tableView.isHidden = false
         }
     }
-    
     
     func addBackground(_ cell:EAHomeTableViewCell, file:GTLDriveFile!) {
         let view:UIView = cell.placeHolderView
