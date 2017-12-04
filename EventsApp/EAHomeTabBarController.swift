@@ -10,14 +10,17 @@ import UIKit
 import GoogleAPIClient
 
 open class EAHomeTabBarController: UITabBarController, UITabBarControllerDelegate {
-
-    var contentViewController:AnyObject?
     
+    var contentViewController:UIViewController?
+    var selectOrCreateEventAlert : UIAlertController?
     override open func viewDidLoad() {
         super.viewDidLoad()
         delegate = self
         self.updateContentViewController(0)
+        selectOrCreateEventAlert = UIAlertController(title: UIText.ALERT_CREATE_OR_SELECT_EVENT_TITLE, message: UIText.ALERT_CREATE_OR_SELECT_EVENT_MESSAGE, preferredStyle: UIAlertControllerStyle.alert)
+        selectOrCreateEventAlert!.addAction(UIAlertAction(title: "Ok", style: .default, handler:nil))
     }
+    
     
 
     override open func didReceiveMemoryWarning() {
@@ -27,12 +30,6 @@ open class EAHomeTabBarController: UITabBarController, UITabBarControllerDelegat
     
     open override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated);
-//        let selectedIndex:Int? = self.tabBar.items!.indexOf(self.tabBar.selectedItem!)
-//        if let selectedIndex = selectedIndex {
-//            if selectedIndex != 1 {
-//                self.tabBar.hidden = false;
-//            }
-//        }
     }
     
     open func updateContentViewController(_ selectedTabIndex:Int) {
@@ -49,8 +46,10 @@ open class EAHomeTabBarController: UITabBarController, UITabBarControllerDelegat
             return true
         }
         else {
+            if let contentView = self.contentViewController {
+                contentView.present(self.selectOrCreateEventAlert!, animated: true, completion: nil)
+            }
             return false
-            //TODO: present alert as to why we can't display the gallery
         }
     }
     
