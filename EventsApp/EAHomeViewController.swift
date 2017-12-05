@@ -55,6 +55,7 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
         self.tableView.dataSource = self
         self.tableView.delegate = self
         self.tableView.rowHeight = UITableViewAutomaticDimension;
+        self.tableView.tableFooterView = UIView()
         self.tableView.estimatedRowHeight = 545
         let nib = UINib(nibName: XIBIdentifiers.XIB_HOME_CELL_IDENTIFIER, bundle:nil)
         self.tableView.register(nib, forCellReuseIdentifier: homeCellReuseIdentifier)
@@ -207,11 +208,7 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
     
     open func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
-        let topNavHeight:CGFloat = self.navigationController!.navigationBar.frame.height
-        let bottomNavHeight:CGFloat =  self.tabBarController!.tabBar.frame.height
-        let statusBarHeight:CGFloat = UIApplication.shared.statusBarFrame.size.height
-        let navHeight:CGFloat = topNavHeight + bottomNavHeight + statusBarHeight
-        return self.tableView.frame.height - navHeight;// - navHeight;
+        return self.tableView.bounds.height
     }
     
     func addNewFilesToList(_ newfiles: inout [GTLDriveFile]) {

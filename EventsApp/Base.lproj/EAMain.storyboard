@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13770" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="yZD-8J-kw3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="yZD-8J-kw3">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13770"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -25,8 +25,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="uMa-rc-I3n">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="0.0" y="64" width="414" height="623"/>
+                                <color key="backgroundColor" name="alternateSelectedControlColor" catalog="System" colorSpace="catalog"/>
                                 <sections/>
                             </tableView>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EgE-XB-0cw">
@@ -41,10 +41,10 @@
                         <constraints>
                             <constraint firstItem="EgE-XB-0cw" firstAttribute="centerX" secondItem="qPV-Gr-Mom" secondAttribute="centerX" id="BKM-Is-yYn"/>
                             <constraint firstItem="EgE-XB-0cw" firstAttribute="width" secondItem="qPV-Gr-Mom" secondAttribute="width" id="Bpn-yq-t7T"/>
-                            <constraint firstItem="uMa-rc-I3n" firstAttribute="top" secondItem="qPV-Gr-Mom" secondAttribute="top" id="RSD-Sv-KFF"/>
+                            <constraint firstItem="uMa-rc-I3n" firstAttribute="top" secondItem="yHa-kB-rP5" secondAttribute="bottom" id="MN8-eA-pir"/>
+                            <constraint firstItem="SVs-Hr-QkG" firstAttribute="top" secondItem="uMa-rc-I3n" secondAttribute="bottom" id="YRo-Mj-IOQ"/>
                             <constraint firstItem="uMa-rc-I3n" firstAttribute="leading" secondItem="qPV-Gr-Mom" secondAttribute="leading" id="dUk-7y-ST7"/>
                             <constraint firstAttribute="trailing" secondItem="uMa-rc-I3n" secondAttribute="trailing" id="gnC-RS-k4L"/>
-                            <constraint firstAttribute="bottom" secondItem="uMa-rc-I3n" secondAttribute="bottom" id="uQS-h8-1xH"/>
                             <constraint firstItem="EgE-XB-0cw" firstAttribute="centerY" secondItem="qPV-Gr-Mom" secondAttribute="centerY" multiplier="0.666667" id="woo-J3-zg0"/>
                         </constraints>
                     </view>
@@ -300,7 +300,7 @@
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="103" id="vbF-kG-XWw"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                         <variation key="default">
                                             <mask key="constraints">
@@ -308,14 +308,14 @@
                                             </mask>
                                         </variation>
                                     </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" placeholder="MyEvent" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JwF-rw-rmn">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="MyEvent" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="JwF-rw-rmn">
                                         <rect key="frame" x="105" y="0.0" width="238" height="40"/>
-                                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="Xtr-b2-lhM"/>
                                             <constraint firstAttribute="height" constant="30" id="je1-16-DOS"/>
                                         </constraints>
-                                        <attributedString key="attributedText"/>
+                                        <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <variation key="default">
                                             <mask key="constraints">
@@ -338,7 +338,7 @@
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KlW-f6-jkS">
                                 <rect key="frame" x="135" y="163" width="105" height="35"/>
-                                <color key="backgroundColor" name="selectedMenuItemColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="QtZ-tD-wAK"/>
                                     <constraint firstAttribute="width" constant="105" id="Rkg-Q2-UGN"/>
@@ -347,7 +347,7 @@
                                     <attributedString key="attributedTitle">
                                         <fragment content="Create">
                                             <attributes>
-                                                <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="NSColor" name="alternateSelectedControlColor" catalog="System" colorSpace="catalog"/>
                                                 <font key="NSFont" size="17" name="HelveticaNeue"/>
                                                 <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                             </attributes>
@@ -363,7 +363,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" name="alternateSelectedControlColor" catalog="System" colorSpace="catalog"/>
                         <constraints>
                             <constraint firstItem="KlW-f6-jkS" firstAttribute="centerX" secondItem="Vh5-xv-kPQ" secondAttribute="centerXWithinMargins" id="3zf-P0-EXd"/>
                             <constraint firstItem="xhz-dp-WTX" firstAttribute="top" secondItem="lF6-v9-X4j" secondAttribute="bottom" constant="43" id="4aX-Mk-6gq"/>
@@ -498,7 +498,7 @@
                                 </constraints>
                             </activityIndicatorView>
                         </subviews>
-                        <color key="backgroundColor" name="selectedMenuItemColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="alternateSelectedControlColor" catalog="System" colorSpace="catalog"/>
                         <constraints>
                             <constraint firstItem="ZYn-z6-Pei" firstAttribute="centerX" secondItem="U55-Wi-QcK" secondAttribute="centerX" id="ebH-mM-YLz"/>
                             <constraint firstItem="ybN-XS-TE0" firstAttribute="top" secondItem="U55-Wi-QcK" secondAttribute="topMargin" constant="493" id="lKr-Z8-TEQ"/>
