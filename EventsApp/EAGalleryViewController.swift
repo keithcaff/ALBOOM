@@ -45,7 +45,7 @@ open class EAGalleryViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     func setupAlerts() {
-        uploadSuccessAlert = UIAlertController(title: "Upload complete", message: "Image(s) uploaded to Google Drive", preferredStyle: UIAlertControllerStyle.alert)
+        uploadSuccessAlert = UIAlertController(title: UIText.ALERT_UPLOAD_COMPLETE_TITLE, message: UIText.ALERT_UPLOAD_COMPLETE_MESSAGE, preferredStyle: UIAlertControllerStyle.alert)
         uploadSuccessAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler:nil))
     }
     
@@ -67,7 +67,7 @@ open class EAGalleryViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     func presentImagePickerWithAlert(_ alert:UIAlertController?) {
-        if self.isVisible(view: self.view) {
+        if self.isVisible(view: self.view) {//if the image picker is not presented
             gallery = GalleryController()
             gallery!.delegate = self
             if let alert = alert {
@@ -78,6 +78,9 @@ open class EAGalleryViewController: UIViewController, UITableViewDelegate, UITab
             else {
                 present(gallery!, animated: true, completion: nil)
             }
+        }
+        else if let gallery = gallery, let alert = alert, self.isVisible(view: gallery.view) {
+             gallery.present(alert, animated:true, completion:nil)
         }
     }
     

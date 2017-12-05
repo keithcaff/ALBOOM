@@ -85,6 +85,8 @@ struct DeviceFolderNames {
 }
 
 struct UIText {
+    static let ALERT_UPLOAD_COMPLETE_TITLE = "Upload complete"
+    static let ALERT_UPLOAD_COMPLETE_MESSAGE = "Media uploaded to Google Drive"
     static let EAHOME_TABLE_VIEW_REFRESH_CONTROL_TITLE = "Fetching latest files"
     static let ALERT_CREATE_OR_SELECT_EVENT_TITLE = "No event context"
     static let ALERT_CREATE_OR_SELECT_EVENT_MESSAGE = "Create or select an event to upload media"
