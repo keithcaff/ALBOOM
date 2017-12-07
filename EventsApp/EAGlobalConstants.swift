@@ -39,6 +39,7 @@ struct SegueIdentifiers {
     static let CREATE_EVENT_SEGUE = "createEventSegue"
     static let CREATE_EVENT_UNWIND_SEGUE = "createEventUnWind"
     static let VIEW_EVENTS_SEGUE = "viewEventsSegue"
+    static let VIEW_ABOUT_APP_SEGUE = "viewAboutAppSegue"
     static let EXIT_GALLERY_SEGUE = "exitGalleryView"
 }
 
@@ -53,6 +54,7 @@ struct XIBIdentifiers {
 struct MenuItemLabels {
     static let CREATE_EVENT = "Create Event"
     static let VIEW_EVENTS = "View Events"
+    static let ABOUT_APP = "About"
     static let LOG_OUT = "Log Out"
 }
 

@@ -19,7 +19,8 @@ class EAMenuViewController: UIViewController ,UITableViewDelegate, UITableViewDa
     enum MenuOptions: Int {
         case CreateEvent = 0
         case ViewEvents = 1
-        static var count: Int{ return 2 }//UPDATE IF ADDING NEW ENUM VALUES!!!!
+        case AboutApp = 2
+        static var count: Int{ return 3 }//UPDATE IF ADDING NEW ENUM VALUES!!!!
     }
     
     @IBOutlet weak var tableView: UITableView!
@@ -93,6 +94,8 @@ class EAMenuViewController: UIViewController ,UITableViewDelegate, UITableViewDa
                 self.performSegue(withIdentifier: SegueIdentifiers.CREATE_EVENT_SEGUE,sender:self)
             case .ViewEvents:
                 self.performSegue(withIdentifier: SegueIdentifiers.VIEW_EVENTS_SEGUE,sender:self)
+            case .AboutApp:
+                self.performSegue(withIdentifier: SegueIdentifiers.VIEW_EVENTS_SEGUE,sender:self)
         }
         self.tableView.deselectRow(at: indexPath, animated: true)
     }
@@ -110,10 +113,12 @@ class EAMenuViewController: UIViewController ,UITableViewDelegate, UITableViewDa
         
         let menuOption:MenuOptions = MenuOptions(rawValue: indexPath.row)!
         switch menuOption {
-        case .CreateEvent:
-            labelText = MenuItemLabels.CREATE_EVENT
-        case .ViewEvents:
-            labelText = MenuItemLabels.VIEW_EVENTS
+            case .CreateEvent:
+                labelText = MenuItemLabels.CREATE_EVENT
+            case .ViewEvents:
+                labelText = MenuItemLabels.VIEW_EVENTS
+            case .AboutApp:
+                labelText = MenuItemLabels.ABOUT_APP
         }
         menuItemLabel.text = labelText
         return menuItemCell
