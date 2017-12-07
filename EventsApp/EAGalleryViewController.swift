@@ -40,6 +40,11 @@ open class EAGalleryViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     func configureGallery() {
+        //TODO: set colours to blue
+        
+        //Gallery.Config.Grid.FrameView.borderColor = dark blue
+        //Gallery.Config.Grid.FrameView.fillColor =  UIColor.red  light blue
+       // Gallery.Config.PageIndicator.backgroundColor = UIColor.red //(bottom slider)
         Gallery.Config.tabsToShow = [.imageTab, .cameraTab]
         Gallery.Config.Camera.imageLimit = 5
     }

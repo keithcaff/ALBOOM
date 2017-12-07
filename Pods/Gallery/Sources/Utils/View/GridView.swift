@@ -29,7 +29,9 @@ class GridView: UIView {
   // MARK: - Setup
 
   func setup() {
+    //TODO: KC ste colour to match app
     backgroundColor = UIColor.lightGray.withAlphaComponent(0.5)
+
 
     [collectionView, bottomView, topView, emptyView].forEach {
       addSubview($0)
@@ -124,6 +126,7 @@ class GridView: UIView {
     layout.minimumLineSpacing = 2
 
     let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
+    //TODO: KC set the colour to match app
     view.backgroundColor = UIColor.white
 
     return view
