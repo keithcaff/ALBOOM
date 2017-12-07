@@ -88,12 +88,13 @@ class EAMenuViewController: UIViewController ,UITableViewDelegate, UITableViewDa
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let menuOption:MenuOptions = MenuOptions(rawValue: indexPath.row)!
         switch menuOption {
-        case .CreateEvent:
-            print("segue to create event")
-           self.performSegue(withIdentifier: SegueIdentifiers.CREATE_EVENT_SEGUE,sender:self)
-        case .ViewEvents:
-            self.performSegue(withIdentifier: SegueIdentifiers.VIEW_EVENTS_SEGUE,sender:self)
+            case .CreateEvent:
+                print("segue to create event")
+                self.performSegue(withIdentifier: SegueIdentifiers.CREATE_EVENT_SEGUE,sender:self)
+            case .ViewEvents:
+                self.performSegue(withIdentifier: SegueIdentifiers.VIEW_EVENTS_SEGUE,sender:self)
         }
+        self.tableView.deselectRow(at: indexPath, animated: true)
     }
     
     

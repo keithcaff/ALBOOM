@@ -21,7 +21,7 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
     private var rootFolder:String?
     private let UIImageViewTagId = 303
     private let refreshControl = UIRefreshControl()
-    private let refreshControlTintColor = UIColor(red:0.25, green:0.72, blue:0.85, alpha:1.0)
+    private let refreshControlTintColor = UIColor.white
     private var currentEvent:EAEvent?
 
     @IBOutlet var menuButton: UIBarButtonItem!
@@ -63,7 +63,7 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
         // Configure Refresh Control
         let attributes = [NSAttributedStringKey.foregroundColor : refreshControlTintColor]
         refreshControl.addTarget(self, action: #selector(refreshFilesList(_:)), for: .valueChanged)
-        refreshControl.tintColor = UIColor.blue
+        refreshControl.tintColor = UIColor.white
         refreshControl.attributedTitle = NSAttributedString(string: UIText.EAHOME_TABLE_VIEW_REFRESH_CONTROL_TITLE, attributes: attributes)
         // Add Refresh Control to Table View
         tableView.refreshControl = refreshControl

@@ -37,7 +37,7 @@
                                 <state key="normal" title="Create Event"/>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                        <color key="backgroundColor" name="alternateSelectedControlColor" catalog="System" colorSpace="catalog"/>
                         <constraints>
                             <constraint firstItem="EgE-XB-0cw" firstAttribute="centerX" secondItem="qPV-Gr-Mom" secondAttribute="centerX" id="BKM-Is-yYn"/>
                             <constraint firstItem="EgE-XB-0cw" firstAttribute="width" secondItem="qPV-Gr-Mom" secondAttribute="width" id="Bpn-yq-t7T"/>
@@ -115,7 +115,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="Q8b-cN-lZ9">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="601"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <color key="backgroundColor" name="keyboardFocusIndicatorColor" catalog="System" colorSpace="catalog"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="EAMenuItemCell" id="jXy-YY-2rO">
                                         <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
@@ -131,7 +131,7 @@
                                                         <constraint firstAttribute="width" constant="173" id="uQZ-PD-keS"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                    <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -140,6 +140,7 @@
                                                 <constraint firstItem="m18-tM-z0e" firstAttribute="leading" secondItem="rtp-Mh-Bcu" secondAttribute="leading" constant="15" id="eRp-tW-FD7"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" name="alternateSelectedControlColor" catalog="System" colorSpace="catalog"/>
                                     </tableViewCell>
                                 </prototypes>
                                 <sections/>

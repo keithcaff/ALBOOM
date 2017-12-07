@@ -32,13 +32,15 @@ class EACreateEventViewController: UIViewController, UITextFieldDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         print("get ready to create event here")
         if segue.identifier == "createEventUnWind" {
-            event = EAEvent(id:nil, eventName: eventNameTextField.text!)
+            let eventName = eventNameTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            event = EAEvent(id:nil, eventName: eventName)
         }
     }
     
     @objc func textFieldDidChange(_ textField: UITextField) {
         if let text = textField.text {
-            if (text.count == 0 || text.count > 30) {
+            let trimmedText = text.trimmingCharacters(in: .whitespacesAndNewlines)
+            if (trimmedText.count == 0 || trimmedText.count > 30) {
                 createEventButtonEnabled(false)
             }
             else {
@@ -48,7 +50,6 @@ class EACreateEventViewController: UIViewController, UITextFieldDelegate {
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        
         let currentCharacterCount = textField.text?.count ?? 0
         if (range.length + range.location > currentCharacterCount){
             return false
