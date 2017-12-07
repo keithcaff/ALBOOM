@@ -25,10 +25,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view alpha="0.94999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jeg-kc-GzA">
-                    <rect key="frame" x="30" y="56" width="189" height="48"/>
+                    <rect key="frame" x="14.5" y="56" width="220" height="48"/>
                     <subviews>
                         <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RUZ-q5-aj0">
-                            <rect key="frame" x="29" y="23" width="130" height="2"/>
+                            <rect key="frame" x="29" y="23" width="161" height="2"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </progressView>
@@ -36,7 +36,7 @@
                     <color key="backgroundColor" name="alternateSelectedControlColor" catalog="System" colorSpace="catalog"/>
                     <constraints>
                         <constraint firstItem="RUZ-q5-aj0" firstAttribute="leading" secondItem="Jeg-kc-GzA" secondAttribute="leading" constant="29" id="Wy6-C8-7sF"/>
-                        <constraint firstAttribute="width" constant="189" id="cIa-83-QcP"/>
+                        <constraint firstAttribute="width" constant="220" id="cIa-83-QcP"/>
                         <constraint firstItem="RUZ-q5-aj0" firstAttribute="centerY" secondItem="Jeg-kc-GzA" secondAttribute="centerY" id="f7S-kf-PMS"/>
                         <constraint firstItem="RUZ-q5-aj0" firstAttribute="centerX" secondItem="Jeg-kc-GzA" secondAttribute="centerX" id="kBI-Dw-uzW"/>
                         <constraint firstAttribute="height" constant="48" id="maS-cL-M4C"/>
