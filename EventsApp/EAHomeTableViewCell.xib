@@ -55,8 +55,8 @@
                             <constraint firstItem="8O1-QO-xkX" firstAttribute="centerX" secondItem="xKc-mj-vNV" secondAttribute="centerX" id="uNZ-9L-KLT"/>
                         </constraints>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="jake in the park" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MDA-0S-Ujx">
-                        <rect key="frame" x="10" y="507.5" width="356" height="35"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="jake in the park" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MDA-0S-Ujx">
+                        <rect key="frame" x="5" y="508" width="320" height="35"/>
                         <color key="backgroundColor" name="keyboardFocusIndicatorColor" catalog="System" colorSpace="catalog"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="35" id="QO9-aD-pB6"/>
@@ -65,14 +65,29 @@
                         <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ptl-wi-3n0">
+                        <rect key="frame" x="339" y="515" width="27" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="FJH-Pp-n3f"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="25" id="wwR-Ik-QRp"/>
+                        </constraints>
+                        <state key="normal" image="Share"/>
+                        <connections>
+                            <action selector="shareButtonClicked:" destination="0Ug-XX-Mq8" eventType="touchUpInside" id="rIq-Wc-ace"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <color key="backgroundColor" name="keyboardFocusIndicatorColor" catalog="System" colorSpace="catalog"/>
                 <constraints>
-                    <constraint firstItem="MDA-0S-Ujx" firstAttribute="leading" secondItem="NIh-Lb-NOh" secondAttribute="leading" constant="10" id="4dv-mB-PtP"/>
+                    <constraint firstItem="MDA-0S-Ujx" firstAttribute="leading" secondItem="NIh-Lb-NOh" secondAttribute="leading" constant="5" id="4dv-mB-PtP"/>
                     <constraint firstItem="xKc-mj-vNV" firstAttribute="top" secondItem="NIh-Lb-NOh" secondAttribute="top" id="Fni-oO-7Jj"/>
+                    <constraint firstItem="ptl-wi-3n0" firstAttribute="leading" secondItem="MDA-0S-Ujx" secondAttribute="trailing" constant="14" id="Guj-5o-B7f"/>
                     <constraint firstAttribute="trailing" secondItem="xKc-mj-vNV" secondAttribute="trailing" id="WdD-4q-iUK"/>
-                    <constraint firstAttribute="trailing" secondItem="MDA-0S-Ujx" secondAttribute="trailing" constant="10" id="a9w-j0-QVC"/>
+                    <constraint firstAttribute="trailing" secondItem="MDA-0S-Ujx" secondAttribute="trailing" constant="51" id="a9w-j0-QVC"/>
+                    <constraint firstAttribute="trailing" secondItem="ptl-wi-3n0" secondAttribute="trailing" constant="10" id="bnM-5m-DUS"/>
+                    <constraint firstAttribute="bottom" secondItem="ptl-wi-3n0" secondAttribute="bottom" constant="12.5" id="m1r-mH-YqX"/>
                     <constraint firstAttribute="bottom" secondItem="MDA-0S-Ujx" secondAttribute="bottom" constant="5" id="m5M-aG-dDK"/>
+                    <constraint firstItem="ptl-wi-3n0" firstAttribute="top" secondItem="xKc-mj-vNV" secondAttribute="bottom" constant="12.5" id="nOT-Eg-FQ0"/>
                     <constraint firstItem="MDA-0S-Ujx" firstAttribute="top" secondItem="xKc-mj-vNV" secondAttribute="bottom" constant="5" id="yu4-ca-o6c"/>
                     <constraint firstItem="xKc-mj-vNV" firstAttribute="leading" secondItem="NIh-Lb-NOh" secondAttribute="leading" id="zJi-f0-4VE"/>
                 </constraints>
@@ -82,8 +97,12 @@
                 <outlet property="activityIndicatorContainerView" destination="8O1-QO-xkX" id="mcQ-58-Mts"/>
                 <outlet property="imageTitleLabel" destination="MDA-0S-Ujx" id="EMa-E7-zwH"/>
                 <outlet property="placeHolderView" destination="xKc-mj-vNV" id="5nH-ct-SAa"/>
+                <outlet property="shareButton" destination="ptl-wi-3n0" id="ejQ-Ah-7gQ"/>
             </connections>
             <point key="canvasLocation" x="326" y="302"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="Share" width="37" height="37"/>
+    </resources>
 </document>

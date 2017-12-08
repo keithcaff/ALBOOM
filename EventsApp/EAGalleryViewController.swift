@@ -159,7 +159,6 @@ open class EAGalleryViewController: UIViewController, UITableViewDelegate, UITab
         let displayRetryButton = didUploadFail(imageUpload: imageUpload)
         cell.uploadProgressView.progressContainerView.isHidden = displayRetryButton
         cell.uploadProgressView.retryContainerView.isHidden = !displayRetryButton
-         //TODO: IF failedUploads contains this image then hide the progress bar and show a retry option. Set the buutonClickedClosure here!!!
         cell.uploadProgressView.progressView.progress = imageUpload.uploadPercentage!
     }
     

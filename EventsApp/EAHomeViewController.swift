@@ -69,6 +69,17 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
         tableView.refreshControl = refreshControl
     }
     
+    func share(_ shareImage:UIImage, shareText text:String?){
+        var objectsToShare = [Any]()
+        if let text = text{
+            objectsToShare.append(text)
+        }
+        objectsToShare.append(shareImage)
+        let activityViewController = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = self.view
+        self.present(activityViewController, animated: true, completion:nil);
+    }
+    
     func didSwitchEvent(_ event:EAEvent?) {
         EAEvent.didSwitchEvent(event)
         resetHomeViewController()
@@ -182,21 +193,40 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
         if (self.currentFilesList?.files == nil || self.currentFilesList!.files.count < 1){
             return EAHomeTableViewCell()
         }
-        
-        let currentFilesList:NSArray? = self.currentFilesList!.files as NSArray?
-        var file:GTLDriveFile?
-        if let files = currentFilesList{
-            file = (files.object(at: indexPath.row) as! GTLDriveFile)
-        }
-        
         cell = tableView.dequeueReusableCell(withIdentifier: homeCellReuseIdentifier, for: indexPath) as? EAHomeTableViewCell
-        cell?.imageTitleLabel.text = file?.name
+        let currentFilesList:NSArray? = self.currentFilesList!.files as NSArray?
+
+//        if let files = currentFilesList{
+//            file = (files.object(at: indexPath.row) as! GTLDriveFile)
+//        }
+//        cell?.imageTitleLabel.text = file?.name
+//
+//        if (self.currentFilesList?.files.indices.contains(indexPath.row) != nil) {
+//            addBackground(cell!, file: (self.currentFilesList?.files[indexPath.row] as! GTLDriveFile))
+//        }
         
-        if (self.currentFilesList?.files.indices.contains(indexPath.row) != nil) {
-            addBackground(cell!, file: (self.currentFilesList?.files[indexPath.row] as! GTLDriveFile))
+        if let files = currentFilesList, let cell = cell {
+            var file:GTLDriveFile?
+            file = (files.object(at: indexPath.row) as! GTLDriveFile)
+            if let file = file {
+                setupTableViewCell(cell, forFile: file, andIndexPath: indexPath)
+            }
         }
+        
         return cell!
     }
+    
+    func setupTableViewCell(_ cell:EAHomeTableViewCell, forFile file:GTLDriveFile, andIndexPath indexPath:IndexPath) {
+        cell.imageTitleLabel.text = file.name
+        if (self.currentFilesList?.files.indices.contains(indexPath.row) != nil) {
+            addBackground(cell, file: (self.currentFilesList?.files[indexPath.row] as! GTLDriveFile))
+        }
+        cell.shareAction = {
+            //TODO: call share func
+            print("KCTEST sharebutton pressed")
+        }
+    }
+    
     
     func activityIndicatorVisible(_ visible:Bool, cell:EAHomeTableViewCell!) {
         cell.activityIndicatorContainerView.isHidden = !visible
