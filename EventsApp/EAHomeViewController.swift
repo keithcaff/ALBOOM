@@ -133,7 +133,7 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
         }
     }
     
-    func addBackground(_ cell:EAHomeTableViewCell, file:GTLDriveFile!) {
+    func addBackground(_ cell:EAHomeTableViewCell, file:GTLDriveFile!) -> UIImage? {
         let view:UIView = cell.placeHolderView
         // screen width and height:
         let width = view.bounds.size.width
@@ -177,6 +177,7 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
             }
             self.activityIndicatorVisible(true, cell:cell)
         }
+        return bgImage
     }
     
     // MARK:Tableview delegates
@@ -195,15 +196,6 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
         }
         cell = tableView.dequeueReusableCell(withIdentifier: homeCellReuseIdentifier, for: indexPath) as? EAHomeTableViewCell
         let currentFilesList:NSArray? = self.currentFilesList!.files as NSArray?
-
-//        if let files = currentFilesList{
-//            file = (files.object(at: indexPath.row) as! GTLDriveFile)
-//        }
-//        cell?.imageTitleLabel.text = file?.name
-//
-//        if (self.currentFilesList?.files.indices.contains(indexPath.row) != nil) {
-//            addBackground(cell!, file: (self.currentFilesList?.files[indexPath.row] as! GTLDriveFile))
-//        }
         
         if let files = currentFilesList, let cell = cell {
             var file:GTLDriveFile?
@@ -218,11 +210,14 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
     
     func setupTableViewCell(_ cell:EAHomeTableViewCell, forFile file:GTLDriveFile, andIndexPath indexPath:IndexPath) {
         cell.imageTitleLabel.text = file.name
+        var bgImage:UIImage?
         if (self.currentFilesList?.files.indices.contains(indexPath.row) != nil) {
-            addBackground(cell, file: (self.currentFilesList?.files[indexPath.row] as! GTLDriveFile))
+            bgImage = addBackground(cell, file: (self.currentFilesList?.files[indexPath.row] as! GTLDriveFile))
         }
-        cell.shareAction = {
-            //TODO: call share func
+        cell.shareAction = { [unowned self] in
+            if let bgImage = bgImage {
+                self.share(bgImage, shareText:"KCTESTING share func")
+            }
             print("KCTEST sharebutton pressed")
         }
     }
