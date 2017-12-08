@@ -216,12 +216,10 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
         }
         cell.shareAction = { [unowned self] in
             if let bgImage = bgImage {
-                self.share(bgImage, shareText:"KCTESTING share func")
+                self.share(bgImage, shareText:UIText.SHARE_SINGLE_IMAGE_TEXT)
             }
-            print("KCTEST sharebutton pressed")
         }
     }
-    
     
     func activityIndicatorVisible(_ visible:Bool, cell:EAHomeTableViewCell!) {
         cell.activityIndicatorContainerView.isHidden = !visible

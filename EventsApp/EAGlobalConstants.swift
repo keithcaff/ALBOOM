@@ -92,4 +92,6 @@ struct UIText {
     static let EAHOME_TABLE_VIEW_REFRESH_CONTROL_TITLE = "Fetching latest files"
     static let ALERT_CREATE_OR_SELECT_EVENT_TITLE = "No event context"
     static let ALERT_CREATE_OR_SELECT_EVENT_MESSAGE = "Create or select an event to upload media"
+    static let SHARE_SINGLE_IMAGE_TEXT = "Media shared from \(APP_NAME). Available on app store."
+    
 }
