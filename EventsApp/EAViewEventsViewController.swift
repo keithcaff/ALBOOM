@@ -12,6 +12,8 @@ import UIKit
 
 open class EAViewEventsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    var mode:EAMenuViewController.MenuOptions?
+    
     @IBOutlet var tableView: UITableView!
     
     var data:NSMutableArray?
@@ -68,7 +70,6 @@ open class EAViewEventsViewController: UIViewController, UITableViewDelegate, UI
         }
     }
 
-
     // MARK:Tableview delegates
     open func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         weak var weakSelf:EAViewEventsViewController! = self
@@ -82,9 +83,16 @@ open class EAViewEventsViewController: UIViewController, UITableViewDelegate, UI
     }
     
     open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let event:EAEvent =  data?.object(at: indexPath.row) as! EAEvent
-        unWindToMenu(event)
-        print("selected row \(indexPath.row)")
+        if let event = data?.object(at: indexPath.row) as? EAEvent {
+            if let mode = mode, mode == EAMenuViewController.MenuOptions.ShareEvents {
+                //TODO: present the share event screen
+                print("Should nav to share screen here instead")
+                unWindToMenu(event)
+            }
+            else {
+                unWindToMenu(event)
+            }
+        }
     }
     
     open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

@@ -16,11 +16,29 @@ class EAMenuViewController: UIViewController ,UITableViewDelegate, UITableViewDa
     
     private let menuItemCellIReuseIdentifier = "EAMenuItemCell"
     private let menuItemLabelTag = 101
-    enum MenuOptions: Int {
+    
+    public enum MenuOptions: Int {
         case CreateEvent = 0
-        case ViewEvents = 1
-        case AboutApp = 2
-        static var count: Int{ return 3 }//UPDATE IF ADDING NEW ENUM VALUES!!!!
+        case ViewEvents
+        case ShareEvents
+        case AboutApp
+        
+        static var count: Int{ return 4 }//UPDATE IF ADDING NEW ENUM VALUES!!!!
+        
+        static func enumFromInt(int:Int) -> MenuOptions? {
+            return MenuOptions(rawValue:int)
+        }
+        
+        static func enumFromString(string:String) -> MenuOptions? {
+            var i = 0
+            while let item = MenuOptions(rawValue: i) {
+                if String(describing: item) == string {
+                    return item
+                }
+                i += 1
+            }
+            return nil
+        }
     }
     
     @IBOutlet weak var tableView: UITableView!
@@ -74,13 +92,21 @@ class EAMenuViewController: UIViewController ,UITableViewDelegate, UITableViewDa
                 contentVC = (contentVC as! UINavigationController).viewControllers[0]
             }
             print("content vc is \(contentVC)")
-            
             source = sender.source as! EAViewEventsViewController
             if let event = source.selectedEvent {
                 if let contentVC = contentVC as? EAEventUpdateDelegate {
                     contentVC.didSwitchEvent(event)
                 }
                 EAGoogleAPIManager.sharedInstance.switchEventFolder(event)
+            }
+        }
+    }
+    
+    
+    override open func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == SegueIdentifiers.VIEW_EVENTS_SEGUE) {
+            if let destinationNav = segue.destination as? UINavigationController, let destination = destinationNav.viewControllers.first as? EAViewEventsViewController, let mode : Int = sender as? Int {
+                    destination.mode = MenuOptions.enumFromInt(int:mode)
             }
         }
     }
@@ -93,7 +119,9 @@ class EAMenuViewController: UIViewController ,UITableViewDelegate, UITableViewDa
                 print("segue to create event")
                 self.performSegue(withIdentifier: SegueIdentifiers.CREATE_EVENT_SEGUE,sender:self)
             case .ViewEvents:
-                self.performSegue(withIdentifier: SegueIdentifiers.VIEW_EVENTS_SEGUE,sender:self)
+                self.performSegue(withIdentifier: SegueIdentifiers.VIEW_EVENTS_SEGUE,sender:MenuOptions.ViewEvents.rawValue)
+            case .ShareEvents:
+                self.performSegue(withIdentifier: SegueIdentifiers.VIEW_EVENTS_SEGUE,sender:MenuOptions.ShareEvents.rawValue)
             case .AboutApp:
                 self.performSegue(withIdentifier: SegueIdentifiers.VIEW_EVENTS_SEGUE,sender:self)
         }
@@ -117,6 +145,8 @@ class EAMenuViewController: UIViewController ,UITableViewDelegate, UITableViewDa
                 labelText = MenuItemLabels.CREATE_EVENT
             case .ViewEvents:
                 labelText = MenuItemLabels.VIEW_EVENTS
+            case .ShareEvents:
+                labelText = MenuItemLabels.SHARE_EVENTS
             case .AboutApp:
                 labelText = MenuItemLabels.ABOUT_APP
         }

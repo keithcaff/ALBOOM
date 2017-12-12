@@ -54,6 +54,7 @@ struct XIBIdentifiers {
 struct MenuItemLabels {
     static let CREATE_EVENT = "Create Event"
     static let VIEW_EVENTS = "View Events"
+    static let SHARE_EVENTS = "Share Events"
     static let ABOUT_APP = "About"
     static let LOG_OUT = "Log Out"
 }
