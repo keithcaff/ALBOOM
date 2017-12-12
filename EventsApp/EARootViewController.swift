@@ -15,7 +15,7 @@ public protocol EALoginListener : NSObjectProtocol {
 }
 
 class EARootViewController: UIViewController, EALoginListener {
-    
+    var unAuthorisedAlert:UIAlertController!
     var loginViewController:EALoginViewController?
     var eaRootSWRevealViewController :SWRevealViewController?
     
@@ -23,6 +23,8 @@ class EARootViewController: UIViewController, EALoginListener {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(userUnAuthenticated), name: .NOTIFICATION_USER_UNAUTHENTICATED, object: nil)
         EAEvent.didSwitchEvent(nil) //fail safe to remove user defaults if app was forcefully killed
+        unAuthorisedAlert = UIAlertController(title: UIText.ALERT_UNAUTHORISED_TITLE, message: UIText.ALERT_UNAUTHORISED_MESSAGE, preferredStyle: UIAlertControllerStyle.alert)
+        unAuthorisedAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler:nil))
         GIDSignIn.sharedInstance().signOut()
     }
 
@@ -85,27 +87,31 @@ class EARootViewController: UIViewController, EALoginListener {
  
     //MARK: Notifcation Handlers
     @objc func userUnAuthenticated() {
-        if let nav = self.navigationController {
-            let topVC = nav.topViewController
-            var presentedViewController:UIViewController? = topVC?.presentedViewController
-            var lastPresentedVC:UIViewController?
-            
-            while presentedViewController?.presentedViewController != nil {
-                lastPresentedVC = presentedViewController
-                presentedViewController = presentedViewController?.presentedViewController
+        DispatchQueue.main.async {
+            if let nav = self.navigationController, let loginVc = self.loginViewController {
+                let popToRoot = {
+                    nav.popToViewController(loginVc, animated: true)
+                    loginVc.present(self.unAuthorisedAlert, animated: true, completion: nil)
+                }
+                nav.viewControllers.forEach { viewController in
+                    if let swReveal =  viewController as? SWRevealViewController {
+                        if let presentedVC = swReveal.presentedViewController  {
+                            presentedVC.dismiss(animated: true, completion: {
+                               popToRoot()
+                            })
+                        }
+                        else {
+                           popToRoot()
+                        }
+                    }
+                }
             }
-            
-            self.loginViewController?.modalPresentationStyle = .overCurrentContext
-            lastPresentedVC = lastPresentedVC != nil ? lastPresentedVC : presentedViewController
-            lastPresentedVC?.present(self.loginViewController!, animated: false, completion: nil)
         }
     }
-    
     
     func loginSuccess() {
         showRootSWRevealViewController()
     }
-    
     
     func loginFailed() {
          print("Login failed")

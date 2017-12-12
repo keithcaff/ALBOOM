@@ -87,6 +87,8 @@ struct DeviceFolderNames {
 }
 
 struct UIText {
+    static let ALERT_UNAUTHORISED_TITLE = "User unauthorised"
+    static let ALERT_UNAUTHORISED_MESSAGE = "Please login to continue"
     static let ALERT_UPLOAD_COMPLETE_TITLE = "Upload complete"
     static let ALERT_UPLOAD_COMPLETE_MESSAGE = "Media uploaded to Google Drive"
     static let EAHOME_TABLE_VIEW_REFRESH_CONTROL_TITLE = "Fetching latest files"
