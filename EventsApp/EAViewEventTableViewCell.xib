@@ -20,9 +20,6 @@
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bw1-4w-eRL">
                         <rect key="frame" x="8" y="11" width="293" height="21"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="293" id="SlJ-mc-lyz"/>
-                        </constraints>
                         <attributedString key="attributedText">
                             <fragment content="Label">
                                 <attributes>
