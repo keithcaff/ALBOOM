@@ -44,12 +44,39 @@
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="c4u-pI-ZYm" id="q1c-KX-2Ab"/>
+                        <segue destination="vvO-ZY-oWa" kind="show" identifier="shareEventSegue" id="9YH-U1-C2l"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UWQ-wW-Ruz" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="zfi-Gk-gQY" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="762" y="-1406"/>
+            <point key="canvasLocation" x="841" y="-1406"/>
+        </scene>
+        <!--Share Event-->
+        <scene sceneID="SGW-ae-eAE">
+            <objects>
+                <viewController id="VUr-nD-2nW" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="9e9-aG-ADd"/>
+                        <viewControllerLayoutGuide type="bottom" id="nRL-Dx-ctd"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="czn-Sb-4ly">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Share Event" id="eSW-3c-fZG">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="xfb-Ks-Iv0">
+                            <connections>
+                                <segue destination="ez2-Bf-mTy" kind="unwind" unwindAction="unWindToViewEvents:" id="rKo-fy-Sff"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="e4z-Hg-l1F" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="ez2-Bf-mTy" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="2591" y="-1406"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="HAy-2m-bk8">
@@ -68,6 +95,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4p1-nD-ffx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-36" y="-1406"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="z1v-uY-Pr1">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="vvO-ZY-oWa" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="mOi-PG-g7r">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="VUr-nD-2nW" kind="relationship" relationship="rootViewController" id="atT-eN-7LH"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Df6-gU-kqg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1716" y="-1406"/>
         </scene>
     </scenes>
 </document>

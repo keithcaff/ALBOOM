@@ -41,6 +41,7 @@ struct SegueIdentifiers {
     static let VIEW_EVENTS_SEGUE = "viewEventsSegue"
     static let VIEW_ABOUT_APP_SEGUE = "viewAboutAppSegue"
     static let EXIT_GALLERY_SEGUE = "exitGalleryView"
+    static let SHARE_EVENT_SEGUE = "shareEventSegue"
 }
 
 

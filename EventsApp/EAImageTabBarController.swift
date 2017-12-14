@@ -14,7 +14,7 @@ open class EAImageTabBarController:UITabBarController {
         // Do any additional setup after loading the view, typically from a nib.
     }
     
-    @IBAction func unWindToImageTabBar(_ sender: UIStoryboardSegue) {
+    @IBAction func c(_ sender: UIStoryboardSegue) {
         print("unWindToImageTabBar")
         //self.dismissViewControllerAnimated(false, completion:nil)
     }

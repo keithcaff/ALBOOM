@@ -87,12 +87,16 @@ open class EAViewEventsViewController: UIViewController, UITableViewDelegate, UI
             if let mode = mode, mode == EAMenuViewController.MenuOptions.ShareEvents {
                 //TODO: present the share event screen
                 print("Should nav to share screen here instead")
-                unWindToMenu(event)
+                performSegue(withIdentifier: SegueIdentifiers.SHARE_EVENT_SEGUE, sender: self)
             }
             else {
                 unWindToMenu(event)
             }
         }
+    }
+    
+    @IBAction func unWindToViewEvents(_ sender: UIStoryboardSegue) {
+        print("unWindToViewEvents called")
     }
     
     open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
