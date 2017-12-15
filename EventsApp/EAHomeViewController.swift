@@ -117,7 +117,6 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
         }
     }
     
-    
     func hideShowTableView() {
         let currentEventName:String = EAEvent.getCurrentEventName()
         var files:[Any] = [GTLDriveFile]()

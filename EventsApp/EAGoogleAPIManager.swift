@@ -16,16 +16,14 @@ class EAGoogleAPIManager {
     fileprivate let gtlServiceDrive = GTLServiceDrive()
     
     func setAuthorizerForService(_ signIn:GIDSignIn,user:GIDGoogleUser, service:GTLService) {
-        if service.authorizer == nil {
-            let auth:GTMOAuth2Authentication = GTMOAuth2Authentication()
-            auth.clientID = signIn.clientID
-            auth.userEmail = user.profile.email;
-            auth.userID = user.userID
-            auth.accessToken = user.authentication.accessToken
-            auth.refreshToken = user.authentication.refreshToken
-            auth.expirationDate = user.authentication.accessTokenExpirationDate
-            service.authorizer = auth
-        }
+        let auth:GTMOAuth2Authentication = GTMOAuth2Authentication()
+        auth.clientID = signIn.clientID
+        auth.userEmail = user.profile.email;
+        auth.userID = user.userID
+        auth.accessToken = user.authentication.accessToken
+        auth.refreshToken = user.authentication.refreshToken
+        auth.expirationDate = user.authentication.accessTokenExpirationDate
+        service.authorizer = auth
     }
 
     func createEventFolder(_ event:EAEvent) {
@@ -285,7 +283,6 @@ class EAGoogleAPIManager {
         let code = error._code
         switch code {
             case 401:
-                GIDSignIn.sharedInstance().signOut()
                 self.postUnAuthenticatedNotifcation()
                 break;
             default:

@@ -73,7 +73,7 @@ class EALoginViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDel
     
     // MARK: GIDSignInDelegate methods
     public func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-        if(error != nil) {
+        if (error != nil) {
             print("We got a sign in error: \(error)")
              self.loginListener?.loginFailed()
         }

@@ -26,6 +26,7 @@ class EARootViewController: UIViewController, EALoginListener {
         unAuthorisedAlert = UIAlertController(title: UIText.ALERT_UNAUTHORISED_TITLE, message: UIText.ALERT_UNAUTHORISED_MESSAGE, preferredStyle: UIAlertControllerStyle.alert)
         unAuthorisedAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler:nil))
         GIDSignIn.sharedInstance().signOut()
+        print("EARootViewController - viewDidLoad() called \(Date())")
     }
 
     override func didReceiveMemoryWarning() {
@@ -87,6 +88,9 @@ class EARootViewController: UIViewController, EALoginListener {
  
     //MARK: Notifcation Handlers
     @objc func userUnAuthenticated() {
+        GIDSignIn.sharedInstance().signOut()
+        EAEvent.didSwitchEvent(nil)
+        
         DispatchQueue.main.async {
             if let nav = self.navigationController, let loginVc = self.loginViewController {
                 let popToRoot = {
