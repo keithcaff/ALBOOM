@@ -52,6 +52,13 @@ class EAMenuViewController: UIViewController ,UITableViewDelegate, UITableViewDa
         logOutButton.setTitle(MenuItemLabels.LOG_OUT, for: .normal)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if let selected = self.tableView.indexPathForSelectedRow {
+            self.tableView.deselectRow(at: selected, animated: true)
+        }
+    }
+    
     //MARK: UITableViewDelegate delegate methods
     @IBAction func logOutButtonTapped(_ sender: Any) {
         print("Log out button tapped!")
@@ -125,7 +132,7 @@ class EAMenuViewController: UIViewController ,UITableViewDelegate, UITableViewDa
             case .AboutApp:
                 self.performSegue(withIdentifier: SegueIdentifiers.VIEW_EVENTS_SEGUE,sender:self)
         }
-        self.tableView.deselectRow(at: indexPath, animated: true)
+       // self.tableView.deselectRow(at: indexPath, animated: true)
     }
     
     
