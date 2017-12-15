@@ -23,7 +23,7 @@ class EARootViewController: UIViewController, EALoginListener {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(userUnAuthenticated), name: .NOTIFICATION_USER_UNAUTHENTICATED, object: nil)
         EAEvent.didSwitchEvent(nil) //fail safe to remove user defaults if app was forcefully killed
-        unAuthorisedAlert = UIAlertController(title: UIText.ALERT_UNAUTHORISED_TITLE, message: UIText.ALERT_UNAUTHORISED_MESSAGE, preferredStyle: UIAlertControllerStyle.alert)
+        unAuthorisedAlert = UIAlertController(title: EAUIText.ALERT_UNAUTHORISED_TITLE, message: EAUIText.ALERT_UNAUTHORISED_MESSAGE, preferredStyle: UIAlertControllerStyle.alert)
         unAuthorisedAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler:nil))
         GIDSignIn.sharedInstance().signOut()
         print("EARootViewController - viewDidLoad() called \(Date())")

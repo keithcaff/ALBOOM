@@ -78,6 +78,9 @@ class EAGoogleAPIManager {
         query.fields = "nextPageToken, files(id, name)"
         service.executeQuery(query, completionHandler:  { (ticket, folders , error) -> Void in
             if let error = error {
+                DispatchQueue.main.async {
+                    NotificationCenter.default.post(name: .NOTIFICATION_EVENT_FOLDERS_RETRIEVAL_FAILED, object: nil)
+                }
                 self.handleGoogleAPIError(error)
             }
             else {

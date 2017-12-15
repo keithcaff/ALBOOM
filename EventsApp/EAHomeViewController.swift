@@ -21,16 +21,14 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
     private var rootFolder:String?
     private let UIImageViewTagId = 303
     private let refreshControl = UIRefreshControl()
-    private let refreshControlTintColor = UIColor.white
     private var currentEvent:EAEvent?
-
     @IBOutlet var menuButton: UIBarButtonItem!
+    
     override open func viewDidLoad() {
         super.viewDidLoad()
         setupNotifications()
         setupSlider()
         setupTableView()
-        
     }
     
     func setupNotifications() {
@@ -41,7 +39,6 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
         NotificationCenter.default.addObserver(self, selector: #selector(latestEventFilesRetrieved), name: .NOTIFICATION_EVENT_LATEST_FILES_RETRIEVED, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(getlatestEventFilesFailed), name: .NOTIFICATION_EVENT_FAILED_TO_GET_LATEST_FILES, object: nil)
     }
-    
     
     func setupSlider() {
         menuButton.target = revealViewController()
@@ -61,10 +58,10 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
         self.tableView.register(nib, forCellReuseIdentifier: homeCellReuseIdentifier)
 
         // Configure Refresh Control
-        let attributes = [NSAttributedStringKey.foregroundColor : refreshControlTintColor]
+        let attributes = [NSAttributedStringKey.foregroundColor : EAUIColours.REFRESH_CONTROL_TINT_COLOUR]
         refreshControl.addTarget(self, action: #selector(refreshFilesList(_:)), for: .valueChanged)
         refreshControl.tintColor = UIColor.white
-        refreshControl.attributedTitle = NSAttributedString(string: UIText.EAHOME_TABLE_VIEW_REFRESH_CONTROL_TITLE, attributes: attributes)
+        refreshControl.attributedTitle = NSAttributedString(string: EAUIText.EAHOME_TABLE_VIEW_REFRESH_CONTROL_TITLE, attributes: attributes)
         // Add Refresh Control to Table View
         tableView.refreshControl = refreshControl
     }
@@ -215,7 +212,7 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
         }
         cell.shareAction = { [unowned self] in
             if let bgImage = bgImage {
-                self.share(bgImage, shareText:UIText.SHARE_SINGLE_IMAGE_TEXT)
+                self.share(bgImage, shareText:EAUIText.SHARE_SINGLE_IMAGE_TEXT)
             }
         }
     }

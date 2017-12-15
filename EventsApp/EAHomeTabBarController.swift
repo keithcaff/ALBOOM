@@ -17,7 +17,7 @@ open class EAHomeTabBarController: UITabBarController, UITabBarControllerDelegat
         super.viewDidLoad()
         delegate = self
         self.updateContentViewController(0)
-        selectOrCreateEventAlert = UIAlertController(title: UIText.ALERT_CREATE_OR_SELECT_EVENT_TITLE, message: UIText.ALERT_CREATE_OR_SELECT_EVENT_MESSAGE, preferredStyle: UIAlertControllerStyle.alert)
+        selectOrCreateEventAlert = UIAlertController(title: EAUIText.ALERT_CREATE_OR_SELECT_EVENT_TITLE, message: EAUIText.ALERT_CREATE_OR_SELECT_EVENT_MESSAGE, preferredStyle: UIAlertControllerStyle.alert)
         selectOrCreateEventAlert!.addAction(UIAlertAction(title: "Ok", style: .default, handler:nil))
     }
     

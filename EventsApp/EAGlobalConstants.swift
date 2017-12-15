@@ -18,6 +18,7 @@ extension Notification.Name {
     static let NOTIFICATION_EVENT_FOLDER_DELETED = Notification.Name("notification.event.folder.deleted")
     static let NOTIFICATION_EVENT_FOLDER_SHARED = Notification.Name("notification.event.folder.shared")
     static let NOTIFICATION_EVENT_FOLDERS_RETRIEVED = Notification.Name("notification.event.folders.retrieved")
+    static let NOTIFICATION_EVENT_FOLDERS_RETRIEVAL_FAILED = Notification.Name("notification.event.folders.retrieval.failed")
     static let NOTIFICATION_EVENT_FILES_RETRIEVED = Notification.Name("notification.event.files.retrieved")
     static let NOTIFICATION_EVENT_LATEST_FILES_RETRIEVED = Notification.Name("notification.event.latest.files.retrieved")
     static let NOTIFICATION_EVENT_FAILED_TO_GET_LATEST_FILES = Notification.Name("notification.event.failed.get.latest.files")
@@ -88,14 +89,20 @@ struct DeviceFolderNames {
     static let EA_IMAGE_FILE_TYPE = "jpg"
 }
 
-struct UIText {
+struct EAUIText {
     static let ALERT_UNAUTHORISED_TITLE = "User unauthorised"
     static let ALERT_UNAUTHORISED_MESSAGE = "Please login to continue"
     static let ALERT_UPLOAD_COMPLETE_TITLE = "Upload complete"
     static let ALERT_UPLOAD_COMPLETE_MESSAGE = "Media uploaded to Google Drive"
     static let EAHOME_TABLE_VIEW_REFRESH_CONTROL_TITLE = "Fetching latest files"
+    static let EAVIEW_EVENTS_TABLE_VIEW_REFRESH_CONTROL_TITLE = "Fetching latest event folders"
     static let ALERT_CREATE_OR_SELECT_EVENT_TITLE = "No event context"
     static let ALERT_CREATE_OR_SELECT_EVENT_MESSAGE = "Create or select an event to upload media"
     static let SHARE_SINGLE_IMAGE_TEXT = "Media shared from \(APP_NAME). Available on app store."
-    
 }
+
+struct EAUIColours {
+    static let REFRESH_CONTROL_TINT_COLOUR = UIColor.white
+}
+
+

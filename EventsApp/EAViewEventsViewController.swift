@@ -12,10 +12,9 @@ import UIKit
 
 open class EAViewEventsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    let refreshControl = UIRefreshControl()
     var mode:EAMenuViewController.MenuOptions?
-    
     @IBOutlet var tableView: UITableView!
-    
     var data:NSMutableArray?
     let viewEventCellIReuseIdentifier:String = "VIEW_EVENT_CELL"
     var selectedEvent:EAEvent?
@@ -28,19 +27,45 @@ open class EAViewEventsViewController: UIViewController, UITableViewDelegate, UI
     
     open override func viewDidLoad() {
         super.viewDidLoad()
-        NotificationCenter.default.addObserver(self, selector: #selector(eventFoldersRetrieved), name: .NOTIFICATION_EVENT_FOLDERS_RETRIEVED, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(eventFolderDeleted), name: .NOTIFICATION_EVENT_FOLDER_DELETED, object: nil)
-        self.tableView.dataSource = self
-        self.tableView.tableFooterView = UIView()
-        self.tableView.delegate = self
-        let nib = UINib(nibName: XIBIdentifiers.XIB_VIEW_EVENT_CELL_IDENTIFIER, bundle:nil)
-        self.tableView.register(nib, forCellReuseIdentifier: viewEventCellIReuseIdentifier)
+        setupNotifications()
+        setupTableView()
     }
     
+    private func setupNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(eventFoldersRetrievalFaild), name: .NOTIFICATION_EVENT_FOLDERS_RETRIEVAL_FAILED, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(eventFoldersRetrieved), name: .NOTIFICATION_EVENT_FOLDERS_RETRIEVED, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(eventFolderDeleted), name: .NOTIFICATION_EVENT_FOLDER_DELETED, object: nil)
+    }
     
-    open override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    private func setupTableView() {
+        self.tableView.dataSource = self
+        self.tableView.delegate = self
+        self.tableView.tableFooterView = UIView()
+        self.tableView.rowHeight = UITableViewAutomaticDimension;
+        self.tableView.estimatedRowHeight = 60
+        let nib = UINib(nibName: XIBIdentifiers.XIB_VIEW_EVENT_CELL_IDENTIFIER, bundle:nil)
+        self.tableView.register(nib, forCellReuseIdentifier: viewEventCellIReuseIdentifier)
+        // Configure Refresh Control
+        self.setupRefreshControl()
+    }
+    
+    func setupRefreshControl() {
+        let attributes = [NSAttributedStringKey.foregroundColor : EAUIColours.REFRESH_CONTROL_TINT_COLOUR]
+        refreshControl.attributedTitle = NSAttributedString(string: EAUIText.EAVIEW_EVENTS_TABLE_VIEW_REFRESH_CONTROL_TITLE, attributes: attributes)
+        self.refreshControl.tintColor = EAUIColours.REFRESH_CONTROL_TINT_COLOUR
+        refreshControl.addTarget(self, action: #selector(refreshEventFolders(_:)), for: .valueChanged)
+        tableView.refreshControl = refreshControl
+        self.tableView.contentOffset = CGPoint(x:0, y:-self.refreshControl.frame.size.height)
+        tableView.refreshControl?.beginRefreshing()
+    }
+    
+    open override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         EAGoogleAPIManager.sharedInstance.getAllEventFolders()
+    }
+    
+    @objc func refreshEventFolders(_ sender: Any) {
+         EAGoogleAPIManager.sharedInstance.getAllEventFolders()
     }
 
     deinit {
@@ -48,6 +73,10 @@ open class EAViewEventsViewController: UIViewController, UITableViewDelegate, UI
     }
     
     // MARK:notifaction responses
+    @objc func eventFoldersRetrievalFaild(_ notifiaction : Notification) {
+        self.tableView.refreshControl?.endRefreshing()
+    }
+    
     @objc func eventFoldersRetrieved(_ notifiaction : Notification) {
         data = NSMutableArray();
         if let object = notifiaction.object {
@@ -59,6 +88,7 @@ open class EAViewEventsViewController: UIViewController, UITableViewDelegate, UI
                 data?.add(event)
             }
         }
+        self.tableView.refreshControl?.endRefreshing()
         self.tableView.reloadData()
     }
     

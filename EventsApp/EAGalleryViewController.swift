@@ -50,7 +50,7 @@ open class EAGalleryViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     func setupAlerts() {
-        uploadSuccessAlert = UIAlertController(title: UIText.ALERT_UPLOAD_COMPLETE_TITLE, message: UIText.ALERT_UPLOAD_COMPLETE_MESSAGE, preferredStyle: UIAlertControllerStyle.alert)
+        uploadSuccessAlert = UIAlertController(title: EAUIText.ALERT_UPLOAD_COMPLETE_TITLE, message: EAUIText.ALERT_UPLOAD_COMPLETE_MESSAGE, preferredStyle: UIAlertControllerStyle.alert)
         uploadSuccessAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler:nil))
     }
     
