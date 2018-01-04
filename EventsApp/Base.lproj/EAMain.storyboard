@@ -291,7 +291,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="xhz-dp-WTX">
-                                <rect key="frame" x="16" y="107" width="343" height="40"/>
+                                <rect key="frame" x="16" y="94" width="343" height="40"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="beQ-ER-H8M">
                                         <rect key="frame" x="0.0" y="10" width="105" height="20"/>
@@ -330,7 +330,7 @@
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KlW-f6-jkS">
-                                <rect key="frame" x="135" y="163" width="105" height="35"/>
+                                <rect key="frame" x="135" y="150" width="105" height="35"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="QtZ-tD-wAK"/>
@@ -360,11 +360,11 @@
                         <constraints>
                             <constraint firstItem="KlW-f6-jkS" firstAttribute="top" secondItem="xhz-dp-WTX" secondAttribute="bottom" constant="16" id="0bz-1t-vz6"/>
                             <constraint firstItem="KlW-f6-jkS" firstAttribute="centerX" secondItem="Vh5-xv-kPQ" secondAttribute="centerXWithinMargins" id="3zf-P0-EXd"/>
-                            <constraint firstItem="xhz-dp-WTX" firstAttribute="top" secondItem="lF6-v9-X4j" secondAttribute="bottom" constant="43" id="4aX-Mk-6gq"/>
                             <constraint firstItem="KlW-f6-jkS" firstAttribute="leading" secondItem="Vh5-xv-kPQ" secondAttribute="leading" constant="16" id="Gwq-BA-rFh"/>
                             <constraint firstItem="beQ-ER-H8M" firstAttribute="leading" secondItem="Vh5-xv-kPQ" secondAttribute="leading" constant="16" id="Khk-a4-9xF"/>
                             <constraint firstItem="xhz-dp-WTX" firstAttribute="leading" secondItem="Vh5-xv-kPQ" secondAttribute="leading" constant="16" id="MWJ-nG-vBo"/>
                             <constraint firstItem="xhz-dp-WTX" firstAttribute="centerX" secondItem="Vh5-xv-kPQ" secondAttribute="centerX" id="ban-g1-3GM"/>
+                            <constraint firstItem="xhz-dp-WTX" firstAttribute="top" secondItem="lF6-v9-X4j" secondAttribute="bottom" constant="30" id="lq4-EU-OmE"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">

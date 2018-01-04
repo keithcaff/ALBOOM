@@ -93,10 +93,10 @@
                                         </variation>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JyU-E8-ss0">
-                                        <rect key="frame" x="127" y="74" width="121" height="30"/>
+                                        <rect key="frame" x="135" y="74" width="105" height="30"/>
                                         <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="121" id="a8i-Mu-OnE"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="105" id="QTn-8Y-XGV"/>
                                             <constraint firstAttribute="height" constant="30" id="kXj-IO-wib"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
