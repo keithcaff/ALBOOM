@@ -18,6 +18,11 @@
 			<key>orderHint</key>
 			<integer>3</integer>
 		</dict>
+		<key>Gallery.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>9</integer>
+		</dict>
 		<key>GoogleAPIClient.xcscheme</key>
 		<dict>
 			<key>isShown</key>

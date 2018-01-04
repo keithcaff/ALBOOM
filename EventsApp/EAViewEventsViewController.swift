@@ -113,9 +113,9 @@ open class EAViewEventsViewController: UIViewController, UITableViewDelegate, UI
     }
     
     open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+       // self.tableView.deselectRow(at:indexPath, animated: false)
         if let event = data?.object(at: indexPath.row) as? EAEvent {
             if let mode = mode, mode == EAMenuViewController.MenuOptions.ShareEvents {
-                //TODO: present the share event screen
                 performSegue(withIdentifier: SegueIdentifiers.SHARE_EVENT_SEGUE, sender: self)
             }
             else {
@@ -143,10 +143,10 @@ open class EAViewEventsViewController: UIViewController, UITableViewDelegate, UI
         }
         let event:EAEvent = (self.data!.object(at: indexPath.row) as! EAEvent)
         cell = tableView.dequeueReusableCell(withIdentifier: viewEventCellIReuseIdentifier, for: indexPath) as? EAViewEventTableViewCell
+        
         cell?.event = event
         cell?.unWindCallback = unWindToMenu;
-        cell!.name.text = event.name!
-        cell?.selectionStyle = .none
+        cell?.name.text = event.name!
         return cell!
     }
     
