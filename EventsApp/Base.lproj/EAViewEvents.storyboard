@@ -55,7 +55,7 @@
         <!--Share Event-->
         <scene sceneID="SGW-ae-eAE">
             <objects>
-                <viewController id="VUr-nD-2nW" sceneMemberID="viewController">
+                <viewController id="VUr-nD-2nW" customClass="EAShareEventViewController" customModule="EventsApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="9e9-aG-ADd"/>
                         <viewControllerLayoutGuide type="bottom" id="nRL-Dx-ctd"/>
@@ -63,7 +63,72 @@
                     <view key="view" contentMode="scaleToFill" id="czn-Sb-4ly">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HYn-am-FeR">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KyO-c1-Ihy">
+                                        <rect key="frame" x="15" y="30" width="74" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="74" id="xrW-Nf-yoh"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="john.smith@gmail.com" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="Mdi-93-xub">
+                                        <rect key="frame" x="68" y="20" width="292" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="Tty-dg-8rp"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="238" id="Zcf-br-jgh"/>
+                                            <constraint firstAttribute="height" constant="40" id="i9D-6N-Zhn"/>
+                                        </constraints>
+                                        <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="Tty-dg-8rp"/>
+                                            </mask>
+                                        </variation>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JyU-E8-ss0">
+                                        <rect key="frame" x="127" y="74" width="121" height="30"/>
+                                        <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="121" id="a8i-Mu-OnE"/>
+                                            <constraint firstAttribute="height" constant="30" id="kXj-IO-wib"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <state key="normal" title="Share"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="layer.CornerRadius" value="5"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="shareButtonClicked:" destination="VUr-nD-2nW" eventType="touchUpInside" id="SyS-br-UZP"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" name="alternateSelectedControlColor" catalog="System" colorSpace="catalog"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="Mdi-93-xub" secondAttribute="trailing" constant="15" id="3XP-jk-6Cg"/>
+                                    <constraint firstItem="JyU-E8-ss0" firstAttribute="top" secondItem="Mdi-93-xub" secondAttribute="bottom" constant="14" id="FGj-bN-2B7"/>
+                                    <constraint firstItem="Mdi-93-xub" firstAttribute="centerY" secondItem="KyO-c1-Ihy" secondAttribute="centerY" id="SI4-q6-s2v"/>
+                                    <constraint firstItem="Mdi-93-xub" firstAttribute="leading" secondItem="KyO-c1-Ihy" secondAttribute="trailing" constant="-21" id="TNk-dp-fuD"/>
+                                    <constraint firstItem="KyO-c1-Ihy" firstAttribute="leading" secondItem="HYn-am-FeR" secondAttribute="leading" constant="15" id="bEO-Ng-jfD"/>
+                                    <constraint firstItem="JyU-E8-ss0" firstAttribute="centerX" secondItem="HYn-am-FeR" secondAttribute="centerX" id="w1e-Cr-jSE"/>
+                                    <constraint firstItem="KyO-c1-Ihy" firstAttribute="top" secondItem="HYn-am-FeR" secondAttribute="top" constant="30" id="xYw-ZN-sai"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="HYn-am-FeR" firstAttribute="top" secondItem="9e9-aG-ADd" secondAttribute="bottom" id="4m2-dC-x3L"/>
+                            <constraint firstItem="nRL-Dx-ctd" firstAttribute="top" secondItem="HYn-am-FeR" secondAttribute="bottom" id="LD0-pc-AgP"/>
+                            <constraint firstAttribute="trailing" secondItem="HYn-am-FeR" secondAttribute="trailing" id="LUt-Ix-EkL"/>
+                            <constraint firstItem="HYn-am-FeR" firstAttribute="leading" secondItem="czn-Sb-4ly" secondAttribute="leading" id="bdU-NX-qec"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Share Event" id="eSW-3c-fZG">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="xfb-Ks-Iv0">
@@ -72,11 +137,15 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="emailTextField" destination="Mdi-93-xub" id="mvD-JB-EIl"/>
+                        <outlet property="shareButton" destination="JyU-E8-ss0" id="I50-gL-gLJ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e4z-Hg-l1F" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="ez2-Bf-mTy" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2591" y="-1406"/>
+            <point key="canvasLocation" x="2589.5999999999999" y="-1406.4467766116943"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="HAy-2m-bk8">
