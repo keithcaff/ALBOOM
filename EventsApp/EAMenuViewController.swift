@@ -109,7 +109,6 @@ class EAMenuViewController: UIViewController ,UITableViewDelegate, UITableViewDa
         }
     }
     
-    
     override open func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == SegueIdentifiers.VIEW_EVENTS_SEGUE) {
             if let destinationNav = segue.destination as? UINavigationController, let destination = destinationNav.viewControllers.first as? EAViewEventsViewController, let mode : Int = sender as? Int {

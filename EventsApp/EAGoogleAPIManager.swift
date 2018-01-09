@@ -232,7 +232,7 @@ class EAGoogleAPIManager {
         }
     }
     
-    func shareEvent(_ event:EAEvent, withGoogleEmail email:String) {
+    func shareEvent(_ event:EAEvent, withEmail email:String) {
         //https://developers.google.com/drive/v3/web/manage-sharing
         let service:GTLService = gtlServiceDrive
         setAuthorizerForService(GIDSignIn.sharedInstance(), user: GIDSignIn.sharedInstance().currentUser,service:service)
@@ -247,6 +247,7 @@ class EAGoogleAPIManager {
         let query:GTLQueryDrive  = GTLQueryDrive.queryForPermissionsCreate(withObject: permission, fileId: parentId)
         service.executeQuery(query, completionHandler: {(ticket: GTLServiceTicket?, id:Any?, error:Error?) in
             if let error = error {
+                NotificationCenter.default.post(name: .NOTIFICATION_EVENT_FOLDER_SHARED, object: event)
                 self.handleGoogleAPIError(error)
             }
             else {

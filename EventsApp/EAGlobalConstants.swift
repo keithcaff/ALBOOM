@@ -17,6 +17,7 @@ extension Notification.Name {
     static let NOTIFICATION_EVENT_FOLDER_CREATED = Notification.Name("notification.event.folder.created")
     static let NOTIFICATION_EVENT_FOLDER_DELETED = Notification.Name("notification.event.folder.deleted")
     static let NOTIFICATION_EVENT_FOLDER_SHARED = Notification.Name("notification.event.folder.shared")
+    static let NOTIFICATION_EVENT_SHARE_FAILED = Notification.Name("notification.event.share.failed")
     static let NOTIFICATION_EVENT_FOLDERS_RETRIEVED = Notification.Name("notification.event.folders.retrieved")
     static let NOTIFICATION_EVENT_FOLDERS_RETRIEVAL_FAILED = Notification.Name("notification.event.folders.retrieval.failed")
     static let NOTIFICATION_EVENT_FILES_RETRIEVED = Notification.Name("notification.event.files.retrieved")
@@ -99,6 +100,8 @@ struct EAUIText {
     static let ALERT_CREATE_OR_SELECT_EVENT_TITLE = "No event context"
     static let ALERT_CREATE_OR_SELECT_EVENT_MESSAGE = "Create or select an event to upload media"
     static let SHARE_SINGLE_IMAGE_TEXT = "Media shared from \(APP_NAME). Available on app store."
+    static let SHARE_EVENT_TITLE_PREFIX = "Share"
+    static let SHARE_EVENT_TITLE_SUFFIX = "event"
 }
 
 struct EAUIColours {

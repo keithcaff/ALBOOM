@@ -114,12 +114,21 @@ open class EAViewEventsViewController: UIViewController, UITableViewDelegate, UI
     
     open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
        // self.tableView.deselectRow(at:indexPath, animated: false)
-        if let event = data?.object(at: indexPath.row) as? EAEvent {
+        selectedEvent = data?.object(at: indexPath.row) as? EAEvent
+        if let event = selectedEvent  {
             if let mode = mode, mode == EAMenuViewController.MenuOptions.ShareEvents {
                 performSegue(withIdentifier: SegueIdentifiers.SHARE_EVENT_SEGUE, sender: self)
             }
             else {
                 unWindToMenu(event)
+            }
+        }
+    }
+    
+    open override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let identifier = segue.identifier, identifier == SegueIdentifiers.SHARE_EVENT_SEGUE {
+            if let destVC = segue.destination as? UINavigationController, let shareVC = destVC.viewControllers.first as? EAShareEventViewController {
+                shareVC.selectedEvent = self.selectedEvent
             }
         }
     }

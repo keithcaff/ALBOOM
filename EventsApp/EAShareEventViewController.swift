@@ -12,6 +12,7 @@ class EAShareEventViewController : UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var shareButton: UIButton!
+    var selectedEvent:EAEvent!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,22 +21,34 @@ class EAShareEventViewController : UIViewController, UITextFieldDelegate {
         shareButton.isEnabled = false
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setupNavBarTitle()
+    }
+    
     @IBAction func shareButtonClicked(_ sender: Any) {
         if let text = emailTextField.text {
             let trimmedText = text.trimmingCharacters(in: .whitespacesAndNewlines)
-            validEmail(trimmedText) ? print("valid email") : print("invalid email")
+            EAGoogleAPIManager.sharedInstance.shareEvent(selectedEvent,withEmail: trimmedText)
         }
     }
     
     @objc func textFieldDidChange(_ textField: UITextField) {
         if let text = emailTextField.text {
             let trimmedText = text.trimmingCharacters(in: .whitespacesAndNewlines)
-            if (trimmedText.count == 0 || trimmedText.count > 50) {
+            if (trimmedText.count == 0 || trimmedText.count > 60 || !(validEmail(text))) {
                 shareButton.isEnabled = false
             }
             else {
                 shareButton.isEnabled = true
             }
+        }
+    }
+    
+    
+    private func setupNavBarTitle() {
+        if let name = selectedEvent.name {
+            self.title = name
         }
     }
     
