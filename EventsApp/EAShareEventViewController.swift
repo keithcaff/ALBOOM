@@ -10,6 +10,7 @@ import Foundation
 
 class EAShareEventViewController : UIViewController, UITextFieldDelegate {
 
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var shareButton: UIButton!
     var selectedEvent:EAEvent!
@@ -19,6 +20,7 @@ class EAShareEventViewController : UIViewController, UITextFieldDelegate {
         emailTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: UIControlEvents.editingChanged)
         emailTextField.delegate = self;
         shareButton.isEnabled = false
+        setupNotifications()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -29,7 +31,9 @@ class EAShareEventViewController : UIViewController, UITextFieldDelegate {
     @IBAction func shareButtonClicked(_ sender: Any) {
         if let text = emailTextField.text {
             let trimmedText = text.trimmingCharacters(in: .whitespacesAndNewlines)
+            activityIndicator.startAnimating()
             EAGoogleAPIManager.sharedInstance.shareEvent(selectedEvent,withEmail: trimmedText)
+            shareButton.isEnabled = false
         }
     }
     
@@ -45,11 +49,42 @@ class EAShareEventViewController : UIViewController, UITextFieldDelegate {
         }
     }
     
-    
     private func setupNavBarTitle() {
         if let name = selectedEvent.name {
             self.title = name
         }
+    }
+    
+    private func setupNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(eventSharedSuccessfully), name: .NOTIFICATION_EVENT_FOLDER_SHARED, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(eventShareFailed), name: .NOTIFICATION_EVENT_SHARE_FAILED, object: nil)
+    }
+    
+    @objc func eventSharedSuccessfully(_ notifiaction : Notification) {
+        DispatchQueue.main.async {
+            self.activityIndicator.stopAnimating()
+            let alert = UIAlertController(title: EAUIText.ALERT_EVENT_SHARED_SUCCESSFULLY_TITLE, message: EAUIText.ALERT_EVENT_SHARED_SUCCESSFULLY_MESSAGE, preferredStyle: UIAlertControllerStyle.alert)
+            let okAction = UIAlertAction(title: EAUIText.ALERT_OK_ACTION_TITLE, style: UIAlertActionStyle.default, handler: nil)
+            alert.addAction(okAction)
+            self.present(alert, animated: true, completion: ({
+                self.shareButton.isEnabled = true
+                self.dismiss(animated: true, completion:nil)
+                //self.navigationController?.popViewController(animated: true)
+            }))
+        }
+    }
+    
+    @objc func eventShareFailed(_ notifiaction : Notification) {
+        DispatchQueue.main.async {
+            self.activityIndicator.stopAnimating()
+            let alert = UIAlertController(title: EAUIText.ALERT_SHARE_EVENT_FAILED_TITLE, message: EAUIText.ALERT_SHARE_EVENT_FAILED_MESSAGE, preferredStyle: UIAlertControllerStyle.alert)
+            let okAction = UIAlertAction(title: EAUIText.ALERT_OK_ACTION_TITLE, style: UIAlertActionStyle.default, handler: nil)
+            alert.addAction(okAction)
+            self.present(alert, animated: true, completion: ({
+                self.shareButton.isEnabled = true
+            }))
+        }
+        
     }
     
     private func validEmail(_ email:String) -> Bool {

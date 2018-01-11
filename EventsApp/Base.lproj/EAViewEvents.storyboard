@@ -109,11 +109,20 @@
                                             <action selector="shareButtonClicked:" destination="VUr-nD-2nW" eventType="touchUpInside" id="SyS-br-UZP"/>
                                         </connections>
                                     </button>
+                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="XY5-2g-Z4a">
+                                        <rect key="frame" x="169" y="119" width="37" height="37"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="37" id="8EO-H4-aMq"/>
+                                            <constraint firstAttribute="width" constant="37" id="L9P-fR-uRV"/>
+                                        </constraints>
+                                    </activityIndicatorView>
                                 </subviews>
                                 <color key="backgroundColor" name="alternateSelectedControlColor" catalog="System" colorSpace="catalog"/>
                                 <constraints>
+                                    <constraint firstItem="XY5-2g-Z4a" firstAttribute="top" secondItem="JyU-E8-ss0" secondAttribute="bottom" constant="15" id="0Ul-RZ-pYV"/>
                                     <constraint firstAttribute="trailing" secondItem="Mdi-93-xub" secondAttribute="trailing" constant="15" id="3XP-jk-6Cg"/>
                                     <constraint firstItem="JyU-E8-ss0" firstAttribute="top" secondItem="Mdi-93-xub" secondAttribute="bottom" constant="14" id="FGj-bN-2B7"/>
+                                    <constraint firstItem="XY5-2g-Z4a" firstAttribute="centerX" secondItem="HYn-am-FeR" secondAttribute="centerX" id="S1f-7u-npF"/>
                                     <constraint firstItem="Mdi-93-xub" firstAttribute="centerY" secondItem="KyO-c1-Ihy" secondAttribute="centerY" id="SI4-q6-s2v"/>
                                     <constraint firstItem="Mdi-93-xub" firstAttribute="leading" secondItem="KyO-c1-Ihy" secondAttribute="trailing" constant="-21" id="TNk-dp-fuD"/>
                                     <constraint firstItem="KyO-c1-Ihy" firstAttribute="leading" secondItem="HYn-am-FeR" secondAttribute="leading" constant="15" id="bEO-Ng-jfD"/>
@@ -138,6 +147,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityIndicator" destination="XY5-2g-Z4a" id="Nuk-Fl-ism"/>
                         <outlet property="emailTextField" destination="Mdi-93-xub" id="mvD-JB-EIl"/>
                         <outlet property="shareButton" destination="JyU-E8-ss0" id="I50-gL-gLJ"/>
                     </connections>

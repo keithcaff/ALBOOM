@@ -99,7 +99,12 @@ struct EAUIText {
     static let EAVIEW_EVENTS_TABLE_VIEW_REFRESH_CONTROL_TITLE = "Fetching latest event folders"
     static let ALERT_CREATE_OR_SELECT_EVENT_TITLE = "No event context"
     static let ALERT_CREATE_OR_SELECT_EVENT_MESSAGE = "Create or select an event to upload media"
-    static let SHARE_SINGLE_IMAGE_TEXT = "Media shared from \(APP_NAME). Available on app store."
+    static let ALERT_SHARE_EVENT_FAILED_TITLE = "Share Failed"
+    static let ALERT_EVENT_SHARED_SUCCESSFULLY_TITLE = "Event Shared"
+    static let ALERT_EVENT_SHARED_SUCCESSFULLY_MESSAGE = "Successfully shared event"
+    static let ALERT_SHARE_EVENT_FAILED_MESSAGE = "An error occured sharing selected event"
+    static let ALERT_OK_ACTION_TITLE = "Ok"
+    static let SHARE_SINGLE_IMAGE_TEXT = "Media shared from \(APP_NAME). Available on app store"
     static let SHARE_EVENT_TITLE_PREFIX = "Share"
     static let SHARE_EVENT_TITLE_SUFFIX = "event"
 }

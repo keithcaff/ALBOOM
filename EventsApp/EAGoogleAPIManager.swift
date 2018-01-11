@@ -247,8 +247,10 @@ class EAGoogleAPIManager {
         let query:GTLQueryDrive  = GTLQueryDrive.queryForPermissionsCreate(withObject: permission, fileId: parentId)
         service.executeQuery(query, completionHandler: {(ticket: GTLServiceTicket?, id:Any?, error:Error?) in
             if let error = error {
-                NotificationCenter.default.post(name: .NOTIFICATION_EVENT_FOLDER_SHARED, object: event)
                 self.handleGoogleAPIError(error)
+                if error._code != 401 {
+                    NotificationCenter.default.post(name: .NOTIFICATION_EVENT_SHARE_FAILED, object: event)
+                }
             }
             else {
                 if let name = event.name {
