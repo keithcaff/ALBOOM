@@ -64,13 +64,12 @@ class EAShareEventViewController : UIViewController, UITextFieldDelegate {
         DispatchQueue.main.async {
             self.activityIndicator.stopAnimating()
             let alert = UIAlertController(title: EAUIText.ALERT_EVENT_SHARED_SUCCESSFULLY_TITLE, message: EAUIText.ALERT_EVENT_SHARED_SUCCESSFULLY_MESSAGE, preferredStyle: UIAlertControllerStyle.alert)
-            let okAction = UIAlertAction(title: EAUIText.ALERT_OK_ACTION_TITLE, style: UIAlertActionStyle.default, handler: nil)
+            let okAction = UIAlertAction(title: EAUIText.ALERT_OK_ACTION_TITLE, style: UIAlertActionStyle.default, handler:
+            { action in
+                    self.dismiss(animated: true, completion: nil)
+            })
             alert.addAction(okAction)
-            self.present(alert, animated: true, completion: ({
-                self.shareButton.isEnabled = true
-                self.dismiss(animated: true, completion:nil)
-                //self.navigationController?.popViewController(animated: true)
-            }))
+            self.present(alert, animated: true, completion:nil)
         }
     }
     
