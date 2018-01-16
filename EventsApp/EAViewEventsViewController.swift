@@ -58,10 +58,17 @@ open class EAViewEventsViewController: UIViewController, UITableViewDelegate, UI
         self.tableView.contentOffset = CGPoint(x:0, y:-self.refreshControl.frame.size.height)
         tableView.refreshControl?.beginRefreshing()
     }
+
     
-    open override func viewDidAppear(_ animated: Bool) {
+    override open func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        EAGoogleAPIManager.sharedInstance.getAllEventFolders()
+        if let selected = self.tableView.indexPathForSelectedRow {
+            self.tableView.deselectRow(at: selected, animated: true)
+        }
+        if self.data == nil {
+            EAGoogleAPIManager.sharedInstance.getAllEventFolders()
+        }
+        
     }
     
     @objc func refreshEventFolders(_ sender: Any) {

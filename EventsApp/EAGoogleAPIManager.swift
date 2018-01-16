@@ -249,7 +249,7 @@ class EAGoogleAPIManager {
             if let error = error {
                 self.handleGoogleAPIError(error)
                 if error._code != 401 {
-                    NotificationCenter.default.post(name: .NOTIFICATION_EVENT_SHARE_FAILED, object: event)
+                    NotificationCenter.default.post(name: .NOTIFICATION_EVENT_SHARE_FAILED, object: error.localizedDescription)
                 }
             }
             else {

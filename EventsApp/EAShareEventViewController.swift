@@ -38,15 +38,19 @@ class EAShareEventViewController : UIViewController, UITextFieldDelegate {
     }
     
     @objc func textFieldDidChange(_ textField: UITextField) {
+        shareButton.isEnabled = shouldEnableShareButtonForTextField(textField)
+    }
+    
+    
+    func shouldEnableShareButtonForTextField(_ textField:UITextField) -> Bool {
+        var enabled = false
         if let text = emailTextField.text {
             let trimmedText = text.trimmingCharacters(in: .whitespacesAndNewlines)
-            if (trimmedText.count == 0 || trimmedText.count > 60 || !(validEmail(text))) {
-                shareButton.isEnabled = false
-            }
-            else {
-                shareButton.isEnabled = true
+            if trimmedText.count > 0 && trimmedText.count < 70 && validEmail(text) && !self.activityIndicator.isAnimating {
+                enabled = true
             }
         }
+        return enabled
     }
     
     private func setupNavBarTitle() {
@@ -73,14 +77,20 @@ class EAShareEventViewController : UIViewController, UITextFieldDelegate {
         }
     }
     
-    @objc func eventShareFailed(_ notifiaction : Notification) {
+    @objc func eventShareFailed(_ notification : Notification) {
         DispatchQueue.main.async {
+            var message:String?
+            if let errorDesc = notification.object as? String {
+                    message = "\(EAUIText.ALERT_SHARE_EVENT_FAILED_MESSAGE): \(errorDesc)"
+            }else {
+                message = "\(EAUIText.ALERT_SHARE_EVENT_FAILED_MESSAGE)"
+            }
             self.activityIndicator.stopAnimating()
-            let alert = UIAlertController(title: EAUIText.ALERT_SHARE_EVENT_FAILED_TITLE, message: EAUIText.ALERT_SHARE_EVENT_FAILED_MESSAGE, preferredStyle: UIAlertControllerStyle.alert)
+            let alert = UIAlertController(title: EAUIText.ALERT_SHARE_EVENT_FAILED_TITLE, message: message, preferredStyle: UIAlertControllerStyle.alert)
             let okAction = UIAlertAction(title: EAUIText.ALERT_OK_ACTION_TITLE, style: UIAlertActionStyle.default, handler: nil)
             alert.addAction(okAction)
             self.present(alert, animated: true, completion: ({
-                self.shareButton.isEnabled = true
+                self.shareButton.isEnabled = self.shouldEnableShareButtonForTextField(self.emailTextField)
             }))
         }
         
