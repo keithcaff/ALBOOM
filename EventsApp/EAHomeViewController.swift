@@ -75,6 +75,7 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
         let activityViewController = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
         activityViewController.popoverPresentationController?.sourceView = self.view
         self.present(activityViewController, animated: true, completion:nil);
+        //TODO present the share view from the cell. remove on scroll.
     }
     
     func didSwitchEvent(_ event:EAEvent?) {
