@@ -24,28 +24,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hwP-C7-Zks">
+                                <rect key="frame" x="0.0" y="64" width="414" height="623"/>
+                                <color key="backgroundColor" name="alternateSelectedControlColor" catalog="System" colorSpace="catalog"/>
+                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="uMa-rc-I3n">
                                 <rect key="frame" x="0.0" y="64" width="414" height="623"/>
                                 <color key="backgroundColor" name="alternateSelectedControlColor" catalog="System" colorSpace="catalog"/>
                                 <sections/>
                             </tableView>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EgE-XB-0cw">
-                                <rect key="frame" x="0.0" y="229" width="414" height="33"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="33" id="4SN-Wm-J4G"/>
-                                </constraints>
-                                <state key="normal" title="Create Event"/>
-                            </button>
                         </subviews>
-                        <color key="backgroundColor" name="alternateSelectedControlColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="EgE-XB-0cw" firstAttribute="centerX" secondItem="qPV-Gr-Mom" secondAttribute="centerX" id="BKM-Is-yYn"/>
-                            <constraint firstItem="EgE-XB-0cw" firstAttribute="width" secondItem="qPV-Gr-Mom" secondAttribute="width" id="Bpn-yq-t7T"/>
+                            <constraint firstAttribute="trailing" secondItem="hwP-C7-Zks" secondAttribute="trailing" id="ED5-1V-C26"/>
+                            <constraint firstItem="SVs-Hr-QkG" firstAttribute="top" secondItem="hwP-C7-Zks" secondAttribute="bottom" id="Lub-gD-Llh"/>
                             <constraint firstItem="uMa-rc-I3n" firstAttribute="top" secondItem="yHa-kB-rP5" secondAttribute="bottom" id="MN8-eA-pir"/>
                             <constraint firstItem="SVs-Hr-QkG" firstAttribute="top" secondItem="uMa-rc-I3n" secondAttribute="bottom" id="YRo-Mj-IOQ"/>
                             <constraint firstItem="uMa-rc-I3n" firstAttribute="leading" secondItem="qPV-Gr-Mom" secondAttribute="leading" id="dUk-7y-ST7"/>
+                            <constraint firstItem="hwP-C7-Zks" firstAttribute="top" secondItem="yHa-kB-rP5" secondAttribute="bottom" id="fE1-un-1ni"/>
                             <constraint firstAttribute="trailing" secondItem="uMa-rc-I3n" secondAttribute="trailing" id="gnC-RS-k4L"/>
-                            <constraint firstItem="EgE-XB-0cw" firstAttribute="centerY" secondItem="qPV-Gr-Mom" secondAttribute="centerY" multiplier="0.666667" id="woo-J3-zg0"/>
+                            <constraint firstItem="hwP-C7-Zks" firstAttribute="leading" secondItem="qPV-Gr-Mom" secondAttribute="leading" id="iKH-fL-PJ4"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="F2q-gH-Q7B">
@@ -431,7 +429,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" name="alternateSelectedControlColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="oB6-pk-F1M" secondAttribute="trailing" id="84J-Ge-Mmw"/>
                             <constraint firstItem="o9x-6i-UES" firstAttribute="leading" secondItem="0oa-xr-gOf" secondAttribute="leading" id="9CN-Lz-OdV"/>
