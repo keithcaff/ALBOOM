@@ -4,7 +4,8 @@ import Photos
 class GridView: UIView {
 
   // MARK: - Initialization
-
+  var primaryBlue:UIColor = UIColor(red: 0/255, green: 105.0/255, blue: 217/255, alpha: 1.0)
+  var secondaryBlue = UIColor(red: 59/255, green: 153/255, blue: 252/255, alpha: 1.0)
   lazy var topView: UIView = self.makeTopView()
   lazy var bottomView: UIView = self.makeBottomView()
   lazy var bottomBlurView: UIVisualEffectView = self.makeBottomBlurView()
@@ -13,7 +14,7 @@ class GridView: UIView {
   lazy var closeButton: UIButton = self.makeCloseButton()
   lazy var doneButton: UIButton = self.makeDoneButton()
   lazy var emptyView: UIView = self.makeEmptyView()
-
+    
   // MARK: - Initialization
 
   override init(frame: CGRect) {
@@ -29,8 +30,8 @@ class GridView: UIView {
   // MARK: - Setup
 
   func setup() {
-    //TODO: KC ste colour to match app
-    backgroundColor = UIColor.lightGray.withAlphaComponent(0.5)
+    //TODO: KC set colour to match app
+    backgroundColor = secondaryBlue
 
 
     [collectionView, bottomView, topView, emptyView].forEach {
@@ -127,7 +128,7 @@ class GridView: UIView {
 
     let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
     //TODO: KC set the colour to match app
-    view.backgroundColor = UIColor.white
+    view.backgroundColor = secondaryBlue
 
     return view
   }
