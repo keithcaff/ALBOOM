@@ -66,16 +66,15 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
         tableView.refreshControl = refreshControl
     }
     
-    func share(_ shareImage:UIImage, shareText text:String?){
+    func share(_ shareImage:UIImage, shareText text:String?, source:UIView){
         var objectsToShare = [Any]()
         if let text = text{
             objectsToShare.append(text)
         }
         objectsToShare.append(shareImage)
         let activityViewController = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
-        activityViewController.popoverPresentationController?.sourceView = self.view
+        activityViewController.popoverPresentationController?.sourceView = source
         self.present(activityViewController, animated: true, completion:nil);
-        //TODO present the share view from the cell. remove on scroll.
     }
     
     func didSwitchEvent(_ event:EAEvent?) {
@@ -213,7 +212,7 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
         }
         cell.shareAction = { [unowned self] in
             if let bgImage = bgImage {
-                self.share(bgImage, shareText:EAUIText.SHARE_SINGLE_IMAGE_TEXT)
+                self.share(bgImage, shareText:EAUIText.SHARE_SINGLE_IMAGE_TEXT, source:cell.shareButton)
             }
         }
     }
