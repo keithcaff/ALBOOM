@@ -73,8 +73,7 @@ class EAGoogleAPIManager {
         setAuthorizerForService(GIDSignIn.sharedInstance(), user: GIDSignIn.sharedInstance().currentUser,service:service)
         print("Getting all event folders...")
         let query:GTLQueryDrive = GTLQueryDrive.queryForFilesList()
-        query.pageSize = 20//and name contains '\(EVENT_FOLDER_PREFIX)'
-        query.q = "mimeType='application/vnd.google-apps.folder' and 'root' in parents and name contains '\(EVENT_FOLDER_PREFIX)' and trashed = false"
+        query.q = "mimeType='application/vnd.google-apps.folder' and ('root' in parents and name contains '\(EVENT_FOLDER_PREFIX)' and trashed = false) or (name contains '\(EVENT_FOLDER_PREFIX)' and sharedWithMe = true)"
         query.fields = "nextPageToken, files(id, name)"
         service.executeQuery(query, completionHandler:  { (ticket, folders , error) -> Void in
             if let error = error {
