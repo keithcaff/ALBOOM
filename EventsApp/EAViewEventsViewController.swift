@@ -20,7 +20,9 @@ open class EAViewEventsViewController: UIViewController, UITableViewDelegate, UI
     var selectedEvent:EAEvent?
     
     func unWindToMenu(_ event:EAEvent) {
-        print("selected event \(event.name!)")
+        if let name = event.name, name.caseInsensitiveCompare(EAEvent.getCurrentEventName()) != ComparisonResult.orderedSame {
+            EADeviceDataManager.sharedInstance.cleanupStoredData()
+        }
         selectedEvent = event
         self.performSegue(withIdentifier: SegueIdentifiers.EXIT_VIEW_EVENTS_UNWIND_SEGUE,sender:self);
     }
@@ -58,7 +60,6 @@ open class EAViewEventsViewController: UIViewController, UITableViewDelegate, UI
         self.tableView.contentOffset = CGPoint(x:0, y:-self.refreshControl.frame.size.height)
         tableView.refreshControl?.beginRefreshing()
     }
-
     
     override open func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -68,7 +69,7 @@ open class EAViewEventsViewController: UIViewController, UITableViewDelegate, UI
         if self.data == nil {
             EAGoogleAPIManager.sharedInstance.getAllEventFolders()
         }
-        
+        self.selectedEvent = nil
     }
     
     @objc func refreshEventFolders(_ sender: Any) {
@@ -120,7 +121,6 @@ open class EAViewEventsViewController: UIViewController, UITableViewDelegate, UI
     }
     
     open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-       // self.tableView.deselectRow(at:indexPath, animated: false)
         selectedEvent = data?.object(at: indexPath.row) as? EAEvent
         if let event = selectedEvent  {
             if let mode = mode, mode == EAMenuViewController.MenuOptions.ShareEvents {

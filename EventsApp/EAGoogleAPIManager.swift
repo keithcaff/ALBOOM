@@ -128,11 +128,7 @@ class EAGoogleAPIManager {
         let query:GTLQueryDrive  = GTLQueryDrive.queryForFilesList()
         query.q = "'\(parentId)' in parents and trashed = false"
         query.fields = "nextPageToken, files(id, name)"
-//        var testError:NSError?
-//        testError = NSError(domain: "test", code: 401, userInfo:nil)
-//        if let testError = testError{
-//            self.handleGoogleAPIError(testError)
-//        }
+        
         service.executeQuery(query, completionHandler: {(ticket: GTLServiceTicket?, files:Any?, error:Error?) in
             if let error = error {
                 DispatchQueue.main.async {
