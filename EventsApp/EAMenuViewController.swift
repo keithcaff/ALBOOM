@@ -129,11 +129,9 @@ class EAMenuViewController: UIViewController ,UITableViewDelegate, UITableViewDa
             case .ShareEvents:
                 self.performSegue(withIdentifier: SegueIdentifiers.VIEW_EVENTS_SEGUE,sender:MenuOptions.ShareEvents.rawValue)
             case .AboutApp:
-                self.performSegue(withIdentifier: SegueIdentifiers.VIEW_EVENTS_SEGUE,sender:self)
+                self.performSegue(withIdentifier: SegueIdentifiers.VIEW_ABOUT_APP_SEGUE,sender:self)
         }
-       // self.tableView.deselectRow(at: indexPath, animated: true)
     }
-    
     
     //MARK: UITableViewDataSource delegate methods
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

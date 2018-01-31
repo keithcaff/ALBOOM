@@ -70,7 +70,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KyO-c1-Ihy">
                                         <rect key="frame" x="15" y="30" width="55" height="20"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="55" id="6ER-iA-yq3"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="55" id="6ER-iA-yq3"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
