@@ -476,7 +476,22 @@
                     <view key="view" contentMode="scaleToFill" id="BDd-5g-tZ6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="https://icons8.com/" translatesAutoresizingMaskIntoConstraints="NO" id="nsE-4u-EQd">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" textContentType="url"/>
+                                <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" name="alternateSelectedControlColor" catalog="System" colorSpace="catalog"/>
+                        <constraints>
+                            <constraint firstItem="6o7-9d-1j2" firstAttribute="top" secondItem="nsE-4u-EQd" secondAttribute="bottom" id="3eQ-os-uPw"/>
+                            <constraint firstAttribute="trailing" secondItem="nsE-4u-EQd" secondAttribute="trailing" id="JI3-wI-eN5"/>
+                            <constraint firstItem="nsE-4u-EQd" firstAttribute="leading" secondItem="BDd-5g-tZ6" secondAttribute="leading" id="ROr-jC-QKe"/>
+                            <constraint firstItem="nsE-4u-EQd" firstAttribute="top" secondItem="exI-IS-PO7" secondAttribute="bottom" id="cbD-QP-4kA"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="kHb-lN-dRe">
                         <barButtonItem key="backBarButtonItem" title="B" id="gOB-nx-JPQ"/>
@@ -486,11 +501,14 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="textView" destination="nsE-4u-EQd" id="Yu1-RQ-8D9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WcH-Pc-gUh" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="4m4-el-yba" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="9" y="-2018"/>
+            <point key="canvasLocation" x="8.8000000000000007" y="-2018.1409295352325"/>
         </scene>
         <!--EAViewEvents-->
         <scene sceneID="HKO-hU-ryw">

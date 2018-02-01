@@ -29,6 +29,7 @@ class EAEvent:NSObject{
         }
         return eventId
     }
+    
     static func getCurrentEventName() -> String {
         var eventName:String
         let defaults = UserDefaults.standard
