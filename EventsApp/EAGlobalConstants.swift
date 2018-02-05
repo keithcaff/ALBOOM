@@ -113,6 +113,7 @@ struct EAUIText {
     static let ABOUT_APP_ICONS_BODY = "Icons used in this application were taken from https://icons8.com/"
     static let ABOUT_APP_MAIN_HEADING = "About \(APP_NAME)"
     static let ABOUT_APP_MAIN_BODY = "\(APP_NAME) uses Google Drive™ API to create folders for events. \(APP_NAME) allows you to create a Drive folder for an upcoming or past event. You can share this Drive folder with friends and allowing them to add media content they have gathered."
+    static let SHARE_EVENT_INFO_TEXT = "*We recommend sharing events with other Google users so they can add content via the \(APP_NAME)"
 }
 
 struct EAUIColours {

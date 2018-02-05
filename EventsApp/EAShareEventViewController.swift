@@ -10,6 +10,7 @@ import Foundation
 
 class EAShareEventViewController : UIViewController, UITextFieldDelegate {
 
+    @IBOutlet weak var infoLabel: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var shareButton: UIButton!
@@ -19,6 +20,7 @@ class EAShareEventViewController : UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         emailTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: UIControlEvents.editingChanged)
         emailTextField.delegate = self;
+        infoLabel.text = EAUIText.SHARE_EVENT_INFO_TEXT
         shareButton.isEnabled = false
         setupNotifications()
     }

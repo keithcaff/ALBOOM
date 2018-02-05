@@ -116,16 +116,28 @@
                                             <constraint firstAttribute="width" constant="37" id="L9P-fR-uRV"/>
                                         </constraints>
                                     </activityIndicatorView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="*It is best to share event the " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M3k-Et-XfF">
+                                        <rect key="frame" x="15" y="187" width="345" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="IXy-yy-QVt"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" name="alternateSelectedControlColor" catalog="System" colorSpace="catalog"/>
                                 <constraints>
                                     <constraint firstItem="XY5-2g-Z4a" firstAttribute="top" secondItem="JyU-E8-ss0" secondAttribute="bottom" constant="15" id="0Ul-RZ-pYV"/>
                                     <constraint firstAttribute="trailing" secondItem="Mdi-93-xub" secondAttribute="trailing" constant="15" id="3XP-jk-6Cg"/>
+                                    <constraint firstAttribute="trailing" secondItem="M3k-Et-XfF" secondAttribute="trailing" constant="15" id="47Y-dD-hCo"/>
+                                    <constraint firstItem="M3k-Et-XfF" firstAttribute="top" secondItem="XY5-2g-Z4a" secondAttribute="bottom" constant="31" id="Et2-gb-WUG"/>
                                     <constraint firstItem="JyU-E8-ss0" firstAttribute="top" secondItem="Mdi-93-xub" secondAttribute="bottom" constant="14" id="FGj-bN-2B7"/>
                                     <constraint firstItem="Mdi-93-xub" firstAttribute="leading" secondItem="KyO-c1-Ihy" secondAttribute="trailing" constant="8" id="LTY-xl-0Ap"/>
                                     <constraint firstItem="XY5-2g-Z4a" firstAttribute="centerX" secondItem="HYn-am-FeR" secondAttribute="centerX" id="S1f-7u-npF"/>
                                     <constraint firstItem="Mdi-93-xub" firstAttribute="centerY" secondItem="KyO-c1-Ihy" secondAttribute="centerY" id="SI4-q6-s2v"/>
                                     <constraint firstItem="KyO-c1-Ihy" firstAttribute="leading" secondItem="HYn-am-FeR" secondAttribute="leading" constant="15" id="bEO-Ng-jfD"/>
+                                    <constraint firstItem="M3k-Et-XfF" firstAttribute="leading" secondItem="HYn-am-FeR" secondAttribute="leading" constant="15" id="fBJ-kZ-HdK"/>
                                     <constraint firstItem="JyU-E8-ss0" firstAttribute="centerX" secondItem="HYn-am-FeR" secondAttribute="centerX" id="w1e-Cr-jSE"/>
                                     <constraint firstItem="KyO-c1-Ihy" firstAttribute="top" secondItem="HYn-am-FeR" secondAttribute="top" constant="30" id="xYw-ZN-sai"/>
                                 </constraints>
@@ -149,6 +161,7 @@
                     <connections>
                         <outlet property="activityIndicator" destination="XY5-2g-Z4a" id="Nuk-Fl-ism"/>
                         <outlet property="emailTextField" destination="Mdi-93-xub" id="mvD-JB-EIl"/>
+                        <outlet property="infoLabel" destination="M3k-Et-XfF" id="Nh2-aP-mzR"/>
                         <outlet property="shareButton" destination="JyU-E8-ss0" id="I50-gL-gLJ"/>
                     </connections>
                 </viewController>
