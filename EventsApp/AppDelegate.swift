@@ -16,6 +16,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        let attrs = [
+            NSAttributedStringKey.foregroundColor: EAUIColours.PRIMARY_BLUE,
+            ]
+        UINavigationBar.appearance().titleTextAttributes = attrs
         return true
     }
     
