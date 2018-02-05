@@ -206,25 +206,23 @@
                         <viewControllerLayoutGuide type="top" id="lF6-v9-X4j"/>
                         <viewControllerLayoutGuide type="bottom" id="lnW-bF-WIi"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Vh5-xv-kPQ">
+                    <view key="view" tag="5" contentMode="scaleToFill" id="Vh5-xv-kPQ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="xhz-dp-WTX">
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="xhz-dp-WTX">
                                 <rect key="frame" x="16" y="30" width="343" height="40"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="beQ-ER-H8M">
-                                        <rect key="frame" x="0.0" y="10" width="105" height="20"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="97" height="40"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="MyEvent" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="JwF-rw-rmn">
-                                        <rect key="frame" x="105" y="0.0" width="238" height="40"/>
+                                        <rect key="frame" x="107" y="0.0" width="236" height="40"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="Xtr-b2-lhM"/>
                                             <constraint firstAttribute="height" constant="30" id="je1-16-DOS"/>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="238" id="qLu-Ug-OLv"/>
                                         </constraints>
                                         <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -239,11 +237,6 @@
                                 <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="3W2-6E-DdK"/>
-                                    <constraint firstItem="beQ-ER-H8M" firstAttribute="leading" secondItem="xhz-dp-WTX" secondAttribute="leading" id="Bx6-vy-8xd"/>
-                                    <constraint firstItem="JwF-rw-rmn" firstAttribute="top" secondItem="xhz-dp-WTX" secondAttribute="top" id="QD0-iX-JbB"/>
-                                    <constraint firstAttribute="trailing" secondItem="JwF-rw-rmn" secondAttribute="trailing" id="Rhi-M0-15t"/>
-                                    <constraint firstItem="beQ-ER-H8M" firstAttribute="top" secondItem="xhz-dp-WTX" secondAttribute="top" constant="10" id="ueE-1L-2DY"/>
-                                    <constraint firstItem="JwF-rw-rmn" firstAttribute="leading" secondItem="beQ-ER-H8M" secondAttribute="trailing" id="yp3-VV-fUV"/>
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KlW-f6-jkS">
@@ -278,10 +271,10 @@
                             <constraint firstItem="KlW-f6-jkS" firstAttribute="top" secondItem="xhz-dp-WTX" secondAttribute="bottom" constant="16" id="0bz-1t-vz6"/>
                             <constraint firstItem="KlW-f6-jkS" firstAttribute="centerX" secondItem="Vh5-xv-kPQ" secondAttribute="centerXWithinMargins" id="3zf-P0-EXd"/>
                             <constraint firstItem="KlW-f6-jkS" firstAttribute="leading" secondItem="Vh5-xv-kPQ" secondAttribute="leading" constant="16" id="Gwq-BA-rFh"/>
-                            <constraint firstItem="beQ-ER-H8M" firstAttribute="leading" secondItem="Vh5-xv-kPQ" secondAttribute="leading" constant="16" id="Khk-a4-9xF"/>
                             <constraint firstItem="xhz-dp-WTX" firstAttribute="leading" secondItem="Vh5-xv-kPQ" secondAttribute="leading" constant="16" id="MWJ-nG-vBo"/>
                             <constraint firstItem="xhz-dp-WTX" firstAttribute="centerX" secondItem="Vh5-xv-kPQ" secondAttribute="centerX" id="ban-g1-3GM"/>
                             <constraint firstItem="xhz-dp-WTX" firstAttribute="top" secondItem="lF6-v9-X4j" secondAttribute="bottom" constant="30" id="lq4-EU-OmE"/>
+                            <constraint firstAttribute="trailing" secondItem="xhz-dp-WTX" secondAttribute="trailing" constant="16" id="zDh-tt-Kz8"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -304,7 +297,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VBF-TW-nCO" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="8w7-xV-239" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="674" y="-976"/>
+            <point key="canvasLocation" x="672.79999999999995" y="-976.46176911544239"/>
         </scene>
         <!--Home Tab Bar Controller-->
         <scene sceneID="ICr-n9-wZJ">
@@ -410,8 +403,8 @@
                         </subviews>
                         <color key="backgroundColor" name="alternateSelectedControlColor" catalog="System" colorSpace="catalog"/>
                         <constraints>
+                            <constraint firstItem="LSp-wz-BvR" firstAttribute="top" secondItem="ZYn-z6-Pei" secondAttribute="bottom" constant="60" id="QUF-IG-GZX"/>
                             <constraint firstItem="ZYn-z6-Pei" firstAttribute="centerX" secondItem="U55-Wi-QcK" secondAttribute="centerX" id="ebH-mM-YLz"/>
-                            <constraint firstItem="ybN-XS-TE0" firstAttribute="top" secondItem="U55-Wi-QcK" secondAttribute="topMargin" constant="493" id="lKr-Z8-TEQ"/>
                             <constraint firstItem="ZYn-z6-Pei" firstAttribute="top" secondItem="ybN-XS-TE0" secondAttribute="bottom" constant="15" id="ncr-JE-2Zd"/>
                             <constraint firstItem="ybN-XS-TE0" firstAttribute="centerX" secondItem="U55-Wi-QcK" secondAttribute="centerX" id="xjk-49-V7e"/>
                         </constraints>
