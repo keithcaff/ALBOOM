@@ -12,25 +12,22 @@ class EAAboutAppViewController: UIViewController {
 
     @IBOutlet weak var textView: UITextView!
     
-    
-    //TODO:
-    //https://stackoverflow.com/questions/41947844/adding-paragraph-headings-programatically-to-a-uitextview
-    
     struct Formatted {
         var heading: String
         var descriptionText: String
         
         var bodyParagraphStyle: NSMutableParagraphStyle = {
             let style = NSMutableParagraphStyle()
-            style.lineSpacing = 10
-            style.paragraphSpacingBefore = 6
-            style.paragraphSpacing = 6
+            style.lineSpacing = 0
+            style.paragraphSpacingBefore = 0
+            style.paragraphSpacing = 2
             return style
         }()
         
         var headerParagraphStyle: NSMutableParagraphStyle = {
             let style = NSMutableParagraphStyle()
-            style.paragraphSpacingBefore = 24
+            style.paragraphSpacingBefore = 20
+            style.paragraphSpacing = 5
             return style
         }()
         
@@ -49,22 +46,26 @@ class EAAboutAppViewController: UIViewController {
         }
         
         init(heading: String, descriptionText: String) {
+            UIFont.systemFont(ofSize: 34)
             self.heading = heading
             self.descriptionText = descriptionText
             self.bodyAttributes = [
-                NSAttributedStringKey.font: UIFont(name: "Hoefler Text", size: 14)!,
-                NSAttributedStringKey.paragraphStyle : bodyParagraphStyle
+                NSAttributedStringKey.font: UIFont.systemFont(ofSize: 18),
+                NSAttributedStringKey.paragraphStyle : bodyParagraphStyle,
+                NSAttributedStringKey.foregroundColor: UIColor.white
             ]
             self.headerAttributes = [
-                NSAttributedStringKey.font: UIFont(name: "Avenir", size: 22)!,
+                NSAttributedStringKey.font: UIFont.systemFont(ofSize: 24, weight: UIFont.Weight.bold),
                 NSAttributedStringKey.paragraphStyle: headerParagraphStyle,
-                NSAttributedStringKey.foregroundColor: UIColor.red
+                NSAttributedStringKey.foregroundColor: UIColor.white
             ]
         }
     }
  
     var allFormattedDescriptions = [
-        Formatted(heading: "Introduction to Bacon Ipsum", descriptionText: "Bacon ipsum dolor amet jerky pig pastrami capicola biltong turkey, ball tip fatback andouille porchetta flank swine brisket bacon pork loin. Tongue shank cupim, pastrami spare ribs meatball drumstick pork pork chop. Sirloin flank tenderloin bresaola doner, cupim ribeye drumstick ham hock t-bone pork short ribs shoulder. Fatback ribeye pastrami pancetta, chuck turkey andouille boudin burgdoggen shoulder tongue kielbasa doner shankle turducken. Rump strip steak drumstick, shankle cupim prosciutto jerky bacon doner. Pork chop jowl burgdoggen, cow turkey ball tip doner. Cow ham meatball chuck flank meatloaf prosciutto.")
+        Formatted(heading: EAUIText.ABOUT_APP_MAIN_HEADING, descriptionText: EAUIText.ABOUT_APP_MAIN_BODY),
+        Formatted(heading: EAUIText.ABOUT_APP_DEVELOPED_BY_HEADING, descriptionText: EAUIText.ABOUT_APP_DEVELOPED_BY_BODY),
+        Formatted(heading: EAUIText.ABOUT_APP_ICONS_HEADING, descriptionText: EAUIText.ABOUT_APP_ICONS_BODY)
     ]
 
     override func viewDidLoad() {
@@ -93,16 +94,5 @@ class EAAboutAppViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

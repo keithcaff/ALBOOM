@@ -477,8 +477,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="https://icons8.com/" translatesAutoresizingMaskIntoConstraints="NO" id="nsE-4u-EQd">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nsE-4u-EQd">
+                                <rect key="frame" x="15" y="79" width="345" height="573"/>
                                 <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" textContentType="url"/>
@@ -487,10 +487,10 @@
                         </subviews>
                         <color key="backgroundColor" name="alternateSelectedControlColor" catalog="System" colorSpace="catalog"/>
                         <constraints>
-                            <constraint firstItem="6o7-9d-1j2" firstAttribute="top" secondItem="nsE-4u-EQd" secondAttribute="bottom" id="3eQ-os-uPw"/>
-                            <constraint firstAttribute="trailing" secondItem="nsE-4u-EQd" secondAttribute="trailing" id="JI3-wI-eN5"/>
-                            <constraint firstItem="nsE-4u-EQd" firstAttribute="leading" secondItem="BDd-5g-tZ6" secondAttribute="leading" id="ROr-jC-QKe"/>
-                            <constraint firstItem="nsE-4u-EQd" firstAttribute="top" secondItem="exI-IS-PO7" secondAttribute="bottom" id="cbD-QP-4kA"/>
+                            <constraint firstItem="6o7-9d-1j2" firstAttribute="top" secondItem="nsE-4u-EQd" secondAttribute="bottom" constant="15" id="3eQ-os-uPw"/>
+                            <constraint firstAttribute="trailing" secondItem="nsE-4u-EQd" secondAttribute="trailing" constant="15" id="JI3-wI-eN5"/>
+                            <constraint firstItem="nsE-4u-EQd" firstAttribute="leading" secondItem="BDd-5g-tZ6" secondAttribute="leading" constant="15" id="ROr-jC-QKe"/>
+                            <constraint firstItem="nsE-4u-EQd" firstAttribute="top" secondItem="exI-IS-PO7" secondAttribute="bottom" constant="15" id="cbD-QP-4kA"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="kHb-lN-dRe">
