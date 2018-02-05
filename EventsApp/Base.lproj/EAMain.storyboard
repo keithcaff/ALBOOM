@@ -400,12 +400,21 @@
                                     <constraint firstAttribute="height" constant="37" id="fbM-27-1zT"/>
                                 </constraints>
                             </activityIndicatorView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WorksWithDrive" translatesAutoresizingMaskIntoConstraints="NO" id="JED-fl-6VC">
+                                <rect key="frame" x="48" y="308" width="279" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="279" id="PSY-Q2-HJD"/>
+                                    <constraint firstAttribute="height" constant="50" id="WdW-E7-EgL"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" name="alternateSelectedControlColor" catalog="System" colorSpace="catalog"/>
                         <constraints>
+                            <constraint firstItem="JED-fl-6VC" firstAttribute="centerY" secondItem="U55-Wi-QcK" secondAttribute="centerY" id="Pn8-hL-1dn"/>
                             <constraint firstItem="LSp-wz-BvR" firstAttribute="top" secondItem="ZYn-z6-Pei" secondAttribute="bottom" constant="60" id="QUF-IG-GZX"/>
                             <constraint firstItem="ZYn-z6-Pei" firstAttribute="centerX" secondItem="U55-Wi-QcK" secondAttribute="centerX" id="ebH-mM-YLz"/>
                             <constraint firstItem="ZYn-z6-Pei" firstAttribute="top" secondItem="ybN-XS-TE0" secondAttribute="bottom" constant="15" id="ncr-JE-2Zd"/>
+                            <constraint firstItem="JED-fl-6VC" firstAttribute="centerX" secondItem="U55-Wi-QcK" secondAttribute="centerX" id="vl8-4g-Jfu"/>
                             <constraint firstItem="ybN-XS-TE0" firstAttribute="centerX" secondItem="U55-Wi-QcK" secondAttribute="centerX" id="xjk-49-V7e"/>
                         </constraints>
                     </view>
@@ -416,7 +425,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3gA-PW-Qjp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2153.5" y="495.5"/>
+            <point key="canvasLocation" x="-2154.4000000000001" y="495.20239880059972"/>
         </scene>
         <!--Home-->
         <scene sceneID="CYk-Km-L9o">
@@ -570,6 +579,7 @@
         <image name="Camera" width="30" height="30"/>
         <image name="Home" width="30" height="30"/>
         <image name="Menu" width="22" height="22"/>
+        <image name="WorksWithDrive" width="2720" height="516"/>
         <image name="signOut" width="100" height="100"/>
     </resources>
 </document>
