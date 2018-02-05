@@ -401,10 +401,17 @@
                                 </constraints>
                             </activityIndicatorView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WorksWithDrive" translatesAutoresizingMaskIntoConstraints="NO" id="JED-fl-6VC">
-                                <rect key="frame" x="48" y="308" width="279" height="50"/>
+                                <rect key="frame" x="77.5" y="308" width="220" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="279" id="PSY-Q2-HJD"/>
+                                    <constraint firstAttribute="width" constant="220" id="PSY-Q2-HJD"/>
                                     <constraint firstAttribute="height" constant="50" id="WdW-E7-EgL"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="testicon" translatesAutoresizingMaskIntoConstraints="NO" id="Ezr-aA-nwd">
+                                <rect key="frame" x="68" y="164" width="240" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="S6p-eT-UXA"/>
+                                    <constraint firstAttribute="width" constant="240" id="hSH-MT-auj"/>
                                 </constraints>
                             </imageView>
                         </subviews>
@@ -412,8 +419,10 @@
                         <constraints>
                             <constraint firstItem="JED-fl-6VC" firstAttribute="centerY" secondItem="U55-Wi-QcK" secondAttribute="centerY" id="Pn8-hL-1dn"/>
                             <constraint firstItem="LSp-wz-BvR" firstAttribute="top" secondItem="ZYn-z6-Pei" secondAttribute="bottom" constant="60" id="QUF-IG-GZX"/>
+                            <constraint firstItem="Ezr-aA-nwd" firstAttribute="centerX" secondItem="U55-Wi-QcK" secondAttribute="centerX" id="Z5M-K9-v4g"/>
                             <constraint firstItem="ZYn-z6-Pei" firstAttribute="centerX" secondItem="U55-Wi-QcK" secondAttribute="centerX" id="ebH-mM-YLz"/>
                             <constraint firstItem="ZYn-z6-Pei" firstAttribute="top" secondItem="ybN-XS-TE0" secondAttribute="bottom" constant="15" id="ncr-JE-2Zd"/>
+                            <constraint firstItem="JED-fl-6VC" firstAttribute="top" secondItem="Ezr-aA-nwd" secondAttribute="bottom" constant="16" id="s8O-jc-KG0"/>
                             <constraint firstItem="JED-fl-6VC" firstAttribute="centerX" secondItem="U55-Wi-QcK" secondAttribute="centerX" id="vl8-4g-Jfu"/>
                             <constraint firstItem="ybN-XS-TE0" firstAttribute="centerX" secondItem="U55-Wi-QcK" secondAttribute="centerX" id="xjk-49-V7e"/>
                         </constraints>
@@ -581,5 +590,6 @@
         <image name="Menu" width="22" height="22"/>
         <image name="WorksWithDrive" width="2720" height="516"/>
         <image name="signOut" width="100" height="100"/>
+        <image name="testicon" width="1536" height="1536"/>
     </resources>
 </document>
