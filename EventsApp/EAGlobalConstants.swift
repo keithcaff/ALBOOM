@@ -110,7 +110,7 @@ struct EAUIText {
     static let ABOUT_APP_DEVELOPED_BY_HEADING = "Developed By"
     static let ABOUT_APP_DEVELOPED_BY_BODY = "Keith Caffrey \nLinkedIn:http://www.linkedin.com/in/keithcaffrey/ \nGithub: https://github.com/keithcaff"
     static let ABOUT_APP_ICONS_HEADING = "App Icons"
-    static let ABOUT_APP_ICONS_BODY = "Icons used in this application were taken from https://icons8.com/"
+    static let ABOUT_APP_ICONS_BODY = "Navigation Icons used in this application were taken from https://icons8.com/ \nThe main app icon(polaroid-camera) was made by Webalys Freebies (http://www.streamlineicons.com/) and taken from Webalys Freebies www.flaticon.com."
     static let ABOUT_APP_MAIN_HEADING = "About \(APP_NAME)"
     static let ABOUT_APP_MAIN_BODY = "\(APP_NAME) uses Google Drive™ API to create folders for events. \(APP_NAME) allows you to create a Drive folder for an upcoming or past event. You can share this Drive folder with friends allowing them to add media content they have gathered."
     static let SHARE_EVENT_INFO_TEXT = "*We recommend sharing events with other Google users so they can add content via the \(APP_NAME)"
