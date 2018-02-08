@@ -40,9 +40,7 @@ open class EAGalleryViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     func configureGallery() {
-        //TODO: set colours to blue
         Gallery.Config.Grid.FrameView.borderColor = EAUIColours.PRIMARY_BLUE
-        //Gallery.Config.Grid.FrameView.fillColor =  UIColor.blue
         Gallery.Config.Grid.FrameView.fillColor = EAUIColours.SECONDARY_BLUE
         Gallery.Config.PageIndicator.backgroundColor = UIColor.white
         Gallery.Config.PageIndicator.textColor = EAUIColours.PRIMARY_BLUE
@@ -160,7 +158,7 @@ open class EAGalleryViewController: UIViewController, UITableViewDelegate, UITab
         let displayRetryButton = didUploadFail(imageUpload: imageUpload)
         cell.uploadProgressView.progressContainerView.isHidden = displayRetryButton
         cell.uploadProgressView.retryContainerView.isHidden = !displayRetryButton
-        cell.uploadProgressView.progressView.progress = imageUpload.uploadPercentage!
+        cell.uploadProgressView.activityIndicator.startAnimating()
     }
     
     func addBackground(_ cell:EAImageUploadTableViewCell, _ image:UIImage!) {
@@ -202,27 +200,30 @@ open class EAGalleryViewController: UIViewController, UITableViewDelegate, UITab
         let imageName:String =  uploadDetails[GoogleAPIKeys.IMAGE_NAME] as! String
         let uploadPercentage:Float =  uploadDetails[GoogleAPIKeys.UPLOAD_PERCENTAGE] as! Float
         print("uploadProgressUpated: \(imageName) image \(uploadPercentage)%")
-        if let i = data.index(where: { $0.name == imageName  }) {
-            let eaImageUpload:EAImageUpload = data[i]
-            eaImageUpload.uploadPercentage = uploadPercentage
-            let indexPath = IndexPath(row: i, section: 0)
-            self.tableView.reloadRows(at: [indexPath], with: .none)
-        }
+        //No longer showing progress view. Using activity indicator instead.
+//        if let i = data.index(where: { $0.name == imageName  }) {
+//            let eaImageUpload:EAImageUpload = data[i]
+//            eaImageUpload.uploadPercentage = uploadPercentage
+//            let indexPath = IndexPath(row: i, section: 0)
+//            self.tableView.reloadRows(at: [indexPath], with: .none)
+//        }
     }
     
     @objc func imageUploadedSuccessfully(_ notifiaction : Notification) {
-        print("imageUploadedSuccessfully CALLED!!!")
-        let uploadDetails:[String:Any] = notifiaction.object as! [String:Any]
-        let imageUpload:EAImageUpload =  uploadDetails[GoogleAPIKeys.IMAGE_UPLOAD] as! EAImageUpload
-        if let i = data.index(where: { $0.name == imageUpload.name!  }) {
-            if let indexOfFailedUpload = failedUploads.index(where: { $0.name == imageUpload.name!}) {
-                failedUploads.remove(at: indexOfFailedUpload)
-            }
-            data.remove(at: i)
-            let indexPath = IndexPath(row: i, section: 0)
-            tableView.deleteRows(at: [indexPath], with: .fade)
-            if (data.isEmpty) {
-                presentImagePickerWithAlert(self.uploadSuccessAlert)
+        DispatchQueue.main.async {
+            print("imageUploadedSuccessfully CALLED!!!")
+            let uploadDetails:[String:Any] = notifiaction.object as! [String:Any]
+            let imageUpload:EAImageUpload =  uploadDetails[GoogleAPIKeys.IMAGE_UPLOAD] as! EAImageUpload
+            if let i = self.data.index(where: { $0.name == imageUpload.name!  }) {
+                if let indexOfFailedUpload = self.failedUploads.index(where: { $0.name == imageUpload.name!}) {
+                    self.failedUploads.remove(at: indexOfFailedUpload)
+                }
+                self.data.remove(at: i)
+                let indexPath = IndexPath(row: i, section: 0)
+                self.tableView.deleteRows(at: [indexPath], with: .fade)
+                if (self.data.isEmpty) {
+                    self.presentImagePickerWithAlert(self.uploadSuccessAlert)
+                }
             }
         }
     }

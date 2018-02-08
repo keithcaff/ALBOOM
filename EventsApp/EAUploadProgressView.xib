@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EAUploadProgressView" customModule="EventsApp" customModuleProvider="target">
             <connections>
+                <outlet property="activityIndicator" destination="18q-LO-GxO" id="kpz-ae-F1z"/>
                 <outlet property="contentView" destination="iN0-l3-epB" id="jYS-Yv-OhU"/>
                 <outlet property="progressContainerView" destination="Jeg-kc-GzA" id="T6I-DO-92R"/>
-                <outlet property="progressView" destination="RUZ-q5-aj0" id="dXM-nF-ASh"/>
                 <outlet property="retryButton" destination="a7d-as-sMe" id="l1g-bW-GfN"/>
                 <outlet property="retryContainerView" destination="Ydz-Ff-WtA" id="97G-XS-0hJ"/>
             </connections>
@@ -25,22 +25,22 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view alpha="0.94999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jeg-kc-GzA">
-                    <rect key="frame" x="14.5" y="56" width="220" height="48"/>
+                    <rect key="frame" x="84.5" y="40" width="80" height="80"/>
                     <subviews>
-                        <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RUZ-q5-aj0">
-                            <rect key="frame" x="29" y="23" width="161" height="2"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </progressView>
+                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="18q-LO-GxO">
+                            <rect key="frame" x="21.5" y="21" width="37" height="37"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="37" id="aWA-sw-GBd"/>
+                                <constraint firstAttribute="width" constant="37" id="dy5-Yf-boH"/>
+                            </constraints>
+                        </activityIndicatorView>
                     </subviews>
-                    <color key="backgroundColor" name="alternateSelectedControlColor" catalog="System" colorSpace="catalog"/>
+                    <color key="backgroundColor" name="keyboardFocusIndicatorColor" catalog="System" colorSpace="catalog"/>
                     <constraints>
-                        <constraint firstItem="RUZ-q5-aj0" firstAttribute="leading" secondItem="Jeg-kc-GzA" secondAttribute="leading" constant="29" id="Wy6-C8-7sF"/>
-                        <constraint firstAttribute="width" constant="220" id="cIa-83-QcP"/>
-                        <constraint firstItem="RUZ-q5-aj0" firstAttribute="centerY" secondItem="Jeg-kc-GzA" secondAttribute="centerY" id="f7S-kf-PMS"/>
-                        <constraint firstItem="RUZ-q5-aj0" firstAttribute="centerX" secondItem="Jeg-kc-GzA" secondAttribute="centerX" id="kBI-Dw-uzW"/>
-                        <constraint firstAttribute="height" constant="48" id="maS-cL-M4C"/>
-                        <constraint firstAttribute="trailing" secondItem="RUZ-q5-aj0" secondAttribute="trailing" constant="30" id="yaI-E1-Sjn"/>
+                        <constraint firstItem="18q-LO-GxO" firstAttribute="centerX" secondItem="Jeg-kc-GzA" secondAttribute="centerX" id="BzF-1t-zoA"/>
+                        <constraint firstItem="18q-LO-GxO" firstAttribute="centerY" secondItem="Jeg-kc-GzA" secondAttribute="centerY" id="CRd-FW-eBZ"/>
+                        <constraint firstAttribute="width" constant="80" id="cIa-83-QcP"/>
+                        <constraint firstAttribute="height" constant="80" id="maS-cL-M4C"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -54,7 +54,6 @@
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a7d-as-sMe">
                             <rect key="frame" x="0.0" y="4" width="165" height="27"/>
-                            <color key="backgroundColor" name="selectedMenuItemColor" catalog="System" colorSpace="catalog"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="165" id="1fc-bR-INF"/>
                                 <constraint firstAttribute="height" constant="27" id="ja0-yM-TCM"/>
