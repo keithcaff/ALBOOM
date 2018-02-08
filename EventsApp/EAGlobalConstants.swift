@@ -109,7 +109,7 @@ struct EAUIText {
     static let SHARE_EVENT_TITLE_PREFIX = "Share"
     static let SHARE_EVENT_TITLE_SUFFIX = "event"
     static let ABOUT_APP_DEVELOPED_BY_HEADING = "Developed By"
-    static let ABOUT_APP_DEVELOPED_BY_BODY = "Keith Caffrey \nLinkedIn:http://www.linkedin.com/in/keithcaffrey/ \nGithub: https://github.com/keithcaff"
+    static let ABOUT_APP_DEVELOPED_BY_BODY = "Keith Caffrey \nLinkedIn: http://www.linkedin.com/in/keithcaffrey/ \nGithub: https://github.com/keithcaff"
     static let ABOUT_APP_ICONS_HEADING = "App Icons"
     static let ABOUT_APP_ICONS_BODY = "Navigation Icons used in this application were taken from https://icons8.com/ \nThe main app icon(polaroid-camera) was made by Webalys Freebies (http://www.streamlineicons.com/) and taken from www.flaticon.com."
     static let ABOUT_APP_MAIN_HEADING = "About \(APP_NAME)"
