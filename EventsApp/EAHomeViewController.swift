@@ -13,6 +13,7 @@ import UIColor_Hex
 
 open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableViewDataSource, EAEventUpdateDelegate{
     
+    @IBOutlet weak var homeActionButton: UIButton!
     @IBOutlet var tableView: UITableView!
     private var currentEventFolder:GTLDriveFile?
     private var currentFilesList:GTLDriveFileList?
@@ -64,6 +65,11 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
         refreshControl.attributedTitle = NSAttributedString(string: EAUIText.EAHOME_TABLE_VIEW_REFRESH_CONTROL_TITLE, attributes: attributes)
         // Add Refresh Control to Table View
         tableView.refreshControl = refreshControl
+    }
+    
+    
+    @IBAction func homeActionButtonClicked(_ sender: Any) {
+        revealViewController().revealToggle(animated: true)
     }
     
     func share(_ shareImage:UIImage, shareText text:String?, source:UIView){
