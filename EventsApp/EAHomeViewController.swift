@@ -27,6 +27,7 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
     
     override open func viewDidLoad() {
         super.viewDidLoad()
+        homeActionButton.setTitle(EAUIText.EAHOME_ACTION_BUTTON_TITLE, for:.normal)
         setupNotifications()
         setupSlider()
         setupTableView()
