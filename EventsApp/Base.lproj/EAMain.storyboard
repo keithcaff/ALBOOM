@@ -436,23 +436,32 @@
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WorksWithDrive" translatesAutoresizingMaskIntoConstraints="NO" id="JED-fl-6VC">
-                                <rect key="frame" x="78" y="383.5" width="220" height="40"/>
+                                <rect key="frame" x="78" y="408.5" width="220" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="220" id="14b-hD-waW"/>
                                     <constraint firstAttribute="height" constant="40" id="XOx-e1-a7n"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ALBOOM!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yZ0-bm-5YQ">
+                                <rect key="frame" x="68" y="358.5" width="240" height="60"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="50"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" name="alternateSelectedControlColor" catalog="System" colorSpace="catalog"/>
                         <constraints>
-                            <constraint firstItem="JED-fl-6VC" firstAttribute="top" secondItem="Ezr-aA-nwd" secondAttribute="bottom" constant="20" id="DgW-jY-bDP"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="yZ0-bm-5YQ" secondAttribute="trailing" constant="51" id="8gS-Lb-AXR"/>
                             <constraint firstItem="LSp-wz-BvR" firstAttribute="top" secondItem="ZYn-z6-Pei" secondAttribute="bottom" constant="60" id="QUF-IG-GZX"/>
+                            <constraint firstItem="yZ0-bm-5YQ" firstAttribute="centerX" secondItem="Ezr-aA-nwd" secondAttribute="centerX" id="S5l-xl-YXV"/>
                             <constraint firstItem="Ezr-aA-nwd" firstAttribute="centerX" secondItem="U55-Wi-QcK" secondAttribute="centerX" id="Z5M-K9-v4g"/>
                             <constraint firstItem="ZYn-z6-Pei" firstAttribute="centerX" secondItem="U55-Wi-QcK" secondAttribute="centerX" id="ebH-mM-YLz"/>
                             <constraint firstItem="Ezr-aA-nwd" firstAttribute="centerY" secondItem="U55-Wi-QcK" secondAttribute="centerY" constant="-80" id="gOs-Uy-qf2"/>
                             <constraint firstItem="JED-fl-6VC" firstAttribute="centerX" secondItem="U55-Wi-QcK" secondAttribute="centerX" id="gWs-SG-cB6"/>
+                            <constraint firstItem="yZ0-bm-5YQ" firstAttribute="top" secondItem="Ezr-aA-nwd" secondAttribute="bottom" constant="-5" id="hLJ-Fp-hat"/>
                             <constraint firstItem="ZYn-z6-Pei" firstAttribute="top" secondItem="ybN-XS-TE0" secondAttribute="bottom" constant="15" id="ncr-JE-2Zd"/>
                             <constraint firstItem="ybN-XS-TE0" firstAttribute="centerX" secondItem="U55-Wi-QcK" secondAttribute="centerX" id="xjk-49-V7e"/>
+                            <constraint firstItem="JED-fl-6VC" firstAttribute="top" secondItem="yZ0-bm-5YQ" secondAttribute="bottom" constant="-10" id="z2U-cn-wNN"/>
                         </constraints>
                     </view>
                     <connections>
