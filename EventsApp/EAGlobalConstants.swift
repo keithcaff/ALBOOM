@@ -119,7 +119,7 @@ struct EAUIText {
 
 struct EAUIColours {
     static let REFRESH_CONTROL_TINT_COLOUR = UIColor.white
-    static let PRIMARY_BLUE = UIColor(red: 0/255, green: 105.0/255, blue: 217/255, alpha: 1.0)
+    static let PRIMARY_BLUE = UIColor(red: 0/255, green: 105.0/255, blue: 217/255, alpha: 1.0)//#0069d9
     static let SECONDARY_BLUE = UIColor(red: 59/255, green: 153/255, blue: 252/255, alpha: 1.0)
 }
 
