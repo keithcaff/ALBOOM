@@ -229,17 +229,20 @@ class EAGoogleAPIManager {
     
     func shareEvent(_ event:EAEvent, withEmail email:String) {
         //https://developers.google.com/drive/v3/web/manage-sharing
+        guard let fileId = event.id else {
+            return
+        }
         let service:GTLService = gtlServiceDrive
         setAuthorizerForService(GIDSignIn.sharedInstance(), user: GIDSignIn.sharedInstance().currentUser,service:service)
         print("Sharing event")
-        let parentId:String  = event.id!;
         
         let permission: GTLDrivePermission = GTLDrivePermission()
         permission.type = "user"
         permission.role = "writer"
         permission.emailAddress = email
+        let query:GTLQueryDrive  = GTLQueryDrive.queryForPermissionsCreate(withObject: permission, fileId: fileId)
+        query.emailMessage = "\(EAUIText.EMAIL_MESSAGE_TEXT)"
         
-        let query:GTLQueryDrive  = GTLQueryDrive.queryForPermissionsCreate(withObject: permission, fileId: parentId)
         service.executeQuery(query, completionHandler: {(ticket: GTLServiceTicket?, id:Any?, error:Error?) in
             if let error = error {
                 self.handleGoogleAPIError(error)
@@ -256,6 +259,49 @@ class EAGoogleAPIManager {
                 }
             }
         })
+    }
+    
+    
+    func shareEvent(_ event:EAEvent, withEmails emails:[String]) {
+        //https://developers.google.com/drive/v3/web/manage-sharing
+        guard let fileId = event.id else {
+            return
+        }
+        let service:GTLService = gtlServiceDrive
+        setAuthorizerForService(GIDSignIn.sharedInstance(), user: GIDSignIn.sharedInstance().currentUser,service:service)
+        print("Sharing event for list of emails")
+        let batchQuery: GTLBatchQuery = GTLBatchQuery()
+        for email in emails {
+            let permission: GTLDrivePermission = GTLDrivePermission()
+            permission.type = "user"
+            permission.role = "writer"
+            permission.emailAddress = email
+            let query:GTLQueryDrive  = GTLQueryDrive.queryForPermissionsCreate(withObject: permission, fileId: fileId)
+            query.emailMessage = "\(EAUIText.EMAIL_MESSAGE_TEXT)"
+            batchQuery.addQuery(query)
+        }
+
+        service.executeQuery(batchQuery, completionHandler: {(ticket: GTLServiceTicket?, id:Any?, error:Error?) in
+            if let error = error {
+                self.handleGoogleAPIError(error)
+                if error._code != 401 {
+                    NotificationCenter.default.post(name: .NOTIFICATION_EVENT_SHARE_FAILED, object: error.localizedDescription)
+                }
+            }
+            else {
+                if let name = event.name {
+                    print("shared event successfully!!! \(name)")
+                }
+                DispatchQueue.main.async {
+                    NotificationCenter.default.post(name: .NOTIFICATION_EVENT_FOLDER_SHARED, object: event)
+                }
+            }
+        })
+    }
+    
+    @objc func displayResultWithTicketEachMessages(ticket : GTLServiceTicket, finishedWithObject eachMessageResponse : GTLBatchResult, error : NSError?) {
+    
+    
     }
     
     func deleteEvent(_ event:EAEvent) {

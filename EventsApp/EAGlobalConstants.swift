@@ -9,8 +9,9 @@
 import Foundation
 
 //Google Constants
-let EVENT_FOLDER_PREFIX:String = "Event_App_"
-let APP_NAME = "EventsApp"
+let EVENT_FOLDER_PREFIX:String = "ALBOOM_APP"
+let APP_NAME = "ALBOOM"
+let APP_URL_SCHEME = "alboom://"
 
 //Notification Constants
 extension Notification.Name {
@@ -115,6 +116,8 @@ struct EAUIText {
     static let ABOUT_APP_MAIN_HEADING = "About \(APP_NAME)"
     static let ABOUT_APP_MAIN_BODY = "\(APP_NAME) uses Google Drive™ API to create folders for events. \(APP_NAME) allows you to create a Drive folder for an upcoming or past event. You can share this Drive folder with friends allowing them to add media content they have gathered."
     static let SHARE_EVENT_INFO_TEXT = "*We recommend sharing events with other Google users so they can add content via the \(APP_NAME)"
+    
+    static let EMAIL_MESSAGE_TEXT = "Open event in \(APP_NAME) \(APP_URL_SCHEME)"
 }
 
 struct EAUIColours {
