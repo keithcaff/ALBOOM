@@ -16,6 +16,9 @@ class EAMenuViewController: UIViewController ,UITableViewDelegate, UITableViewDa
     
     private let menuItemCellIReuseIdentifier = "EAMenuItemCell"
     private let menuItemLabelTag = 101
+    private let menuItemImageTag = 102
+    private var menuOptionToImage = [MenuOptions:String]()
+    private let menuImages = ["CreateEvent", "ViewEvents", "Share", "AboutApp"]
     
     public enum MenuOptions: Int {
         case CreateEvent = 0
@@ -25,7 +28,7 @@ class EAMenuViewController: UIViewController ,UITableViewDelegate, UITableViewDa
         
         static var count: Int{ return 4 }//UPDATE IF ADDING NEW ENUM VALUES!!!!
         
-        static func enumFromInt(int:Int) -> MenuOptions? {
+        static func enumFromInt(_ int:Int) -> MenuOptions? {
             return MenuOptions(rawValue:int)
         }
         
@@ -50,6 +53,16 @@ class EAMenuViewController: UIViewController ,UITableViewDelegate, UITableViewDa
         tableView.dataSource = self
         tableView.delegate = self
         logOutButton.setTitle(MenuItemLabels.LOG_OUT, for: .normal)
+        populateMenuOptionToImageMap()
+    }
+    
+    private func populateMenuOptionToImageMap() {
+        for index in 0..<MenuOptions.count
+        {
+            if let menuOption = MenuOptions.enumFromInt(index) {
+                menuOptionToImage[menuOption] = menuImages[index]
+            }
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -112,7 +125,7 @@ class EAMenuViewController: UIViewController ,UITableViewDelegate, UITableViewDa
     override open func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == SegueIdentifiers.VIEW_EVENTS_SEGUE) {
             if let destinationNav = segue.destination as? UINavigationController, let destination = destinationNav.viewControllers.first as? EAViewEventsViewController, let mode : Int = sender as? Int {
-                    destination.mode = MenuOptions.enumFromInt(int:mode)
+                    destination.mode = MenuOptions.enumFromInt(mode)
             }
         }
     }
@@ -141,9 +154,14 @@ class EAMenuViewController: UIViewController ,UITableViewDelegate, UITableViewDa
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let menuItemCell:UITableViewCell! = tableView.dequeueReusableCell(withIdentifier: menuItemCellIReuseIdentifier)
         let menuItemLabel:UILabel = menuItemCell?.viewWithTag(menuItemLabelTag) as! UILabel
+        let menuItemImage:UIImageView = menuItemCell?.viewWithTag(menuItemImageTag) as! UIImageView
+        
         var labelText:String;
         
         let menuOption:MenuOptions = MenuOptions(rawValue: indexPath.row)!
+        if let imageName:String = menuOptionToImage[menuOption] {
+            menuItemImage.image = UIImage(named:imageName)
+        }
         switch menuOption {
             case .CreateEvent:
                 labelText = MenuItemLabels.CREATE_EVENT

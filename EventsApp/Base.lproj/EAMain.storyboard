@@ -158,7 +158,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create Event" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m18-tM-z0e">
-                                                    <rect key="frame" x="35" y="13.5" width="98.5" height="21"/>
+                                                    <rect key="frame" x="35" y="11.5" width="98.5" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="Pqi-Dp-zT2"/>
                                                     </constraints>
@@ -172,7 +172,7 @@
                                                 <constraint firstItem="m18-tM-z0e" firstAttribute="leading" secondItem="9wp-hd-pPY" secondAttribute="trailing" constant="5" id="GlS-g7-HGp"/>
                                                 <constraint firstItem="9wp-hd-pPY" firstAttribute="leading" secondItem="rtp-Mh-Bcu" secondAttribute="leading" constant="10" id="NMi-NP-Zv8"/>
                                                 <constraint firstItem="9wp-hd-pPY" firstAttribute="centerY" secondItem="rtp-Mh-Bcu" secondAttribute="centerY" id="Ynv-gd-6fK"/>
-                                                <constraint firstItem="m18-tM-z0e" firstAttribute="centerY" secondItem="rtp-Mh-Bcu" secondAttribute="centerY" constant="2" id="v3N-M6-F3m"/>
+                                                <constraint firstItem="m18-tM-z0e" firstAttribute="centerY" secondItem="rtp-Mh-Bcu" secondAttribute="centerY" id="v3N-M6-F3m"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" name="alternateSelectedControlColor" catalog="System" colorSpace="catalog"/>

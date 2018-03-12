@@ -78,11 +78,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EventsApp/EAMenuViewController.swift"
-            timestampString = "539119254.522334"
+            timestampString = "542576056.057646"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
             landmarkName = "logOutButtonTapped(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -94,11 +94,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EventsApp/EAMenuViewController.swift"
-            timestampString = "539119254.522705"
+            timestampString = "542576056.0582269"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "76"
-            endingLineNumber = "76"
+            startingLineNumber = "89"
+            endingLineNumber = "89"
             landmarkName = "logOutButtonTapped(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -222,11 +222,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EventsApp/EAMenuViewController.swift"
-            timestampString = "539119254.523026"
+            timestampString = "542576056.0590121"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "113"
-            endingLineNumber = "113"
+            startingLineNumber = "126"
+            endingLineNumber = "126"
             landmarkName = "prepare(for:sender:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -286,7 +286,7 @@
                   moduleName = "EventsApp"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/keith/Dev/kc-dev/EventApp/EventsApp/EAShareEventViewController.swift"
-                  timestampString = "542570542.945424"
+                  timestampString = "542575208.514484"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "83"
@@ -301,7 +301,7 @@
                   moduleName = "EventsApp"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/keith/Dev/kc-dev/EventApp/EventsApp/EAShareEventViewController.swift"
-                  timestampString = "542570542.947322"
+                  timestampString = "542575208.517527"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "82"
@@ -557,11 +557,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EventsApp/EAMenuViewController.swift"
-            timestampString = "539119254.523436"
+            timestampString = "542576056.059707"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
+            startingLineNumber = "96"
+            endingLineNumber = "96"
             landmarkName = "unWindToMenu(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -659,6 +659,22 @@
             startingLineNumber = "16"
             endingLineNumber = "16"
             landmarkName = "init(id:eventName:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EventsApp/EAMenuViewController.swift"
+            timestampString = "542576056.060194"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "167"
+            endingLineNumber = "167"
+            landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
