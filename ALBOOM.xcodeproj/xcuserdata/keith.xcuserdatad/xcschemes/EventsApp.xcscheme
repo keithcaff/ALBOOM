@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "44323FA81CE9EF730049F7FC"
-               BuildableName = "EventsApp.app"
-               BlueprintName = "EventsApp"
-               ReferencedContainer = "container:EventsApp.xcodeproj">
+               BuildableName = "ALBOOM.app"
+               BlueprintName = "ALBOOM"
+               ReferencedContainer = "container:ALBOOM.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -34,9 +34,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "44323FA81CE9EF730049F7FC"
-            BuildableName = "EventsApp.app"
-            BlueprintName = "EventsApp"
-            ReferencedContainer = "container:EventsApp.xcodeproj">
+            BuildableName = "ALBOOM.app"
+            BlueprintName = "ALBOOM"
+            ReferencedContainer = "container:ALBOOM.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -58,9 +58,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "44323FA81CE9EF730049F7FC"
-            BuildableName = "EventsApp.app"
-            BlueprintName = "EventsApp"
-            ReferencedContainer = "container:EventsApp.xcodeproj">
+            BuildableName = "ALBOOM.app"
+            BlueprintName = "ALBOOM"
+            ReferencedContainer = "container:ALBOOM.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -77,9 +77,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "44323FA81CE9EF730049F7FC"
-            BuildableName = "EventsApp.app"
-            BlueprintName = "EventsApp"
-            ReferencedContainer = "container:EventsApp.xcodeproj">
+            BuildableName = "ALBOOM.app"
+            BlueprintName = "ALBOOM"
+            ReferencedContainer = "container:ALBOOM.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

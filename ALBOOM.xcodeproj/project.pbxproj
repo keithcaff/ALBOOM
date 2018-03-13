@@ -47,7 +47,7 @@
 		4419E4681CF1DC8100FFCE0D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4419E46A1CF1E2CC00FFCE0D /* EALoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EALoginViewController.swift; sourceTree = "<group>"; };
 		4419E46C1CF26C8000FFCE0D /* EAHomeTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EAHomeTabBarController.swift; sourceTree = "<group>"; };
-		44323FA91CE9EF730049F7FC /* EventsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EventsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		44323FA91CE9EF730049F7FC /* ALBOOM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ALBOOM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		44323FAC1CE9EF730049F7FC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		44323FB11CE9EF730049F7FC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/EAMain.storyboard; sourceTree = "<group>"; };
 		44323FB31CE9EF730049F7FC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -169,7 +169,7 @@
 		44323FAA1CE9EF730049F7FC /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				44323FA91CE9EF730049F7FC /* EventsApp.app */,
+				44323FA91CE9EF730049F7FC /* ALBOOM.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -216,9 +216,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		44323FA81CE9EF730049F7FC /* EventsApp */ = {
+		44323FA81CE9EF730049F7FC /* ALBOOM */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 44323FBB1CE9EF730049F7FC /* Build configuration list for PBXNativeTarget "EventsApp" */;
+			buildConfigurationList = 44323FBB1CE9EF730049F7FC /* Build configuration list for PBXNativeTarget "ALBOOM" */;
 			buildPhases = (
 				CBFE6139C749B7DB75BE39EE /* [CP] Check Pods Manifest.lock */,
 				44323FA51CE9EF730049F7FC /* Sources */,
@@ -231,9 +231,9 @@
 			);
 			dependencies = (
 			);
-			name = EventsApp;
+			name = ALBOOM;
 			productName = EventsApp;
-			productReference = 44323FA91CE9EF730049F7FC /* EventsApp.app */;
+			productReference = 44323FA91CE9EF730049F7FC /* ALBOOM.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -253,7 +253,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 44323FA41CE9EF730049F7FC /* Build configuration list for PBXProject "EventsApp" */;
+			buildConfigurationList = 44323FA41CE9EF730049F7FC /* Build configuration list for PBXProject "ALBOOM" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -266,7 +266,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				44323FA81CE9EF730049F7FC /* EventsApp */,
+				44323FA81CE9EF730049F7FC /* ALBOOM */,
 			);
 		};
 /* End PBXProject section */
@@ -564,7 +564,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		44323FA41CE9EF730049F7FC /* Build configuration list for PBXProject "EventsApp" */ = {
+		44323FA41CE9EF730049F7FC /* Build configuration list for PBXProject "ALBOOM" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				44323FB91CE9EF730049F7FC /* Debug */,
@@ -573,7 +573,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		44323FBB1CE9EF730049F7FC /* Build configuration list for PBXNativeTarget "EventsApp" */ = {
+		44323FBB1CE9EF730049F7FC /* Build configuration list for PBXNativeTarget "ALBOOM" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				44323FBC1CE9EF730049F7FC /* Debug */,
