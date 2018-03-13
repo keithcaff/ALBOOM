@@ -67,33 +67,43 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HYn-am-FeR">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KyO-c1-Ihy">
-                                        <rect key="frame" x="15" y="30" width="55" height="20"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="55" id="6ER-iA-yq3"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="john.smith@gmail.com" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="Mdi-93-xub">
-                                        <rect key="frame" x="78" y="20" width="282" height="40"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="Tty-dg-8rp"/>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="238" id="Zcf-br-jgh"/>
-                                            <constraint firstAttribute="height" constant="40" id="i9D-6N-Zhn"/>
-                                        </constraints>
-                                        <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                        <variation key="default">
-                                            <mask key="constraints">
-                                                <exclude reference="Tty-dg-8rp"/>
-                                            </mask>
-                                        </variation>
-                                    </textField>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="La3-fU-hZZ">
+                                        <rect key="frame" x="15" y="30" width="335" height="40"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KyO-c1-Ihy">
+                                                <rect key="frame" x="0.0" y="0.0" width="55" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="55" id="6ER-iA-yq3"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder=" john.smith@gmail.com" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="Mdi-93-xub">
+                                                <rect key="frame" x="55" y="0.0" width="280" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="Tty-dg-8rp"/>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="Zcf-br-jgh"/>
+                                                    <constraint firstAttribute="height" constant="40" id="i9D-6N-Zhn"/>
+                                                </constraints>
+                                                <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
+                                                        <color key="value" name="systemGrayColor" catalog="System" colorSpace="catalog"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <variation key="default">
+                                                    <mask key="constraints">
+                                                        <exclude reference="Tty-dg-8rp"/>
+                                                    </mask>
+                                                </variation>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JyU-E8-ss0">
-                                        <rect key="frame" x="135" y="74" width="105" height="30"/>
+                                        <rect key="frame" x="135" y="85" width="105" height="30"/>
                                         <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="105" id="QTn-8Y-XGV"/>
@@ -110,14 +120,14 @@
                                         </connections>
                                     </button>
                                     <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="XY5-2g-Z4a">
-                                        <rect key="frame" x="169" y="119" width="37" height="37"/>
+                                        <rect key="frame" x="169" y="130" width="37" height="37"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="37" id="8EO-H4-aMq"/>
                                             <constraint firstAttribute="width" constant="37" id="L9P-fR-uRV"/>
                                         </constraints>
                                     </activityIndicatorView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="*It is best to share event the " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M3k-Et-XfF">
-                                        <rect key="frame" x="15" y="187" width="345" height="21"/>
+                                        <rect key="frame" x="15" y="198" width="345" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="IXy-yy-QVt"/>
                                         </constraints>
@@ -129,17 +139,15 @@
                                 <color key="backgroundColor" name="alternateSelectedControlColor" catalog="System" colorSpace="catalog"/>
                                 <constraints>
                                     <constraint firstItem="XY5-2g-Z4a" firstAttribute="top" secondItem="JyU-E8-ss0" secondAttribute="bottom" constant="15" id="0Ul-RZ-pYV"/>
-                                    <constraint firstAttribute="trailing" secondItem="Mdi-93-xub" secondAttribute="trailing" constant="15" id="3XP-jk-6Cg"/>
+                                    <constraint firstItem="La3-fU-hZZ" firstAttribute="leading" secondItem="HYn-am-FeR" secondAttribute="leading" constant="15" id="1fd-Tr-SpV"/>
                                     <constraint firstAttribute="trailing" secondItem="M3k-Et-XfF" secondAttribute="trailing" constant="15" id="47Y-dD-hCo"/>
+                                    <constraint firstAttribute="trailing" secondItem="La3-fU-hZZ" secondAttribute="trailing" constant="25" id="CdO-kC-Gxq"/>
                                     <constraint firstItem="M3k-Et-XfF" firstAttribute="top" secondItem="XY5-2g-Z4a" secondAttribute="bottom" constant="31" id="Et2-gb-WUG"/>
-                                    <constraint firstItem="JyU-E8-ss0" firstAttribute="top" secondItem="Mdi-93-xub" secondAttribute="bottom" constant="14" id="FGj-bN-2B7"/>
-                                    <constraint firstItem="Mdi-93-xub" firstAttribute="leading" secondItem="KyO-c1-Ihy" secondAttribute="trailing" constant="8" id="LTY-xl-0Ap"/>
                                     <constraint firstItem="XY5-2g-Z4a" firstAttribute="centerX" secondItem="HYn-am-FeR" secondAttribute="centerX" id="S1f-7u-npF"/>
-                                    <constraint firstItem="Mdi-93-xub" firstAttribute="centerY" secondItem="KyO-c1-Ihy" secondAttribute="centerY" id="SI4-q6-s2v"/>
-                                    <constraint firstItem="KyO-c1-Ihy" firstAttribute="leading" secondItem="HYn-am-FeR" secondAttribute="leading" constant="15" id="bEO-Ng-jfD"/>
+                                    <constraint firstItem="JyU-E8-ss0" firstAttribute="top" secondItem="La3-fU-hZZ" secondAttribute="bottom" constant="15" id="cfH-OT-YWO"/>
                                     <constraint firstItem="M3k-Et-XfF" firstAttribute="leading" secondItem="HYn-am-FeR" secondAttribute="leading" constant="15" id="fBJ-kZ-HdK"/>
+                                    <constraint firstItem="La3-fU-hZZ" firstAttribute="top" secondItem="HYn-am-FeR" secondAttribute="top" constant="30" id="gGg-HT-KLJ"/>
                                     <constraint firstItem="JyU-E8-ss0" firstAttribute="centerX" secondItem="HYn-am-FeR" secondAttribute="centerX" id="w1e-Cr-jSE"/>
-                                    <constraint firstItem="KyO-c1-Ihy" firstAttribute="top" secondItem="HYn-am-FeR" secondAttribute="top" constant="30" id="xYw-ZN-sai"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -160,6 +168,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="activityIndicator" destination="XY5-2g-Z4a" id="Nuk-Fl-ism"/>
+                        <outlet property="emailLabel" destination="KyO-c1-Ihy" id="ndT-Ca-hXQ"/>
+                        <outlet property="emailStackView" destination="La3-fU-hZZ" id="cXf-kP-jgZ"/>
                         <outlet property="emailTextField" destination="Mdi-93-xub" id="mvD-JB-EIl"/>
                         <outlet property="infoLabel" destination="M3k-Et-XfF" id="Nh2-aP-mzR"/>
                         <outlet property="shareButton" destination="JyU-E8-ss0" id="I50-gL-gLJ"/>

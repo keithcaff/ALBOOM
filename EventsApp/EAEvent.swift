@@ -17,6 +17,15 @@ class EAEvent:NSObject{
         self.name = eventName;
     }
     
+    var displayName : String {
+        var displayName = ""
+        if let name = name, name.count >= 1 {
+            let startIndex = name.index(name.startIndex, offsetBy: EVENT_FOLDER_PREFIX.count)
+            displayName = String(name.suffix(from: startIndex))
+        }
+        return displayName
+    }
+    
     static func getCurrentEventId() -> String {
         var eventId:String
         let defaults = UserDefaults.standard

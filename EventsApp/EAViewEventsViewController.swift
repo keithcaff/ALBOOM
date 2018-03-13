@@ -162,7 +162,7 @@ open class EAViewEventsViewController: UIViewController, UITableViewDelegate, UI
         
         cell?.event = event
         cell?.unWindCallback = unWindToMenu;
-        cell?.name.text = event.name!
+        cell?.name.text = event.displayName
         return cell!
     }
     

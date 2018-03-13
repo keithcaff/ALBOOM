@@ -9,7 +9,7 @@
 import Foundation
 
 //Google Constants
-let EVENT_FOLDER_PREFIX:String = "ALBOOM_APP"
+let EVENT_FOLDER_PREFIX:String = "ALBOOM_APP_"
 let APP_NAME = "ALBOOM"
 let APP_URL_SCHEME = "alboom://"
 

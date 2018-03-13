@@ -116,9 +116,7 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
     
     func updateNavigationBarTitle() {
         let event = EAEvent.getCurrentEvent()
-        if let currentEventName = event.name {
-            self.navigationController?.navigationBar.topItem?.title = currentEventName
-        }
+        self.navigationController?.navigationBar.topItem?.title = event.displayName
     }
     
     func hideShowTableView() {

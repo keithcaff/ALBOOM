@@ -10,6 +10,8 @@ import Foundation
 
 class EAShareEventViewController : UIViewController, UITextFieldDelegate {
 
+    @IBOutlet weak var emailLabel: UILabel!
+    @IBOutlet weak var emailStackView: UIStackView!
     @IBOutlet weak var infoLabel: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var emailTextField: UITextField!
@@ -19,7 +21,9 @@ class EAShareEventViewController : UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         emailTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: UIControlEvents.editingChanged)
-        emailTextField.delegate = self;
+        emailTextField.delegate = self
+        emailTextField.layer.borderWidth = 1
+        emailTextField.layer.borderColor = UIColor.white.cgColor
         infoLabel.text = EAUIText.SHARE_EVENT_INFO_TEXT
         shareButton.isEnabled = false
         setupNotifications()
@@ -56,9 +60,7 @@ class EAShareEventViewController : UIViewController, UITextFieldDelegate {
     }
     
     private func setupNavBarTitle() {
-        if let name = selectedEvent.name {
-            self.title = name
-        }
+        self.title = selectedEvent.displayName
     }
     
     private func setupNotifications() {
