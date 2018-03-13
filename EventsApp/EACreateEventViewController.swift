@@ -21,6 +21,8 @@ class EACreateEventViewController: UIViewController, UITextFieldDelegate {
         eventNameTextField.delegate = self;
         createEventButton.isEnabled = false
         createEventButton.alpha = 0.3
+        eventNameTextField.becomeFirstResponder()
+        eventNameTextField.attributedPlaceholder = NSAttributedString(string: "MyEvent", attributes: [NSAttributedStringKey.foregroundColor: EAUIColours.SECONDARY_BLUE])
     }
     
 
