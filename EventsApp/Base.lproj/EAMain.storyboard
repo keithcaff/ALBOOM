@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -15,7 +14,7 @@
         <!--Home View Controller-->
         <scene sceneID="ODq-O4-qwJ">
             <objects>
-                <viewController id="Rgy-Of-eka" customClass="EAHomeViewController" customModule="EventsApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Rgy-Of-eka" customClass="EAHomeViewController" customModule="ALBOOM" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="yHa-kB-rP5"/>
                         <viewControllerLayoutGuide type="bottom" id="SVs-Hr-QkG"/>
@@ -89,7 +88,7 @@
         <!--Root View Controller-->
         <scene sceneID="3kF-nZ-cNV">
             <objects>
-                <viewController storyboardIdentifier="RootViewController" id="gG4-gm-gAO" customClass="EARootViewController" customModule="EventsApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RootViewController" id="gG4-gm-gAO" customClass="EARootViewController" customModule="ALBOOM" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Hrz-3y-9RW"/>
                         <viewControllerLayoutGuide type="bottom" id="X2O-9j-9ft"/>
@@ -130,7 +129,7 @@
         <!--Menu View Controller-->
         <scene sceneID="mbX-89-tOe">
             <objects>
-                <viewController id="diU-Hf-e08" customClass="EAMenuViewController" customModule="EventsApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="diU-Hf-e08" customClass="EAMenuViewController" customModule="ALBOOM" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="eKH-hN-rH6"/>
                         <viewControllerLayoutGuide type="bottom" id="Kkv-e3-bKV"/>
@@ -238,7 +237,7 @@
         <!--Create Event View Controller-->
         <scene sceneID="MBy-3I-LIx">
             <objects>
-                <viewController id="F89-g3-0Br" customClass="EACreateEventViewController" customModule="EventsApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="F89-g3-0Br" customClass="EACreateEventViewController" customModule="ALBOOM" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="lF6-v9-X4j"/>
                         <viewControllerLayoutGuide type="bottom" id="lnW-bF-WIi"/>
@@ -276,48 +275,33 @@
                                     <constraint firstAttribute="height" constant="40" id="3W2-6E-DdK"/>
                                 </constraints>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KlW-f6-jkS">
-                                <rect key="frame" x="135" y="86" width="105" height="35"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gs8-LZ-QC1">
+                                <rect key="frame" x="135" y="77" width="105" height="30"/>
+                                <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="35" id="QtZ-tD-wAK"/>
-                                    <constraint firstAttribute="width" constant="105" id="Rkg-Q2-UGN"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="105" id="3k3-bN-ISd"/>
+                                    <constraint firstAttribute="height" constant="30" id="bvY-MN-IsJ"/>
                                 </constraints>
-                                <state key="normal">
-                                    <attributedString key="attributedTitle">
-                                        <fragment content="Create">
-                                            <attributes>
-                                                <color key="NSColor" name="alternateSelectedControlColor" catalog="System" colorSpace="catalog"/>
-                                                <font key="NSFont" size="17" name="HelveticaNeue"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                            </attributes>
-                                        </fragment>
-                                    </attributedString>
-                                </state>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="Create"/>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="layer.CornerRadius" value="5"/>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layer.CornerRadius" value="5"/>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <segue destination="8w7-xV-239" kind="unwind" identifier="createEventUnWind" unwindAction="unWindToMenu:" id="mef-s0-1pG"/>
+                                    <segue destination="8w7-xV-239" kind="unwind" identifier="createEventUnWind" unwindAction="unWindToMenu:" id="kf9-v5-ucH"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" name="alternateSelectedControlColor" catalog="System" colorSpace="catalog"/>
                         <constraints>
-                            <constraint firstItem="KlW-f6-jkS" firstAttribute="top" secondItem="xhz-dp-WTX" secondAttribute="bottom" constant="16" id="0bz-1t-vz6"/>
-                            <constraint firstItem="KlW-f6-jkS" firstAttribute="centerX" secondItem="Vh5-xv-kPQ" secondAttribute="centerXWithinMargins" id="3zf-P0-EXd"/>
-                            <constraint firstItem="KlW-f6-jkS" firstAttribute="leading" secondItem="Vh5-xv-kPQ" secondAttribute="leading" constant="16" id="Gwq-BA-rFh"/>
+                            <constraint firstItem="Gs8-LZ-QC1" firstAttribute="top" secondItem="JwF-rw-rmn" secondAttribute="bottom" constant="7" id="JUE-Kd-fhY"/>
                             <constraint firstItem="xhz-dp-WTX" firstAttribute="leading" secondItem="Vh5-xv-kPQ" secondAttribute="leading" constant="16" id="MWJ-nG-vBo"/>
                             <constraint firstItem="xhz-dp-WTX" firstAttribute="centerX" secondItem="Vh5-xv-kPQ" secondAttribute="centerX" id="ban-g1-3GM"/>
                             <constraint firstItem="xhz-dp-WTX" firstAttribute="top" secondItem="lF6-v9-X4j" secondAttribute="bottom" constant="30" id="lq4-EU-OmE"/>
+                            <constraint firstItem="Gs8-LZ-QC1" firstAttribute="centerX" secondItem="Vh5-xv-kPQ" secondAttribute="centerX" id="qFK-Lf-Dcz"/>
                             <constraint firstAttribute="trailing" secondItem="xhz-dp-WTX" secondAttribute="trailing" constant="16" id="zDh-tt-Kz8"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="Gwq-BA-rFh"/>
-                            </mask>
-                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="Qjf-4h-gPG">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="EjR-Rq-h9c">
@@ -327,7 +311,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="createEventButton" destination="KlW-f6-jkS" id="B2Y-oK-BsZ"/>
+                        <outlet property="createEventButton" destination="Gs8-LZ-QC1" id="opn-NK-BrC"/>
                         <outlet property="eventNameTextField" destination="JwF-rw-rmn" id="7NP-Ll-lqy"/>
                     </connections>
                 </viewController>
@@ -339,7 +323,7 @@
         <!--Home Tab Bar Controller-->
         <scene sceneID="ICr-n9-wZJ">
             <objects>
-                <tabBarController storyboardIdentifier="HomeViewController" id="WuL-rn-SYP" customClass="EAHomeTabBarController" customModule="EventsApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="HomeViewController" id="WuL-rn-SYP" customClass="EAHomeTabBarController" customModule="ALBOOM" customModuleProvider="target" sceneMemberID="viewController">
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="414" height="736"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="bwW-2M-vpk">
@@ -361,7 +345,7 @@
         <!--Upload(s) in progress-->
         <scene sceneID="wF6-QB-JuY">
             <objects>
-                <viewController id="8Ok-Kx-t45" customClass="EAGalleryViewController" customModule="EventsApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="8Ok-Kx-t45" customClass="EAGalleryViewController" customModule="ALBOOM" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="SdR-yL-8Fb"/>
                         <viewControllerLayoutGuide type="bottom" id="S8z-uB-FKT"/>
@@ -410,7 +394,7 @@
         <!--Login View Controller-->
         <scene sceneID="d4P-IH-eO1">
             <objects>
-                <viewController storyboardIdentifier="LoginViewController" id="pxC-4J-eUB" customClass="EALoginViewController" customModule="EventsApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="pxC-4J-eUB" customClass="EALoginViewController" customModule="ALBOOM" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="qO6-yB-Mwd"/>
                         <viewControllerLayoutGuide type="bottom" id="LSp-wz-BvR"/>
@@ -522,7 +506,7 @@
         <!--About App View Controller-->
         <scene sceneID="0Ez-yE-iei">
             <objects>
-                <viewController id="OO7-dC-Ekn" customClass="EAAboutAppViewController" customModule="EventsApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="OO7-dC-Ekn" customClass="EAAboutAppViewController" customModule="ALBOOM" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="exI-IS-PO7"/>
                         <viewControllerLayoutGuide type="bottom" id="6o7-9d-1j2"/>

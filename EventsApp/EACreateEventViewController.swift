@@ -20,7 +20,6 @@ class EACreateEventViewController: UIViewController, UITextFieldDelegate {
         eventNameTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: UIControlEvents.editingChanged)
         eventNameTextField.delegate = self;
         createEventButton.isEnabled = false
-        createEventButton.alpha = 0.3
         eventNameTextField.becomeFirstResponder()
         eventNameTextField.attributedPlaceholder = NSAttributedString(string: "MyEvent", attributes: [NSAttributedStringKey.foregroundColor: EAUIColours.SECONDARY_BLUE])
     }
@@ -63,12 +62,6 @@ class EACreateEventViewController: UIViewController, UITextFieldDelegate {
     
     func createEventButtonEnabled(_ enabled:Bool) {
         createEventButton.isEnabled = enabled
-        if(enabled) {
-              createEventButton.alpha = 1.0
-        }
-        else {
-            createEventButton.alpha = 0.5
-        }
     }
     
     
