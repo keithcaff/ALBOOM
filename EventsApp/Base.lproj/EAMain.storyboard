@@ -26,6 +26,23 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hwP-C7-Zks">
                                 <rect key="frame" x="0.0" y="64" width="414" height="623"/>
                                 <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gqL-xq-qfN">
+                                        <rect key="frame" x="144.5" y="349" width="126" height="30"/>
+                                        <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="105" id="4iq-gi-W1V"/>
+                                            <constraint firstAttribute="height" constant="30" id="YZm-B6-8cy"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                        <state key="normal" title="Get Started!"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="layer.CornerRadius" value="5"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="homeActionButtonClicked:" destination="Rgy-Of-eka" eventType="touchUpInside" id="V3R-P1-wc1"/>
+                                        </connections>
+                                    </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="polaroid-camera" translatesAutoresizingMaskIntoConstraints="NO" id="cHV-9g-Nac">
                                         <rect key="frame" x="87" y="121.5" width="240" height="220"/>
                                         <constraints>
@@ -33,18 +50,6 @@
                                             <constraint firstAttribute="height" constant="220" id="xjG-g7-XI1"/>
                                         </constraints>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XU5-TZ-5Zr">
-                                        <rect key="frame" x="142" y="360" width="131" height="61"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="61" id="Ejj-WG-u0A"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" title="Get Started!"/>
-                                        <connections>
-                                            <action selector="homeActionButtonClicked:" destination="Rgy-Of-eka" eventType="touchUpInside" id="rhs-v1-Mhm"/>
-                                        </connections>
-                                    </button>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="uMa-rc-I3n">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="623"/>
                                         <color key="backgroundColor" name="alternateSelectedControlColor" catalog="System" colorSpace="catalog"/>
@@ -54,13 +59,13 @@
                                 <color key="backgroundColor" name="alternateSelectedControlColor" catalog="System" colorSpace="catalog"/>
                                 <constraints>
                                     <constraint firstItem="cHV-9g-Nac" firstAttribute="centerY" secondItem="hwP-C7-Zks" secondAttribute="centerY" constant="-80" id="1Xj-vQ-clb"/>
-                                    <constraint firstItem="XU5-TZ-5Zr" firstAttribute="centerX" secondItem="hwP-C7-Zks" secondAttribute="centerX" id="JKE-nA-mAc"/>
+                                    <constraint firstItem="gqL-xq-qfN" firstAttribute="centerX" secondItem="hwP-C7-Zks" secondAttribute="centerX" id="IR9-x0-osa"/>
+                                    <constraint firstItem="gqL-xq-qfN" firstAttribute="top" secondItem="cHV-9g-Nac" secondAttribute="bottom" constant="7.5" id="IeK-8d-cSc"/>
                                     <constraint firstAttribute="trailing" secondItem="uMa-rc-I3n" secondAttribute="trailing" id="Npu-Yq-aMS"/>
                                     <constraint firstItem="uMa-rc-I3n" firstAttribute="top" secondItem="hwP-C7-Zks" secondAttribute="top" id="T3b-h4-A4k"/>
                                     <constraint firstItem="cHV-9g-Nac" firstAttribute="centerX" secondItem="hwP-C7-Zks" secondAttribute="centerX" id="U57-6E-T81"/>
                                     <constraint firstAttribute="bottom" secondItem="uMa-rc-I3n" secondAttribute="bottom" id="fjP-xl-AmX"/>
                                     <constraint firstItem="uMa-rc-I3n" firstAttribute="leading" secondItem="hwP-C7-Zks" secondAttribute="leading" id="keu-Og-QwT"/>
-                                    <constraint firstItem="XU5-TZ-5Zr" firstAttribute="top" secondItem="cHV-9g-Nac" secondAttribute="bottom" constant="18.5" id="uS8-nv-OIe"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -76,7 +81,7 @@
                         <barButtonItem key="leftBarButtonItem" image="Menu" id="8RJ-gf-3dH"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="homeActionButton" destination="XU5-TZ-5Zr" id="KRG-R1-NGl"/>
+                        <outlet property="homeActionButton" destination="gqL-xq-qfN" id="r7v-MK-shD"/>
                         <outlet property="menuButton" destination="8RJ-gf-3dH" id="Ly9-01-Bwp"/>
                         <outlet property="tableView" destination="uMa-rc-I3n" id="Nse-zB-me8"/>
                     </connections>
