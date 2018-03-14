@@ -43,29 +43,35 @@
                                             <action selector="homeActionButtonClicked:" destination="Rgy-Of-eka" eventType="touchUpInside" id="V3R-P1-wc1"/>
                                         </connections>
                                     </button>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="polaroid-camera" translatesAutoresizingMaskIntoConstraints="NO" id="cHV-9g-Nac">
-                                        <rect key="frame" x="87" y="121.5" width="240" height="220"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="240" id="Rdx-XX-qfG"/>
-                                            <constraint firstAttribute="height" constant="220" id="xjG-g7-XI1"/>
-                                        </constraints>
-                                    </imageView>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="uMa-rc-I3n">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="623"/>
                                         <color key="backgroundColor" name="alternateSelectedControlColor" catalog="System" colorSpace="catalog"/>
                                         <sections/>
                                     </tableView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jaX-nx-E5v">
+                                        <rect key="frame" x="87" y="115" width="240" height="220"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="240" id="eB1-uC-9s7"/>
+                                            <constraint firstAttribute="height" constant="220" id="fvs-43-xkO"/>
+                                        </constraints>
+                                        <state key="normal" backgroundImage="polaroid-camera"/>
+                                        <connections>
+                                            <action selector="homeActionButtonClicked:" destination="Rgy-Of-eka" eventType="touchUpInside" id="qT3-TT-aOy"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" name="alternateSelectedControlColor" catalog="System" colorSpace="catalog"/>
                                 <constraints>
-                                    <constraint firstItem="cHV-9g-Nac" firstAttribute="centerY" secondItem="hwP-C7-Zks" secondAttribute="centerY" constant="-80" id="1Xj-vQ-clb"/>
+                                    <constraint firstItem="gqL-xq-qfN" firstAttribute="top" secondItem="jaX-nx-E5v" secondAttribute="bottom" constant="14" id="7JA-Xh-0z9"/>
+                                    <constraint firstItem="jaX-nx-E5v" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="hwP-C7-Zks" secondAttribute="leading" constant="87" id="8AP-Oz-Zmt"/>
                                     <constraint firstItem="gqL-xq-qfN" firstAttribute="centerX" secondItem="hwP-C7-Zks" secondAttribute="centerX" id="IR9-x0-osa"/>
-                                    <constraint firstItem="gqL-xq-qfN" firstAttribute="top" secondItem="cHV-9g-Nac" secondAttribute="bottom" constant="7.5" id="IeK-8d-cSc"/>
                                     <constraint firstAttribute="trailing" secondItem="uMa-rc-I3n" secondAttribute="trailing" id="Npu-Yq-aMS"/>
                                     <constraint firstItem="uMa-rc-I3n" firstAttribute="top" secondItem="hwP-C7-Zks" secondAttribute="top" id="T3b-h4-A4k"/>
-                                    <constraint firstItem="cHV-9g-Nac" firstAttribute="centerX" secondItem="hwP-C7-Zks" secondAttribute="centerX" id="U57-6E-T81"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="jaX-nx-E5v" secondAttribute="trailing" constant="87" id="X4y-DX-hps"/>
                                     <constraint firstAttribute="bottom" secondItem="uMa-rc-I3n" secondAttribute="bottom" id="fjP-xl-AmX"/>
                                     <constraint firstItem="uMa-rc-I3n" firstAttribute="leading" secondItem="hwP-C7-Zks" secondAttribute="leading" id="keu-Og-QwT"/>
+                                    <constraint firstItem="jaX-nx-E5v" firstAttribute="top" secondItem="hwP-C7-Zks" secondAttribute="top" constant="115" id="lzV-9P-lVH"/>
+                                    <constraint firstItem="jaX-nx-E5v" firstAttribute="centerX" secondItem="hwP-C7-Zks" secondAttribute="centerX" id="z7k-Ul-blS"/>
                                 </constraints>
                             </view>
                         </subviews>

@@ -23,7 +23,7 @@ class EAShareEventViewController : UIViewController, UITextFieldDelegate {
         emailTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: UIControlEvents.editingChanged)
         emailTextField.delegate = self
         emailTextField.becomeFirstResponder()
-        emailTextField.attributedPlaceholder = NSAttributedString(string: "john.smith@gmail.com", attributes: [NSAttributedStringKey.foregroundColor: EAUIColours.SECONDARY_BLUE])
+        emailTextField.attributedPlaceholder = NSAttributedString(string: EAUIText.SHARE_EVENT_TEXTFIELD_PLACEHOLDER, attributes: [NSAttributedStringKey.foregroundColor: EAUIColours.SECONDARY_BLUE])
         
         infoLabel.text = EAUIText.SHARE_EVENT_INFO_TEXT
         shareButton.isEnabled = false

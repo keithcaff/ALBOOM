@@ -11,6 +11,7 @@ import Foundation
 //Google Constants
 let EVENT_FOLDER_PREFIX:String = "ALBOOM_APP_"
 let APP_NAME = "ALBOOM"
+let ALBUM_PLACEHOLDER = "ALBOOM"
 let APP_URL_SCHEME = "alboom://"
 
 //Notification Constants
@@ -56,10 +57,10 @@ struct XIBIdentifiers {
 }
 
 struct MenuItemLabels {
-    static let CREATE_EVENT = "Create Event"
-    static let VIEW_EVENTS = "View Events"
-    static let SHARE_EVENTS = "Share Events"
-    static let ABOUT_APP = "About"
+    static let CREATE_EVENT = "Create \(ALBUM_PLACEHOLDER)"
+    static let VIEW_EVENTS = "View \(ALBUM_PLACEHOLDER)"
+    static let SHARE_EVENTS = "Share \(ALBUM_PLACEHOLDER)"
+    static let ABOUT_APP = "About \(ALBUM_PLACEHOLDER)"
     static let LOG_OUT = "Log Out"
 }
 
@@ -97,27 +98,30 @@ struct EAUIText {
     static let ALERT_UPLOAD_COMPLETE_TITLE = "Upload complete"
     static let ALERT_UPLOAD_COMPLETE_MESSAGE = "Media uploaded to Google Drive"
     static let EAHOME_TABLE_VIEW_REFRESH_CONTROL_TITLE = "Fetching latest files"
-    static let EAVIEW_EVENTS_TABLE_VIEW_REFRESH_CONTROL_TITLE = "Fetching latest event folders"
+    static let EAVIEW_EVENTS_TABLE_VIEW_REFRESH_CONTROL_TITLE = "Fetching latest \(ALBUM_PLACEHOLDER) folders"
     static let EAHOME_ACTION_BUTTON_TITLE = "Get Started!"
-    static let ALERT_CREATE_OR_SELECT_EVENT_TITLE = "No event context"
-    static let ALERT_CREATE_OR_SELECT_EVENT_MESSAGE = "Create or select an event to upload media"
+    static let ALERT_CREATE_OR_SELECT_EVENT_TITLE = "No \(ALBUM_PLACEHOLDER) in context."
+    static let ALERT_CREATE_OR_SELECT_EVENT_MESSAGE = "Create or select an \(ALBUM_PLACEHOLDER) to upload media"
     static let ALERT_SHARE_EVENT_FAILED_TITLE = "Share Failed"
-    static let ALERT_EVENT_SHARED_SUCCESSFULLY_TITLE = "Event Shared"
-    static let ALERT_EVENT_SHARED_SUCCESSFULLY_MESSAGE = "Successfully shared event"
-    static let ALERT_SHARE_EVENT_FAILED_MESSAGE = "An error occured sharing selected event"
+    static let ALERT_EVENT_SHARED_SUCCESSFULLY_TITLE = "\(ALBUM_PLACEHOLDER) Shared"
+    static let ALERT_EVENT_SHARED_SUCCESSFULLY_MESSAGE = "Successfully shared \(ALBUM_PLACEHOLDER)"
+    static let ALERT_SHARE_EVENT_FAILED_MESSAGE = "An error occured sharing selected \(ALBUM_PLACEHOLDER)"
     static let ALERT_OK_ACTION_TITLE = "Ok"
+    static let CREATE_EVENT_TEXTFIELD_PLACEHOLDER = "My \(ALBUM_PLACEHOLDER) Name"
+    static let CREATE_EVENT_LABEL = "\(ALBUM_PLACEHOLDER) Name:"
     static let SHARE_SINGLE_IMAGE_TEXT = "Media shared from \(APP_NAME). Available on app store"
     static let SHARE_EVENT_TITLE_PREFIX = "Share"
-    static let SHARE_EVENT_TITLE_SUFFIX = "event"
+    static let SHARE_EVENT_TITLE_SUFFIX = "\(ALBUM_PLACEHOLDER)"
+    static let SHARE_EVENT_TEXTFIELD_PLACEHOLDER = "john.smith@gmail.com"
     static let ABOUT_APP_DEVELOPED_BY_HEADING = "Developed By"
     static let ABOUT_APP_DEVELOPED_BY_BODY = "Keith Caffrey \nLinkedIn: http://www.linkedin.com/in/keithcaffrey/ \nGithub: https://github.com/keithcaff"
     static let ABOUT_APP_ICONS_HEADING = "App Icons"
     static let ABOUT_APP_ICONS_BODY = "Navigation Icons used in this application were taken from https://icons8.com/ \nThe main app icon(polaroid-camera) was made by Webalys Freebies (http://www.streamlineicons.com/) and taken from www.flaticon.com."
     static let ABOUT_APP_MAIN_HEADING = "About \(APP_NAME)"
-    static let ABOUT_APP_MAIN_BODY = "\(APP_NAME) uses Google Drive™ API to create folders for events. \(APP_NAME) allows you to create a Drive folder for an upcoming or past event. You can share this Drive folder with friends allowing them to add media content they have gathered."
-    static let SHARE_EVENT_INFO_TEXT = "*We recommend sharing events with other Google users so they can add content via the \(APP_NAME) app."
+    static let ABOUT_APP_MAIN_BODY = "\(APP_NAME) uses Google Drive™ API to create folders for photo albums. \(APP_NAME) allows you to create a Drive folder for an upcoming or past event. You can share this Drive folder with friends allowing them to add media content they have gathered."
+    static let SHARE_EVENT_INFO_TEXT = "*We recommend sharing \(ALBUM_PLACEHOLDER)s with other Google users so they can add content via the \(APP_NAME) app."
     
-    static let EMAIL_MESSAGE_TEXT = "Open event in \(APP_NAME) \(APP_URL_SCHEME)"
+    static let EMAIL_MESSAGE_TEXT = "Open \(ALBUM_PLACEHOLDER) in \(APP_NAME) \(APP_URL_SCHEME)"
 }
 
 struct EAUIColours {

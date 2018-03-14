@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Events-->
+        <!--ALBOOMs-->
         <scene sceneID="qIf-JY-coD">
             <objects>
                 <viewController id="tgM-zi-Kkm" customClass="EAViewEventsViewController" customModule="ALBOOM" customModuleProvider="target" sceneMemberID="viewController">
@@ -35,7 +35,7 @@
                             <constraint firstItem="c4u-pI-ZYm" firstAttribute="top" secondItem="Tpr-Uh-4Ou" secondAttribute="topMargin" id="xKf-15-kM6"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Events" id="jke-hs-N8y">
+                    <navigationItem key="navigationItem" title="ALBOOMs" id="jke-hs-N8y">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="ABL-64-muV">
                             <connections>
                                 <segue destination="zfi-Gk-gQY" kind="unwind" identifier="exitViewEventsUnwindSegue" unwindAction="unWindToMenu:" id="GXq-0N-aM5"/>
@@ -52,7 +52,7 @@
             </objects>
             <point key="canvasLocation" x="841" y="-1406"/>
         </scene>
-        <!--Share Event-->
+        <!--Share ALBOOM-->
         <scene sceneID="SGW-ae-eAE">
             <objects>
                 <viewController id="VUr-nD-2nW" customClass="EAShareEventViewController" customModule="ALBOOM" customModuleProvider="target" sceneMemberID="viewController">
@@ -155,7 +155,7 @@
                             <constraint firstItem="HYn-am-FeR" firstAttribute="leading" secondItem="czn-Sb-4ly" secondAttribute="leading" id="bdU-NX-qec"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Share Event" id="eSW-3c-fZG">
+                    <navigationItem key="navigationItem" title="Share ALBOOM" id="eSW-3c-fZG">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="xfb-Ks-Iv0">
                             <connections>
                                 <segue destination="ez2-Bf-mTy" kind="unwind" unwindAction="unWindToViewEvents:" id="rKo-fy-Sff"/>

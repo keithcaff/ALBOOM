@@ -241,7 +241,7 @@ class EAGoogleAPIManager {
         permission.role = "writer"
         permission.emailAddress = email
         let query:GTLQueryDrive  = GTLQueryDrive.queryForPermissionsCreate(withObject: permission, fileId: fileId)
-        query.emailMessage = "\(EAUIText.EMAIL_MESSAGE_TEXT)"
+        //query.emailMessage = "\(EAUIText.EMAIL_MESSAGE_TEXT)"
         
         service.executeQuery(query, completionHandler: {(ticket: GTLServiceTicket?, id:Any?, error:Error?) in
             if let error = error {
@@ -277,7 +277,7 @@ class EAGoogleAPIManager {
             permission.role = "writer"
             permission.emailAddress = email
             let query:GTLQueryDrive  = GTLQueryDrive.queryForPermissionsCreate(withObject: permission, fileId: fileId)
-            query.emailMessage = "\(EAUIText.EMAIL_MESSAGE_TEXT)"
+            //query.emailMessage = "\(EAUIText.EMAIL_MESSAGE_TEXT)"
             batchQuery.addQuery(query)
         }
 
