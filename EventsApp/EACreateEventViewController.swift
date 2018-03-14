@@ -19,7 +19,7 @@ class EACreateEventViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         eventNameTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: UIControlEvents.editingChanged)
         eventNameTextField.delegate = self;
-        eventNameTextField.text = EAUIText.CREATE_EVENT_TEXTFIELD_PLACEHOLDER
+        eventNameTextField.placeholder = EAUIText.CREATE_EVENT_TEXTFIELD_PLACEHOLDER
         createEventButton.isEnabled = false
         eventNameTextField.becomeFirstResponder()
         eventNameTextField.attributedPlaceholder = NSAttributedString(string: EAUIText.CREATE_EVENT_TEXTFIELD_PLACEHOLDER, attributes: [NSAttributedStringKey.foregroundColor: EAUIColours.SECONDARY_BLUE])
