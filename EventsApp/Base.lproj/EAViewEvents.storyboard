@@ -13,7 +13,7 @@
         <!--Events-->
         <scene sceneID="qIf-JY-coD">
             <objects>
-                <viewController id="tgM-zi-Kkm" customClass="EAViewEventsViewController" customModule="EventsApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="tgM-zi-Kkm" customClass="EAViewEventsViewController" customModule="ALBOOM" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="POX-lr-Bp3"/>
                         <viewControllerLayoutGuide type="bottom" id="7rb-UM-Owf"/>
@@ -55,7 +55,7 @@
         <!--Share Event-->
         <scene sceneID="SGW-ae-eAE">
             <objects>
-                <viewController id="VUr-nD-2nW" customClass="EAShareEventViewController" customModule="EventsApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="VUr-nD-2nW" customClass="EAShareEventViewController" customModule="ALBOOM" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="9e9-aG-ADd"/>
                         <viewControllerLayoutGuide type="bottom" id="nRL-Dx-ctd"/>
@@ -81,7 +81,7 @@
                                             </label>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder=" john.smith@gmail.com" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="Mdi-93-xub">
                                                 <rect key="frame" x="55" y="0.0" width="280" height="40"/>
-                                                <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="Tty-dg-8rp"/>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="Zcf-br-jgh"/>
