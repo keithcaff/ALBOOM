@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0700"
+   LastUpgradeVersion = "0930"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -13,11 +13,11 @@
             buildForProfiling = "YES"
             buildForArchiving = "YES">
             <BuildableReference
-               BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '7D505932284C7172E62B61B1590FC7A8'
-               BlueprintName = 'GoogleAPIClient'
-               ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'GoogleAPIClient.framework'>
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "D1A5CF89B974E970D3A71F3D763E3A88"
+               BlueprintName = "GoogleAPIClient"
+               ReferencedContainer = "container:Pods.xcodeproj"
+               BuildableName = "GoogleAPIClient.framework">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

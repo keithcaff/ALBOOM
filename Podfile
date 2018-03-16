@@ -2,7 +2,7 @@
 #platform :ios, '9.0'
 use_frameworks!
 
-target 'EventsApp' do
+target 'ALBOOM' do
 	pod 'GoogleAPIClient'  	
  	pod 'GoogleAPIClient/Drive'
  	pod 'Google/SignIn'

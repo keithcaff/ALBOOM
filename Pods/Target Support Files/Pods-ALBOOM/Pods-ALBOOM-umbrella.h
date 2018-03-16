@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double Pods_EventsAppVersionNumber;
-FOUNDATION_EXPORT const unsigned char Pods_EventsAppVersionString[];
+FOUNDATION_EXPORT double Pods_ALBOOMVersionNumber;
+FOUNDATION_EXPORT const unsigned char Pods_ALBOOMVersionString[];
 
