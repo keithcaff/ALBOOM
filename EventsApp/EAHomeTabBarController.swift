@@ -38,6 +38,9 @@ open class EAHomeTabBarController: UITabBarController, UITabBarControllerDelegat
             viewController = (viewController as! UINavigationController).viewControllers.first!
         }
         contentViewController = viewController
+        if let homeVC = contentViewController as? EAHomeViewController {
+            homeVC.scrollToTop()
+        }
     }
     
     open func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {

@@ -39,13 +39,10 @@
 		53B1FC3520224A5100D32168 /* EAAboutAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B1FC3420224A5100D32168 /* EAAboutAppViewController.swift */; };
 		53BA66CF1FFEA74300A0918D /* EAShareEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53BA66CE1FFEA74300A0918D /* EAShareEventViewController.swift */; };
 		53F47AB91CF75817005F0DE9 /* EAMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F47AB81CF75817005F0DE9 /* EAMenuViewController.swift */; };
-		5AFDB65ABEAB35E62007FD4D /* Pods_ALBOOM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 491EC984D29C696D0CC4C8E7 /* Pods_ALBOOM.framework */; };
-		D9717FB16FBE9EC3119AA508 /* Pods_EventsApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 122C79AF285017512BB37DB4 /* Pods_EventsApp.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		105580798EF3E99B8482C049 /* Pods-ALBOOM.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ALBOOM.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ALBOOM/Pods-ALBOOM.debug.xcconfig"; sourceTree = "<group>"; };
-		122C79AF285017512BB37DB4 /* Pods_EventsApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EventsApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4419E4681CF1DC8100FFCE0D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4419E46A1CF1E2CC00FFCE0D /* EALoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EALoginViewController.swift; sourceTree = "<group>"; };
 		4419E46C1CF26C8000FFCE0D /* EAHomeTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EAHomeTabBarController.swift; sourceTree = "<group>"; };
@@ -70,8 +67,6 @@
 		44CC1C351D454925007AFB89 /* EAViewEventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EAViewEventsViewController.swift; sourceTree = "<group>"; };
 		44F753511D5295370034BCC0 /* EAHomeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EAHomeTableViewCell.xib; sourceTree = "<group>"; };
 		44F753531D52971F0034BCC0 /* EAHomeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EAHomeTableViewCell.swift; sourceTree = "<group>"; };
-		491EC984D29C696D0CC4C8E7 /* Pods_ALBOOM.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ALBOOM.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		50CB0735F08D28AAA653068E /* Pods-EventsApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EventsApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EventsApp/Pods-EventsApp.debug.xcconfig"; sourceTree = "<group>"; };
 		5310B4E01F325A7B00466952 /* EAHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EAHomeViewController.swift; sourceTree = "<group>"; };
 		53160D901D3801DE0095906E /* EAEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EAEvent.swift; sourceTree = "<group>"; };
 		535D05431FB619680012A527 /* EAUploadProgressView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EAUploadProgressView.xib; sourceTree = "<group>"; };
@@ -84,7 +79,6 @@
 		53B1FC3420224A5100D32168 /* EAAboutAppViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EAAboutAppViewController.swift; sourceTree = "<group>"; };
 		53BA66CE1FFEA74300A0918D /* EAShareEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EAShareEventViewController.swift; sourceTree = "<group>"; };
 		53F47AB81CF75817005F0DE9 /* EAMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EAMenuViewController.swift; sourceTree = "<group>"; };
-		75CBB103CAD3158E12E5E0B9 /* Pods-EventsApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EventsApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-EventsApp/Pods-EventsApp.release.xcconfig"; sourceTree = "<group>"; };
 		A68966302B152C7FDFA6B29C /* Pods-ALBOOM.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ALBOOM.release.xcconfig"; path = "Pods/Target Support Files/Pods-ALBOOM/Pods-ALBOOM.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -93,8 +87,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D9717FB16FBE9EC3119AA508 /* Pods_EventsApp.framework in Frameworks */,
-				5AFDB65ABEAB35E62007FD4D /* Pods_ALBOOM.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -204,8 +196,6 @@
 		C0CA44F382F6C013448389CB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				122C79AF285017512BB37DB4 /* Pods_EventsApp.framework */,
-				491EC984D29C696D0CC4C8E7 /* Pods_ALBOOM.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -213,8 +203,6 @@
 		EAC59CD89DEB25F913F13FA3 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				50CB0735F08D28AAA653068E /* Pods-EventsApp.debug.xcconfig */,
-				75CBB103CAD3158E12E5E0B9 /* Pods-EventsApp.release.xcconfig */,
 				105580798EF3E99B8482C049 /* Pods-ALBOOM.debug.xcconfig */,
 				A68966302B152C7FDFA6B29C /* Pods-ALBOOM.release.xcconfig */,
 			);
@@ -256,8 +244,8 @@
 				TargetAttributes = {
 					44323FA81CE9EF730049F7FC = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = C68AKAULXV;
 						LastSwiftMigration = 0900;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -536,12 +524,15 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = EventsApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.keithcaffrey.eventapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "EventsApp/EventsApp-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
@@ -557,12 +548,15 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = EventsApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.keithcaffrey.eventapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "EventsApp/EventsApp-Bridging-Header.h";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;

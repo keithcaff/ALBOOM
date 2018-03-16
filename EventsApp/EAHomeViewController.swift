@@ -68,6 +68,9 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
         tableView.refreshControl = refreshControl
     }
     
+    func scrollToTop() {
+        self.tableView?.setContentOffset(CGPoint.zero, animated: true)
+    }
     
     @IBAction func homeActionButtonClicked(_ sender: Any) {
         revealViewController().revealToggle(animated: true)
