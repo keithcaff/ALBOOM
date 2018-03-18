@@ -244,6 +244,32 @@ open class EAHomeViewController: UIViewController, UITableViewDelegate, UITableV
                 self.share(bgImage, shareText:EAUIText.SHARE_SINGLE_IMAGE_TEXT, source:cell.shareButton)
             }
         }
+        
+        cell.tagAction = getTagActionForFile(file)
+    }
+    
+    private func getTagActionForFile(_ file:GTLDriveFile) -> (()->Void) {
+        let action:(()->Void) = { [unowned self] in
+            
+            if EADeviceDataManager.sharedInstance.getImageFromFile(fileId: file.identifier) != nil {
+                let alertController = UIAlertController(title: "Tag the photo!", message: "Add a tag", preferredStyle: .alert)
+                
+                alertController.addTextField(configurationHandler: { (textField) -> Void in
+                    textField.placeholder = "Tag1"
+                    textField.textAlignment = .center
+                })
+                alertController.addTextField(configurationHandler: { (textField) -> Void in
+                    textField.placeholder = "Tag2"
+                    textField.textAlignment = .center
+                })
+                
+                alertController.addAction(UIAlertAction(title: "Ok", style: .default, handler:nil))
+                alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler:nil))
+                
+                self.present(alertController, animated: true, completion: nil)
+            }
+        }
+        return action
     }
     
     func activityIndicatorVisible(_ visible:Bool, cell:EAHomeTableViewCell!) {

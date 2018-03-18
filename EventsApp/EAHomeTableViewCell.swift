@@ -11,8 +11,10 @@ import Foundation
 open class EAHomeTableViewCell:UITableViewCell {
     
     
+    @IBOutlet weak var tagButton: UIButton!
     @IBOutlet weak var shareButton: UIButton!
     var shareAction:(() -> Void)?
+    var tagAction:(() -> Void)?
     
     @IBOutlet weak var imageTitleLabel: UILabel!
     @IBOutlet weak var placeHolderView: UIView!
@@ -24,5 +26,10 @@ open class EAHomeTableViewCell:UITableViewCell {
         }
     }
     
+    @IBAction func tagButtonClicked(_ sender: Any) {
+        if let tagAction = self.tagAction {
+            tagAction()
+        }
+    }
     
 }

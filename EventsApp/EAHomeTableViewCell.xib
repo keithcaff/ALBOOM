@@ -60,7 +60,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="376" height="50"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="biD-g5-Qya">
-                                <rect key="frame" x="15" y="10" width="30" height="30"/>
+                                <rect key="frame" x="14" y="10" width="30" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="30" id="Evb-Tq-WNu"/>
                                     <constraint firstAttribute="height" constant="30" id="p9P-lv-C9S"/>
@@ -70,11 +70,25 @@
                                     <action selector="shareButtonClicked:" destination="0Ug-XX-Mq8" eventType="touchUpInside" id="7Tf-IA-GgU"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ugK-zB-pHE">
+                                <rect key="frame" x="59" y="12" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="INE-G5-zVL"/>
+                                    <constraint firstAttribute="height" constant="30" id="fW1-ZS-2qE"/>
+                                </constraints>
+                                <state key="normal" backgroundImage="Tag"/>
+                                <connections>
+                                    <action selector="tagButtonClicked:" destination="0Ug-XX-Mq8" eventType="touchUpInside" id="noK-HN-ff2"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="biD-g5-Qya" firstAttribute="leading" secondItem="XeI-2P-4gA" secondAttribute="leading" constant="15" id="Iku-K0-rqp"/>
+                            <constraint firstItem="ugK-zB-pHE" firstAttribute="leading" secondItem="biD-g5-Qya" secondAttribute="trailing" constant="15" id="ACG-aE-bF7"/>
+                            <constraint firstItem="biD-g5-Qya" firstAttribute="leading" secondItem="XeI-2P-4gA" secondAttribute="leading" constant="14" id="Iku-K0-rqp"/>
                             <constraint firstAttribute="height" constant="50" id="LOe-dM-Dbp"/>
+                            <constraint firstItem="ugK-zB-pHE" firstAttribute="top" secondItem="XeI-2P-4gA" secondAttribute="top" constant="12" id="TYK-Kz-fym"/>
+                            <constraint firstItem="ugK-zB-pHE" firstAttribute="centerY" secondItem="XeI-2P-4gA" secondAttribute="centerY" constant="2" id="Ylr-H3-mew"/>
                             <constraint firstAttribute="bottom" secondItem="biD-g5-Qya" secondAttribute="bottom" constant="10" id="dLM-M1-XCc"/>
                             <constraint firstItem="biD-g5-Qya" firstAttribute="top" secondItem="XeI-2P-4gA" secondAttribute="top" constant="10" id="o0U-8n-8Ca"/>
                         </constraints>
@@ -123,11 +137,13 @@
                 <outlet property="imageTitleLabel" destination="MDA-0S-Ujx" id="EMa-E7-zwH"/>
                 <outlet property="placeHolderView" destination="xKc-mj-vNV" id="5nH-ct-SAa"/>
                 <outlet property="shareButton" destination="biD-g5-Qya" id="CT6-Lh-29L"/>
+                <outlet property="tagButton" destination="ugK-zB-pHE" id="5C8-aU-XqR"/>
             </connections>
             <point key="canvasLocation" x="326" y="302"/>
         </tableViewCell>
     </objects>
     <resources>
         <image name="Share" width="119" height="119"/>
+        <image name="Tag" width="100" height="100"/>
     </resources>
 </document>
