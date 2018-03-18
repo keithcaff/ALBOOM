@@ -14,6 +14,7 @@ import Lightbox
 
 open class EAHomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, EAEventUpdateDelegate{
     
+    @IBOutlet weak var searchBarController: UISearchBar!
     @IBOutlet weak var homeActionButton: UIButton!
     @IBOutlet var tableView: UITableView!
     private var currentEventFolder:GTLDriveFile?
@@ -67,6 +68,7 @@ open class EAHomeViewController: UIViewController, UITableViewDelegate, UITableV
         refreshControl.attributedTitle = NSAttributedString(string: EAUIText.EAHOME_TABLE_VIEW_REFRESH_CONTROL_TITLE, attributes: attributes)
         // Add Refresh Control to Table View
         tableView.refreshControl = refreshControl
+        refreshControl.backgroundColor = EAUIColours.PRIMARY_BLUE
     }
     
     func scrollToTop() {
@@ -131,10 +133,12 @@ open class EAHomeViewController: UIViewController, UITableViewDelegate, UITableV
         }
         if(currentEventName.isEmpty || files.isEmpty) {
             self.tableView.isHidden = true
+            self.searchBarController.isHidden = true
         }
         else {
             self.tableView.reloadData()
             self.tableView.isHidden = false
+            self.searchBarController.isHidden = (files.count < 2)
         }
     }
     
@@ -282,7 +286,8 @@ open class EAHomeViewController: UIViewController, UITableViewDelegate, UITableV
     
     open func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
-        return self.tableView.bounds.height
+        let searchBarHeight:CGFloat = self.tableView.tableHeaderView?.frame.height ?? 0
+        return self.tableView.bounds.height - searchBarHeight
     }
     
     func addNewFilesToList(_ newfiles: inout [GTLDriveFile]) {
