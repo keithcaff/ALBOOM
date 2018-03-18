@@ -11,8 +11,10 @@ import Foundation
 open class EAHomeTableViewCell:UITableViewCell {
     
     
+    @IBOutlet weak var optionsButton: UIButton!
     @IBOutlet weak var tagButton: UIButton!
     @IBOutlet weak var shareButton: UIButton!
+    var optionsAction:(() -> Void)?
     var shareAction:(() -> Void)?
     var tagAction:(() -> Void)?
     
@@ -29,6 +31,13 @@ open class EAHomeTableViewCell:UITableViewCell {
     @IBAction func tagButtonClicked(_ sender: Any) {
         if let tagAction = self.tagAction {
             tagAction()
+        }
+    }
+    
+    
+    @IBAction func optionsButtonClicked(_ sender: Any) {
+        if let optionsAction = self.optionsAction {
+            optionsAction()
         }
     }
     

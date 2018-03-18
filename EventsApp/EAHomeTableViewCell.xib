@@ -81,16 +81,30 @@
                                     <action selector="tagButtonClicked:" destination="0Ug-XX-Mq8" eventType="touchUpInside" id="noK-HN-ff2"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dla-ul-7cc">
+                                <rect key="frame" x="332" y="10" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="cia-md-bIe"/>
+                                    <constraint firstAttribute="width" constant="30" id="fiv-TQ-icW"/>
+                                </constraints>
+                                <state key="normal" image="Options"/>
+                                <connections>
+                                    <action selector="optionsButtonClicked:" destination="0Ug-XX-Mq8" eventType="touchUpInside" id="M7X-47-yYE"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="ugK-zB-pHE" firstAttribute="leading" secondItem="biD-g5-Qya" secondAttribute="trailing" constant="15" id="ACG-aE-bF7"/>
                             <constraint firstItem="biD-g5-Qya" firstAttribute="leading" secondItem="XeI-2P-4gA" secondAttribute="leading" constant="14" id="Iku-K0-rqp"/>
                             <constraint firstAttribute="height" constant="50" id="LOe-dM-Dbp"/>
+                            <constraint firstItem="dla-ul-7cc" firstAttribute="top" secondItem="XeI-2P-4gA" secondAttribute="top" constant="10" id="R9t-XX-j9f"/>
                             <constraint firstItem="ugK-zB-pHE" firstAttribute="top" secondItem="XeI-2P-4gA" secondAttribute="top" constant="12" id="TYK-Kz-fym"/>
                             <constraint firstItem="ugK-zB-pHE" firstAttribute="centerY" secondItem="XeI-2P-4gA" secondAttribute="centerY" constant="2" id="Ylr-H3-mew"/>
+                            <constraint firstItem="dla-ul-7cc" firstAttribute="centerY" secondItem="XeI-2P-4gA" secondAttribute="centerY" id="bDl-mq-j8E"/>
                             <constraint firstAttribute="bottom" secondItem="biD-g5-Qya" secondAttribute="bottom" constant="10" id="dLM-M1-XCc"/>
                             <constraint firstItem="biD-g5-Qya" firstAttribute="top" secondItem="XeI-2P-4gA" secondAttribute="top" constant="10" id="o0U-8n-8Ca"/>
+                            <constraint firstAttribute="trailing" secondItem="dla-ul-7cc" secondAttribute="trailing" constant="14" id="sTb-zL-4NV"/>
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jQb-eH-Pm9">
@@ -135,6 +149,7 @@
                 <outlet property="activityIndicator" destination="Wly-Yq-4g6" id="3Yp-rl-DyI"/>
                 <outlet property="activityIndicatorContainerView" destination="8O1-QO-xkX" id="mcQ-58-Mts"/>
                 <outlet property="imageTitleLabel" destination="MDA-0S-Ujx" id="EMa-E7-zwH"/>
+                <outlet property="optionsButton" destination="dla-ul-7cc" id="hOn-SH-ZnL"/>
                 <outlet property="placeHolderView" destination="xKc-mj-vNV" id="5nH-ct-SAa"/>
                 <outlet property="shareButton" destination="biD-g5-Qya" id="CT6-Lh-29L"/>
                 <outlet property="tagButton" destination="ugK-zB-pHE" id="5C8-aU-XqR"/>
@@ -143,6 +158,7 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="Options" width="100" height="100"/>
         <image name="Share" width="119" height="119"/>
         <image name="Tag" width="100" height="100"/>
     </resources>
