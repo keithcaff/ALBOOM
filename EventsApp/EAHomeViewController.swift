@@ -33,6 +33,7 @@ open class EAHomeViewController: UIViewController, UITableViewDelegate, UITableV
         setupNotifications()
         setupSlider()
         setupTableView()
+        setupSearchController()
     }
     
     func setupNotifications() {
@@ -52,6 +53,10 @@ open class EAHomeViewController: UIViewController, UITableViewDelegate, UITableV
         view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
     }
     
+    func setupSearchController() {
+        //self.searchBarController.
+    }
+ 
     func setupTableView() {
         self.tableView.dataSource = self
         self.tableView.delegate = self
