@@ -9,4 +9,5 @@ target 'ALBOOM' do
  	pod 'GTMOAuth2'
 	pod ‘UIColor-Hex'
 	pod 'Gallery'
+	pod 'Lightbox'
 end

@@ -10,13 +10,14 @@ import UIKit
 import GoogleAPIClient
 import GTMOAuth2
 import UIColor_Hex
+import Lightbox
 
-open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableViewDataSource, EAEventUpdateDelegate{
+open class EAHomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, EAEventUpdateDelegate{
     
     @IBOutlet weak var homeActionButton: UIButton!
     @IBOutlet var tableView: UITableView!
     private var currentEventFolder:GTLDriveFile?
-    private var currentFilesList:GTLDriveFileList?
+    private var currentFilesList:GTLDriveFileList!
     private var downlaodsInProgress:[String] = [String]()
     private let homeCellReuseIdentifier:String = "eaHomeTableViewCell"
     private var rootFolder:String?
@@ -192,24 +193,44 @@ open class EAHomeViewController: UIViewController,UITableViewDelegate, UITableVi
         }
         return count;
     }
-
+    
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let file = getFileForIndexPath(indexPath) {
+            displayPreviewForFile(file)
+        }
+    }
+    
+    func displayPreviewForFile(_ file:GTLDriveFile) {
+        if let bgImage = EADeviceDataManager.sharedInstance.getImageFromFile(fileId: file.identifier) {
+            let images:[LightboxImage] = [LightboxImage(image:bgImage)]
+            let previewController = LightboxController(images:images)
+            previewController.dynamicBackground = true
+            self.present(previewController, animated:true)
+        }
+    }
+    
+    func getFileForIndexPath(_ indexPath:IndexPath) -> GTLDriveFile? {
+        var file:GTLDriveFile?
+        let currentFilesList:NSArray = self.currentFilesList.files as NSArray
+        file = currentFilesList.object(at: indexPath.row) as? GTLDriveFile
+        return file
+    }
+    
     open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell:EAHomeTableViewCell?
+        var cell:EAHomeTableViewCell
+        
         if (self.currentFilesList?.files == nil || self.currentFilesList!.files.count < 1){
             return EAHomeTableViewCell()
         }
-        cell = tableView.dequeueReusableCell(withIdentifier: homeCellReuseIdentifier, for: indexPath) as? EAHomeTableViewCell
-        let currentFilesList:NSArray? = self.currentFilesList!.files as NSArray?
         
-        if let files = currentFilesList, let cell = cell {
-            var file:GTLDriveFile?
-            file = (files.object(at: indexPath.row) as! GTLDriveFile)
-            if let file = file {
-                setupTableViewCell(cell, forFile: file, andIndexPath: indexPath)
-            }
+        cell = tableView.dequeueReusableCell(withIdentifier: homeCellReuseIdentifier, for: indexPath) as! EAHomeTableViewCell
+        
+        let currentFilesList:NSArray = self.currentFilesList.files as NSArray
+        if let file = currentFilesList.object(at: indexPath.row) as? GTLDriveFile {
+            setupTableViewCell(cell, forFile: file, andIndexPath: indexPath)
         }
         
-        return cell!
+        return cell
     }
     
     func setupTableViewCell(_ cell:EAHomeTableViewCell, forFile file:GTLDriveFile, andIndexPath indexPath:IndexPath) {
