@@ -74,7 +74,8 @@ class EAGoogleAPIManager {
         print("Getting all event folders...")
         let query:GTLQueryDrive = GTLQueryDrive.queryForFilesList()
         query.q = "mimeType='application/vnd.google-apps.folder' and ('root' in parents and name contains '\(EVENT_FOLDER_PREFIX)' and trashed = false) or (name contains '\(EVENT_FOLDER_PREFIX)' and sharedWithMe = true)"
-        query.fields = "nextPageToken, files(id, name)"
+//        query.fields = "nextPageToken, files(id, name, imageMediaMetadata, createdTime, appProperties)"
+        query.fields = "*"
         service.executeQuery(query, completionHandler:  { (ticket, folders , error) -> Void in
             if let error = error {
                 DispatchQueue.main.async {
@@ -100,7 +101,8 @@ class EAGoogleAPIManager {
         let parentId:String  = event.id!;
         let query:GTLQueryDrive  = GTLQueryDrive.queryForFilesList()
         query.q = "'\(parentId)' in parents and trashed = false"
-        query.fields = "nextPageToken, files(id, name)"
+//        query.fields = "nextPageToken, files(id, name, contentHints, imageMediaMetadata, createdTime, appProperties)"
+        query.fields = "*"
         service.executeQuery(query, completionHandler: {(ticket: GTLServiceTicket?, files:Any?, error:Error?) in
             if let error = error {
                 self.handleGoogleAPIError(error)
@@ -127,7 +129,8 @@ class EAGoogleAPIManager {
         let parentId:String  = event.id!;
         let query:GTLQueryDrive  = GTLQueryDrive.queryForFilesList()
         query.q = "'\(parentId)' in parents and trashed = false"
-        query.fields = "nextPageToken, files(id, name)"
+//        query.fields = "nextPageToken, files(id, name, contentHints, imageMediaMetadata, createdTime, appProperties)"
+        query.fields = "*"
         
         service.executeQuery(query, completionHandler: {(ticket: GTLServiceTicket?, files:Any?, error:Error?) in
             if let error = error {
@@ -170,6 +173,37 @@ class EAGoogleAPIManager {
                 }
             }
         }
+    }
+    
+    
+    func updateFile(_ file1:GTLDriveFile, withTags tags:[String] = ["Keith test"]) {
+        //https://developers.google.com/drive/v2/reference/files/update
+        //https://developers.google.com/drive/v2/reference/files/patch#examples
+        //https://developers.google.com/drive/v2/reference/files/patch
+        //https://developers.google.com/drive/v3/web/properties
+        //https://developers.google.com/drive/v3/web/search-parameters
+        let service:GTLService = gtlServiceDrive
+        setAuthorizerForService(GIDSignIn.sharedInstance(), user: GIDSignIn.sharedInstance().currentUser,service:service)
+        
+        
+        let file = GTLDriveFile()
+        let tagDict: NSMutableDictionary = ["tags":"Keith,Work"]
+        file.properties = GTLDriveFileProperties(json:tagDict)
+        file.properties.setAdditionalProperty("test, test", forName: "tags2")
+        
+        let query = GTLQueryDrive.queryForFilesUpdate(withObject: file, fileId:file1.identifier, uploadParameters: nil)
+        
+        service.executeQuery(query!, completionHandler:  { (ticket, updatedFile , error) -> Void in
+            if let error = error {
+                self.handleGoogleAPIError(error)
+            }
+            else {
+                if let updatedFile = updatedFile {
+                    print("success updating file idexable text: \(updatedFile)")
+                    //NotificationCenter.default.post(name: .NOTIFICATION_EVENT_FOLDER_CREATED, object: folder)
+                }
+            }
+        })
     }
     
     func uploadImageToEvent(_ imageUpload:EAImageUpload, event:EAEvent) {

@@ -14,6 +14,7 @@ import Lightbox
 
 open class EAHomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, EAEventUpdateDelegate{
     
+    @IBOutlet weak var tableViewContainer: UIStackView!
     @IBOutlet weak var searchBarController: UISearchBar!
     @IBOutlet weak var homeActionButton: UIButton!
     @IBOutlet var tableView: UITableView!
@@ -137,12 +138,12 @@ open class EAHomeViewController: UIViewController, UITableViewDelegate, UITableV
             files = currentFilesList
         }
         if(currentEventName.isEmpty || files.isEmpty) {
-            self.tableView.isHidden = true
+            self.tableViewContainer.isHidden = true
             self.searchBarController.isHidden = true
         }
         else {
             self.tableView.reloadData()
-            self.tableView.isHidden = false
+            self.tableViewContainer.isHidden = false
             self.searchBarController.isHidden = (files.count < 2)
         }
     }
@@ -206,6 +207,9 @@ open class EAHomeViewController: UIViewController, UITableViewDelegate, UITableV
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let file = getFileForIndexPath(indexPath) {
             displayPreviewForFile(file)
+            //todo:remove this test code
+            EAGoogleAPIManager.sharedInstance.updateFile(file)
+            
         }
     }
     
@@ -395,12 +399,14 @@ open class EAHomeViewController: UIViewController, UITableViewDelegate, UITableV
     
     @objc func eventFilesRetrieved(_ notifiaction : Notification) {
         print("event files retrieved selector")
-        revealViewController().revealToggle(animated: true)
-        if let fileList = notifiaction.object as? GTLDriveFileList  {
-            currentFilesList = fileList
-            self.tableView.reloadData()
+        DispatchQueue.main.async {
+            self.revealViewController().revealToggle(animated: true)
+            if let fileList = notifiaction.object as? GTLDriveFileList  {
+                self.currentFilesList = fileList
+                self.tableView.reloadData()
+            }
+            self.hideShowTableView()
         }
-        hideShowTableView()
     }
     
     func resetHomeViewController() {

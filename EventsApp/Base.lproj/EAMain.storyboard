@@ -26,19 +26,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hwP-C7-Zks">
                                 <rect key="frame" x="0.0" y="64" width="414" height="623"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jaX-nx-E5v">
-                                        <rect key="frame" x="87" y="141.5" width="240" height="220"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="240" id="eB1-uC-9s7"/>
-                                            <constraint firstAttribute="height" constant="220" id="fvs-43-xkO"/>
-                                        </constraints>
-                                        <state key="normal" backgroundImage="polaroid-camera"/>
-                                        <connections>
-                                            <action selector="homeActionButtonClicked:" destination="Rgy-Of-eka" eventType="touchUpInside" id="qT3-TT-aOy"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gqL-xq-qfN">
-                                        <rect key="frame" x="110.5" y="376" width="194" height="30"/>
+                                        <rect key="frame" x="110" y="375" width="194" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="105" id="4iq-gi-W1V"/>
                                             <constraint firstAttribute="height" constant="30" id="YZm-B6-8cy"/>
@@ -54,6 +43,17 @@
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="homeActionButtonClicked:" destination="Rgy-Of-eka" eventType="touchUpInside" id="V3R-P1-wc1"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jaX-nx-E5v">
+                                        <rect key="frame" x="87" y="141" width="240" height="220"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="240" id="eB1-uC-9s7"/>
+                                            <constraint firstAttribute="height" constant="220" id="fvs-43-xkO"/>
+                                        </constraints>
+                                        <state key="normal" backgroundImage="polaroid-camera"/>
+                                        <connections>
+                                            <action selector="homeActionButtonClicked:" destination="Rgy-Of-eka" eventType="touchUpInside" id="qT3-TT-aOy"/>
                                         </connections>
                                     </button>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="fCp-7k-ZV1">
@@ -111,6 +111,7 @@
                         <outlet property="menuButton" destination="8RJ-gf-3dH" id="Ly9-01-Bwp"/>
                         <outlet property="searchBarController" destination="HKP-gn-c8c" id="saP-y8-ZVT"/>
                         <outlet property="tableView" destination="uMa-rc-I3n" id="Nse-zB-me8"/>
+                        <outlet property="tableViewContainer" destination="fCp-7k-ZV1" id="h2Q-Aq-6YA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UAJ-0n-cOu" userLabel="First Responder" sceneMemberID="firstResponder"/>
