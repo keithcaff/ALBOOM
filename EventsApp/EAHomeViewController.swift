@@ -12,7 +12,28 @@ import GTMOAuth2
 import UIColor_Hex
 import Lightbox
 
-open class EAHomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, EAEventUpdateDelegate{
+open class EAHomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, EAEventUpdateDelegate, UIPopoverPresentationControllerDelegate {
+    
+    
+    public func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        return UIModalPresentationStyle.none
+    }
+
+    
+//    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
+//        return UIModalPresentationStyle.none
+//    }
+//
+//    public func presentationController(_ controller: UIPresentationController, viewControllerForAdaptivePresentationStyle style: UIModalPresentationStyle) -> UIViewController? {
+//        let navigationController = UINavigationController(rootViewController: controller.presentedViewController)
+//        let btnDone = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(EAHomeViewController.dismiss as (EAHomeViewController) -> () -> ()))
+//        navigationController.topViewController?.navigationItem.rightBarButtonItem = btnDone
+//        return navigationController
+//    }
+    
+//    @objc func dismiss() {
+//        self.dismissViewControllerAnimated(true, completion: nil)
+//    }
     
     @IBOutlet weak var tableViewContainer: UIStackView!
     @IBOutlet weak var searchBarController: UISearchBar!
@@ -257,8 +278,36 @@ open class EAHomeViewController: UIViewController, UITableViewDelegate, UITableV
                 self.share(bgImage, shareText:EAUIText.SHARE_SINGLE_IMAGE_TEXT, source:cell.shareButton)
             }
         }
-        
+        cell.optionsAction = getOptionsActionForCell(cell)
         cell.tagAction = getTagActionForFile(file)
+    }
+    
+    private func getOptionsActionForCell(_ cell:EAHomeTableViewCell) -> ()->Void {
+        let action:(()->Void) = { [unowned self] in
+                print("KCTEST options action triggered")
+            let popoverContent = EAHomeTableViewCellPopover()
+            popoverContent.modalPresentationStyle = .popover
+            
+            if let popover = popoverContent.popoverPresentationController {
+
+                let viewForSource = cell.optionsButton
+                popover.sourceView = viewForSource
+
+                // the position of the popover where it's showed
+                popover.sourceRect = cell.optionsButton.bounds
+
+                // the size you want to display
+                popoverContent.preferredContentSize = CGSize(width: 60, height: 100)
+                popover.delegate = self
+            }
+//            let popover: UIPopoverPresentationController = popoverContent.popoverPresentationController!
+//            popover.delegate = self
+
+
+            self.present(popoverContent, animated: true, completion: nil)
+
+        }
+        return action
     }
     
     private func getTagActionForFile(_ file:GTLDriveFile) -> (()->Void) {

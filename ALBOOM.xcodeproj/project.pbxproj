@@ -25,6 +25,8 @@
 		44CC1C321D4533D0007AFB89 /* EAViewEventTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44CC1C311D4533D0007AFB89 /* EAViewEventTableViewCell.xib */; };
 		44CC1C341D45340F007AFB89 /* EAViewEventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CC1C331D45340F007AFB89 /* EAViewEventTableViewCell.swift */; };
 		44CC1C361D454925007AFB89 /* EAViewEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CC1C351D454925007AFB89 /* EAViewEventsViewController.swift */; };
+		44E5681620924F26008C410C /* EAHomeTableViewCellPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E5681520924F26008C410C /* EAHomeTableViewCellPopover.swift */; };
+		44E5681820924F57008C410C /* EAHomeTableViewCellPopover.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44E5681720924F57008C410C /* EAHomeTableViewCellPopover.xib */; };
 		44F753521D5295370034BCC0 /* EAHomeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44F753511D5295370034BCC0 /* EAHomeTableViewCell.xib */; };
 		44F753541D52971F0034BCC0 /* EAHomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F753531D52971F0034BCC0 /* EAHomeTableViewCell.swift */; };
 		5310B4E11F325A7B00466952 /* EAHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5310B4E01F325A7B00466952 /* EAHomeViewController.swift */; };
@@ -66,6 +68,8 @@
 		44CC1C311D4533D0007AFB89 /* EAViewEventTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EAViewEventTableViewCell.xib; sourceTree = "<group>"; };
 		44CC1C331D45340F007AFB89 /* EAViewEventTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EAViewEventTableViewCell.swift; sourceTree = "<group>"; };
 		44CC1C351D454925007AFB89 /* EAViewEventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EAViewEventsViewController.swift; sourceTree = "<group>"; };
+		44E5681520924F26008C410C /* EAHomeTableViewCellPopover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EAHomeTableViewCellPopover.swift; sourceTree = "<group>"; };
+		44E5681720924F57008C410C /* EAHomeTableViewCellPopover.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EAHomeTableViewCellPopover.xib; sourceTree = "<group>"; };
 		44F753511D5295370034BCC0 /* EAHomeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EAHomeTableViewCell.xib; sourceTree = "<group>"; };
 		44F753531D52971F0034BCC0 /* EAHomeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EAHomeTableViewCell.swift; sourceTree = "<group>"; };
 		5310B4E01F325A7B00466952 /* EAHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EAHomeViewController.swift; sourceTree = "<group>"; };
@@ -111,6 +115,7 @@
 				44F753531D52971F0034BCC0 /* EAHomeTableViewCell.swift */,
 				535D05431FB619680012A527 /* EAUploadProgressView.xib */,
 				535D05451FB625560012A527 /* EAUploadProgressView.swift */,
+				44E5681720924F57008C410C /* EAHomeTableViewCellPopover.xib */,
 			);
 			name = VIew;
 			sourceTree = "<group>";
@@ -139,6 +144,7 @@
 				538183051D773EC200393344 /* EAGalleryViewController.swift */,
 				53BA66CE1FFEA74300A0918D /* EAShareEventViewController.swift */,
 				53B1FC3420224A5100D32168 /* EAAboutAppViewController.swift */,
+				44E5681520924F26008C410C /* EAHomeTableViewCellPopover.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -280,6 +286,7 @@
 				4419E4691CF1DC8100FFCE0D /* GoogleService-Info.plist in Resources */,
 				535D05441FB619690012A527 /* EAUploadProgressView.xib in Resources */,
 				44CC1C321D4533D0007AFB89 /* EAViewEventTableViewCell.xib in Resources */,
+				44E5681820924F57008C410C /* EAHomeTableViewCellPopover.xib in Resources */,
 				44323FB41CE9EF730049F7FC /* Assets.xcassets in Resources */,
 				44CC1C301D45311D007AFB89 /* EAViewEvents.storyboard in Resources */,
 				44323FB21CE9EF730049F7FC /* EAMain.storyboard in Resources */,
@@ -378,6 +385,7 @@
 				5310B4E11F325A7B00466952 /* EAHomeViewController.swift in Sources */,
 				538D48181D41372700957BF0 /* EAGlobalConstants.swift in Sources */,
 				53BA66CF1FFEA74300A0918D /* EAShareEventViewController.swift in Sources */,
+				44E5681620924F26008C410C /* EAHomeTableViewCellPopover.swift in Sources */,
 				44CC1C341D45340F007AFB89 /* EAViewEventTableViewCell.swift in Sources */,
 				5370807A1F8BE78800FB218D /* EADeviceDataManager.swift in Sources */,
 				535D05461FB625560012A527 /* EAUploadProgressView.swift in Sources */,
