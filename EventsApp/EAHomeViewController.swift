@@ -320,8 +320,14 @@ open class EAHomeViewController: UIViewController, UITableViewDelegate, UITableV
                     textField.textAlignment = .center
                 })
                 
-                alertController.addAction(UIAlertAction(title: "Ok", style: .default, handler:self.finishAlert))
-                alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler:nil))
+                
+                let okAction:UIAlertAction = UIAlertAction(title: "Ok", style: .default) { (action) in
+                    print("OK tag button Pressed")
+                }
+                alertController.addAction(okAction)
+                
+                //public convenience init(title: String?, style: UIAlertActionStyle, handler: ((UIAlertAction) -> Swift.Void)? = nil)
+                    alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler:nil))
                 
                 self.present(alertController, animated: true, completion: nil)
             }
@@ -329,8 +335,9 @@ open class EAHomeViewController: UIViewController, UITableViewDelegate, UITableV
         return action
     }
     
-    func finishAlert(alert: UIAlertAction!)
+    func tagImageHandler(alert: UIAlertAction!)
     {
+        print("ok button handler!")
     }
     
     func activityIndicatorVisible(_ visible:Bool, cell:EAHomeTableViewCell!) {
