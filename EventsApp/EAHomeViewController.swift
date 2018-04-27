@@ -284,7 +284,6 @@ open class EAHomeViewController: UIViewController, UITableViewDelegate, UITableV
     
     private func getOptionsActionForCell(_ cell:EAHomeTableViewCell) -> ()->Void {
         let action:(()->Void) = { [unowned self] in
-                print("KCTEST options action triggered")
             let popoverContent = EAHomeTableViewCellPopover()
             popoverContent.modalPresentationStyle = .popover
             
@@ -297,13 +296,9 @@ open class EAHomeViewController: UIViewController, UITableViewDelegate, UITableV
                 popover.sourceRect = cell.optionsButton.bounds
 
                 // the size you want to display
-                popoverContent.preferredContentSize = CGSize(width: 60, height: 100)
+                popoverContent.preferredContentSize = CGSize(width: 140, height: 200)
                 popover.delegate = self
             }
-//            let popover: UIPopoverPresentationController = popoverContent.popoverPresentationController!
-//            popover.delegate = self
-
-
             self.present(popoverContent, animated: true, completion: nil)
 
         }
@@ -325,13 +320,17 @@ open class EAHomeViewController: UIViewController, UITableViewDelegate, UITableV
                     textField.textAlignment = .center
                 })
                 
-                alertController.addAction(UIAlertAction(title: "Ok", style: .default, handler:nil))
+                alertController.addAction(UIAlertAction(title: "Ok", style: .default, handler:self.finishAlert))
                 alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler:nil))
                 
                 self.present(alertController, animated: true, completion: nil)
             }
         }
         return action
+    }
+    
+    func finishAlert(alert: UIAlertAction!)
+    {
     }
     
     func activityIndicatorVisible(_ visible:Bool, cell:EAHomeTableViewCell!) {

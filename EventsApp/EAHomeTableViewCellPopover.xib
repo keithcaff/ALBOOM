@@ -12,33 +12,74 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EAHomeTableViewCellPopover" customModule="ALBOOM" customModuleProvider="target">
             <connections>
-                <outlet property="view" destination="iN0-l3-epB" id="9hh-Qr-dtN"/>
+                <outlet property="buttonOne" destination="TpX-fu-z1q" id="oVI-fz-s82"/>
+                <outlet property="buttonThree" destination="vHv-GI-qui" id="aPj-y9-Ucb"/>
+                <outlet property="buttonTwo" destination="TYo-ey-cDB" id="TEj-dS-Sb4"/>
+                <outlet property="view" destination="iN0-l3-epB" id="tdy-t9-dpu"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="EAHomeTableViewCellP">
-            <rect key="frame" x="0.0" y="0.0" width="80" height="100"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="EAHomeTableViewCellP" customModule="ALBOOM" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="216" height="90"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rc2-G8-HCv">
-                    <rect key="frame" x="0.0" y="8" width="80" height="92"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="xIE-tU-M0z">
+                    <rect key="frame" x="0.0" y="0.0" width="216" height="90"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TpX-fu-z1q">
+                            <rect key="frame" x="0.0" y="0.0" width="216" height="30"/>
+                            <color key="backgroundColor" red="0.57919406890000003" green="0.1280144453" blue="0.57268613580000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="WtR-NY-zbF"/>
+                            </constraints>
+                            <state key="normal" title="Button"/>
+                            <connections>
+                                <action selector="buttonClicked:" destination="-1" eventType="touchUpInside" id="bcg-eb-jK7"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TYo-ey-cDB">
+                            <rect key="frame" x="0.0" y="30" width="216" height="30"/>
+                            <color key="backgroundColor" red="1" green="0.2527923882" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="m2t-7P-0sc"/>
+                            </constraints>
+                            <state key="normal" title="Button"/>
+                            <connections>
+                                <action selector="buttonClicked:" destination="-1" eventType="touchUpInside" id="g24-bS-AG5"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vHv-GI-qui">
+                            <rect key="frame" x="0.0" y="60" width="216" height="30"/>
+                            <color key="backgroundColor" name="alternateSelectedControlColor" catalog="System" colorSpace="catalog"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="KmD-Hu-9U2"/>
+                            </constraints>
+                            <state key="normal" title="Button"/>
+                            <connections>
+                                <action selector="buttonClicked:" destination="-1" eventType="touchUpInside" id="jEr-vP-pF4"/>
+                            </connections>
+                        </button>
+                    </subviews>
                     <constraints>
-                        <constraint firstAttribute="height" constant="92" id="Ka4-QL-a19"/>
-                        <constraint firstAttribute="width" constant="80" id="cW1-dw-r7q"/>
+                        <constraint firstItem="TYo-ey-cDB" firstAttribute="height" secondItem="TpX-fu-z1q" secondAttribute="height" id="R1c-7z-T8x"/>
+                        <constraint firstItem="vHv-GI-qui" firstAttribute="height" secondItem="TpX-fu-z1q" secondAttribute="height" id="SZP-xr-xW9"/>
+                        <constraint firstAttribute="trailing" secondItem="TYo-ey-cDB" secondAttribute="trailing" id="W2I-CI-oDr"/>
+                        <constraint firstItem="vHv-GI-qui" firstAttribute="width" secondItem="TpX-fu-z1q" secondAttribute="width" id="ujS-4g-HJa"/>
+                        <constraint firstItem="TYo-ey-cDB" firstAttribute="leading" secondItem="xIE-tU-M0z" secondAttribute="leading" id="vu9-LI-LtL"/>
                     </constraints>
-                </view>
+                </stackView>
             </subviews>
             <color key="backgroundColor" red="0.98594826459999996" green="0.0" blue="0.026950567960000001" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstItem="Rc2-G8-HCv" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="8z5-7v-WhM"/>
-                <constraint firstItem="Rc2-G8-HCv" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="GtT-pY-SKp"/>
-                <constraint firstItem="Rc2-G8-HCv" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="8" id="Q5X-ra-s5j"/>
-                <constraint firstItem="Rc2-G8-HCv" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="QVw-Vt-6Jk"/>
+                <constraint firstItem="xIE-tU-M0z" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="DDH-cS-Zj7"/>
+                <constraint firstItem="TpX-fu-z1q" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Eas-nR-NJB"/>
+                <constraint firstItem="xIE-tU-M0z" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="IsD-36-5jU"/>
+                <constraint firstItem="xIE-tU-M0z" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="ZLL-jy-cmA"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="xIE-tU-M0z" secondAttribute="trailing" id="jXJ-uS-RKA"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <point key="canvasLocation" x="67" y="31"/>
+            <point key="canvasLocation" x="135" y="-6"/>
         </view>
     </objects>
 </document>
