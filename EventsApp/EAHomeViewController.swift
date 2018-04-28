@@ -322,7 +322,7 @@ open class EAHomeViewController: UIViewController, UITableViewDelegate, UITableV
                 
                 
                 let okAction:UIAlertAction = UIAlertAction(title: "Ok", style: .default) { (action) in
-                    print("OK tag button Pressed")
+                    print("OK button Pressed")
                 }
                 alertController.addAction(okAction)
                 
@@ -434,11 +434,10 @@ open class EAHomeViewController: UIViewController, UITableViewDelegate, UITableV
                     //we already have some files. Check if we don't have any of the 'latest'
                     var filesToAdd = [GTLDriveFile]()
                     for file in fileList.files {
-                        var contains:Bool? = false
-                        contains = currentFilesList.files!.contains(where: { (f:Any) -> Bool in
+                        let fileExistsAlready:Bool? = currentFilesList.files?.contains(where: { (f:Any) -> Bool in
                                 return (f as! GTLDriveFile).identifier == (file as! GTLDriveFile).identifier
                         })
-                        if !contains! {
+                        if let fileExists = fileExistsAlready, !fileExists {
                             filesToAdd.append(file as! GTLDriveFile)
                         }
                     }

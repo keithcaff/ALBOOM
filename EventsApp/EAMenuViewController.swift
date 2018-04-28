@@ -91,34 +91,41 @@ class EAMenuViewController: UIViewController ,UITableViewDelegate, UITableViewDa
         
         EADeviceDataManager.sharedInstance.cleanupStoredData()
     }
-    
+
     @IBAction func unWindToMenu(_ sender: UIStoryboardSegue) {
         print("unWindToMenu")
         if (sender.identifier == SegueIdentifiers.CREATE_EVENT_UNWIND_SEGUE) {
-            let source: EACreateEventViewController
-            source = sender.source as! EACreateEventViewController
-            if let event = source.event {
-                EAGoogleAPIManager.sharedInstance.createEventFolder(event)
+            if let source = sender.source as? EACreateEventViewController {
+                if let event = source.event {
+                    EAGoogleAPIManager.sharedInstance.createEventFolder(event)
+                    updateContentViewControllerWithEvent(event)
+                }
             }
         }
         if (sender.identifier == SegueIdentifiers.EXIT_VIEW_EVENTS_UNWIND_SEGUE) {
             print("exitViewEventsUnwindSegue")
-            let source: EAViewEventsViewController
-            
             // Clear current files on home vc here..
-            let homeTabBarController:EAHomeTabBarController = (revealViewController().frontViewController as! EAHomeTabBarController)
-            var contentVC:UIViewController = homeTabBarController.viewControllers!.first!
-            if(contentVC.isKind(of: UINavigationController.self)) {
-                contentVC = (contentVC as! UINavigationController).viewControllers[0]
-            }
-            print("content vc is \(contentVC)")
-            source = sender.source as! EAViewEventsViewController
-            if let event = source.selectedEvent {
-                if let contentVC = contentVC as? EAEventUpdateDelegate {
-                    contentVC.didSwitchEvent(event)
-                }
+            if let source = sender.source as? EAViewEventsViewController, let event = source.selectedEvent {
+                updateContentViewControllerWithEvent(event)
                 EAGoogleAPIManager.sharedInstance.switchEventFolder(event)
             }
+        }
+    }
+    
+    func getContentViewController() -> UIViewController? {
+        var contentVC:UIViewController?
+        if let homeTabBarController = revealViewController().frontViewController as? EAHomeTabBarController {
+            contentVC = homeTabBarController.viewControllers?.first
+            if let navVC = contentVC as? UINavigationController {
+                contentVC = navVC.viewControllers.first
+            }
+        }
+        return contentVC
+    }
+    
+    func updateContentViewControllerWithEvent(_ event:EAEvent) {
+        if let contentVC:UIViewController = getContentViewController(), let updateDelegate = contentVC as? EAEventUpdateDelegate {
+            updateDelegate.didSwitchEvent(event)
         }
     }
     

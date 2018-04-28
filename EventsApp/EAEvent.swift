@@ -20,8 +20,13 @@ class EAEvent:NSObject{
     var displayName : String {
         var displayName = ""
         if let name = name, name.count >= 1 {
-            let startIndex = name.index(name.startIndex, offsetBy: EVENT_FOLDER_PREFIX.count)
-            displayName = String(name.suffix(from: startIndex))
+            if name.contains(EVENT_FOLDER_PREFIX) {
+                let startIndex = name.index(name.startIndex, offsetBy: EVENT_FOLDER_PREFIX.count)
+                displayName = String(name.suffix(from: startIndex))
+            }
+            else {
+                displayName = name //new events don't have prefix.
+            }
         }
         return displayName
     }
@@ -65,9 +70,14 @@ class EAEvent:NSObject{
         let defaults = UserDefaults.standard
         
         if let event = event {
-            name = event.name!
-            id = event.id!
+            if let eventName = event.name {
+                name = eventName
+            }
+            if let eventId = event.id {
+                id = eventId
+            }
         }
+        
         defaults.set(id, forKey: DEFAULT_CURRENT_EVENT_ID)
         defaults.set(name, forKey: DEFAULT_CURRENT_EVENT_NAME)
     }
