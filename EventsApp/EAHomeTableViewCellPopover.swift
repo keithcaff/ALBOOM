@@ -10,22 +10,31 @@ import Foundation
 
 class EAHomeTableViewCellPopover: UIViewController {
 
-    @IBOutlet weak var buttonOne: UIButton!
+    @IBOutlet weak var shareButton: UIButton!
     
     @IBOutlet weak var buttonTwo: UIButton!
     
-    @IBOutlet weak var buttonThree: UIButton!
-    //kctest
+    @IBOutlet weak var deleteButton: UIButton!
+    
+    var deleteAction:(() -> Void)?
+    var shareAction:(() -> Void)?
     
     
     override func viewDidLoad() {
-        buttonOne.titleLabel?.text = "1"
-        buttonTwo.titleLabel?.text = "2"
-        buttonThree.titleLabel?.text = "3"
+        shareButton.isHidden = false
+        buttonTwo.isHidden = true
+        deleteButton.isHidden = false
     }
     
     @IBAction func buttonClicked(_ sender: Any) {
-        print("a button was clicked!")
+        if let buttonClicked = sender as? UIButton {
+            if let deleteAction = deleteAction, buttonClicked == deleteButton  {
+                deleteAction()
+            }
+            if let shareAction = shareAction, buttonClicked == shareButton  {
+                shareAction()
+            }
+        }
+        self.dismiss(animated: true, completion: nil)
     }
-    
 }

@@ -278,15 +278,23 @@ open class EAHomeViewController: UIViewController, UITableViewDelegate, UITableV
                 self.share(bgImage, shareText:EAUIText.SHARE_SINGLE_IMAGE_TEXT, source:cell.shareButton)
             }
         }
-        cell.optionsAction = getOptionsActionForCell(cell)
+        cell.optionsAction = getOptionsActionForCell(cell, andFile: file)
         cell.tagAction = getTagActionForFile(file)
     }
     
-    private func getOptionsActionForCell(_ cell:EAHomeTableViewCell) -> ()->Void {
+    private func getOptionsActionForCell(_ cell:EAHomeTableViewCell, andFile file:GTLDriveFile) -> ()->Void {
         let action:(()->Void) = { [unowned self] in
             let popoverContent = EAHomeTableViewCellPopover()
             popoverContent.modalPresentationStyle = .popover
+            popoverContent.deleteAction = {
+                print("KCTEST delete the file")
+            }
             
+            popoverContent.shareAction = {
+                if let shareAction = cell.shareAction {
+                    shareAction()
+                }
+            }
             if let popover = popoverContent.popoverPresentationController {
 
                 let viewForSource = cell.optionsButton
@@ -296,7 +304,7 @@ open class EAHomeViewController: UIViewController, UITableViewDelegate, UITableV
                 popover.sourceRect = cell.optionsButton.bounds
 
                 // the size you want to display
-                popoverContent.preferredContentSize = CGSize(width: 140, height: 200)
+                popoverContent.preferredContentSize = CGSize(width: 140, height: popoverContent.view.frame.height)
                 popover.delegate = self
             }
             self.present(popoverContent, animated: true, completion: nil)
