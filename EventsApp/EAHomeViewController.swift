@@ -49,6 +49,7 @@ open class EAHomeViewController: UIViewController, UITableViewDelegate, UITableV
         NotificationCenter.default.addObserver(self, selector: #selector(eventFilesRetrieved), name: .NOTIFICATION_EVENT_FILES_RETRIEVED, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(latestEventFilesRetrieved), name: .NOTIFICATION_EVENT_LATEST_FILES_RETRIEVED, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(getlatestEventFilesFailed), name: .NOTIFICATION_EVENT_FAILED_TO_GET_LATEST_FILES, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(fileDeleted), name: .NOTIFICATION_EVENT_FILE_DELETED, object: nil)
     }
     
     func setupSlider() {
@@ -268,10 +269,14 @@ open class EAHomeViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     private func getOptionsActionForCell(_ cell:EAHomeTableViewCell, andFile file:GTLDriveFile) -> ()->Void {
-        let action:(()->Void) = { [unowned self] in
+        let action:(()->Void) = { [weak self] in
             let popoverContent = EAHomeTableViewCellPopover()
             popoverContent.modalPresentationStyle = .popover
-            popoverContent.deleteAction = {
+            popoverContent.deleteAction = { [weak self] in
+                if let se1f = self, let view = cell.placeHolderView.viewWithTag(se1f.UIImageViewTagId) {
+                    cell.placeHolderView.sendSubview(toBack: view)
+                }
+                self?.activityIndicatorVisible(true, cell:cell)
                 EAGoogleAPIManager.sharedInstance.deleteFile(file, fromEvent: EAEvent.getCurrentEvent())
             }
             
@@ -292,7 +297,7 @@ open class EAHomeViewController: UIViewController, UITableViewDelegate, UITableV
                 popoverContent.preferredContentSize = CGSize(width: 140, height: popoverContent.view.frame.height)
                 popover.delegate = self
             }
-            self.present(popoverContent, animated: true, completion: nil)
+            self?.present(popoverContent, animated: true, completion: nil)
 
         }
         return action
@@ -408,6 +413,15 @@ open class EAHomeViewController: UIViewController, UITableViewDelegate, UITableV
         }
     }
     
+    @objc func fileDeleted(_ notifiaction : Notification) {
+        print("received file deleted successfully notification")
+        
+    }
+    
+    @objc func fileDeleteFailed(_ notifiaction : Notification) {
+        print("received file delete failed notification")
+    }
+    
     @objc func getlatestEventFilesFailed(_ notifiaction : Notification) {
         refreshControl.endRefreshing()
         //TODO show alert to user
@@ -423,19 +437,25 @@ open class EAHomeViewController: UIViewController, UITableViewDelegate, UITableV
         }
         if let fileList = notifiaction.object as? GTLDriveFileList  {
             //add any new files to the existing files list
-            if let currentFilesList = self.currentFilesList  {
-                    //we already have some files. Check if we don't have any of the 'latest'
-                    var filesToAdd = [GTLDriveFile]()
-                    for file in fileList.files {
-                        let fileExistsAlready:Bool? = currentFilesList.files?.contains(where: { (f:Any) -> Bool in
-                                return (f as! GTLDriveFile).identifier == (file as! GTLDriveFile).identifier
-                        })
-                        if let fileExists = fileExistsAlready, !fileExists {
-                            filesToAdd.append(file as! GTLDriveFile)
+            if let currentFilesList = self.currentFilesList, let currentFiles = currentFilesList.files, currentFiles.count > 0 {
+                //we already have some files. Check if we don't have any of the 'latest'
+                var filesToAdd = [GTLDriveFile]()
+                if let latestFiles = fileList.files, let latestDriveFiles = latestFiles as? [GTLDriveFile]  {
+                    for file in latestDriveFiles {
+                        var fileExistsAlready:Bool? = false
+                        if let driveFiles = currentFilesList.files as? [GTLDriveFile] {
+                            fileExistsAlready = driveFiles.contains { f in
+                                let result = f.identifier == file.identifier
+                                return result
+                            }
+                            if let fileExists = fileExistsAlready, !fileExists {
+                                filesToAdd.append(file)
+                            }
                         }
                     }
                     //call func to update tableview..
                     addNewFilesToList(&filesToAdd)
+                }
             }
             else {
                 self.currentFilesList = fileList
