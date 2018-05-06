@@ -338,6 +338,28 @@ class EAGoogleAPIManager {
     
     }
     
+    func deleteFile(_ file:GTLDriveFile, fromEvent event:EAEvent) {
+        let service:GTLService = gtlServiceDrive
+        setAuthorizerForService(GIDSignIn.sharedInstance(), user: GIDSignIn.sharedInstance().currentUser,service:service)
+        print("Deleting file")
+        let query:GTLQueryDrive  = GTLQueryDrive.queryForFilesDelete(withFileId: file.identifier)
+        service.executeQuery(query, completionHandler: {(ticket: GTLServiceTicket?, id:Any?, error:Error?) in
+            if let error = error {
+                self.handleGoogleAPIError(error)
+                NotificationCenter.default.post(name: .NOTIFICATION_EVENT_FILE_DELETE_FAILED, object: event)
+            }
+            else {
+                if let name = event.name {
+                    print("deleted \(file.description) file from \(name) event")
+                }
+                DispatchQueue.main.async{
+                    NotificationCenter.default.post(name: .NOTIFICATION_EVENT_FILE_DELETED, object: event)
+                }
+            }
+        })
+    }
+    
+    
     func deleteEvent(_ event:EAEvent) {
         let service:GTLService = gtlServiceDrive
         setAuthorizerForService(GIDSignIn.sharedInstance(), user: GIDSignIn.sharedInstance().currentUser,service:service)

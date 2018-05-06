@@ -19,22 +19,6 @@ open class EAHomeViewController: UIViewController, UITableViewDelegate, UITableV
         return UIModalPresentationStyle.none
     }
 
-    
-//    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
-//        return UIModalPresentationStyle.none
-//    }
-//
-//    public func presentationController(_ controller: UIPresentationController, viewControllerForAdaptivePresentationStyle style: UIModalPresentationStyle) -> UIViewController? {
-//        let navigationController = UINavigationController(rootViewController: controller.presentedViewController)
-//        let btnDone = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(EAHomeViewController.dismiss as (EAHomeViewController) -> () -> ()))
-//        navigationController.topViewController?.navigationItem.rightBarButtonItem = btnDone
-//        return navigationController
-//    }
-    
-//    @objc func dismiss() {
-//        self.dismissViewControllerAnimated(true, completion: nil)
-//    }
-    
     @IBOutlet weak var tableViewContainer: UIStackView!
     @IBOutlet weak var searchBarController: UISearchBar!
     @IBOutlet weak var homeActionButton: UIButton!
@@ -160,12 +144,12 @@ open class EAHomeViewController: UIViewController, UITableViewDelegate, UITableV
         }
         if(currentEventName.isEmpty || files.isEmpty) {
             self.tableViewContainer.isHidden = true
-            self.searchBarController.isHidden = true
+            //self.searchBarController.isHidden = true //TODO:add back in when allowing tag functionality
         }
         else {
             self.tableView.reloadData()
             self.tableViewContainer.isHidden = false
-            self.searchBarController.isHidden = (files.count < 2)
+            //self.searchBarController.isHidden = (files.count < 2) //TODO:add back in when allowing tag functionality
         }
     }
     
@@ -278,6 +262,7 @@ open class EAHomeViewController: UIViewController, UITableViewDelegate, UITableV
                 self.share(bgImage, shareText:EAUIText.SHARE_SINGLE_IMAGE_TEXT, source:cell.shareButton)
             }
         }
+        cell.tagButton.isHidden = true //TODO:tag functionality
         cell.optionsAction = getOptionsActionForCell(cell, andFile: file)
         cell.tagAction = getTagActionForFile(file)
     }
@@ -287,7 +272,7 @@ open class EAHomeViewController: UIViewController, UITableViewDelegate, UITableV
             let popoverContent = EAHomeTableViewCellPopover()
             popoverContent.modalPresentationStyle = .popover
             popoverContent.deleteAction = {
-                print("KCTEST delete the file")
+                EAGoogleAPIManager.sharedInstance.deleteFile(file, fromEvent: EAEvent.getCurrentEvent())
             }
             
             popoverContent.shareAction = {

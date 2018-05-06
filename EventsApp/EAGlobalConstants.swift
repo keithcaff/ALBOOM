@@ -18,6 +18,8 @@ let APP_URL_SCHEME = "alboom://"
 extension Notification.Name {
     static let NOTIFICATION_EVENT_FOLDER_CREATED = Notification.Name("notification.event.folder.created")
     static let NOTIFICATION_EVENT_FOLDER_DELETED = Notification.Name("notification.event.folder.deleted")
+    static let NOTIFICATION_EVENT_FILE_DELETED = Notification.Name("notification.event.file.deleted")
+    static let NOTIFICATION_EVENT_FILE_DELETE_FAILED = Notification.Name("notification.event.file.delete.falied")
     static let NOTIFICATION_EVENT_FOLDER_SHARED = Notification.Name("notification.event.folder.shared")
     static let NOTIFICATION_EVENT_SHARE_FAILED = Notification.Name("notification.event.share.failed")
     static let NOTIFICATION_EVENT_FOLDERS_RETRIEVED = Notification.Name("notification.event.folders.retrieved")
