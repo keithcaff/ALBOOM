@@ -26,6 +26,7 @@ open class EAHomeViewController: UIViewController, UITableViewDelegate, UITableV
     private var currentEventFolder:GTLDriveFile?
     private var currentFilesList:GTLDriveFileList!
     private var downlaodsInProgress:[String] = [String]()
+    private var deletesInProgress:[String] = [String]()
     private let homeCellReuseIdentifier:String = "eaHomeTableViewCell"
     private var rootFolder:String?
     private let UIImageViewTagId = 303
@@ -266,6 +267,9 @@ open class EAHomeViewController: UIViewController, UITableViewDelegate, UITableV
         cell.tagButton.isHidden = true //TODO:tag functionality
         cell.optionsAction = getOptionsActionForCell(cell, andFile: file)
         cell.tagAction = getTagActionForFile(file)
+        if deletesInProgress.contains(file.identifier) {
+            self.activityIndicatorVisible(true, cell: cell)
+        }
     }
     
     private func getOptionsActionForCell(_ cell:EAHomeTableViewCell, andFile file:GTLDriveFile) -> ()->Void {
@@ -273,11 +277,12 @@ open class EAHomeViewController: UIViewController, UITableViewDelegate, UITableV
             let popoverContent = EAHomeTableViewCellPopover()
             popoverContent.modalPresentationStyle = .popover
             popoverContent.deleteAction = { [weak self] in
-                if let se1f = self, let view = cell.placeHolderView.viewWithTag(se1f.UIImageViewTagId) {
-                    cell.placeHolderView.sendSubview(toBack: view)
-                }
                 self?.activityIndicatorVisible(true, cell:cell)
-                EAGoogleAPIManager.sharedInstance.deleteFile(file, fromEvent: EAEvent.getCurrentEvent())
+                let deleteInProgress = self?.deletesInProgress.contains(file.identifier)
+                if let inProgress = deleteInProgress, !inProgress {
+                    self?.deletesInProgress.append(file.identifier)
+                    EAGoogleAPIManager.sharedInstance.deleteFile(file, fromEvent: EAEvent.getCurrentEvent())
+                }
             }
             
             popoverContent.shareAction = {
@@ -340,8 +345,10 @@ open class EAHomeViewController: UIViewController, UITableViewDelegate, UITableV
     
     func activityIndicatorVisible(_ visible:Bool, cell:EAHomeTableViewCell!) {
         cell.activityIndicatorContainerView.isHidden = !visible
-        
-        if(visible) {
+        if (visible) {
+            if let view = cell.placeHolderView.viewWithTag(self.UIImageViewTagId) {
+                cell.placeHolderView.sendSubview(toBack: view)
+            }
            cell.activityIndicator.startAnimating()
         }
     }
@@ -414,12 +421,48 @@ open class EAHomeViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     @objc func fileDeleted(_ notifiaction : Notification) {
-        print("received file deleted successfully notification")
-        
+        DispatchQueue.main.async {
+            if let file = notifiaction.object as? GTLDriveFile, let userInfo = notifiaction.userInfo as? [String:Any],
+                let event:EAEvent = userInfo["event"] as? EAEvent {
+                print("received file deleted successfully notification")
+                if EAEvent.getCurrentEventId() == event.id {
+                    var fileIndex:Int?
+                    if let currentFilesList = self.currentFilesList, let files = currentFilesList.files, let driveFiles = files as? [GTLDriveFile] {
+                        for (index, element) in driveFiles.enumerated() {
+                            if element.identifier == file.identifier {
+                                fileIndex = index
+                            }
+                        }
+                        if let fileIndex = fileIndex {
+                            if let deleteInProgressIndex = self.deletesInProgress.index(of: file.identifier) {
+                                self.deletesInProgress.remove(at: deleteInProgressIndex)
+                            }
+                            var newFiles:[GTLDriveFile] = []
+                            newFiles.append(contentsOf:driveFiles)
+                            newFiles.remove(at: fileIndex)
+                            self.currentFilesList.files = newFiles
+                            let index:IndexPath = IndexPath(row:fileIndex, section:0)
+                            self.tableView.deleteRows(at: [index], with: UITableViewRowAnimation.automatic)
+                            self.hideShowTableView()
+                            //TODO:delete the file from local storage too!!
+                        }
+                    }
+                }
+            }
+        }
     }
     
     @objc func fileDeleteFailed(_ notifiaction : Notification) {
         print("received file delete failed notification")
+        if let file = notifiaction.object as? GTLDriveFile, let userInfo = notifiaction.userInfo as? [String:Any],
+            let event:EAEvent = userInfo["event"] as? EAEvent {
+            if EAEvent.getCurrentEventId() == event.id {
+                if let deleteInProgressIndex = self.deletesInProgress.index(of: file.identifier) {
+                    self.deletesInProgress.remove(at: deleteInProgressIndex)
+                }
+            }
+
+        }
     }
     
     @objc func getlatestEventFilesFailed(_ notifiaction : Notification) {

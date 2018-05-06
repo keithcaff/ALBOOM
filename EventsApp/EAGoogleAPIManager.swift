@@ -344,16 +344,16 @@ class EAGoogleAPIManager {
         print("Deleting file")
         let query:GTLQueryDrive  = GTLQueryDrive.queryForFilesDelete(withFileId: file.identifier)
         service.executeQuery(query, completionHandler: {(ticket: GTLServiceTicket?, id:Any?, error:Error?) in
-            if let error = error {
-                self.handleGoogleAPIError(error)
-                NotificationCenter.default.post(name: .NOTIFICATION_EVENT_FILE_DELETE_FAILED, object: event)
-            }
-            else {
-                if let name = event.name {
-                    print("deleted \(file.description) file from \(name) event")
+            DispatchQueue.main.async {
+                if let error = error {
+                    self.handleGoogleAPIError(error)
+                    NotificationCenter.default.post(name: .NOTIFICATION_EVENT_FILE_DELETE_FAILED, object: event)
                 }
-                DispatchQueue.main.async{
-                    NotificationCenter.default.post(name: .NOTIFICATION_EVENT_FILE_DELETED, object: event)
+                else {
+                    if let name = event.name {
+                        print("deleted \(file.description) file from \(name) event")
+                    }
+                    NotificationCenter.default.post(name: .NOTIFICATION_EVENT_FILE_DELETED, object: file, userInfo:["event":event])
                 }
             }
         })
