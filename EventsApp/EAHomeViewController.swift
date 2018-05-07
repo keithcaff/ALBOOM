@@ -165,7 +165,6 @@ open class EAHomeViewController: UIViewController, UITableViewDelegate, UITableV
         
         bgImage = EADeviceDataManager.sharedInstance.getImageFromFile(fileId: file.identifier!)
         if let bgImage = bgImage {
-            activityIndicatorVisible(false, cell:cell)
             if let view = view.viewWithTag(UIImageViewTagId) {
                 imageViewBackground = view as? UIImageView
             }
@@ -264,12 +263,10 @@ open class EAHomeViewController: UIViewController, UITableViewDelegate, UITableV
                 self.share(bgImage, shareText:EAUIText.SHARE_SINGLE_IMAGE_TEXT, source:cell.shareButton)
             }
         }
+        setActivityIndicatorForFile(file, andCell: cell)
         cell.tagButton.isHidden = true //TODO:tag functionality
         cell.optionsAction = getOptionsActionForCell(cell, andFile: file)
         cell.tagAction = getTagActionForFile(file)
-        if deletesInProgress.contains(file.identifier) {
-            self.activityIndicatorVisible(true, cell: cell)
-        }
     }
     
     private func getOptionsActionForCell(_ cell:EAHomeTableViewCell, andFile file:GTLDriveFile) -> ()->Void {
@@ -450,6 +447,14 @@ open class EAHomeViewController: UIViewController, UITableViewDelegate, UITableV
                 }
             }
         }
+    }
+    
+    func setActivityIndicatorForFile(_ file:GTLDriveFile, andCell cell:EAHomeTableViewCell) {
+        let deleteInProgress = deletesInProgress.contains(file.identifier)
+        let backgroundView:UIView? = view.viewWithTag(UIImageViewTagId)
+        let hasBackgroundView:Bool = backgroundView != nil
+        let displayActivityIndicator = !hasBackgroundView || deleteInProgress
+        activityIndicatorVisible(displayActivityIndicator, cell: cell)
     }
     
     @objc func fileDeleteFailed(_ notifiaction : Notification) {
