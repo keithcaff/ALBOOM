@@ -98,6 +98,8 @@ struct EAUIText {
     static let ALERT_UNAUTHORISED_TITLE = "User unauthorised"
     static let ALERT_UNAUTHORISED_MESSAGE = "Please login to continue"
     static let ALERT_UPLOAD_COMPLETE_TITLE = "Upload complete"
+    static let ALERT_DELETE_FILE_FAILED_TITLE = "Failed to delete"
+    static let ALERT_DELETE_FILE_FAILED_MESSAGE = "Failed to delete file in Google Drive"
     static let ALERT_UPLOAD_COMPLETE_MESSAGE = "Media uploaded to Google Drive"
     static let EAHOME_TABLE_VIEW_REFRESH_CONTROL_TITLE = "Fetching latest files"
     static let EAVIEW_EVENTS_TABLE_VIEW_REFRESH_CONTROL_TITLE = "Fetching latest \(ALBUM_PLACEHOLDER) folders"

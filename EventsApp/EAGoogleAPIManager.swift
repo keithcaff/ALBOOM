@@ -347,7 +347,8 @@ class EAGoogleAPIManager {
             DispatchQueue.main.async {
                 if let error = error {
                     self.handleGoogleAPIError(error)
-                    NotificationCenter.default.post(name: .NOTIFICATION_EVENT_FILE_DELETE_FAILED, object: event)
+                    print("Delete of file failed \(file.description)")
+                    NotificationCenter.default.post(name: .NOTIFICATION_EVENT_FILE_DELETE_FAILED, object: file, userInfo:["event":event])
                 }
                 else {
                     if let name = event.name {

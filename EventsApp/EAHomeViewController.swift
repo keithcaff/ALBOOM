@@ -51,6 +51,7 @@ open class EAHomeViewController: UIViewController, UITableViewDelegate, UITableV
         NotificationCenter.default.addObserver(self, selector: #selector(latestEventFilesRetrieved), name: .NOTIFICATION_EVENT_LATEST_FILES_RETRIEVED, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(getlatestEventFilesFailed), name: .NOTIFICATION_EVENT_FAILED_TO_GET_LATEST_FILES, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(fileDeleted), name: .NOTIFICATION_EVENT_FILE_DELETED, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(fileDeleteFailed), name: .NOTIFICATION_EVENT_FILE_DELETE_FAILED, object: nil)
     }
     
     func setupSlider() {
@@ -83,6 +84,13 @@ open class EAHomeViewController: UIViewController, UITableViewDelegate, UITableV
         tableView.refreshControl = refreshControl
         refreshControl.backgroundColor = EAUIColours.PRIMARY_BLUE
     }
+    
+    func getDeletFailedAlert() -> UIAlertController {
+        let alert = UIAlertController(title: EAUIText.ALERT_DELETE_FILE_FAILED_TITLE, message: EAUIText.ALERT_DELETE_FILE_FAILED_MESSAGE, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler:nil))
+        return alert
+    }
+    
     
     func scrollToTop() {
         self.tableView?.setContentOffset(CGPoint.zero, animated: true)
@@ -369,19 +377,20 @@ open class EAHomeViewController: UIViewController, UITableViewDelegate, UITableV
     // MARK:notifaction responses/selectors
     @objc func eventFileDownloaded(_ notifiaction : Notification) {
         print("event file downloaded")
-        var fileId:String?
-        if let fileData = notifiaction.object as? Data  {
-            fileId = (notifiaction.userInfo!["fileId"] as! String)
-            if let index = downlaodsInProgress.index(of: fileId!) {
+        if let fileData = notifiaction.object as? Data, let fileId = notifiaction.userInfo!["fileId"] as? String  {
+            if let index = downlaodsInProgress.index(of: fileId) {
                 downlaodsInProgress.remove(at: index)
             }
-            EADeviceDataManager.sharedInstance.writeFileToRootFolder(fileName:fileId!, data:fileData)
+            EADeviceDataManager.sharedInstance.writeFileToRootFolder(fileName:fileId, data:fileData)
+            reloadRowForFile(fileId)
         }
-        
+    }
+    
+    func reloadRowForFile(_ fileId:String) {
         var fileIndex:Int?
         if let currentFilesList = currentFilesList {
             for (index, element) in currentFilesList.files.enumerated() {
-                if (element as! GTLDriveFile).identifier == fileId! {
+                if (element as! GTLDriveFile).identifier == fileId {
                     fileIndex = index
                 }
             }
@@ -458,15 +467,18 @@ open class EAHomeViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     @objc func fileDeleteFailed(_ notifiaction : Notification) {
-        print("received file delete failed notification")
-        if let file = notifiaction.object as? GTLDriveFile, let userInfo = notifiaction.userInfo as? [String:Any],
-            let event:EAEvent = userInfo["event"] as? EAEvent {
-            if EAEvent.getCurrentEventId() == event.id {
-                if let deleteInProgressIndex = self.deletesInProgress.index(of: file.identifier) {
-                    self.deletesInProgress.remove(at: deleteInProgressIndex)
+        DispatchQueue.main.async {
+            print("received file delete failed notification")
+            if let file = notifiaction.object as? GTLDriveFile, let userInfo = notifiaction.userInfo as? [String:Any],
+                let event:EAEvent = userInfo["event"] as? EAEvent {
+                if EAEvent.getCurrentEventId() == event.id {
+                    if let deleteInProgressIndex = self.deletesInProgress.index(of: file.identifier) {
+                        self.deletesInProgress.remove(at: deleteInProgressIndex)
+                        self.reloadRowForFile(file.identifier)
+                        self.present(self.getDeletFailedAlert(), animated: false)
+                    }
                 }
             }
-
         }
     }
     
@@ -527,6 +539,8 @@ open class EAHomeViewController: UIViewController, UITableViewDelegate, UITableV
     func resetHomeViewController() {
         self.currentFilesList = nil
         currentEventFolder = nil
+        deletesInProgress = []
+        downlaodsInProgress = []
         updateNavigationBarTitle()
         self.tableView.reloadData()
     }
