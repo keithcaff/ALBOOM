@@ -66,6 +66,19 @@ class EADeviceDataManager {
         return image
     }
     
+    
+    open func deleteFile(fileId:String) {
+        let file = getDocumentsDirectory().appendingPathComponent(DeviceFolderNames.EA_ROOT_DEVICE_FOLDER, isDirectory: true).appendingPathComponent(fileId, isDirectory:false).appendingPathExtension(DeviceFolderNames.EA_IMAGE_FILE_TYPE)
+        
+        if FileManager.default.fileExists(atPath:file.path) {
+            do {
+                try FileManager.default.removeItem(at: file)
+            }
+            catch  {
+                print("Failed to delete file. Reason: \(error) \n Path: \(file.path)")
+            }
+        }
+    }
     open func cleanupStoredData() {
         let rootDirectory = getRootDirectory()
         if FileManager.default.fileExists(atPath: rootDirectory.path) {

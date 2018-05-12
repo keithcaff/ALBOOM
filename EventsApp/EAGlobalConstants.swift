@@ -13,6 +13,7 @@ let EVENT_FOLDER_PREFIX:String = "ALBOOM_APP_"
 let APP_NAME = "ALBOOM"
 let ALBUM_PLACEHOLDER = "ALBOOM"
 let APP_URL_SCHEME = "alboom://"
+let MAX_LOCAL_FILES = 4
 
 //Notification Constants
 extension Notification.Name {

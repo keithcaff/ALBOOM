@@ -1,4 +1,4 @@
-//
+    //
 //  EAHomeViewController.swift
 //  EventsApp
 //
@@ -450,7 +450,7 @@ open class EAHomeViewController: UIViewController, UITableViewDelegate, UITableV
                             let index:IndexPath = IndexPath(row:fileIndex, section:0)
                             self.tableView.deleteRows(at: [index], with: UITableViewRowAnimation.automatic)
                             self.hideShowTableView()
-                            //TODO:delete the file from local storage too!!
+                            EADeviceDataManager.sharedInstance.deleteFile(fileId: file.identifier)
                         }
                     }
                 }
