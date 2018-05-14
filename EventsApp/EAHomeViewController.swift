@@ -203,7 +203,6 @@ open class EAHomeViewController: UIViewController, UITableViewDelegate, UITableV
                 imageViewBackground = view as? UIImageView
                 imageViewBackground?.image = nil
             }
-            self.activityIndicatorVisible(true, cell:cell)
         }
         return bgImage
     }
@@ -460,8 +459,12 @@ open class EAHomeViewController: UIViewController, UITableViewDelegate, UITableV
     func setActivityIndicatorForFile(_ file:GTLDriveFile, andCell cell:EAHomeTableViewCell) {
         let deleteInProgress = deletesInProgress.contains(file.identifier)
         let backgroundView:UIView? = view.viewWithTag(UIImageViewTagId)
-        let hasBackgroundView:Bool = backgroundView != nil
-        let displayActivityIndicator = !hasBackgroundView || deleteInProgress
+        var hasBackgroundImage = false
+        if let backgroundView = backgroundView as? UIImageView {
+           hasBackgroundImage = backgroundView.image != nil
+        }
+
+        let displayActivityIndicator = !hasBackgroundImage || deleteInProgress
         activityIndicatorVisible(displayActivityIndicator, cell: cell)
     }
     

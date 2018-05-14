@@ -78,7 +78,7 @@ class EADeviceDataManager {
                 print("Failed to delete file. Reason: \(error) \n Path: \(file.path)")
             }
         }
-        printSortedFiles()
+       // printSortedFiles()
     }
     
     func printSortedFiles() {
@@ -99,8 +99,8 @@ class EADeviceDataManager {
                     //if let date1 = values1.contentModificationDate, let date2 = values2.contentModificationDate {
                     return date1.compare(date2) == ComparisonResult.orderedDescending
                 }
-            } catch _{
-                
+            } catch {
+                print("\(error)")
             }
             return true
         })
