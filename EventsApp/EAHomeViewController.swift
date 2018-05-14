@@ -91,7 +91,6 @@ open class EAHomeViewController: UIViewController, UITableViewDelegate, UITableV
         return alert
     }
     
-    
     func scrollToTop() {
         self.tableView?.setContentOffset(CGPoint.zero, animated: true)
     }
