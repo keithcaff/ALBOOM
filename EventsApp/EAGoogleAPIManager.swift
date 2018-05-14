@@ -11,6 +11,7 @@ import GoogleAPIClient
 import GTMOAuth2
 
 class EAGoogleAPIManager {
+    let imagefileExtensions = "(fileExtension = 'jpeg' or fileExtension = 'jpg' or fileExtension = 'png' or fileExtension ='tiff' or fileExtension ='tif' or fileExtension ='gif')"
     static let sharedInstance = EAGoogleAPIManager()
     fileprivate init() {}
     fileprivate let gtlServiceDrive = GTLServiceDrive()
@@ -100,7 +101,7 @@ class EAGoogleAPIManager {
         print("Getting files inside event folder")
         let parentId:String  = event.id!;
         let query:GTLQueryDrive  = GTLQueryDrive.queryForFilesList()
-        query.q = "'\(parentId)' in parents and trashed = false"
+        query.q = "'\(parentId)' in parents and trashed = false and \(imagefileExtensions)"
 //        query.fields = "nextPageToken, files(id, name, contentHints, imageMediaMetadata, createdTime, appProperties)"
         query.fields = "*"
         service.executeQuery(query, completionHandler: {(ticket: GTLServiceTicket?, files:Any?, error:Error?) in
@@ -122,13 +123,22 @@ class EAGoogleAPIManager {
         })
     }
     
+//    func getImageFilesOnly(filesList:GTLDriveFileList) -> {
+//        if let files = filesList.files {
+//            let images = files.filter {
+//                file.fileExtension == "jpg"
+//            }
+//        }
+//    }
+    
     func getLatestFilesForEvent(_ event:EAEvent) {
         let service:GTLService = gtlServiceDrive
         setAuthorizerForService(GIDSignIn.sharedInstance(), user: GIDSignIn.sharedInstance().currentUser,service:service)
         print("Getting files inside event folder")
         let parentId:String  = event.id!;
         let query:GTLQueryDrive  = GTLQueryDrive.queryForFilesList()
-        query.q = "'\(parentId)' in parents and trashed = false"
+        query.q = "'\(parentId)' in parents and trashed = false and \(imagefileExtensions)"
+        
 //        query.fields = "nextPageToken, files(id, name, contentHints, imageMediaMetadata, createdTime, appProperties)"
         query.fields = "*"
         

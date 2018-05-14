@@ -78,7 +78,52 @@ class EADeviceDataManager {
                 print("Failed to delete file. Reason: \(error) \n Path: \(file.path)")
             }
         }
+        printSortedFiles()
     }
+    
+    func printSortedFiles() {
+        var fileNames = [String]()
+        let keys = [URLResourceKey.contentModificationDateKey]
+        
+        guard let fullPaths = try? FileManager.default.contentsOfDirectory(at: getRootDirectory(), includingPropertiesForKeys:keys, options: FileManager.DirectoryEnumerationOptions.skipsHiddenFiles) else {
+            print("No files in directory")
+            return
+        }
+        
+        let orderedFullPaths = fullPaths.sorted(by: { (url1: URL, url2: URL) -> Bool in
+            do {
+                let values1 = try url1.resourceValues(forKeys: [.creationDateKey, .contentModificationDateKey])
+                let values2 = try url2.resourceValues(forKeys: [.creationDateKey, .contentModificationDateKey])
+                
+                if let date1 = values1.creationDate, let date2 = values2.creationDate {
+                    //if let date1 = values1.contentModificationDate, let date2 = values2.contentModificationDate {
+                    return date1.compare(date2) == ComparisonResult.orderedDescending
+                }
+            } catch _{
+                
+            }
+            return true
+        })
+        
+        for fileName in orderedFullPaths {
+            do {
+                let values = try fileName.resourceValues(forKeys: [.creationDateKey, .contentModificationDateKey])
+                if let date = values.creationDate{
+                    //let date : Date? = values.contentModificationDate
+                    print(fileName.lastPathComponent, " ", date)
+                    let theFileName = fileName.lastPathComponent
+                    fileNames.append(theFileName)
+                }
+            }
+            catch _{
+                
+            }
+        }
+        fileNames.forEach { item in
+            print("file: \(item)" )
+        }
+    }
+    
     open func cleanupStoredData() {
         let rootDirectory = getRootDirectory()
         if FileManager.default.fileExists(atPath: rootDirectory.path) {
