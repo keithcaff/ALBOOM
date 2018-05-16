@@ -124,7 +124,7 @@ struct EAUIText {
     static let ABOUT_APP_DEVELOPED_BY_HEADING = "Developed By"
     static let ABOUT_APP_DEVELOPED_BY_BODY = "Keith Caffrey \nLinkedIn: http://www.linkedin.com/in/keithcaffrey/ \nGithub: https://github.com/keithcaff"
     static let ABOUT_APP_ICONS_HEADING = "App Icons"
-    static let ABOUT_APP_ICONS_BODY = "Navigation Icons used in this application were taken from https://icons8.com/ \nThe main app icon(polaroid-camera) was made by Webalys Freebies (http://www.streamlineicons.com/) and taken from www.flaticon.com."
+    static let ABOUT_APP_ICONS_BODY = "Navigation Icons used in this application were taken from https://icons8.com/ \nThe main app icon(polaroid-camera) was made by Webalys Freebies (http://www.streamlineicons.com/) and taken from www.flaticon.com. \nThe warning (triangle!) icon was sourced from IconFinder (https://www.iconfinder.com/yanlu) and made by Yanick Lung (http://yannicklung.com/)"
     static let ABOUT_APP_MAIN_HEADING = "About \(APP_NAME)"
     static let ABOUT_APP_MAIN_BODY = "\(APP_NAME) uses Google Drive™ API to create folders for photo albums. \(APP_NAME) allows you to create a Drive folder for an upcoming or past event. You can share this Drive folder with friends allowing them to add media content they have gathered."
     static let SHARE_EVENT_INFO_TEXT = "*We recommend sharing \(ALBUM_PLACEHOLDER)s with other Google users so they can add content via the \(APP_NAME) app."
@@ -134,7 +134,7 @@ struct EAUIText {
 
 struct EAUIColours {
     static let REFRESH_CONTROL_TINT_COLOUR = UIColor.white
-    static let PRIMARY_BLUE = UIColor(red: 0/255, green: 105.0/255, blue: 217/255, alpha: 1.0)//#0069d9
+/Users/keithcaffrey/Dev/ios/ALBOOM/EventsApp/EAImageUploadTableViewCell.xib    static let PRIMARY_BLUE = UIColor(red: 0/255, green: 105.0/255, blue: 217/255, alpha: 1.0)//#0069d9
     static let SECONDARY_BLUE = UIColor(red: 59/255, green: 153/255, blue: 252/255, alpha: 1.0)
 }
 
