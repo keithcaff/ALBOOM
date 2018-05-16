@@ -381,6 +381,9 @@ open class EAHomeViewController: UIViewController, UITableViewDelegate, UITableV
             if let index = downlaodsInProgress.index(of: fileId) {
                 downlaodsInProgress.remove(at: index)
             }
+            if let downloadsFailedIndex = failedFileDownloads.index(of: fileId) {
+                failedFileDownloads.remove(at: downloadsFailedIndex)
+            }
             EADeviceDataManager.sharedInstance.writeFileToRootFolder(fileName:fileId, data:fileData)
             reloadRowForFile(fileId)
         }
@@ -474,6 +477,7 @@ open class EAHomeViewController: UIViewController, UITableViewDelegate, UITableV
     
     func setActivityIndicatorForFile(_ file:GTLDriveFile, andCell cell:EAHomeTableViewCell) {
         let deleteInProgress = deletesInProgress.contains(file.identifier)
+        let downloadFailed = failedFileDownloads.contains(file.identifier)
         let backgroundView:UIView? = view.viewWithTag(UIImageViewTagId)
         var hasBackgroundImage = false
         if let backgroundView = backgroundView as? UIImageView {
