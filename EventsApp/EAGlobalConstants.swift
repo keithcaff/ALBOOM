@@ -100,6 +100,8 @@ struct EAUIText {
     static let ALERT_UNAUTHORISED_TITLE = "User unauthorised"
     static let ALERT_UNAUTHORISED_MESSAGE = "Please login to continue"
     static let ALERT_UPLOAD_COMPLETE_TITLE = "Upload complete"
+    static let ALERT_REFRESH_ALBOOM_FALED_TITLE = "Retrieve files failed"
+    static let ALERT_REFRESH_ALBOOM_FALED_MESSAGE = "Unable to retrieve lates files in \(ALBUM_PLACEHOLDER) folder"
     static let ALERT_DELETE_FILE_FAILED_TITLE = "Failed to delete"
     static let ALERT_DELETE_FILE_FAILED_MESSAGE = "Failed to delete file in Google Drive"
     static let ALERT_UPLOAD_COMPLETE_MESSAGE = "Media uploaded to Google Drive"

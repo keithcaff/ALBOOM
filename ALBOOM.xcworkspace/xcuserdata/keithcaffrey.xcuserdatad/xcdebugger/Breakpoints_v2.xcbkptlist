@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EventsApp/EAGoogleAPIManager.swift"
-            timestampString = "548027671.386577"
+            timestampString = "548184876.2328809"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "173"
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EventsApp/EAGoogleAPIManager.swift"
-            timestampString = "548027671.387412"
+            timestampString = "548184876.2334"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "181"
-            endingLineNumber = "181"
+            startingLineNumber = "182"
+            endingLineNumber = "182"
             landmarkName = "downloadFile(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -42,13 +42,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EventsApp/EAGoogleAPIManager.swift"
-            timestampString = "548027671.387751"
+            timestampString = "548184876.233796"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "395"
-            endingLineNumber = "395"
-            landmarkName = "EAGoogleAPIManager"
-            landmarkType = "3">
+            startingLineNumber = "396"
+            endingLineNumber = "396"
+            landmarkName = "handleGoogleAPIError(_:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -58,7 +58,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EventsApp/EAGoogleAPIManager.swift"
-            timestampString = "548027671.38815"
+            timestampString = "548184876.234125"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "164"
@@ -74,27 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EventsApp/EAHomeViewController.swift"
-            timestampString = "548066238.063257"
+            timestampString = "548184876.234428"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "150"
-            endingLineNumber = "150"
-            landmarkName = "updateNavigationBarTitle()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "EventsApp/EAHomeViewController.swift"
-            timestampString = "548066238.063795"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "155"
-            endingLineNumber = "155"
+            startingLineNumber = "159"
+            endingLineNumber = "159"
             landmarkName = "hideShowTableView()"
             landmarkType = "7">
          </BreakpointContent>
@@ -106,12 +90,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EventsApp/EAHomeViewController.swift"
-            timestampString = "548066238.0639631"
+            timestampString = "548184876.234883"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "543"
-            endingLineNumber = "543"
-            landmarkName = "eventFilesRetrieved(_:)"
+            startingLineNumber = "164"
+            endingLineNumber = "164"
+            landmarkName = "hideShowTableView()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EventsApp/EAHomeViewController.swift"
+            timestampString = "548184876.235207"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "577"
+            endingLineNumber = "577"
+            landmarkName = "resetHomeViewController()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -138,12 +138,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EventsApp/EAHomeViewController.swift"
-            timestampString = "548066238.064123"
+            timestampString = "548184876.235563"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "405"
-            endingLineNumber = "405"
-            landmarkName = "reloadRowForFile(_:)"
+            startingLineNumber = "433"
+            endingLineNumber = "433"
+            landmarkName = "newEventCreated(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -154,12 +154,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EventsApp/EAHomeViewController.swift"
-            timestampString = "548066238.064239"
+            timestampString = "548184876.2358969"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "115"
-            endingLineNumber = "115"
-            landmarkName = "share(_:shareText:source:)"
+            startingLineNumber = "124"
+            endingLineNumber = "124"
+            landmarkName = "didSwitchEvent(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -170,12 +170,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EventsApp/EAHomeViewController.swift"
-            timestampString = "548066238.06437"
+            timestampString = "548184876.236245"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "145"
-            endingLineNumber = "145"
-            landmarkName = "didReceiveMemoryWarning()"
+            startingLineNumber = "154"
+            endingLineNumber = "154"
+            landmarkName = "updateNavigationBarTitle()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -202,7 +202,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EventsApp/EAGoogleAPIManager.swift"
-            timestampString = "548027671.391336"
+            timestampString = "548184876.2366199"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "30"
@@ -218,7 +218,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EventsApp/EAGoogleAPIManager.swift"
-            timestampString = "548027671.391713"
+            timestampString = "548184876.236899"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "46"
@@ -250,11 +250,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EventsApp/EAHomeViewController.swift"
-            timestampString = "548066238.064698"
+            timestampString = "548184876.237162"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "505"
-            endingLineNumber = "505"
+            startingLineNumber = "539"
+            endingLineNumber = "539"
             landmarkName = "latestEventFilesRetrieved(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -324,12 +324,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EventsApp/EAHomeViewController.swift"
-            timestampString = "548066238.066143"
+            timestampString = "548184876.237554"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "279"
-            endingLineNumber = "279"
-            landmarkName = "setupTableViewCell(_:forFile:andIndexPath:)"
+            startingLineNumber = "288"
+            endingLineNumber = "288"
+            landmarkName = "getOptionsActionForCell(_:andFile:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -340,7 +340,71 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EventsApp/EAHomeViewController.swift"
-            timestampString = "548066238.066318"
+            timestampString = "548184876.2378711"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "302"
+            endingLineNumber = "302"
+            landmarkName = "getOptionsActionForCell(_:andFile:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EventsApp/EAHomeViewController.swift"
+            timestampString = "548184876.238183"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "303"
+            endingLineNumber = "303"
+            landmarkName = "getOptionsActionForCell(_:andFile:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EventsApp/EAGoogleAPIManager.swift"
+            timestampString = "548184876.238596"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "365"
+            endingLineNumber = "365"
+            landmarkName = "deleteFile(_:fromEvent:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EventsApp/EAGoogleAPIManager.swift"
+            timestampString = "548184876.238982"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "359"
+            endingLineNumber = "359"
+            landmarkName = "deleteFile(_:fromEvent:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EventsApp/EAHomeViewController.swift"
+            timestampString = "548184876.239414"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "293"
@@ -356,75 +420,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EventsApp/EAHomeViewController.swift"
-            timestampString = "548066238.066489"
+            timestampString = "548184876.239944"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "294"
-            endingLineNumber = "294"
-            landmarkName = "getOptionsActionForCell(_:andFile:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "EventsApp/EAGoogleAPIManager.swift"
-            timestampString = "548027671.394156"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "364"
-            endingLineNumber = "364"
-            landmarkName = "deleteFile(_:fromEvent:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "EventsApp/EAGoogleAPIManager.swift"
-            timestampString = "548027671.3945971"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "358"
-            endingLineNumber = "358"
-            landmarkName = "deleteFile(_:fromEvent:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "EventsApp/EAHomeViewController.swift"
-            timestampString = "548066238.066712"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "284"
-            endingLineNumber = "284"
-            landmarkName = "getOptionsActionForCell(_:andFile:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "EventsApp/EAHomeViewController.swift"
-            timestampString = "548066238.066843"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "538"
-            endingLineNumber = "538"
+            startingLineNumber = "572"
+            endingLineNumber = "572"
             landmarkName = "eventFilesRetrieved(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -436,11 +436,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EventsApp/EAHomeViewController.swift"
-            timestampString = "548066238.066949"
+            timestampString = "548184876.24088"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "520"
-            endingLineNumber = "520"
+            startingLineNumber = "554"
+            endingLineNumber = "554"
             landmarkName = "latestEventFilesRetrieved(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -452,11 +452,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EventsApp/EAHomeViewController.swift"
-            timestampString = "548066238.0670789"
+            timestampString = "548184876.2416511"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "527"
-            endingLineNumber = "527"
+            startingLineNumber = "561"
+            endingLineNumber = "561"
             landmarkName = "latestEventFilesRetrieved(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -468,12 +468,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EventsApp/EAHomeViewController.swift"
-            timestampString = "548066238.067248"
+            timestampString = "548184876.242566"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "367"
-            endingLineNumber = "367"
-            landmarkName = "tableView(_:heightForRowAt:)"
+            startingLineNumber = "376"
+            endingLineNumber = "376"
+            landmarkName = "addNewFilesToList(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -484,11 +484,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EventsApp/EAHomeViewController.swift"
-            timestampString = "548066238.067395"
+            timestampString = "548184876.2432081"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "506"
-            endingLineNumber = "506"
+            startingLineNumber = "540"
+            endingLineNumber = "540"
             landmarkName = "latestEventFilesRetrieved(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -500,11 +500,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EventsApp/EAHomeViewController.swift"
-            timestampString = "548066238.067515"
+            timestampString = "548184876.24422"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "518"
-            endingLineNumber = "518"
+            startingLineNumber = "552"
+            endingLineNumber = "552"
             landmarkName = "latestEventFilesRetrieved(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -516,11 +516,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EventsApp/EAHomeViewController.swift"
-            timestampString = "548066238.0676301"
+            timestampString = "548184876.2470191"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "503"
-            endingLineNumber = "503"
+            startingLineNumber = "537"
+            endingLineNumber = "537"
             landmarkName = "latestEventFilesRetrieved(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -532,11 +532,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EventsApp/EAHomeViewController.swift"
-            timestampString = "548066238.067762"
+            timestampString = "548184876.248866"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "511"
-            endingLineNumber = "511"
+            startingLineNumber = "545"
+            endingLineNumber = "545"
             landmarkName = "latestEventFilesRetrieved(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -548,11 +548,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EventsApp/EAHomeViewController.swift"
-            timestampString = "548066238.067878"
+            timestampString = "548184876.249476"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "514"
-            endingLineNumber = "514"
+            startingLineNumber = "548"
+            endingLineNumber = "548"
             landmarkName = "latestEventFilesRetrieved(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -564,11 +564,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EventsApp/EAHomeViewController.swift"
-            timestampString = "548066238.068002"
+            timestampString = "548184876.250043"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "450"
-            endingLineNumber = "450"
+            startingLineNumber = "478"
+            endingLineNumber = "478"
             landmarkName = "fileDeleted(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -580,27 +580,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EventsApp/EAHomeViewController.swift"
-            timestampString = "548066238.068114"
+            timestampString = "548184876.250567"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "430"
-            endingLineNumber = "430"
-            landmarkName = "EAHomeViewController"
-            landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "EventsApp/EAHomeViewController.swift"
-            timestampString = "548066238.068217"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "441"
-            endingLineNumber = "441"
+            startingLineNumber = "458"
+            endingLineNumber = "458"
             landmarkName = "fileDeleted(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -612,11 +596,43 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EventsApp/EAHomeViewController.swift"
-            timestampString = "548066238.068329"
+            timestampString = "548184876.251071"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "352"
-            endingLineNumber = "352"
+            startingLineNumber = "469"
+            endingLineNumber = "469"
+            landmarkName = "fileDeleted(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EventsApp/EAHomeViewController.swift"
+            timestampString = "548184876.251523"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "361"
+            endingLineNumber = "361"
+            landmarkName = "activityIndicatorVisible(_:cell:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EventsApp/EAHomeViewController.swift"
+            timestampString = "548184876.251938"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "562"
+            endingLineNumber = "562"
             landmarkName = "EAHomeViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -628,12 +644,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EventsApp/EAHomeViewController.swift"
-            timestampString = "548066238.068451"
+            timestampString = "548184876.2523611"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "528"
-            endingLineNumber = "528"
-            landmarkName = "latestEventFilesRetrieved(_:)"
+            startingLineNumber = "272"
+            endingLineNumber = "272"
+            landmarkName = "setupTableViewCell(_:forFile:andIndexPath:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -644,12 +660,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EventsApp/EAHomeViewController.swift"
-            timestampString = "548066238.068647"
+            timestampString = "548184876.2527961"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "263"
-            endingLineNumber = "263"
-            landmarkName = "tableView(_:cellForRowAt:)"
+            startingLineNumber = "273"
+            endingLineNumber = "273"
+            landmarkName = "setupTableViewCell(_:forFile:andIndexPath:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -660,27 +676,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EventsApp/EAHomeViewController.swift"
-            timestampString = "548066238.0687619"
+            timestampString = "548184876.253333"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "264"
-            endingLineNumber = "264"
-            landmarkName = "EAHomeViewController"
-            landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "EventsApp/EAHomeViewController.swift"
-            timestampString = "548066238.06888"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "265"
-            endingLineNumber = "265"
+            startingLineNumber = "274"
+            endingLineNumber = "274"
             landmarkName = "setupTableViewCell(_:forFile:andIndexPath:)"
             landmarkType = "7">
             <Locations>
@@ -724,12 +724,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EventsApp/EAHomeViewController.swift"
-            timestampString = "548066238.0690041"
+            timestampString = "548184876.25378"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "246"
-            endingLineNumber = "246"
-            landmarkName = "getFileForIndexPath(_:)"
+            startingLineNumber = "255"
+            endingLineNumber = "255"
+            landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -740,11 +740,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EventsApp/EAHomeViewController.swift"
-            timestampString = "548066238.0691251"
+            timestampString = "548184876.254216"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "250"
-            endingLineNumber = "250"
+            startingLineNumber = "259"
+            endingLineNumber = "259"
             landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -756,11 +756,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EventsApp/EAHomeViewController.swift"
-            timestampString = "548066238.069255"
+            timestampString = "548184876.254649"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "475"
-            endingLineNumber = "475"
+            startingLineNumber = "509"
+            endingLineNumber = "509"
             landmarkName = "fileDeleteFailed(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -772,11 +772,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EventsApp/EAHomeViewController.swift"
-            timestampString = "548066238.069374"
+            timestampString = "548184876.255092"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "480"
-            endingLineNumber = "480"
+            startingLineNumber = "514"
+            endingLineNumber = "514"
             landmarkName = "fileDeleteFailed(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -788,11 +788,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EventsApp/EAHomeViewController.swift"
-            timestampString = "548066238.069491"
+            timestampString = "548184876.255523"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "479"
-            endingLineNumber = "479"
+            startingLineNumber = "513"
+            endingLineNumber = "513"
             landmarkName = "fileDeleteFailed(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -804,27 +804,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EventsApp/EAHomeViewController.swift"
-            timestampString = "548066238.069768"
+            timestampString = "548184876.255957"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "390"
-            endingLineNumber = "390"
-            landmarkName = "EAHomeViewController"
-            landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "EventsApp/EAHomeViewController.swift"
-            timestampString = "548066238.069903"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "399"
-            endingLineNumber = "399"
+            startingLineNumber = "418"
+            endingLineNumber = "418"
             landmarkName = "reloadRowForFile(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -836,11 +820,27 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EventsApp/EAHomeViewController.swift"
-            timestampString = "548066238.0700409"
+            timestampString = "548184876.256385"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "451"
-            endingLineNumber = "451"
+            startingLineNumber = "427"
+            endingLineNumber = "427"
+            landmarkName = "reloadRowForFile(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EventsApp/EAHomeViewController.swift"
+            timestampString = "548184876.256812"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "479"
+            endingLineNumber = "479"
             landmarkName = "fileDeleted(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -852,11 +852,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EventsApp/EAHomeViewController.swift"
-            timestampString = "548066238.0701489"
+            timestampString = "548184876.2572351"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "452"
-            endingLineNumber = "452"
+            startingLineNumber = "480"
+            endingLineNumber = "480"
             landmarkName = "fileDeleted(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -868,7 +868,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EventsApp/EADeviceDataManager.swift"
-            timestampString = "548066238.070308"
+            timestampString = "548184876.25767"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "78"
@@ -884,7 +884,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EventsApp/EADeviceDataManager.swift"
-            timestampString = "548066238.07145"
+            timestampString = "548184876.257745"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "71"
@@ -900,7 +900,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EventsApp/EADeviceDataManager.swift"
-            timestampString = "548066238.071913"
+            timestampString = "548184876.257814"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "85"
@@ -916,7 +916,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EventsApp/EADeviceDataManager.swift"
-            timestampString = "548066238.072572"
+            timestampString = "548184876.257885"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "122"
@@ -932,7 +932,7 @@
                   moduleName = "ALBOOM"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/keithcaffrey/Dev/ios/ALBOOM/EventsApp/EADeviceDataManager.swift"
-                  timestampString = "548028606.552773"
+                  timestampString = "548184876.791501"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "122"
@@ -947,7 +947,7 @@
                   moduleName = "ALBOOM"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/keithcaffrey/Dev/ios/ALBOOM/EventsApp/EADeviceDataManager.swift"
-                  timestampString = "548028606.555341"
+                  timestampString = "548184876.7937191"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "123"
@@ -964,7 +964,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EventsApp/EADeviceDataManager.swift"
-            timestampString = "548066238.073042"
+            timestampString = "548184876.257957"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "93"
@@ -980,7 +980,7 @@
                   moduleName = "ALBOOM"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/keithcaffrey/Dev/ios/ALBOOM/EventsApp/EADeviceDataManager.swift"
-                  timestampString = "548028606.561398"
+                  timestampString = "548184876.80132"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "93"
@@ -995,7 +995,7 @@
                   moduleName = "ALBOOM"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/keithcaffrey/Dev/ios/ALBOOM/EventsApp/EADeviceDataManager.swift"
-                  timestampString = "548028606.56315"
+                  timestampString = "548184876.804373"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "95"
@@ -1012,7 +1012,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EventsApp/EADeviceDataManager.swift"
-            timestampString = "548066238.073557"
+            timestampString = "548184876.2580251"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "88"
@@ -1028,7 +1028,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EventsApp/EAGoogleAPIManager.swift"
-            timestampString = "548027671.409518"
+            timestampString = "548184876.258091"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "134"
@@ -1044,7 +1044,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EventsApp/EAGoogleAPIManager.swift"
-            timestampString = "548027671.409914"
+            timestampString = "548184876.258507"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "98"
@@ -1060,7 +1060,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EventsApp/EAGoogleAPIManager.swift"
-            timestampString = "548027671.410255"
+            timestampString = "548184876.25889"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "111"
@@ -1076,7 +1076,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EventsApp/EAGoogleAPIManager.swift"
-            timestampString = "548027671.4105721"
+            timestampString = "548184876.259266"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "115"
@@ -1092,7 +1092,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EventsApp/EAGoogleAPIManager.swift"
-            timestampString = "548027671.410887"
+            timestampString = "548184876.259643"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "119"
@@ -1140,27 +1140,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EventsApp/EAHomeViewController.swift"
-            timestampString = "548066238.074165"
+            timestampString = "548184876.260052"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "460"
-            endingLineNumber = "460"
-            landmarkName = "fileDeleted(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "EventsApp/EAHomeViewController.swift"
-            timestampString = "548066238.07435"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "468"
-            endingLineNumber = "468"
+            startingLineNumber = "488"
+            endingLineNumber = "488"
             landmarkName = "setActivityIndicatorForFile(_:andCell:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1172,59 +1156,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EventsApp/EAHomeViewController.swift"
-            timestampString = "548066238.074481"
+            timestampString = "548184876.2608401"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "467"
-            endingLineNumber = "467"
-            landmarkName = "setActivityIndicatorForFile(_:andCell:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ALBOOM.EAHomeViewController.setActivityIndicatorForFile(__ObjC.GTLDriveFile, andCell: ALBOOM.EAHomeTableViewCell) -&gt; ()"
-                  moduleName = "ALBOOM"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/keithcaffrey/Dev/ios/ALBOOM/EventsApp/EAHomeViewController.swift"
-                  timestampString = "548028606.592773"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "467"
-                  endingLineNumber = "467"
-                  offsetFromSymbolStart = "1773">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ALBOOM.EAHomeViewController.setActivityIndicatorForFile(__ObjC.GTLDriveFile, andCell: ALBOOM.EAHomeTableViewCell) -&gt; ()"
-                  moduleName = "ALBOOM"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/keithcaffrey/Dev/ios/ALBOOM/EventsApp/EAHomeViewController.swift"
-                  timestampString = "548028606.5949759"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "467"
-                  endingLineNumber = "467"
-                  offsetFromSymbolStart = "1868">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "EventsApp/EAHomeViewController.swift"
-            timestampString = "548066238.074614"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "464"
-            endingLineNumber = "464"
+            startingLineNumber = "493"
+            endingLineNumber = "493"
             landmarkName = "setActivityIndicatorForFile(_:andCell:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1236,11 +1172,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EventsApp/EAHomeViewController.swift"
-            timestampString = "548066238.074739"
+            timestampString = "548184876.261766"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "463"
-            endingLineNumber = "463"
+            startingLineNumber = "492"
+            endingLineNumber = "492"
             landmarkName = "setActivityIndicatorForFile(_:andCell:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1252,11 +1188,91 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EventsApp/EAHomeViewController.swift"
-            timestampString = "548183530.4174941"
+            timestampString = "548184876.2623661"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "393"
-            endingLineNumber = "393"
+            startingLineNumber = "401"
+            endingLineNumber = "401"
+            landmarkName = "fileDownloadFailed(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EventsApp/EAGoogleAPIManager.swift"
+            timestampString = "548184876.262922"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "174"
+            endingLineNumber = "174"
+            landmarkName = "downloadFile(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EventsApp/EAHomeViewController.swift"
+            timestampString = "548184876.263321"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "402"
+            endingLineNumber = "402"
+            landmarkName = "fileDownloadFailed(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EventsApp/EAHomeViewController.swift"
+            timestampString = "548184876.263749"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "489"
+            endingLineNumber = "489"
+            landmarkName = "setActivityIndicatorForFile(_:andCell:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EventsApp/EAHomeViewController.swift"
+            timestampString = "548184876.2642061"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "406"
+            endingLineNumber = "406"
+            landmarkName = "fileDownloadFailed(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EventsApp/EAHomeViewController.swift"
+            timestampString = "548184876.264653"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "407"
+            endingLineNumber = "407"
             landmarkName = "fileDownloadFailed(_:)"
             landmarkType = "7">
          </BreakpointContent>

@@ -87,8 +87,15 @@ open class EAHomeViewController: UIViewController, UITableViewDelegate, UITableV
         refreshControl.backgroundColor = EAUIColours.PRIMARY_BLUE
     }
     
+    //Mark:Alerts
     func getDeletFailedAlert() -> UIAlertController {
         let alert = UIAlertController(title: EAUIText.ALERT_DELETE_FILE_FAILED_TITLE, message: EAUIText.ALERT_DELETE_FILE_FAILED_MESSAGE, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler:nil))
+        return alert
+    }
+    
+    func getRefreshALBOOMFolderFailedAlert() -> UIAlertController {
+        let alert = UIAlertController(title: EAUIText.ALERT_REFRESH_ALBOOM_FALED_TITLE, message: EAUIText.ALERT_REFRESH_ALBOOM_FALED_MESSAGE, preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler:nil))
         return alert
     }
@@ -390,16 +397,18 @@ open class EAHomeViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     @objc func fileDownloadFailed(_ notifiaction : Notification) {
-        print("event file download failed")
-        if let file = notifiaction.object as? GTLDriveFile {
-            if let index = downlaodsInProgress.index(of: file.identifier) {
-                downlaodsInProgress.remove(at: index)
+        DispatchQueue.main.async {
+            print("event file download failed")
+            if let file = notifiaction.object as? GTLDriveFile {
+                if let index = self.downlaodsInProgress.index(of: file.identifier) {
+                    self.downlaodsInProgress.remove(at: index)
+                }
+                let faliedDownloadIdIndex = self.failedFileDownloads.index(of: file.identifier)
+                if faliedDownloadIdIndex == nil {
+                    self.downlaodsInProgress.append(file.identifier)
+                }
+                self.reloadRowForFile(file.identifier)
             }
-            let faliedDownloadIdIndex = failedFileDownloads.index(of: file.identifier)
-            if faliedDownloadIdIndex == nil {
-                downlaodsInProgress.append(file.identifier)
-            }
-            reloadRowForFile(file.identifier)
         }
     }
     
@@ -483,9 +492,14 @@ open class EAHomeViewController: UIViewController, UITableViewDelegate, UITableV
         if let backgroundView = backgroundView as? UIImageView {
            hasBackgroundImage = backgroundView.image != nil
         }
-
-        let displayActivityIndicator = !hasBackgroundImage || deleteInProgress
-        activityIndicatorVisible(displayActivityIndicator, cell: cell)
+        
+        if downloadFailed {
+            activityIndicatorVisible(false, cell: cell)
+        }
+        else {
+            let displayActivityIndicator = !hasBackgroundImage || deleteInProgress
+            activityIndicatorVisible(displayActivityIndicator, cell: cell)
+        }
     }
     
     @objc func fileDeleteFailed(_ notifiaction : Notification) {
@@ -506,7 +520,7 @@ open class EAHomeViewController: UIViewController, UITableViewDelegate, UITableV
     
     @objc func getlatestEventFilesFailed(_ notifiaction : Notification) {
         refreshControl.endRefreshing()
-        //TODO show alert to user
+        self.present(self.getRefreshALBOOMFolderFailedAlert(), animated: false)
     }
     
     @objc func latestEventFilesRetrieved(_ notifiaction : Notification) {
