@@ -204,7 +204,7 @@ open class EAHomeViewController: UIViewController, UITableViewDelegate, UITableV
             imageViewBackground?.image = bgImage
         }
         else {
-            if(!downlaodsInProgress.contains(file.identifier)) {
+            if(!downlaodsInProgress.contains(file.identifier) && !failedFileDownloads.contains(file.identifier)) {
                 downlaodsInProgress.append(file.identifier)
                 EAGoogleAPIManager.sharedInstance.downloadFile(file)
             }
@@ -284,38 +284,49 @@ open class EAHomeViewController: UIViewController, UITableViewDelegate, UITableV
         cell.tagAction = getTagActionForFile(file)
     }
     
+    
+    private func cellHasBackgroundImage(_ cell:EAHomeTableViewCell) -> Bool {
+        let backgroundView:UIView? = cell.viewWithTag(UIImageViewTagId)
+        var hasBackgroundImage:Bool = false
+        if let backgroundView = backgroundView as? UIImageView {
+            hasBackgroundImage = backgroundView.image != nil
+        }
+        return hasBackgroundImage
+    }
+    
     private func getOptionsActionForCell(_ cell:EAHomeTableViewCell, andFile file:GTLDriveFile) -> ()->Void {
         let action:(()->Void) = { [weak self] in
-            let popoverContent = EAHomeTableViewCellPopover()
-            popoverContent.modalPresentationStyle = .popover
-            popoverContent.deleteAction = { [weak self] in
-                self?.activityIndicatorVisible(true, cell:cell)
-                let deleteInProgress = self?.deletesInProgress.contains(file.identifier)
-                if let inProgress = deleteInProgress, !inProgress {
-                    self?.deletesInProgress.append(file.identifier)
-                    EAGoogleAPIManager.sharedInstance.deleteFile(file, fromEvent: EAEvent.getCurrentEvent())
+            if let se1f = self, se1f.cellHasBackgroundImage(cell) {
+                let popoverContent = EAHomeTableViewCellPopover()
+                popoverContent.modalPresentationStyle = .popover
+                popoverContent.deleteAction = { [weak self] in
+                    self?.activityIndicatorVisible(true, cell:cell)
+                    let deleteInProgress = self?.deletesInProgress.contains(file.identifier)
+                    if let inProgress = deleteInProgress, !inProgress {
+                        self?.deletesInProgress.append(file.identifier)
+                        EAGoogleAPIManager.sharedInstance.deleteFile(file, fromEvent: EAEvent.getCurrentEvent())
+                    }
                 }
-            }
-            
-            popoverContent.shareAction = {
-                if let shareAction = cell.shareAction {
-                    shareAction()
+                
+                popoverContent.shareAction = {
+                    if let shareAction = cell.shareAction {
+                        shareAction()
+                    }
                 }
+                if let popover = popoverContent.popoverPresentationController {
+
+                    let viewForSource = cell.optionsButton
+                    popover.sourceView = viewForSource
+
+                    // the position of the popover where it's showed
+                    popover.sourceRect = cell.optionsButton.bounds
+
+                    // the size you want to display
+                    popoverContent.preferredContentSize = CGSize(width: 140, height: popoverContent.view.frame.height)
+                    popover.delegate = self
+                }
+                self?.present(popoverContent, animated: true, completion: nil)
             }
-            if let popover = popoverContent.popoverPresentationController {
-
-                let viewForSource = cell.optionsButton
-                popover.sourceView = viewForSource
-
-                // the position of the popover where it's showed
-                popover.sourceRect = cell.optionsButton.bounds
-
-                // the size you want to display
-                popoverContent.preferredContentSize = CGSize(width: 140, height: popoverContent.view.frame.height)
-                popover.delegate = self
-            }
-            self?.present(popoverContent, animated: true, completion: nil)
-
         }
         return action
     }
@@ -487,11 +498,7 @@ open class EAHomeViewController: UIViewController, UITableViewDelegate, UITableV
     func setActivityIndicatorForFile(_ file:GTLDriveFile, andCell cell:EAHomeTableViewCell) {
         let deleteInProgress = deletesInProgress.contains(file.identifier)
         let downloadFailed = failedFileDownloads.contains(file.identifier)
-        let backgroundView:UIView? = view.viewWithTag(UIImageViewTagId)
-        var hasBackgroundImage = false
-        if let backgroundView = backgroundView as? UIImageView {
-           hasBackgroundImage = backgroundView.image != nil
-        }
+        let hasBackgroundImage = self.cellHasBackgroundImage(cell)
         
         if downloadFailed {
             activityIndicatorVisible(false, cell: cell)

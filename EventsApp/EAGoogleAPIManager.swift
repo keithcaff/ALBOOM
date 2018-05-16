@@ -1,4 +1,4 @@
-//
+    //
 //  EAGoogleAPIManager.swift
 //  EventsApp
 //
