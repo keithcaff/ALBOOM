@@ -172,6 +172,7 @@ class EAGoogleAPIManager {
         fetcher.beginFetch { (data:Data?, error:Error?) in
             if let error = error {
                 print("DOWNLOAD FAILED!!!!!!!!!!!!!!!")
+                NotificationCenter.default.post(name: .NOTIFICATION_EVENT_FILE_DOWNLOAD_FAILED, object: file)
                 self.handleGoogleAPIError(error)
             }
             else {

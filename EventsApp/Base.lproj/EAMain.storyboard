@@ -374,7 +374,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JMb-gB-Xq2" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="nA8-x9-x2G" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="64" y="204.19790104947529"/>
+            <point key="canvasLocation" x="62" y="210"/>
         </scene>
         <!--Upload(s) in progress-->
         <scene sceneID="wF6-QB-JuY">

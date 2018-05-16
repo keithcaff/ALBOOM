@@ -27,6 +27,7 @@ open class EAHomeViewController: UIViewController, UITableViewDelegate, UITableV
     private var currentFilesList:GTLDriveFileList!
     private var downlaodsInProgress:[String] = [String]()
     private var deletesInProgress:[String] = [String]()
+    private var failedFileDownloads:[String] = [String]()
     private let homeCellReuseIdentifier:String = "eaHomeTableViewCell"
     private var rootFolder:String?
     private let UIImageViewTagId = 303
@@ -46,6 +47,7 @@ open class EAHomeViewController: UIViewController, UITableViewDelegate, UITableV
     func setupNotifications() {
         NotificationCenter.default.addObserver(self, selector: #selector(newEventCreated), name: .NOTIFICATION_EVENT_FOLDER_CREATED, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(eventFileDownloaded), name: .NOTIFICATION_EVENT_FILE_DOWNLOADED, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(fileDownloadFailed), name: .NOTIFICATION_EVENT_FILE_DOWNLOAD_FAILED, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(eventDeleted), name: .NOTIFICATION_EVENT_FOLDER_DELETED, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(eventFilesRetrieved), name: .NOTIFICATION_EVENT_FILES_RETRIEVED, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(latestEventFilesRetrieved), name: .NOTIFICATION_EVENT_LATEST_FILES_RETRIEVED, object: nil)
@@ -381,6 +383,20 @@ open class EAHomeViewController: UIViewController, UITableViewDelegate, UITableV
             }
             EADeviceDataManager.sharedInstance.writeFileToRootFolder(fileName:fileId, data:fileData)
             reloadRowForFile(fileId)
+        }
+    }
+    
+    @objc func fileDownloadFailed(_ notifiaction : Notification) {
+        print("event file download failed")
+        if let file = notifiaction.object as? GTLDriveFile {
+            if let index = downlaodsInProgress.index(of: file.identifier) {
+                downlaodsInProgress.remove(at: index)
+            }
+            let faliedDownloadIdIndex = failedFileDownloads.index(of: file.identifier)
+            if faliedDownloadIdIndex == nil {
+                downlaodsInProgress.append(file.identifier)
+            }
+            reloadRowForFile(file.identifier)
         }
     }
     
