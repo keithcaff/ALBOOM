@@ -405,7 +405,7 @@ open class EAHomeViewController: UIViewController, UITableViewDelegate, UITableV
                 }
                 let faliedDownloadIdIndex = self.failedFileDownloads.index(of: file.identifier)
                 if faliedDownloadIdIndex == nil {
-                    self.downlaodsInProgress.append(file.identifier)
+                    self.failedFileDownloads.append(file.identifier)
                 }
                 self.reloadRowForFile(file.identifier)
             }
