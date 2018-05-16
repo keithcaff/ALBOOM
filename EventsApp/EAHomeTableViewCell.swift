@@ -17,7 +17,14 @@ open class EAHomeTableViewCell:UITableViewCell {
     var optionsAction:(() -> Void)?
     var shareAction:(() -> Void)?
     var tagAction:(() -> Void)?
+    var retryDownloadAction:(() -> Void)?
     
+    func setRetryDownloadOptionVisible(_ visible:Bool) {
+        self.retryDownloadContainer.isHidden = !visible
+    }
+    
+    @IBOutlet weak var retryDownloadButton: UIButton!
+    @IBOutlet weak var retryDownloadContainer: UIView!
     @IBOutlet weak var imageTitleLabel: UILabel!
     @IBOutlet weak var placeHolderView: UIView!
     @IBOutlet weak var activityIndicatorContainerView: UIView!
@@ -40,5 +47,12 @@ open class EAHomeTableViewCell:UITableViewCell {
             optionsAction()
         }
     }
+    
+    @IBAction func retryDownloadButtonClicked(_ sender: Any) {
+        if let retryDownloadAction = retryDownloadAction {
+            retryDownloadAction()
+        }
+    }
+    
     
 }

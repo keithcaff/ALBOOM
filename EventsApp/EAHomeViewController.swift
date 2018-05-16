@@ -96,7 +96,9 @@ open class EAHomeViewController: UIViewController, UITableViewDelegate, UITableV
     
     func getRefreshALBOOMFolderFailedAlert() -> UIAlertController {
         let alert = UIAlertController(title: EAUIText.ALERT_REFRESH_ALBOOM_FALED_TITLE, message: EAUIText.ALERT_REFRESH_ALBOOM_FALED_MESSAGE, preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler:nil))
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler:{ (action) in
+            self.refreshControl.endRefreshing()
+        }))
         return alert
     }
     
@@ -204,16 +206,23 @@ open class EAHomeViewController: UIViewController, UITableViewDelegate, UITableV
             imageViewBackground?.image = bgImage
         }
         else {
-            if(!downlaodsInProgress.contains(file.identifier) && !failedFileDownloads.contains(file.identifier)) {
-                downlaodsInProgress.append(file.identifier)
-                EAGoogleAPIManager.sharedInstance.downloadFile(file)
-            }
+            downloadFile(file)
             if let view = view.viewWithTag(UIImageViewTagId) {
                 imageViewBackground = view as? UIImageView
                 imageViewBackground?.image = nil
             }
         }
         return bgImage
+    }
+    
+    func downloadFile(_ file:GTLDriveFile, andReloadCell reloadCell:Bool = false) {
+        if(!downlaodsInProgress.contains(file.identifier) && !failedFileDownloads.contains(file.identifier)) {
+            downlaodsInProgress.append(file.identifier)
+            if reloadCell {
+                self.reloadRowForFile(file.identifier)
+            }
+            EAGoogleAPIManager.sharedInstance.downloadFile(file)
+        }
     }
     
     // MARK:Tableview delegates
@@ -273,10 +282,16 @@ open class EAHomeViewController: UIViewController, UITableViewDelegate, UITableV
         if (self.currentFilesList?.files.indices.contains(indexPath.row) != nil) {
             bgImage = addBackground(cell, file: (self.currentFilesList?.files[indexPath.row] as! GTLDriveFile))
         }
-        cell.shareAction = { [unowned self] in
+        cell.shareAction = { [weak self] in
             if let bgImage = bgImage {
-                self.share(bgImage, shareText:EAUIText.SHARE_SINGLE_IMAGE_TEXT, source:cell.shareButton)
+                self?.share(bgImage, shareText:EAUIText.SHARE_SINGLE_IMAGE_TEXT, source:cell.shareButton)
             }
+        }
+        cell.retryDownloadAction = { [weak self] in
+            if let downloadsFailedIndex = self?.failedFileDownloads.index(of: file.identifier) {
+                self?.failedFileDownloads.remove(at: downloadsFailedIndex)
+            }
+            self?.downloadFile(file, andReloadCell: true)
         }
         setActivityIndicatorForFile(file, andCell: cell)
         cell.tagButton.isHidden = true //TODO:tag functionality
@@ -507,6 +522,7 @@ open class EAHomeViewController: UIViewController, UITableViewDelegate, UITableV
             let displayActivityIndicator = !hasBackgroundImage || deleteInProgress
             activityIndicatorVisible(displayActivityIndicator, cell: cell)
         }
+        cell.setRetryDownloadOptionVisible(downloadFailed)
     }
     
     @objc func fileDeleteFailed(_ notifiaction : Notification) {
@@ -526,7 +542,6 @@ open class EAHomeViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     @objc func getlatestEventFilesFailed(_ notifiaction : Notification) {
-        refreshControl.endRefreshing()
         self.present(self.getRefreshALBOOMFolderFailedAlert(), animated: false)
     }
     

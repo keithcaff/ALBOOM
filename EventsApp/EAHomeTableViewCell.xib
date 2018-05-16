@@ -44,10 +44,46 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="5"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LU7-eM-JQA">
+                                <rect key="frame" x="92" y="159" width="192" height="130"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="error400" translatesAutoresizingMaskIntoConstraints="NO" id="yvr-aZ-vz1">
+                                        <rect key="frame" x="0.0" y="0.0" width="192" height="101"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="101" id="uy2-zt-h3M"/>
+                                        </constraints>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="top" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c04-Q3-tKG">
+                                        <rect key="frame" x="0.0" y="83" width="192" height="47"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                        <state key="normal" title="Retry Download">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="retryDownloadButtonClicked:" destination="0Ug-XX-Mq8" eventType="touchUpInside" id="m58-Da-ljZ"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="130" id="3fK-YK-J0O"/>
+                                    <constraint firstItem="c04-Q3-tKG" firstAttribute="centerX" secondItem="LU7-eM-JQA" secondAttribute="centerX" id="6GM-gV-uNs"/>
+                                    <constraint firstItem="yvr-aZ-vz1" firstAttribute="leading" secondItem="LU7-eM-JQA" secondAttribute="leading" id="H9s-3k-eBk"/>
+                                    <constraint firstAttribute="bottom" secondItem="c04-Q3-tKG" secondAttribute="bottom" id="KIj-Lm-cEW"/>
+                                    <constraint firstItem="yvr-aZ-vz1" firstAttribute="centerX" secondItem="LU7-eM-JQA" secondAttribute="centerX" id="L0G-pQ-cQV"/>
+                                    <constraint firstItem="yvr-aZ-vz1" firstAttribute="top" secondItem="LU7-eM-JQA" secondAttribute="top" id="MGl-WK-znv"/>
+                                    <constraint firstAttribute="width" constant="192" id="OBm-wt-mXI"/>
+                                    <constraint firstAttribute="trailing" secondItem="yvr-aZ-vz1" secondAttribute="trailing" id="lgb-Yr-dn5"/>
+                                    <constraint firstItem="c04-Q3-tKG" firstAttribute="leading" secondItem="LU7-eM-JQA" secondAttribute="leading" id="nFT-az-hXN"/>
+                                    <constraint firstAttribute="trailing" secondItem="c04-Q3-tKG" secondAttribute="trailing" id="oz6-E0-oq5"/>
+                                    <constraint firstItem="c04-Q3-tKG" firstAttribute="top" secondItem="yvr-aZ-vz1" secondAttribute="bottom" constant="-18" id="rgs-Dd-DOh"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" name="alternateSelectedControlColor" catalog="System" colorSpace="catalog"/>
                         <constraints>
                             <constraint firstItem="8O1-QO-xkX" firstAttribute="centerY" secondItem="xKc-mj-vNV" secondAttribute="centerY" constant="19" id="bHg-CK-qd9"/>
+                            <constraint firstItem="LU7-eM-JQA" firstAttribute="centerY" secondItem="xKc-mj-vNV" secondAttribute="centerY" id="cxq-tk-zb9"/>
+                            <constraint firstItem="LU7-eM-JQA" firstAttribute="centerX" secondItem="xKc-mj-vNV" secondAttribute="centerX" id="qYZ-r1-UYA"/>
                             <constraint firstItem="8O1-QO-xkX" firstAttribute="centerX" secondItem="xKc-mj-vNV" secondAttribute="centerX" id="uNZ-9L-KLT"/>
                         </constraints>
                     </view>
@@ -146,6 +182,8 @@
                 <outlet property="imageTitleLabel" destination="MDA-0S-Ujx" id="EMa-E7-zwH"/>
                 <outlet property="optionsButton" destination="dla-ul-7cc" id="hOn-SH-ZnL"/>
                 <outlet property="placeHolderView" destination="xKc-mj-vNV" id="5nH-ct-SAa"/>
+                <outlet property="retryDownloadButton" destination="c04-Q3-tKG" id="Ns4-QP-yTO"/>
+                <outlet property="retryDownloadContainer" destination="LU7-eM-JQA" id="Oz4-32-rcT"/>
                 <outlet property="shareButton" destination="biD-g5-Qya" id="CT6-Lh-29L"/>
                 <outlet property="tagButton" destination="ugK-zB-pHE" id="5C8-aU-XqR"/>
             </connections>
@@ -156,5 +194,6 @@
         <image name="Options" width="100" height="100"/>
         <image name="Share" width="119" height="119"/>
         <image name="Tag" width="100" height="100"/>
+        <image name="error400" width="512" height="512"/>
     </resources>
 </document>
