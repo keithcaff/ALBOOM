@@ -43,7 +43,7 @@
 			<string>BUNDLE_ID</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.keithcaffrey.eventapp</string>
+				<string>com.keithcaffrey.alboomapp</string>
 			</array>
 		</dict>
 		<dict>
