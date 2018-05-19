@@ -25,6 +25,16 @@
 		44CC1C321D4533D0007AFB89 /* EAViewEventTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44CC1C311D4533D0007AFB89 /* EAViewEventTableViewCell.xib */; };
 		44CC1C341D45340F007AFB89 /* EAViewEventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CC1C331D45340F007AFB89 /* EAViewEventTableViewCell.swift */; };
 		44CC1C361D454925007AFB89 /* EAViewEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CC1C351D454925007AFB89 /* EAViewEventsViewController.swift */; };
+		44DCA2DA20B0AA420047AC1A /* Cache.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44DCA2D920B0AA420047AC1A /* Cache.framework */; };
+		44DCA2DC20B0AA420047AC1A /* Gallery.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44DCA2DB20B0AA420047AC1A /* Gallery.framework */; };
+		44DCA2DE20B0AA420047AC1A /* GoogleAPIClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44DCA2DD20B0AA420047AC1A /* GoogleAPIClient.framework */; };
+		44DCA2E020B0AA420047AC1A /* GoogleToolboxForMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44DCA2DF20B0AA420047AC1A /* GoogleToolboxForMac.framework */; };
+		44DCA2E220B0AA420047AC1A /* GTMOAuth2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44DCA2E120B0AA420047AC1A /* GTMOAuth2.framework */; };
+		44DCA2E420B0AA420047AC1A /* GTMSessionFetcher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44DCA2E320B0AA420047AC1A /* GTMSessionFetcher.framework */; };
+		44DCA2E620B0AA420047AC1A /* Hue.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44DCA2E520B0AA420047AC1A /* Hue.framework */; };
+		44DCA2E820B0AA420047AC1A /* Imaginary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44DCA2E720B0AA420047AC1A /* Imaginary.framework */; };
+		44DCA2EA20B0AA420047AC1A /* Lightbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44DCA2E920B0AA420047AC1A /* Lightbox.framework */; };
+		44DCA2EE20B0AA420047AC1A /* UIColor_Hex.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44DCA2ED20B0AA420047AC1A /* UIColor_Hex.framework */; };
 		44E5681620924F26008C410C /* EAHomeTableViewCellPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E5681520924F26008C410C /* EAHomeTableViewCellPopover.swift */; };
 		44E5681820924F57008C410C /* EAHomeTableViewCellPopover.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44E5681720924F57008C410C /* EAHomeTableViewCellPopover.xib */; };
 		44F753521D5295370034BCC0 /* EAHomeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44F753511D5295370034BCC0 /* EAHomeTableViewCell.xib */; };
@@ -41,7 +51,6 @@
 		53B1FC3520224A5100D32168 /* EAAboutAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B1FC3420224A5100D32168 /* EAAboutAppViewController.swift */; };
 		53BA66CF1FFEA74300A0918D /* EAShareEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53BA66CE1FFEA74300A0918D /* EAShareEventViewController.swift */; };
 		53F47AB91CF75817005F0DE9 /* EAMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F47AB81CF75817005F0DE9 /* EAMenuViewController.swift */; };
-		D91A19E62D369C4DA456DF58 /* Pods_ALBOOM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEB8F7E2F360EBD2863BF664 /* Pods_ALBOOM.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +77,17 @@
 		44CC1C311D4533D0007AFB89 /* EAViewEventTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EAViewEventTableViewCell.xib; sourceTree = "<group>"; };
 		44CC1C331D45340F007AFB89 /* EAViewEventTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EAViewEventTableViewCell.swift; sourceTree = "<group>"; };
 		44CC1C351D454925007AFB89 /* EAViewEventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EAViewEventsViewController.swift; sourceTree = "<group>"; };
+		44DCA2D920B0AA420047AC1A /* Cache.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Cache.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		44DCA2DB20B0AA420047AC1A /* Gallery.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Gallery.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		44DCA2DD20B0AA420047AC1A /* GoogleAPIClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GoogleAPIClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		44DCA2DF20B0AA420047AC1A /* GoogleToolboxForMac.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GoogleToolboxForMac.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		44DCA2E120B0AA420047AC1A /* GTMOAuth2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GTMOAuth2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		44DCA2E320B0AA420047AC1A /* GTMSessionFetcher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GTMSessionFetcher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		44DCA2E520B0AA420047AC1A /* Hue.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Hue.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		44DCA2E720B0AA420047AC1A /* Imaginary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Imaginary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		44DCA2E920B0AA420047AC1A /* Lightbox.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Lightbox.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		44DCA2EB20B0AA420047AC1A /* Pods_ALBOOM.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_ALBOOM.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		44DCA2ED20B0AA420047AC1A /* UIColor_Hex.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = UIColor_Hex.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		44E5681520924F26008C410C /* EAHomeTableViewCellPopover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EAHomeTableViewCellPopover.swift; sourceTree = "<group>"; };
 		44E5681720924F57008C410C /* EAHomeTableViewCellPopover.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EAHomeTableViewCellPopover.xib; sourceTree = "<group>"; };
 		44F753511D5295370034BCC0 /* EAHomeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EAHomeTableViewCell.xib; sourceTree = "<group>"; };
@@ -93,7 +113,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D91A19E62D369C4DA456DF58 /* Pods_ALBOOM.framework in Frameworks */,
+				44DCA2DA20B0AA420047AC1A /* Cache.framework in Frameworks */,
+				44DCA2DC20B0AA420047AC1A /* Gallery.framework in Frameworks */,
+				44DCA2DE20B0AA420047AC1A /* GoogleAPIClient.framework in Frameworks */,
+				44DCA2E020B0AA420047AC1A /* GoogleToolboxForMac.framework in Frameworks */,
+				44DCA2E220B0AA420047AC1A /* GTMOAuth2.framework in Frameworks */,
+				44DCA2E420B0AA420047AC1A /* GTMSessionFetcher.framework in Frameworks */,
+				44DCA2E620B0AA420047AC1A /* Hue.framework in Frameworks */,
+				44DCA2E820B0AA420047AC1A /* Imaginary.framework in Frameworks */,
+				44DCA2EA20B0AA420047AC1A /* Lightbox.framework in Frameworks */,
+				44DCA2EE20B0AA420047AC1A /* UIColor_Hex.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -205,6 +234,17 @@
 		C0CA44F382F6C013448389CB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				44DCA2D920B0AA420047AC1A /* Cache.framework */,
+				44DCA2DB20B0AA420047AC1A /* Gallery.framework */,
+				44DCA2DD20B0AA420047AC1A /* GoogleAPIClient.framework */,
+				44DCA2DF20B0AA420047AC1A /* GoogleToolboxForMac.framework */,
+				44DCA2E120B0AA420047AC1A /* GTMOAuth2.framework */,
+				44DCA2E320B0AA420047AC1A /* GTMSessionFetcher.framework */,
+				44DCA2E520B0AA420047AC1A /* Hue.framework */,
+				44DCA2E720B0AA420047AC1A /* Imaginary.framework */,
+				44DCA2E920B0AA420047AC1A /* Lightbox.framework */,
+				44DCA2EB20B0AA420047AC1A /* Pods_ALBOOM.framework */,
+				44DCA2ED20B0AA420047AC1A /* UIColor_Hex.framework */,
 				BEB8F7E2F360EBD2863BF664 /* Pods_ALBOOM.framework */,
 			);
 			name = Frameworks;
@@ -254,8 +294,9 @@
 				TargetAttributes = {
 					44323FA81CE9EF730049F7FC = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = 8B7YLHTUEA;
 						LastSwiftMigration = 0900;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -460,7 +501,8 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Keith Caffrey (9674YQH58W)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Keith Caffrey (9674YQH58W)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -514,7 +556,8 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Keith Caffrey (9674YQH58W)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Keith Caffrey (9674YQH58W)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -544,8 +587,8 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8B7YLHTUEA;
 				INFOPLIST_FILE = EventsApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -568,8 +611,8 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8B7YLHTUEA;
 				INFOPLIST_FILE = EventsApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

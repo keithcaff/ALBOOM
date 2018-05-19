@@ -3,7 +3,7 @@ platform :ios, '11.0'
 use_frameworks!
 
 target 'ALBOOM' do
-	pod 'GoogleAPIClient'  	
+	pod 'GoogleAPIClient', '~> 1.0'  	
  	pod 'GoogleAPIClient/Drive'
  	pod 'Google/SignIn'
  	pod 'GTMOAuth2'
