@@ -140,16 +140,17 @@ class EAMenuViewController: UIViewController ,UITableViewDelegate, UITableViewDa
     //MARK: UITableViewDelegate delegate methods
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let menuOption:MenuOptions = MenuOptions(rawValue: indexPath.row)!
-        switch menuOption {
-            case .CreateEvent:
-                print("segue to create event")
-                self.performSegue(withIdentifier: SegueIdentifiers.CREATE_EVENT_SEGUE,sender:self)
-            case .ViewEvents:
-                self.performSegue(withIdentifier: SegueIdentifiers.VIEW_EVENTS_SEGUE,sender:MenuOptions.ViewEvents.rawValue)
-            case .ShareEvents:
-                self.performSegue(withIdentifier: SegueIdentifiers.VIEW_EVENTS_SEGUE,sender:MenuOptions.ShareEvents.rawValue)
-            case .AboutApp:
-                self.performSegue(withIdentifier: SegueIdentifiers.VIEW_ABOUT_APP_SEGUE,sender:self)
+        DispatchQueue.main.async {
+            switch menuOption {
+                case .CreateEvent:
+                    self.performSegue(withIdentifier: SegueIdentifiers.CREATE_EVENT_SEGUE,sender:self)
+                case .ViewEvents:
+                    self.performSegue(withIdentifier: SegueIdentifiers.VIEW_EVENTS_SEGUE,sender:MenuOptions.ViewEvents.rawValue)
+                case .ShareEvents:
+                    self.performSegue(withIdentifier: SegueIdentifiers.VIEW_EVENTS_SEGUE,sender:MenuOptions.ShareEvents.rawValue)
+                case .AboutApp:
+                    self.performSegue(withIdentifier: SegueIdentifiers.VIEW_ABOUT_APP_SEGUE,sender:self)
+            }
         }
     }
     

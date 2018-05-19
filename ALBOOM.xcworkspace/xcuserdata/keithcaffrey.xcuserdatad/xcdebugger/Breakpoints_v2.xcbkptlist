@@ -122,7 +122,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EventsApp/EAMenuViewController.swift"
-            timestampString = "547400904.967635"
+            timestampString = "548464329.718042"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "96"
@@ -964,7 +964,7 @@
                   moduleName = "ALBOOM"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/keithcaffrey/Dev/ios/ALBOOM/EventsApp/EADeviceDataManager.swift"
-                  timestampString = "548194192.674576"
+                  timestampString = "548464330.107041"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "122"
@@ -979,7 +979,7 @@
                   moduleName = "ALBOOM"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/keithcaffrey/Dev/ios/ALBOOM/EventsApp/EADeviceDataManager.swift"
-                  timestampString = "548194192.67843"
+                  timestampString = "548464330.110447"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "123"
@@ -1012,7 +1012,7 @@
                   moduleName = "ALBOOM"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/keithcaffrey/Dev/ios/ALBOOM/EventsApp/EADeviceDataManager.swift"
-                  timestampString = "548194192.686975"
+                  timestampString = "548464330.120603"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "93"
@@ -1027,7 +1027,7 @@
                   moduleName = "ALBOOM"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/keithcaffrey/Dev/ios/ALBOOM/EventsApp/EADeviceDataManager.swift"
-                  timestampString = "548194192.689864"
+                  timestampString = "548464330.125935"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "95"
@@ -1386,6 +1386,22 @@
             startingLineNumber = "291"
             endingLineNumber = "291"
             landmarkName = "setupTableViewCell(_:forFile:andIndexPath:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EventsApp/EAMenuViewController.swift"
+            timestampString = "548464329.718778"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "146"
+            endingLineNumber = "146"
+            landmarkName = "tableView(_:didSelectRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
