@@ -43,6 +43,7 @@ open class EAGalleryViewController: UIViewController, UITableViewDelegate, UITab
         Gallery.Config.Grid.FrameView.borderColor = EAUIColours.PRIMARY_BLUE
         Gallery.Config.Grid.FrameView.fillColor = EAUIColours.SECONDARY_BLUE
         Gallery.Config.PageIndicator.backgroundColor = UIColor.white
+        Gallery.Config.Grid.CloseButton.tintColor = UIColor.white
         Gallery.Config.PageIndicator.textColor = EAUIColours.PRIMARY_BLUE
         Gallery.Config.tabsToShow = [.imageTab, .cameraTab]
         Gallery.Config.Camera.imageLimit = 5
@@ -175,7 +176,7 @@ open class EAGalleryViewController: UIViewController, UITableViewDelegate, UITab
                 imageViewBackground = UIImageView(frame: CGRect(x: 0, y: 0, width: width, height: height))
                 imageViewBackground?.tag = UIImageViewTagId
                 // you can change the content mode:
-                imageViewBackground?.contentMode = UIViewContentMode.scaleToFill
+                imageViewBackground?.contentMode = UIViewContentMode.scaleAspectFit
                 imageViewBackground?.translatesAutoresizingMaskIntoConstraints = false;
                 view.addSubview(imageViewBackground!)
                 let top = NSLayoutConstraint(item: imageViewBackground!, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem:view , attribute: NSLayoutAttribute.top, multiplier: 1, constant: 0)

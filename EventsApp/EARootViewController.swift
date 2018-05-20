@@ -28,7 +28,6 @@ class EARootViewController: UIViewController, EALoginListener {
         GIDSignIn.sharedInstance().signOut()
         print("EARootViewController - viewDidLoad() called \(Date())")
     }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -121,4 +120,20 @@ class EARootViewController: UIViewController, EALoginListener {
          print("Login failed")
     }
     
+}
+
+
+extension UINavigationController {
+    override open var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        
+        return [.portrait]
+    }
+}
+
+
+extension UITabBarController {
+    override open var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        
+        return [.portrait]
+    }
 }

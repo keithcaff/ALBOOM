@@ -87,6 +87,10 @@ open class EAHomeViewController: UIViewController, UITableViewDelegate, UITableV
         refreshControl.backgroundColor = EAUIColours.PRIMARY_BLUE
     }
     
+    open override var shouldAutorotate: Bool {
+        return false
+    }
+    
     //Mark:Alerts
     func getDeletFailedAlert() -> UIAlertController {
         let alert = UIAlertController(title: EAUIText.ALERT_DELETE_FILE_FAILED_TITLE, message: EAUIText.ALERT_DELETE_FILE_FAILED_MESSAGE, preferredStyle: UIAlertControllerStyle.alert)
@@ -190,7 +194,7 @@ open class EAHomeViewController: UIViewController, UITableViewDelegate, UITableV
                 imageViewBackground = UIImageView(frame: CGRect(x: 0, y: 0, width: width, height: height))
                 imageViewBackground?.tag = UIImageViewTagId
                 // you can change the content mode:
-                imageViewBackground?.contentMode = UIViewContentMode.scaleToFill
+                imageViewBackground?.contentMode = UIViewContentMode.scaleAspectFit
                 imageViewBackground?.translatesAutoresizingMaskIntoConstraints = false;
                 view.addSubview(imageViewBackground!)
                 let top = NSLayoutConstraint(item: imageViewBackground!, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem:view , attribute: NSLayoutAttribute.top, multiplier: 1, constant: 0)

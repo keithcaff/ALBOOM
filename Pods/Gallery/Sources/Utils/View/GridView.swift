@@ -73,7 +73,7 @@ class GridView: UIView {
 
   func makeTopView() -> UIView {
     let view = UIView()
-    view.backgroundColor = UIColor.white
+    view.backgroundColor = primaryBlue
 
     return view
   }
@@ -128,7 +128,7 @@ class GridView: UIView {
 
     let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
     //TODO: KC set the colour to match app
-    view.backgroundColor = secondaryBlue
+    view.backgroundColor = primaryBlue
 
     return view
   }

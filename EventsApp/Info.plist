@@ -43,7 +43,7 @@
 			<string>BUNDLE_ID</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.keithcaffrey.alboomapp</string>
+				<string>com.keithcaffrey.alboom</string>
 			</array>
 		</dict>
 		<dict>
@@ -98,10 +98,14 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 </dict>
 </plist>
