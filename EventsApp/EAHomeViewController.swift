@@ -241,9 +241,6 @@ open class EAHomeViewController: UIViewController, UITableViewDelegate, UITableV
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let file = getFileForIndexPath(indexPath) {
             displayPreviewForFile(file)
-            //todo:remove this test code
-            EAGoogleAPIManager.sharedInstance.updateFile(file)
-            
         }
     }
     
@@ -372,7 +369,7 @@ open class EAHomeViewController: UIViewController, UITableViewDelegate, UITableV
                 alertController.addAction(okAction)
                 
                 //public convenience init(title: String?, style: UIAlertActionStyle, handler: ((UIAlertAction) -> Swift.Void)? = nil)
-                    alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler:nil))
+                alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler:nil))
                 
                 self.present(alertController, animated: true, completion: nil)
             }
