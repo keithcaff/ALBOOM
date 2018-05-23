@@ -592,7 +592,7 @@
 				INFOPLIST_FILE = EventsApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.keithcaffrey.alboomapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.keithcaffrey.alboom;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -616,7 +616,7 @@
 				INFOPLIST_FILE = EventsApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.keithcaffrey.alboomapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.keithcaffrey.alboom;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
