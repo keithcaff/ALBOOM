@@ -87,9 +87,8 @@ open class EAViewEventsViewController: UIViewController, UITableViewDelegate, UI
     
     @objc func eventFoldersRetrieved(_ notifiaction : Notification) {
         data = NSMutableArray();
-        if let object = notifiaction.object {
-            let foldersList:GTLDriveFileList = (object as! GTLDriveFileList)
-            for folder:Any in foldersList.files {
+        if let object = notifiaction.object, let foldersList:GTLDriveFileList = object as? GTLDriveFileList, let files = foldersList.files {
+            for folder:Any in files {
                 let name:String? = (folder as! GTLDriveFile).name
                 let id:String? = (folder as! GTLDriveFile).identifier
                 let event:EAEvent = EAEvent.init(id:id!, eventName: name!);

@@ -58,7 +58,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>7</string>
+	<string>8</string>
 	<key>CLIENT_ID</key>
 	<string>846609866933-a2av32btvqv5rpknqb3khruc7f6hm89r.apps.googleusercontent.com</string>
 	<key>GOOGLE_APP_ID</key>
@@ -87,10 +87,6 @@
 	<string>eventapp-1c7b4</string>
 	<key>REVERSED_CLIENT_ID</key>
 	<string>com.googleusercontent.apps.846609866933-a2av32btvqv5rpknqb3khruc7f6hm89r</string>
-	<key>UIDeviceFamily</key>
-	<array>
-		<string>1</string>
-	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -107,12 +103,6 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
-	</array>
-	<key>UISupportedInterfaceOrientations~ipad</key>
-	<array>
-		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 </dict>
 </plist>

@@ -301,6 +301,15 @@ open class EAHomeViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     
+    private func backgroundImageForCell(_ cell:EAHomeTableViewCell) -> UIImage? {
+        let backgroundView:UIView? = cell.viewWithTag(UIImageViewTagId)
+        var backgroundImage:UIImage?
+        if let backgroundView = backgroundView as? UIImageView {
+            backgroundImage = backgroundView.image
+        }
+        return backgroundImage
+    }
+    
     private func cellHasBackgroundImage(_ cell:EAHomeTableViewCell) -> Bool {
         let backgroundView:UIView? = cell.viewWithTag(UIImageViewTagId)
         var hasBackgroundImage:Bool = false
@@ -321,12 +330,12 @@ open class EAHomeViewController: UIViewController, UITableViewDelegate, UITableV
                     if let inProgress = deleteInProgress, !inProgress {
                         self?.deletesInProgress.append(file.identifier)
                         EAGoogleAPIManager.sharedInstance.deleteFile(file, fromEvent: EAEvent.getCurrentEvent())
-                    }
+                    }   
                 }
                 
                 popoverContent.shareAction = {
-                    if let shareAction = cell.shareAction {
-                        shareAction()
+                    if let image = self?.backgroundImageForCell(cell) {
+                        self?.share(image, shareText:EAUIText.SHARE_SINGLE_IMAGE_TEXT, source:cell.shareButton)
                     }
                 }
                 if let popover = popoverContent.popoverPresentationController {
