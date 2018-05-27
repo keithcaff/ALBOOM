@@ -9,7 +9,7 @@
 import Foundation
 
 class EAHomeTableViewCellPopover: UIViewController {
-
+    
     @IBOutlet weak var shareButton: UIButton!
     
     @IBOutlet weak var buttonTwo: UIButton!
@@ -27,14 +27,19 @@ class EAHomeTableViewCellPopover: UIViewController {
     }
     
     @IBAction func buttonClicked(_ sender: Any) {
+        var deleteOnDismiss = false
         if let buttonClicked = sender as? UIButton {
-            if let deleteAction = deleteAction, buttonClicked == deleteButton  {
-                deleteAction()
-            }
+            deleteOnDismiss = buttonClicked == deleteButton
             if let shareAction = shareAction, buttonClicked == shareButton  {
                 shareAction()
             }
         }
-        self.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: true, completion: {
+            //triggering delete action on dismiss because we can't present two allerts at the same time
+            //i.e. are you sure you want to delete ...
+            if let deleteAction = self.deleteAction, deleteOnDismiss {
+                deleteAction()
+            }
+        })
     }
 }

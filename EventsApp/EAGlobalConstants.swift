@@ -102,6 +102,8 @@ struct EAUIText {
     static let ALERT_UPLOAD_COMPLETE_TITLE = "Upload complete"
     static let ALERT_REFRESH_ALBOOM_FALED_TITLE = "Retrieve files failed"
     static let ALERT_REFRESH_ALBOOM_FALED_MESSAGE = "Unable to retrieve latest files in \(ALBUM_PLACEHOLDER) folder"
+    static let ALERT_DELETE_FILE_TITLE = "Delete file"
+    static let ALERT_DELETE_FILE_MESSAGE = "Are you sure you want to delete this file?"
     static let ALERT_DELETE_FILE_FAILED_TITLE = "Failed to delete"
     static let ALERT_DELETE_FILE_FAILED_MESSAGE = "Failed to delete file in Google Drive"
     static let ALERT_UPLOAD_COMPLETE_MESSAGE = "Media uploaded to Google Drive"

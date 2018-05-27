@@ -98,6 +98,20 @@ open class EAHomeViewController: UIViewController, UITableViewDelegate, UITableV
         return alert
     }
     
+    func getDeleteFileAlertForCell(_ cell :EAHomeTableViewCell, andFile file:GTLDriveFile) -> UIAlertController {
+        let alert = UIAlertController(title: EAUIText.ALERT_DELETE_FILE_TITLE, message: EAUIText.ALERT_DELETE_FILE_MESSAGE, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler:{ [weak self] (action)  in
+            self?.activityIndicatorVisible(true, cell:cell)
+            let deleteInProgress = self?.deletesInProgress.contains(file.identifier)
+            if let inProgress = deleteInProgress, !inProgress {
+                self?.deletesInProgress.append(file.identifier)
+                EAGoogleAPIManager.sharedInstance.deleteFile(file, fromEvent: EAEvent.getCurrentEvent())
+            }
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler:nil))
+        return alert
+    }
+    
     func getRefreshALBOOMFolderFailedAlert() -> UIAlertController {
         let alert = UIAlertController(title: EAUIText.ALERT_REFRESH_ALBOOM_FALED_TITLE, message: EAUIText.ALERT_REFRESH_ALBOOM_FALED_MESSAGE, preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler:{ (action) in
@@ -325,12 +339,10 @@ open class EAHomeViewController: UIViewController, UITableViewDelegate, UITableV
                 let popoverContent = EAHomeTableViewCellPopover()
                 popoverContent.modalPresentationStyle = .popover
                 popoverContent.deleteAction = { [weak self] in
-                    self?.activityIndicatorVisible(true, cell:cell)
-                    let deleteInProgress = self?.deletesInProgress.contains(file.identifier)
-                    if let inProgress = deleteInProgress, !inProgress {
-                        self?.deletesInProgress.append(file.identifier)
-                        EAGoogleAPIManager.sharedInstance.deleteFile(file, fromEvent: EAEvent.getCurrentEvent())
-                    }   
+                    let alert = self?.getDeleteFileAlertForCell(cell, andFile: file)
+                    if let alert = alert {
+                        self?.present(alert , animated: true, completion: nil)
+                    }
                 }
                 
                 popoverContent.shareAction = {
@@ -350,7 +362,7 @@ open class EAHomeViewController: UIViewController, UITableViewDelegate, UITableV
                     popoverContent.preferredContentSize = CGSize(width: 140, height: popoverContent.view.frame.height)
                     popover.delegate = self
                 }
-                self?.present(popoverContent, animated: true, completion: nil)
+                self?.present(popoverContent, animated: true, completion:nil)
             }
         }
         return action
