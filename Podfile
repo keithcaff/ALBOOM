@@ -7,7 +7,7 @@ target 'ALBOOM' do
  	pod 'GoogleAPIClient/Drive'
  	pod 'Google/SignIn'
  	pod 'GTMOAuth2'
+	pod 'Gallery', :git => 'https://github.com/hyperoslo/Gallery.git', :branch => 'master'
 	pod ‘UIColor-Hex'
-	pod 'Gallery'
 	pod 'Lightbox'
 end

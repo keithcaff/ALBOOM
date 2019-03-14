@@ -3,12 +3,12 @@ PODS:
   - FirebaseAnalytics (3.9.0):
     - FirebaseCore (~> 3.6)
     - FirebaseInstanceID (~> 1.0)
-    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
   - FirebaseCore (3.6.0):
-    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
   - FirebaseInstanceID (1.0.10):
     - FirebaseCore (~> 3.6)
-  - Gallery (2.0.2)
+  - Gallery (2.2.0)
   - Google/Core (3.1.0):
     - FirebaseAnalytics (~> 3.2)
   - Google/SignIn (3.1.0):
@@ -23,20 +23,20 @@ PODS:
     - GoogleAPIClient/Core
     - GTMSessionFetcher (~> 1.1)
   - GoogleSignIn (4.1.1):
-    - GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)
-    - GoogleToolboxForMac/NSString+URLArguments (~> 2.1)
+    - "GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)"
+    - "GoogleToolboxForMac/NSString+URLArguments (~> 2.1)"
     - GTMOAuth2 (~> 1.0)
     - GTMSessionFetcher/Core (~> 1.1)
   - GoogleToolboxForMac/DebugUtils (2.1.3):
     - GoogleToolboxForMac/Defines (= 2.1.3)
   - GoogleToolboxForMac/Defines (2.1.3)
-  - GoogleToolboxForMac/NSData+zlib (2.1.3):
+  - "GoogleToolboxForMac/NSData+zlib (2.1.3)":
     - GoogleToolboxForMac/Defines (= 2.1.3)
-  - GoogleToolboxForMac/NSDictionary+URLArguments (2.1.3):
+  - "GoogleToolboxForMac/NSDictionary+URLArguments (2.1.3)":
     - GoogleToolboxForMac/DebugUtils (= 2.1.3)
     - GoogleToolboxForMac/Defines (= 2.1.3)
-    - GoogleToolboxForMac/NSString+URLArguments (= 2.1.3)
-  - GoogleToolboxForMac/NSString+URLArguments (2.1.3)
+    - "GoogleToolboxForMac/NSString+URLArguments (= 2.1.3)"
+  - "GoogleToolboxForMac/NSString+URLArguments (2.1.3)"
   - GTMOAuth2 (1.1.5):
     - GTMSessionFetcher (~> 1.1)
   - GTMSessionFetcher (1.1.12):
@@ -53,7 +53,7 @@ PODS:
   - UIColor-Hex (1.3.4)
 
 DEPENDENCIES:
-  - Gallery
+  - Gallery (from `https://github.com/hyperoslo/Gallery.git`, branch `master`)
   - Google/SignIn
   - GoogleAPIClient (~> 1.0)
   - GoogleAPIClient/Drive
@@ -61,12 +61,39 @@ DEPENDENCIES:
   - Lightbox
   - UIColor-Hex
 
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Cache
+    - FirebaseAnalytics
+    - FirebaseCore
+    - FirebaseInstanceID
+    - Google
+    - GoogleAPIClient
+    - GoogleSignIn
+    - GoogleToolboxForMac
+    - GTMOAuth2
+    - GTMSessionFetcher
+    - Hue
+    - Imaginary
+    - Lightbox
+    - UIColor-Hex
+
+EXTERNAL SOURCES:
+  Gallery:
+    :branch: master
+    :git: https://github.com/hyperoslo/Gallery.git
+
+CHECKOUT OPTIONS:
+  Gallery:
+    :commit: 11183c13b1bf629775460ac198908eeda8491745
+    :git: https://github.com/hyperoslo/Gallery.git
+
 SPEC CHECKSUMS:
   Cache: bd0233fc688b5e83a27bcd87807db7e6f23adcc5
   FirebaseAnalytics: e5fe8486efc01bec33f6bf82e2fa9fce4b124052
   FirebaseCore: 9691ee2ade70c098d7cf92440f4303f16d83ca75
   FirebaseInstanceID: b9eedd6846fb5e1f0f7279e1deaa7a7e4cf8392e
-  Gallery: a5cdf94495b789c622e8286dea6bf6f29a0b3429
+  Gallery: 3f4c780c4b22906d6b0a5e55d12167cdc4b4fc5b
   Google: 98da4b1a60ed0beb80a290387a28333406a1eb90
   GoogleAPIClient: 77df755d41d70ee5a99b7b752614fbb439f19438
   GoogleSignIn: 3fdaa34a2ba04dbd7a25d7db39aecb0da98d5bdc
@@ -78,6 +105,6 @@ SPEC CHECKSUMS:
   Lightbox: 2dc267df8be2285bc7724cb11cbbf4aaaf59dced
   UIColor-Hex: fa81910f914482931c150fd73a09e77ff9226ec8
 
-PODFILE CHECKSUM: cc7bd6db30ed40ac4b4fd4a63e1da2ab068ce8bd
+PODFILE CHECKSUM: 5f259f32fe28eb194b447b91e93ca464c3545d65
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.5.3

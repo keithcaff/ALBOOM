@@ -26,7 +26,7 @@
 		44CC1C341D45340F007AFB89 /* EAViewEventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CC1C331D45340F007AFB89 /* EAViewEventTableViewCell.swift */; };
 		44CC1C361D454925007AFB89 /* EAViewEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CC1C351D454925007AFB89 /* EAViewEventsViewController.swift */; };
 		44DCA2DA20B0AA420047AC1A /* Cache.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44DCA2D920B0AA420047AC1A /* Cache.framework */; };
-		44DCA2DC20B0AA420047AC1A /* Gallery.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44DCA2DB20B0AA420047AC1A /* Gallery.framework */; };
+		44DCA2DC20B0AA420047AC1A /* Gallery.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44DCA2DB20B0AA420047AC1A /* Gallery.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		44DCA2DE20B0AA420047AC1A /* GoogleAPIClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44DCA2DD20B0AA420047AC1A /* GoogleAPIClient.framework */; };
 		44DCA2E020B0AA420047AC1A /* GoogleToolboxForMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44DCA2DF20B0AA420047AC1A /* GoogleToolboxForMac.framework */; };
 		44DCA2E220B0AA420047AC1A /* GTMOAuth2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44DCA2E120B0AA420047AC1A /* GTMOAuth2.framework */; };
@@ -39,6 +39,7 @@
 		44E5681820924F57008C410C /* EAHomeTableViewCellPopover.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44E5681720924F57008C410C /* EAHomeTableViewCellPopover.xib */; };
 		44F753521D5295370034BCC0 /* EAHomeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44F753511D5295370034BCC0 /* EAHomeTableViewCell.xib */; };
 		44F753541D52971F0034BCC0 /* EAHomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F753531D52971F0034BCC0 /* EAHomeTableViewCell.swift */; };
+		47362C71A2FB6B1CD0B29CFB /* Pods_ALBOOM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44DCA2EB20B0AA420047AC1A /* Pods_ALBOOM.framework */; };
 		5310B4E11F325A7B00466952 /* EAHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5310B4E01F325A7B00466952 /* EAHomeViewController.swift */; };
 		53160D911D3801DE0095906E /* EAEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53160D901D3801DE0095906E /* EAEvent.swift */; };
 		535D05441FB619690012A527 /* EAUploadProgressView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 535D05431FB619680012A527 /* EAUploadProgressView.xib */; };
@@ -123,6 +124,7 @@
 				44DCA2E820B0AA420047AC1A /* Imaginary.framework in Frameworks */,
 				44DCA2EA20B0AA420047AC1A /* Lightbox.framework in Frameworks */,
 				44DCA2EE20B0AA420047AC1A /* UIColor_Hex.framework in Frameworks */,
+				47362C71A2FB6B1CD0B29CFB /* Pods_ALBOOM.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -294,9 +296,8 @@
 				TargetAttributes = {
 					44323FA81CE9EF730049F7FC = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = 8B7YLHTUEA;
 						LastSwiftMigration = 0900;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -587,8 +588,8 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8B7YLHTUEA;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = EventsApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -611,8 +612,8 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8B7YLHTUEA;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = EventsApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

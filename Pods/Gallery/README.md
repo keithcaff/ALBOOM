@@ -39,13 +39,26 @@ The content controller is not loaded until the users navigate to, which offers a
 The `GalleryControllerDelegate` requires you to implement some delegate methods in order to interact with the picker
 
 ```swift
-func galleryController(_ controller: GalleryController, didSelectImages images: [UIImage])
+func galleryController(_ controller: GalleryController, didSelectImages images: [Image])
 func galleryController(_ controller: GalleryController, didSelectVideo video: Video)
-func galleryController(_ controller: GalleryController, requestLightbox images: [UIImage])
+func galleryController(_ controller: GalleryController, requestLightbox images: [Image])
 func galleryControllerDidCancel(_ controller: GalleryController)
 ```
 
 The lightbox delegate method is your chance to display selected images. If you're looking for a nice solution, here is the [Lightbox](https://github.com/hyperoslo/Lightbox) that we use and love
+
+### Resolving
+
+The delegate methods give you `Image` and `Video`, which are just wrappers around `PHAsset`. To get the actual asset informations, we offer many convenient methods. See [example](https://github.com/hyperoslo/Gallery/blob/master/Example/GalleryDemo/GalleryDemo/Sources/ViewController.swift)
+
+`Image`
+
+  - Use instance method `resolve` to get the actual UIImage
+  - Use static method `Image.resolve` to resolve a list of images
+
+`Video`
+
+  - Use instance method `fetchDuration`, `fetchPlayerItem`, `fetchAVAsset`, `fetchThumbnail` to get more information about the selected video.
 
 ### Permission
 
@@ -66,11 +79,12 @@ There are lots of customization points in `Config` structs. For example
 Config.Permission.image = UIImage(named: ImageList.Gallery.cameraIcon)
 Config.Font.Text.bold = UIFont(name: FontList.OpenSans.bold, size: 14)!
 Config.Camera.recordLocation = true
+Config.tabsToShow = [.imageTab, .cameraTab]
 ```
 
 ### Video Editor
 
-`Galery` cares more about video with its editing functionalities. We have `VideoEditor` and `AdvancedVideoEditor` to trim, resize, scale and define quality of the selected video
+`Gallery` cares more about video with its editing functionalities. We have `VideoEditor` and `AdvancedVideoEditor` to trim, resize, scale and define quality of the selected video
 
 ```swift
 func galleryController(_ controller: GalleryController, didSelectVideo video: Video) {
@@ -98,8 +112,6 @@ And, of course, you have the ability to customize it
 Config.VideoEditor.maximumDuration = 30
 Config.VideoEditor.savesEditedVideoToLibrary = true
 ```
-
-
 
 ## Installation
 

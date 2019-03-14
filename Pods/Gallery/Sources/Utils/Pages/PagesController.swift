@@ -32,6 +32,7 @@ class PagesController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
+    view.backgroundColor = .black
     setup()
   }
 
@@ -75,7 +76,7 @@ class PagesController: UIViewController {
   }
 
   func makePageIndicator() -> PageIndicator {
-    let items = controllers.flatMap { $0.title }
+    let items = controllers.compactMap { $0.title }
     let indicator = PageIndicator(items: items)
     indicator.delegate = self
 
@@ -88,12 +89,25 @@ class PagesController: UIViewController {
     let usePageIndicator = controllers.count > 1
     if usePageIndicator {
       view.addSubview(pageIndicator)
+      Constraint.on(
+        pageIndicator.leftAnchor.constraint(equalTo: pageIndicator.superview!.leftAnchor),
+        pageIndicator.rightAnchor.constraint(equalTo: pageIndicator.superview!.rightAnchor),
+        pageIndicator.heightAnchor.constraint(equalToConstant: 40)
+      )
+      
+      if #available(iOS 11, *) {
+        Constraint.on(
+          pageIndicator.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        )
+      } else {
+        Constraint.on(
+          pageIndicator.bottomAnchor.constraint(equalTo: pageIndicator.superview!.bottomAnchor)
+        )
+      }
     }
+    
     view.addSubview(scrollView)
     scrollView.addSubview(scrollViewContentView)
-
-    pageIndicator.g_pinDownward()
-    pageIndicator.g_pin(height: 40)
 
     scrollView.g_pinUpward()
     if usePageIndicator {
@@ -105,9 +119,9 @@ class PagesController: UIViewController {
     scrollViewContentView.g_pinEdges()
 
     for (i, controller) in controllers.enumerated() {
-      addChildViewController(controller)
+        addChild(controller)
       scrollViewContentView.addSubview(controller.view)
-      controller.didMove(toParentViewController: self)
+        controller.didMove(toParent: self)
 
       controller.view.g_pin(on: .top)
       controller.view.g_pin(on: .bottom)

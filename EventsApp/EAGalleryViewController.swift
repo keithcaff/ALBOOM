@@ -201,13 +201,6 @@ open class EAGalleryViewController: UIViewController, UITableViewDelegate, UITab
         let imageName:String =  uploadDetails[GoogleAPIKeys.IMAGE_NAME] as! String
         let uploadPercentage:Float =  uploadDetails[GoogleAPIKeys.UPLOAD_PERCENTAGE] as! Float
         print("uploadProgressUpated: \(imageName) image \(uploadPercentage)%")
-        //No longer showing progress view. Using activity indicator instead.
-//        if let i = data.index(where: { $0.name == imageName  }) {
-//            let eaImageUpload:EAImageUpload = data[i]
-//            eaImageUpload.uploadPercentage = uploadPercentage
-//            let indexPath = IndexPath(row: i, section: 0)
-//            self.tableView.reloadRows(at: [indexPath], with: .none)
-//        }
     }
     
     @objc func imageUploadedSuccessfully(_ notifiaction : Notification) {
@@ -264,12 +257,12 @@ open class EAGalleryViewController: UIViewController, UITableViewDelegate, UITab
     // MARK: - GalleryControllerDelegate
     public func galleryController(_ controller: GalleryController, didSelectImages images: [Image]) {
         var imagesToProcess:[UIImage] = [UIImage]()
-        for image in images {
-            let size:CGSize = CGSize(width:image.asset.pixelWidth, height:image.asset.pixelHeight)
-            imagesToProcess.append(image.uiImage(ofSize: size)!)
-        }
-        gallery!.dismiss(animated: true, completion: nil)
-        updateViewWithSelectedImages(imagesToProcess)
+        Image.resolve(images: images, completion: { [weak self] resolvedImages in
+            let nonOptionalImages = resolvedImages.compactMap { $0 }
+            imagesToProcess.append(contentsOf: nonOptionalImages)
+            self?.gallery!.dismiss(animated: true, completion: nil)
+            self?.updateViewWithSelectedImages(imagesToProcess)
+        })
     }
     
     public func galleryController(_ controller: GalleryController, didSelectVideo video: Video) {
