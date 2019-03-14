@@ -11,12 +11,10 @@ open class EAImageTabBarController:UITabBarController {
     
     override open func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
     }
     
     @IBAction func c(_ sender: UIStoryboardSegue) {
         print("unWindToImageTabBar")
-        //self.dismissViewControllerAnimated(false, completion:nil)
     }
     
     override open func viewDidAppear(_ animated: Bool) {
