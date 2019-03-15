@@ -100,7 +100,7 @@ open class EAHomeViewController: UIViewController, UITableViewDelegate, UITableV
     
     func getDeleteFileAlertForCell(_ cell :EAHomeTableViewCell, andFile file:GTLDriveFile) -> UIAlertController {
         let alert = UIAlertController(title: EAUIText.ALERT_DELETE_FILE_TITLE, message: EAUIText.ALERT_DELETE_FILE_MESSAGE, preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler:{ [weak self] (action)  in
+        alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler:{ [weak self] (action)  in
             self?.activityIndicatorVisible(true, cell:cell)
             let deleteInProgress = self?.deletesInProgress.contains(file.identifier)
             if let inProgress = deleteInProgress, !inProgress {

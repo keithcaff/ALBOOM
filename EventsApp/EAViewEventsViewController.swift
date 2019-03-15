@@ -112,7 +112,7 @@ open class EAViewEventsViewController: UIViewController, UITableViewDelegate, UI
         weak var weakSelf:EAViewEventsViewController! = self
         let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
             if let data = weakSelf.data, let event:EAEvent =  data.object(at: indexPath.row) as? EAEvent {
-                let alertController = UIAlertController(title: "Delete ALBOOM", message: "Are you sure you want to delete \(event.displayName)", preferredStyle: .alert)
+                let alertController = UIAlertController(title: "Delete ALBOOM", message: "Are you sure you want to delete \(event.displayName)?", preferredStyle: .alert)
                 let okAction:UIAlertAction = UIAlertAction(title: "Ok", style: .default) { (action) in
                     EAGoogleAPIManager.sharedInstance.deleteEvent(event)
                 }
