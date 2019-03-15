@@ -54,12 +54,12 @@ PODS:
 
 DEPENDENCIES:
   - Gallery (from `https://github.com/hyperoslo/Gallery.git`, branch `master`)
-  - Google/SignIn
+  - Google/SignIn (~> 3.1.0)
   - GoogleAPIClient (~> 1.0)
-  - GoogleAPIClient/Drive
-  - GTMOAuth2
-  - Lightbox
-  - UIColor-Hex
+  - GoogleAPIClient/Drive (~> 1.0.5)
+  - GTMOAuth2 (~> 1.0)
+  - Lightbox (~> 2.1.2)
+  - UIColor-Hex (~> 1.3.4)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -105,6 +105,6 @@ SPEC CHECKSUMS:
   Lightbox: 2dc267df8be2285bc7724cb11cbbf4aaaf59dced
   UIColor-Hex: fa81910f914482931c150fd73a09e77ff9226ec8
 
-PODFILE CHECKSUM: 5f259f32fe28eb194b447b91e93ca464c3545d65
+PODFILE CHECKSUM: caf53a33f408d08a8f1eb71b140c014b659864a3
 
 COCOAPODS: 1.5.3
