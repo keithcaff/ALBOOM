@@ -10,10 +10,10 @@ Share that ALBOOM with friends and family
 Add some content from gallery or the camera via ALBOOM app!
 
 -------------------
-![alt tag](https://github.com/keithcaff/ALBOOM/tree/master/screenshots/ALBOOM.jpg)
+![alt tag](https://github.com/keithcaff/ALBOOM/blob/master/screenshots/ALBOOM.jpg)
 
 
 
-![alt tag](https://github.com/keithcaff/ALBOOM/tree/master/screenshots/sc1.jpg)
-![alt tag](https://github.com/keithcaff/ALBOOM/tree/master/screenshots/sc2.jpg)
-![alt tag](https://github.com/keithcaff/ALBOOM/tree/master/screenshots/sc3.jpg)
+![alt tag](https://github.com/keithcaff/ALBOOM/blob/master/screenshots/sc1.jpg)
+![alt tag](https://github.com/keithcaff/ALBOOM/blob/master/screenshots/sc2.jpg
+![alt tag](https://github.com/keithcaff/ALBOOM/blob/master/screenshots/sc3.jpg)
