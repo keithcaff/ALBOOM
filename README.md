@@ -11,5 +11,9 @@ ALBOOM app uses Google Drive™ API to create folders for photo albums. ALBOOM a
 
 -------------------
 
+![alt tag](https://github.com/keithcaff/ALBOOM/blob/master/screenshots/ALBOOM.png)
+
 ![alt tag](https://github.com/keithcaff/ALBOOM/blob/master/screenshots/sc1.png)
+![alt tag](https://github.com/keithcaff/ALBOOM/blob/master/screenshots/sc2.png)
+![alt tag](https://github.com/keithcaff/ALBOOM/blob/master/screenshots/sc3.png)
 
