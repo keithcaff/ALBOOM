@@ -4,16 +4,12 @@ ALBOOM app uses Google Drive™ API to create folders for photo albums. ALBOOM a
 
 
 # Instructions:
-Log in with your google account.
-Create an ALBOOM (google drive folder) 
-Share that ALBOOM with friends and family
-Add some content from gallery or the camera via ALBOOM app!
+- Log in with your google account.
+- Create an ALBOOM (google drive folder) 
+- Share that ALBOOM with friends and family
+- Add some content from gallery or the camera via ALBOOM app!
 
 -------------------
-![alt tag](https://github.com/keithcaff/ALBOOM/blob/master/screenshots/ALBOOM.jpg)
-
-
 
 ![alt tag](https://github.com/keithcaff/ALBOOM/blob/master/screenshots/sc1.jpg)
-![alt tag](https://github.com/keithcaff/ALBOOM/blob/master/screenshots/sc2.jpg
-![alt tag](https://github.com/keithcaff/ALBOOM/blob/master/screenshots/sc3.jpg)
+
